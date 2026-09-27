@@ -100,6 +100,17 @@
       strip.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
+
+      // Hide captions of partially visible cards – the right-edge fade
+      // must never cut a sentence mid-word
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            e.target.classList.toggle('is-peek', e.intersectionRatio < 0.95);
+          });
+        }, { root: strip, rootMargin: '0px -48px 0px 0px', threshold: [0, 0.95, 1] });
+        strip.querySelectorAll('.screen-item').forEach(function (it) { io.observe(it); });
+      }
     });
   }
 

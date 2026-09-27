@@ -18,7 +18,7 @@ html.swiss {
 
   --text:     #0B0B0B;
   --text-mid: #3E3E3E;
-  --text-dim: #8A8A8A;
+  --text-dim: #767676; /* AA at small sizes on white; #8A8A8A was 3.5:1 */
 
   --border:        #E1E1DE;
   --border-strong: #0B0B0B;
@@ -221,6 +221,16 @@ html.swiss .lang-toggle .lang-btn.lang-active { background: var(--text); color: 
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
   html.swiss .nav-seg { border-radius: 0; border-bottom: 1px solid var(--border); }
+  /* Full-width bottom line reads as a divider here – mark the active item on the left */
+  html.swiss .nav-seg.active { box-shadow: inset 3px 0 0 var(--accent); }
+  /* Dim the page under the open sheet so the menu doesn't blend into content */
+  html.swiss .nav.is-open::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 11, 11, 0.35);
+    z-index: -1;
+  }
 }
 
 /* ━━ HOME ━━ */
@@ -285,6 +295,23 @@ html.swiss .work-card--c2 .work-cover,
 html.swiss .work-card--c3 .work-cover {
   background: var(--bg-deep);
   border-radius: 0;
+}
+/* Screens are taller than the well – fade them into the grey where they get cut,
+   so the crop reads as intentional, not accidental */
+html.swiss .work-cover::before,
+html.swiss .work-cover::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+html.swiss .work-cover::after {
+  left: 0; right: 0; bottom: 0; height: 56px;
+  background: linear-gradient(to bottom, transparent, var(--bg-deep));
+}
+html.swiss .work-cover::before {
+  top: 0; right: 0; bottom: 0; width: 40px;
+  background: linear-gradient(to right, transparent, var(--bg-deep));
 }
 html.swiss .work-cover img {
   border-radius: 14px;

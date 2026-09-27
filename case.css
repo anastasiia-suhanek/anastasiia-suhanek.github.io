@@ -277,7 +277,11 @@
   font-size: var(--fs-sm);
   color: var(--text-mid);
   line-height: var(--lh-normal);
+  transition: opacity 0.25s ease;
 }
+/* A card peeking from the right edge keeps its image as the "more" cue,
+   but its caption hides so the fade never cuts a sentence mid-word */
+.screen-item.is-peek .screen-cap { opacity: 0; }
 .screen-cap strong {
   display: block;
   font-size: var(--fs-sm);

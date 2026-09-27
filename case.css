@@ -76,6 +76,8 @@
   color: var(--text);
   line-height: var(--lh-snug);
 }
+.case-facts .fact-line { display: block; }
+.case-facts .fact-line + .fact-line { margin-top: 2px; }
 .case-facts-wide {
   grid-column: 1 / -1;
   margin-top: var(--space-2);

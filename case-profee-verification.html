@@ -216,44 +216,26 @@ body {
 .mail-body a { color: #5B4BDB; text-decoration: underline; word-break: break-all; }
 .mail-logo { display: block; width: auto; height: 18px; margin-bottom: 22px; }
 @media (max-width: 580px) { .before-grid { grid-template-columns: 1fr; } }
-/* Inbox: the "before" emails as a mail client – list on the left, reading pane on the right */
-.inbox {
-  display: grid; grid-template-columns: 240px 1fr;
+/* Before emails: two letters side by side at thumbnail scale – the wall of text is the point, marks show the problems */
+.mails {
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto;
+  column-gap: var(--space-6); row-gap: 0;
   margin-block: var(--space-7) var(--space-8);
-  border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
-  background: #FFFFFF;
+}
+/* subgrid: both captions start on one line, like the screen sliders */
+.mail-card { margin: 0; display: grid; grid-row: span 2; grid-template-rows: subgrid; align-items: start; }
+.mail-sheet {
+  zoom: 0.62;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
-.inbox-list { background: #F4F3F8; border-right: 1px solid #E4E2EC; display: flex; flex-direction: column; }
-.inbox-item {
-  text-align: left; border: 0; background: none; cursor: pointer; font: inherit;
-  padding: 14px 16px; border-bottom: 1px solid #E4E2EC; display: flex; flex-direction: column; gap: 3px;
-  transition: background .15s;
+.mail-sheet .mail-chrome { border-radius: 14px 14px 0 0; }
+.mail-sheet .mail-body { border-radius: 0 0 14px 14px; padding-bottom: 8px; }
+.mail-body mark {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: inherit; padding: 1px 2px; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
-.inbox-item:hover { background: #ECEBF3; }
-.inbox-item.is-active { background: #FFFFFF; box-shadow: inset 3px 0 0 #5046E5; }
-.inbox-row { display: flex; justify-content: space-between; font-size: 12px; color: #1B1830; font-weight: 600; }
-.inbox-day { color: #8A879A; font-weight: 400; }
-.inbox-subj { font-size: 12.5px; color: #1B1830; }
-.inbox-prev { font-size: 11.5px; color: #8A879A; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.inbox-read { position: relative; min-height: 460px; }
-.inbox-pane { display: none; animation: inboxIn .25s ease-out; }
-.inbox-pane.is-active { display: block; }
-@keyframes inboxIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.inbox .mail-chrome { border: 0; border-bottom: 1px solid #E4E2EC; border-radius: 0; }
-.inbox .mail-body { border: 0; border-radius: 0; padding: 24px 32px 8px; max-width: 560px; }
-.inbox-cap {
-  margin: 0; padding: 12px 32px 16px; border-top: 1px solid #E4E2EC;
-  font-size: 12px !important; color: #8A879A !important; line-height: 1.45 !important;
-  font-family: var(--f-sans);
-}
-@media (max-width: 640px) {
-  .inbox { grid-template-columns: 1fr; }
-  .inbox-list { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid #E4E2EC; }
-  .inbox-item { min-width: 70%; border-bottom: 0; border-right: 1px solid #E4E2EC; }
-  .inbox .mail-body { padding: 20px 20px 8px; }
-  .inbox-cap { padding: 12px 20px 16px; }
-}
+@media (max-width: 640px) { .mails { grid-template-columns: 1fr; row-gap: var(--space-8); } .mail-card { grid-row: auto; display: block; } }
 .insight-source {
   margin: var(--space-2) 0 var(--space-6);
   font-size: var(--fs-xs); font-weight: var(--fw-medium);
@@ -393,74 +375,61 @@ body {
     <p class="t-en">In the app, entry points ranged from unclear banners to hard blocks with no explanation. The main nudge lived outside the app altogether: an email asking the user to leave their inbox for a verification bot. In support chats people said exactly that – <strong>going from an email into a bot didn't feel trustworthy</strong>. On top of that sat <strong>KYC Refresh</strong> – the case of already verified users whose documents expire</p>
     <p class="t-ru">В приложении точки входа были какими угодно – от невнятных баннеров до жёстких блокировок без объяснений. А главное напоминание вообще жило за пределами приложения: в письме, из которого нужно было перейти в бота. В поддержке так и говорили: <strong>переход из письма в бота не вызывает доверия</strong>. И отдельная история – <strong>KYC Refresh</strong>: уже проверенные пользователи, у которых истекают документы</p>
 
-    <div class="inbox" id="kycInbox">
-      <div class="inbox-list" role="tablist">
-        <button type="button" class="inbox-item is-active" data-mail="0" aria-pressed="true">
-          <span class="inbox-row"><span class="inbox-from">Profee Support</span><span class="inbox-day">Mon</span></span>
-          <span class="inbox-subj">Additional information required</span>
-          <span class="inbox-prev">Thank you for choosing Profee! We would like to inform you that your Profee account is currently under review…</span>
-        </button>
-        <button type="button" class="inbox-item" data-mail="1" aria-pressed="false">
-          <span class="inbox-row"><span class="inbox-from">Profee Support</span><span class="inbox-day">Thu</span></span>
-          <span class="inbox-subj">Your transfers are paused</span>
-          <span class="inbox-prev">Unfortunately, you can't make transfers right now…</span>
-        </button>
-      </div>
-      <div class="inbox-read">
-      <div class="inbox-pane is-active" data-mail="0">
-        <div class="mail-chrome">
-          <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
-          <span class="mail-subject">Additional information required</span>
+    <div class="mails">
+      <figure class="mail-card">
+        <div class="mail-sheet">
+          <div class="mail-chrome">
+            <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
+            <span class="mail-subject">Additional information required</span>
+          </div>
+          <div class="mail-body">
+            <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
+            <p>Dear Customer,</p>
+            <p><mark>Thank you for choosing Profee! We would like to inform you that your Profee account is currently under review.</mark> In order to finalize our standard checks on your account, we require some additional information.</p>
+            <p>We kindly ask you to provide us with a proof of address document. As proof of address we may accept one of the following:</p>
+            <ul>
+              <li>House insurance</li>
+              <li>Bank statement</li>
+              <li>Municipal tax bill</li>
+              <li>Utility bill (electricity, water, etc.)</li>
+              <li>Residence permit that lists your address in EU, UK or Switzerland</li>
+            </ul>
+            <p>Please ensure that the document is not older than 6 months and states your current address. Kindly note that all four corners of the document must be visible.</p>
+            <p><mark>To fulfill these requirements, you are kindly requested to follow the instructions here: <a>https://www.profee.com/transfer/verification</a></mark></p>
+            <p>We remain at your disposal for any clarifications that you might need.</p>
+            <p>Regards,<br>Profee Customer Support</p>
+          </div>
         </div>
-        <div class="mail-body">
-          <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
-          <p>Dear Customer,</p>
-          <p>Thank you for choosing Profee! We would like to inform you that your Profee account is currently under review. In order to finalize our standard checks on your account, we require some additional information.</p>
-          <p>We kindly ask you to provide us with a proof of address document. As proof of address we may accept one of the following:</p>
-          <ul>
-            <li>House insurance</li>
-            <li>Bank statement</li>
-            <li>Municipal tax bill</li>
-            <li>Utility bill (electricity, water, etc.)</li>
-            <li>Residence permit that lists your address in EU, UK or Switzerland</li>
-          </ul>
-          <p>Please ensure that the document is not older than 6 months and states your current address. Kindly note that all four corners of the document must be visible.</p>
-          <p>To fulfill these requirements, you are kindly requested to follow the instructions here: <a>https://www.profee.com/transfer/verification</a></p>
-          <p>We remain at your disposal for any clarifications that you might need.</p>
-          <p>Regards,<br>Profee Customer Support</p>
+        <figcaption class="screen-cap">
+          <strong class="t-en">Document request</strong>
+          <strong class="t-ru">Запрос документов</strong>
+          <span class="t-en">It opens with pleasantries, the ask is mid-letter, and the only action is a link out of the inbox to the bot</span>
+          <span class="t-ru">Начинается с любезностей, просьба – в середине, а единственное действие – ссылка, чтобы уйти из почты в бота</span>
+        </figcaption>
+      </figure>
+      <figure class="mail-card">
+        <div class="mail-sheet">
+          <div class="mail-chrome">
+            <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
+            <span class="mail-subject">Your transfers are paused</span>
+          </div>
+          <div class="mail-body">
+            <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
+            <p>Hello, Customer!</p>
+            <p><strong>Unfortunately, you can't make transfers right now.</strong> We understand how important it is for you to send money, and we're sorry you can't do it at the moment.</p>
+            <p><strong>Why did this happen?</strong><br><mark>Some requests from your account looked unusual to us</mark>, and we automatically paused transfers to keep your funds safe.</p>
+            <p><strong>What to do now?</strong><br><mark>Write to us in the support chat in the app or at <a>help@profee.com</a></mark>, and we will help you restore your account.</p>
+            <p>The decision takes some time – we will do everything we can to get back to you as soon as possible.</p>
+          </div>
         </div>
-        <p class="inbox-cap"><span class="t-en">Before · document request by email – a wall of text, a list of documents and a link out to the bot</span>
-          <span class="t-ru">До · запрос документов по почте – стена текста, список документов и ссылка из письма в бота</span></p>
-      </div>
-      <div class="inbox-pane" data-mail="1">
-        <div class="mail-chrome">
-          <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
-          <span class="mail-subject">Your transfers are paused</span>
-        </div>
-        <div class="mail-body">
-          <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
-          <p>Hello, Customer!</p>
-          <p><strong>Unfortunately, you can't make transfers right now.</strong> We understand how important it is for you to send money, and we're sorry you can't do it at the moment.</p>
-          <p><strong>Why did this happen?</strong><br>Some requests from your account looked unusual to us, and we automatically paused transfers to keep your funds safe.</p>
-          <p><strong>What to do now?</strong><br>Write to us in the support chat in the app or at <a>help@profee.com</a>, and we will help you restore your account.</p>
-          <p>The decision takes some time – we will do everything we can to get back to you as soon as possible.</p>
-        </div>
-        <p class="inbox-cap"><span class="t-en">Before · account paused – the reason is vague and the only next step is “write to support”</span>
-          <span class="t-ru">До · переводы приостановлены – причина неясна, единственный вариант – «напишите в поддержку»</span></p>
-      </div>
-      </div>
+        <figcaption class="screen-cap">
+          <strong class="t-en">Account paused</strong>
+          <strong class="t-ru">Переводы на паузе</strong>
+          <span class="t-en">The reason is vague, and the only next step is “write to support”</span>
+          <span class="t-ru">Причина размытая, а единственный шаг – «напишите в поддержку»</span>
+        </figcaption>
+      </figure>
     </div>
-    <script>
-    (function () {
-      var box = document.getElementById('kycInbox'); if (!box) return;
-      box.addEventListener('click', function (e) {
-        var b = e.target.closest('.inbox-item'); if (!b) return;
-        var k = b.getAttribute('data-mail');
-        box.querySelectorAll('.inbox-item').forEach(function (x) { var on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-pressed', on); });
-        box.querySelectorAll('.inbox-pane').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-mail') === k); });
-      });
-    })();
-    </script>
   </section>
 
   <!-- PROCESS -->

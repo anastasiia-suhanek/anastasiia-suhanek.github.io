@@ -130,7 +130,7 @@ body {
 }
 
 /* Filmed clip on the right: dimmed like the Cards hero video */
-.split--video { grid-template-columns: 1fr 360px; gap: var(--space-8); align-items: center; }
+.split--video { grid-template-columns: 1fr 360px; gap: var(--space-8); align-items: start; }
 .split-video { border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--border); }
 .split-video video { display: block; width: 100%; height: auto; filter: brightness(0.75) saturate(0.85); }
 
@@ -232,29 +232,19 @@ body {
       <span class="t-ru">Международные переводы – чёрный ящик</span>
     </h2>
 
-    <div class="split">
+    <div class="split split--video">
       <div class="split-text">
         <p class="t-en">A Profee transfer touches many systems: the sender's card, Profee's exchange engine, a correspondent bank, and the recipient's local bank or wallet. End-to-end, this can take seconds – or days. And along the way, it can get stuck, declined, or require action from the user</p>
         <p class="t-ru">Перевод в Profee проходит через несколько систем: карта отправителя, конвертация в Profee, банк-корреспондент и банк или кошелёк получателя. Весь путь занимает от нескольких секунд до нескольких дней. По дороге перевод может застрять, получить отказ или потребовать действия от пользователя</p>
-        <p class="t-en">The existing transfer detail screen showed one status: "In progress." No timeline. No explanation. No distinction between "we're processing this normally" and "the recipient's bank rejected the payment and we're sending your money back." Users had no way to know if they should wait, retry, or call support</p>
-        <p class="t-ru">Старый экран перевода показывал один статус – «В обработке». Ни таймлайна, ни объяснений. Никакой разницы между «всё идёт как обычно» и «банк получателя отклонил платёж, возвращаем деньги». Люди не понимали, что делать: ждать, пробовать снова или писать в поддержку</p>
+        <p class="t-en"><strong>Nobody waits for the transfer.</strong> People confirm, see "Processing your transfer" and switch to another app. Whatever happens next – a delay, a refund, a request for a Blik code – happens while they're gone</p>
+        <p class="t-ru"><strong>Перевод никто не ждёт.</strong> Человек подтверждает, видит «Обрабатываем перевод» и уходит в другое приложение. Всё, что случится дальше – задержка, возврат, запрос кода Blik, – происходит, пока его нет</p>
+        <p class="t-en">When they came back, the transfer showed one status: "In progress." No timeline. No explanation. No distinction between "we're processing this normally" and "the recipient's bank rejected the payment and we're sending your money back." Users had no way to know if they should wait, retry, or call support</p>
+        <p class="t-ru">А когда возвращался, видел у перевода один статус – «В обработке». Ни таймлайна, ни объяснений. Никакой разницы между «всё идёт как обычно» и «банк получателя отклонил платёж, возвращаем деньги». Люди не понимали, что делать: ждать, пробовать снова или писать в поддержку</p>
 
         <blockquote class="insight t-en">
           Support enquiries about transfer status were one of the biggest categories in the help queue. Most of them were cases where the status had changed – but the app wasn't showing it
         </blockquote>
         <blockquote class="insight t-ru">Вопросы о статусе перевода были одной из самых частых тем в поддержке. Чаще всего статус уже поменялся – просто приложение этого не показывало</blockquote>
-      </div>
-      <div class="split-phone">
-        <img src="images/statuses/main-screen-old.png" alt="Before – the Transfers list showed one word per transfer (Pending, Refund in progress, Refunded) with nothing behind the tap">
-      </div>
-    </div>
-
-    <div class="split split--video">
-      <div class="split-text">
-        <p class="t-en"><strong>Nobody waits for the transfer.</strong> People confirm, see "Processing your transfer" and switch to another app. Whatever happens next – a delay, a refund, a request for a Blik code – happens while they're gone</p>
-        <p class="t-ru"><strong>Перевод никто не ждёт.</strong> Человек подтверждает, видит «Обрабатываем перевод» и уходит в другое приложение. Всё, что случится дальше – задержка, возврат, запрос кода Blik, – происходит, пока его нет</p>
-        <p class="t-en">So the status can't live only on the processing screen. It has to be there when they come back, on the transfer itself, and explain what happened without a trip to support</p>
-        <p class="t-ru">Значит, статус не может жить только на экране обработки. Он должен ждать человека в самом переводе, когда тот вернётся, и объяснять, что произошло, без похода в поддержку</p>
       </div>
       <div class="split-video">
         <video autoplay loop muted playsinline preload="metadata" poster="media/statuses-leave-poster.jpg" width="720" height="1280" aria-label="A person confirms a transfer, sees the processing screen and switches to Instagram">

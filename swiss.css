@@ -1205,7 +1205,7 @@ html.swiss .outcome-strip .container,
 html.swiss .metrics { column-gap: var(--s5); }
 @media (min-width: 901px) {
   html.swiss .outcome-strip .container,
-  html.swiss .metrics { grid-template-columns: repeat(3, max-content); justify-content: space-between; }
+  html.swiss .metrics { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: space-between; }
   html.swiss .outcome-label,
   html.swiss .metric-label { white-space: nowrap; }
 }

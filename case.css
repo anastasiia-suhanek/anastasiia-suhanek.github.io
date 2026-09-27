@@ -57,7 +57,7 @@
 }
 .case-facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
   margin-top: var(--space-8);
   padding-top: var(--space-6);
@@ -76,8 +76,7 @@
   color: var(--text);
   line-height: var(--lh-snug);
 }
-.case-facts .fact-line { display: block; }
-.case-facts .fact-line + .fact-line { margin-top: 2px; }
+.case-facts .fact-line + .fact-line::before { content: " · "; color: var(--text-dim); }
 .case-facts-wide {
   grid-column: 1 / -1;
   margin-top: var(--space-2);

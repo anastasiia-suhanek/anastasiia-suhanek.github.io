@@ -13,6 +13,25 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="fonts/inter.css">
+<script>
+/* One CV, two languages: opens in the language the visitor chose on the site */
+(function () {
+  var q = (location.search.match(/[?&]lang=(en|ru)/) || [])[1], saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var lang = q || saved || ((navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
+  if (lang !== 'ru') lang = 'en';
+  document.documentElement.lang = lang;
+  document.title = lang === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-set-lang]'); if (!b) return;
+    var l = b.getAttribute('data-set-lang');
+    try { localStorage.setItem('lang', l); } catch (err) {}
+    document.documentElement.lang = l;
+    document.title = l === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+  });
+})();
+</script>
+
 
 <style>
 /* CV – Swiss: white page, Inter, violet accent from the Profee product, hairline rules.
@@ -104,6 +123,16 @@ a { color: inherit; text-decoration: none; }
 .outcomes-list li { font-size: var(--t-body); color: var(--text); line-height: 1.5; }
 .m { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
 
+/* language: only the document in the current language is shown and printed */
+html[lang="ru"] .doc[data-lang="en"],
+html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
+.bar-right { display: flex; align-items: center; gap: 24px; }
+.cv-lang { display: flex; gap: 2px; font-size: 14px; }
+.cv-lang button { font: 500 14px var(--f); color: var(--text-dim); background: none; border: 0; padding: 0 2px; cursor: pointer; letter-spacing: 0.02em; }
+.cv-lang button + button::before { content: '/'; margin-right: 4px; color: var(--text-dim); }
+.cv-lang button.is-on { color: var(--text); }
+.cv-lang button:hover { color: var(--accent); }
+
 @media (max-width: 680px) {
   body { padding-inline: 20px; }
   .print-bar { margin-bottom: 40px; }
@@ -141,12 +170,15 @@ a { color: inherit; text-decoration: none; }
 }
 </style>
 
-<div class="doc">
+<div class="doc" data-lang="en" lang="en">
 
   <!-- Print helper -->
   <div class="print-bar">
     <a class="cv-back" href="index.html">← Portfolio</a>
-    <button class="print-btn" onclick="window.print()">Save as PDF</button>
+    <div class="bar-right">
+      <div class="cv-lang"><button type="button" data-set-lang="en" class="is-on">EN</button><button type="button" data-set-lang="ru">RU</button></div>
+      <button class="print-btn" onclick="window.print()">Save as PDF</button>
+    </div>
   </div>
 
   <!-- ── HEADER ── -->
@@ -158,7 +190,7 @@ a { color: inherit; text-decoration: none; }
     <ul class="contact-block">
       <li><a href="mailto:anastasiia.suhanek@gmail.com">anastasiia.suhanek@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://www.behance.net/anastasiiasuhanek" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.behance.net/anastasiiasukhanek" target="_blank" rel="noopener">Behance</a></li>
       <li><a href="index.html">Portfolio</a></li>
       <li>Prague, Czech Republic</li>
     </ul>
@@ -352,6 +384,211 @@ a { color: inherit; text-decoration: none; }
 
     </main>
     <!-- ════ END MAIN ════ -->
+
+  </div>
+</div>
+
+<div class="doc" data-lang="ru" lang="ru">
+
+  <div class="print-bar">
+    <a class="cv-back" href="index.html">← Портфолио</a>
+    <div class="bar-right">
+      <div class="cv-lang"><button type="button" data-set-lang="en">EN</button><button type="button" data-set-lang="ru" class="is-on">RU</button></div>
+      <button class="print-btn" onclick="window.print()">Сохранить в PDF</button>
+    </div>
+  </div>
+
+  <header class="cv-header">
+    <div>
+      <h1 class="name">Анастасия Суханек</h1>
+      <p class="role-tag">Продуктовый дизайнер</p>
+    </div>
+    <ul class="contact-block">
+      <li><a href="mailto:anastasiia.suhanek@gmail.com">anastasiia.suhanek@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.behance.net/anastasiiasukhanek" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="index.html">Портфолио</a></li>
+      <li>Прага, Чехия</li>
+    </ul>
+  </header>
+
+  <div class="cv-body">
+
+    <aside class="sidebar">
+
+      <section>
+        <p class="sec-label">Инструменты</p>
+        <div class="skill-row">
+          <p class="skill-cat">Интерфейс</p>
+          <p class="skill-items">Figma – компоненты, автолейаут, варианты, прототипы<br>ProtoPie · Adobe Photoshop · Illustrator</p>
+        </div>
+        <div class="skill-row">
+          <p class="skill-cat">Исследования и тесты</p>
+          <p class="skill-items">Wynde · юзабилити-сессии<br>Количественные опросы · аналитика</p>
+        </div>
+        <div class="skill-row">
+          <p class="skill-cat">AI-инструменты</p>
+          <p class="skill-items">Claude · ChatGPT · Gemini · Midjourney · Figma AI</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Методы</p>
+        <div class="skill-items">
+          UX-исследования<br>
+          Юзабилити-тестирование<br>
+          A/B-эксперименты<br>
+          Карта пути пользователя (CJM)<br>
+          Проектирование сценариев<br>
+          Вайрфреймы<br>
+          Дизайн-системы<br>
+          Локализация (13+ языков)<br>
+          Agile<br>
+          Работа с подрядчиками
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Образование</p>
+        <div class="edu">
+          <p class="edu-org">Bang Bang Education</p>
+          <p class="edu-detail">UX/UI Designer+, продуктовый дизайн · 2024</p>
+        </div>
+        <div class="edu">
+          <p class="edu-org">Британская высшая школа дизайна</p>
+          <p class="edu-detail">Метафора в дизайне · 2023</p>
+        </div>
+        <div class="edu">
+          <p class="edu-org">Московский гуманитарный университет</p>
+          <p class="edu-detail">Бакалавр, международные отношения и культурология · 2018</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Языки</p>
+        <div class="lang-row">
+          <span>Английский</span>
+          <span class="lang-level">B2 · рабочий язык</span>
+        </div>
+        <div class="lang-row">
+          <span>Русский</span>
+          <span class="lang-level">Родной</span>
+        </div>
+        <div class="lang-row">
+          <span>Испанский</span>
+          <span class="lang-level">A1 · начальный</span>
+        </div>
+      </section>
+
+    </aside>
+
+    <main class="main">
+
+      <section>
+        <p class="sec-label">Профиль</p>
+        <p class="summary">Больше восьми лет в продуктовых командах: финтех и интерфейсы, от которых зависит конверсия. Переводы в Profee, лояльность в Билайне, геймификация в Сбере. Результаты: редизайн обработки ошибок – конверсия <span class="m">+10%</span>, один экран онбординга – <span class="m">+6%</span> к первому платежу, отказы в русскоязычных сценариях – <span class="m">−10%</span>. Веду задачи целиком: от исследования до A/B-тестов, дизайн-системы и локализации на 13+ языков</p>
+      </section>
+
+      <section>
+        <p class="sec-label">Опыт</p>
+
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">Profee.com</span>
+            <span class="job-dates">
+              янв. 2025 – н. в.
+              <span class="badge-now">Сейчас</span>
+            </span>
+          </div>
+          <p class="job-title">Продуктовый дизайнер · финтех, денежные переводы и платежи</p>
+          <ul class="bullets">
+            <li>Полный цикл продуктового дизайна: исследование, гипотезы, прототипы, юзабилити-тесты, запуск, разбор метрик</li>
+            <li>Запуски 2025 года: KYC-верификация, сравнение курсов валют, программа лояльности, управление картами, кошелёк, C2B-переводы, редизайн точек входа в верификацию</li>
+            <li>Запуски 2026 года: кешбэк и бонусная программа, обмен валют, система статусов переводов, C2B-платежи с телефона, выход на рынок Узбекистана</li>
+            <li>Переработала ключевые сценарии: точки входа, переводы, обработку ошибок, сценарии для русскоязычных пользователей</li>
+            <li>Собрала и развиваю мастер-файл Figma – единый источник правды для всех продуктовых команд; настроила сверку текстов в продакшене со строками в коде</li>
+            <li>Веду локализацию на 13+ языков, развиваю общую библиотеку компонентов в Figma</li>
+            <li>Провожу A/B-эксперименты и UX-проверки в Wynde, представляю выводы и дизайн-решения всей компании</li>
+            <li>Выстроила процесс UX-текстов с AI: варианты готовят AI-агенты, я создаю ветки и отдаю PR на ревью</li>
+            <li>Придумала «Чистый четверг» – раз в две недели разбираем с разработчиками UI/UX-долги</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Ключевые результаты</p>
+            <ul class="outcomes-list">
+              <li>Карты: пересобрала продуктовый раздел на iOS и Android → пользователей вкладки «Карты» в месяц <span class="m">×7</span> за полгода</li>
+              <li>Редизайн обработки ошибок оплаты → конверсия <span class="m">+10%</span>, доля завершённых сценариев <span class="m">+5%</span></li>
+              <li>Экран-подсказка перед первым переводом → конверсия в первый платёж <span class="m">+6%</span></li>
+              <li>Сравнение курсов валют → <span class="m">47%</span> лояльных пользователей, открывших график, завершили перевод</li>
+              <li>Автозагрузка документов для KYC – без обращений в поддержку</li>
+              <li>Напоминание о верификации – из письма на главный экран приложения</li>
+              <li>Редизайн сценариев для русскоязычной аудитории → отказы <span class="m">−10%</span></li>
+              <li>Запустила C2B-переводы, в 2026 году – выход на рынок мобильных платежей Узбекистана</li>
+              <li>Кешбэк и бонусы – чтобы люди замечали кошелёк и возвращались</li>
+              <li>Обмен валют – весь путь от курса до обмена</li>
+              <li>Система статусов переводов – понятный статус операции, меньше вопросов в поддержку</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">Билайн</span>
+            <span class="job-dates">авг. 2023 – янв. 2025</span>
+          </div>
+          <p class="job-title">Продуктовый дизайнер · приложение для абонентов</p>
+          <ul class="bullets">
+            <li>Проектировала сценарии, вайрфреймы и прототипы для основного приложения Билайна</li>
+            <li>Вела количественные и качественные исследования, представляла выводы руководству продукта</li>
+            <li>Проводила юзабилити-тесты и дорабатывала решения по поведенческим данным</li>
+            <li>Добавила геймификацию в программу лояльности: механика «Башня кешбэка», игра о кибербезопасности</li>
+            <li>Координировала внешних подрядчиков: сроки, дизайн-ревью, контроль качества</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Ключевые результаты</p>
+            <ul class="outcomes-list">
+              <li>Доля пополнений через внутренний канал: <span class="m">4% → 10%</span>; MAU <span class="m">+1 млн</span> пользователей</li>
+              <li>Частота пополнений – <span class="m">2,5 раза в месяц</span> на пользователя</li>
+              <li>ARPU <span class="m">+3%</span> благодаря улучшениям для пользователей</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">СберСпасибо (Сбербанк)</span>
+            <span class="job-dates">янв. 2022 – авг. 2023</span>
+          </div>
+          <p class="job-title">UX/UI-дизайнер · игровые продукты</p>
+          <ul class="bullets">
+            <li>Спроектировала 4 игровых продукта: SberPrimeCity, «Колесо фортуны», «Морские сокровища», Catch My Word</li>
+            <li>Прототипировала и тестировала игровые механики и навигацию для приложения и веба</li>
+            <li>Проводила интервью, юзабилити-тесты и проверку гипотез</li>
+            <li>Руководила работой подрядчиков: планирование, ревью, сдача; выстроила процесс с нуля – все проекты сданы в срок</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Ключевые результаты</p>
+            <ul class="outcomes-list">
+              <li>Использование бонусов <span class="m">×3</span> в «Морских сокровищах» и <span class="m">×1,5</span> в SberPrimeCity после редизайна</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">TOY.RU</span>
+            <span class="job-dates">янв. 2018 – февр. 2021</span>
+          </div>
+          <p class="job-title">UX/UI-дизайнер · e-commerce</p>
+          <ul class="bullets">
+            <li>Редизайн интернет-магазина для веба, мобильной и десктопной версий в рамках движка и кода</li>
+            <li>Баннеры, лендинги и графика для кампаний; единый визуальный стиль во всех каналах</li>
+            <li>Ввела дизайн- и код-ревью – правок стало меньше, задачи выходили быстрее</li>
+          </ul>
+        </article>
+
+      </section>
+
+    </main>
 
   </div>
 </div>

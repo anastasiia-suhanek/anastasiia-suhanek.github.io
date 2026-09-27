@@ -72,6 +72,9 @@
     requestAnimationFrame(function () { el.classList.add('is-in'); });
     function choose(lang) {
       apply(lang);
+      // The first page after the splash is the home page, not About.
+      // Case links still open the case: someone was sent there on purpose
+      if (/about\.html$/.test(location.pathname)) { location.replace('index.html' + location.search); return; }
       el.classList.remove('is-in');
       el.classList.add('is-out');
       document.documentElement.classList.remove('has-splash');

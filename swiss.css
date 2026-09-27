@@ -1160,6 +1160,14 @@ html.swiss .ledger { padding-top: 0; }
 
 html.swiss .outcome-item,
 html.swiss .metric-tile { border-left: 0; border-top: 0; }
+/* No dividers, so columns are spaced by gap: equal columns from edge to edge of the container */
+html.swiss .outcome-strip .container,
+html.swiss .metrics { column-gap: var(--s5); }
+html.swiss .outcome-item,
+html.swiss .metric-tile { padding-inline: 0; }
+html.swiss .outcome-meta { display: block; margin-top: 4px; color: var(--text-dim); }
+html.swiss .outcome-label,
+html.swiss .metric-label { text-wrap: balance; }
 
 html.swiss .phone-scene,
 html.swiss .video-demo,

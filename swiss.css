@@ -934,3 +934,188 @@ html.swiss .clip video { border-radius: 16px; border: 1px solid var(--border); }
   html.swiss[lang="ru"] .status-table td:nth-child(3)::before { content: 'Тон текста'; }
   html.swiss[lang="ru"] .status-table td:nth-child(4)::before { content: 'Кнопки'; }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPACING SYSTEM — near and far. Last block on purpose: it overrides the
+   ad-hoc margins above. One rule: the space inside a group is always smaller
+   than the space around it, so the eye reads what belongs together.
+     s1  4   a label and its value, a heading and its subline
+     s2  8   a number and its caption, a quote and its source
+     s3 16   paragraph to paragraph, section label to its heading
+     s4 24   items in one list or row set, heading to its text
+     s5 40   text to a figure, table, quote or list inside a section
+     s6 64   sub-block to sub-block (map → findings, screen group → group)
+     s7 96   section to section
+   Phones compress only the large steps; the near ones stay as they are
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+html.swiss { --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px; --s6: 64px; --s7: 96px; }
+@media (max-width: 640px) { html.swiss { --s5: 32px; --s6: 48px; --s7: 72px; } }
+
+/* Reading: a comfortable measure on desktop, a slightly smaller body on phones */
+html.swiss .section > p,
+html.swiss .section > h2,
+html.swiss .split-text > p,
+html.swiss .hero .hero-desc { max-width: 680px; }
+@media (max-width: 640px) {
+  html.swiss { --t-body: 16px; --t-lead: 18px; }
+  html.swiss .section p { font-size: var(--t-body); line-height: 1.6; }
+}
+
+/* ── Case hero: eyebrow → title → lead → facts, then the outcomes ── */
+html.swiss .hero .hero-eyebrow { margin-bottom: var(--s3); }
+html.swiss .hero h1 { margin-bottom: var(--s4); }
+html.swiss .hero .hero-desc { margin-bottom: 0; }
+html.swiss .case-facts { margin-top: var(--s5); padding-top: var(--s4); row-gap: var(--s4); }
+html.swiss .case-facts dt { margin-bottom: var(--s1); line-height: 1.3; }
+html.swiss .case-facts dd { line-height: 1.45; }
+html.swiss .case-facts-wide { margin-top: 0; padding-top: var(--s4); }
+html.swiss section.hero:has(h1) { padding-bottom: var(--s6); }
+html.swiss .outcome-strip { padding-block: var(--s5) calc(var(--s7) / 2); }
+html.swiss .outcome-num { margin-bottom: var(--s2); }
+@media (max-width: 640px) {
+  html.swiss .outcome-strip .container { row-gap: 0; }
+  html.swiss .outcome-item { padding-block: 20px; }
+  html.swiss .outcome-item:first-child { padding-top: 0; }
+  html.swiss .outcome-item:last-child { padding-bottom: 0; }
+}
+/* Media bands right after the outcomes sit on the section rhythm */
+html.swiss .outcome-strip:has(+ .phone-scene),
+html.swiss .outcome-strip:has(+ .video-demo) { padding-bottom: calc(var(--s7) / 2); }
+html.swiss .video-demo { margin: 0; }
+
+/* ── Sections ── */
+html.swiss .section { padding-block: calc(var(--s7) / 2); }
+html.swiss .section > .section-label { margin-bottom: var(--s3); }
+html.swiss .section h2 { margin-bottom: var(--s4); }
+html.swiss .section p { margin-bottom: var(--s3); }
+/* The last visible child adds no margin to the section padding. Plain :last-child
+   misses it: the hidden twin in the other language usually comes last */
+html.swiss[lang="en"] :is(.section, .split-text, .kyc-map, .tradeoff) > :nth-last-child(1 of :not(.t-ru, script, style, noscript)),
+html.swiss[lang="ru"] :is(.section, .split-text, .kyc-map, .tradeoff) > :nth-last-child(1 of :not(.t-en, script, style, noscript)) { margin-bottom: 0; }
+
+/* Blocks inside a section: one distance to the text around them */
+html.swiss .section .insight,
+html.swiss .section .inbox,
+html.swiss .section .steps,
+html.swiss .section .decisions,
+html.swiss .section .ledger,
+html.swiss .section .split,
+html.swiss .section .principles,
+html.swiss .section .status-table,
+html.swiss .section .competitors,
+html.swiss .section .board-figure,
+html.swiss .section .scope-grid,
+html.swiss .section .clip,
+html.swiss .section .tradeoff,
+html.swiss .section .platform-split,
+html.swiss .section .before-grid,
+html.swiss .screens-scroll { margin-block: var(--s5); }
+html.swiss .section .metrics { margin-top: var(--s5); padding-top: var(--s4); }
+html.swiss .section .metrics + .tradeoff { margin-top: var(--s5); }
+/* A quote and its source are one unit */
+html.swiss .insight:has(+ .insight-source) { margin-bottom: 0; }
+html.swiss .insight-source { margin: var(--s2) 0 var(--s5); }
+/* A figure and its caption */
+html.swiss .board-figure figcaption,
+html.swiss .clip figcaption { margin-top: var(--s2); }
+/* Competitor tags are one line of metadata right under their sentence */
+html.swiss .section .competitors { margin-top: calc(var(--s3) * -0.5); }
+
+/* Steps and decisions: close inside, separated by a rule between */
+html.swiss .steps { gap: var(--s4); }
+html.swiss .step-body strong { display: block; margin-bottom: var(--s1); }
+html.swiss .decisions { gap: 0; }
+html.swiss .decision { padding-block: 20px; row-gap: var(--s2); }
+html.swiss .decision h3 { margin-bottom: var(--s2); }
+html.swiss .decision p { margin-bottom: 0; }
+
+/* Ledger and findings tables: on phones each row stacks tight, rows stay apart */
+html.swiss .ledger-row { padding-block: 20px; }
+html.swiss .mm-finding { padding-block: 20px; }
+@media (max-width: 640px) {
+  html.swiss .ledger-row { row-gap: var(--s1); }
+  html.swiss .mm-finding { row-gap: 6px; gap: 6px; }
+}
+
+/* Results: number → period → label read as one tile */
+html.swiss .metric-num { margin-bottom: var(--s2); }
+html.swiss .metric-delta { margin-bottom: var(--s1); }
+@media (max-width: 640px) {
+  html.swiss .metric-tile { padding-block: 20px; }
+  html.swiss .metric-tile:first-child { padding-top: 0; }
+}
+
+/* ── KYC research map: its own block on the section rhythm ── */
+html.swiss .kyc-map { margin-block: 0; padding-block: calc(var(--s7) / 2); }
+html.swiss .kyc-map > .section-label { margin-bottom: var(--s3); }
+html.swiss .mm-caption { margin-bottom: var(--s5); }
+html.swiss .mm-findings { margin-top: var(--s6); }
+
+/* ── Screen groups: head → screens close, group → group far ── */
+html.swiss .screen-group-head { margin-top: var(--s6); padding-top: var(--s4); }
+html.swiss .section + .container > .screen-group-head:first-child,
+html.swiss .container > .screen-group-head:first-child { margin-top: calc(var(--s6) - var(--s7) / 2); }
+html.swiss .screen-group-head h3 { margin-bottom: var(--s2); }
+html.swiss .screen-group-head + .slider-controls { margin-top: var(--s3); }
+html.swiss .screen-group-head ~ .screens-scroll { margin-block: var(--s4) 0; }
+html.swiss .container:has(> .screen-group-head) { padding-bottom: calc(var(--s7) / 2); }
+html.swiss .screen-cap { margin-top: 12px; }
+
+/* ── Phone scene (prototype, success video) ── */
+html.swiss .phone-scene { padding-block: var(--s6); }
+html.swiss .phone-scene + .container > .section:first-child { padding-top: calc(var(--s7) / 2); }
+html.swiss .proto-hint { margin-top: var(--s4); }
+html.swiss .phone-caption { margin-top: var(--s4); }
+html.swiss .phone-caption strong { display: block; margin-bottom: var(--s2); }
+html.swiss .phone-caption { line-height: 1.5; }
+html.swiss .phone-caption span { display: block; line-height: 1.5; }
+@media (max-width: 640px) {
+  html.swiss .phone-wrap { padding-inline: var(--gutter); box-sizing: border-box; width: 100%; }
+  html.swiss .proto-hint { max-width: 100%; }
+}
+
+/* ── Next case ── */
+html.swiss .next-case { padding-block: calc(var(--s7) / 2) var(--s7); }
+html.swiss .next-label { margin-bottom: var(--s2); }
+
+/* ── Home ── */
+html.swiss .hero-eyebrow { margin-bottom: var(--s3); }
+html.swiss .hero-name { margin-bottom: var(--s4); }
+html.swiss .hero-inner .hero-desc { margin-bottom: var(--s5); }
+html.swiss .hero-chips { margin-bottom: var(--s4); }
+html.swiss .section-work { padding-block: var(--s7) calc(var(--s7) / 2); }
+html.swiss .section-eyebrow { margin-bottom: 0; }
+html.swiss .work-grid { margin-top: var(--s4); }
+html.swiss .work-card,
+html.swiss .work-card--wide { padding-block: 32px; }
+html.swiss .work-title,
+html.swiss .work-card--wide .work-title { margin-bottom: var(--s2); }
+html.swiss .work-meta { margin-top: var(--s3); }
+html.swiss .section-contact { padding-block: calc(var(--s7) / 2) var(--s7); }
+html.swiss .contact-text h2 { margin-bottom: var(--s3); }
+html.swiss .contact-text p { margin-bottom: 0; }
+html.swiss .contact-link { padding-block: 20px; }
+html.swiss .contact-link-label { margin-bottom: var(--s1); }
+@media (max-width: 640px) {
+  html.swiss .hero { padding-block: var(--s6) var(--s7); }
+  html.swiss .hero-inner { gap: var(--s6); }
+  html.swiss .work-card,
+  html.swiss .work-card--wide { padding-block: var(--s4); }
+  html.swiss .contact-inner { gap: var(--s5); }
+}
+
+/* ── About ── */
+html.swiss .page-eyebrow { margin-bottom: var(--s3); }
+html.swiss .about-header { margin-bottom: 0; }
+html.swiss .about-section { padding-block: calc(var(--s7) / 2); }
+html.swiss .about-section:first-of-type { margin-top: calc(var(--s7) / 2); }
+html.swiss .info-text p { margin-bottom: var(--s3); }
+html.swiss .exp-list { gap: var(--s5); }
+html.swiss .belief-item { padding-block: var(--s4); }
+html.swiss .belief-item:first-child { padding-top: 0; }
+html.swiss .belief-item:last-child { padding-bottom: 0; }
+html.swiss .tags-grid--after { margin-top: var(--s4); }
+@media (max-width: 640px) {
+  html.swiss .about-section > .section-label { margin-bottom: var(--s4); }
+  html.swiss .about-header { gap: var(--s5); }
+}

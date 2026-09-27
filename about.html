@@ -483,6 +483,53 @@ body {
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
+.gallery-item { cursor: zoom-in; }
+.gallery-strip.is-dragging .gallery-item { cursor: grabbing; }
+.gallery-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* lightbox: the gallery item opened full size */
+.lightbox {
+  width: 100vw; height: 100vh; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: transparent;
+}
+.lightbox::backdrop { background: rgba(3, 2, 16, 0.9); }
+.lightbox-stage {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-12) var(--space-16);
+}
+.lightbox-media img,
+.lightbox-media video {
+  display: block;
+  max-width: calc(100vw - 2 * var(--space-16));
+  max-height: calc(100vh - 2 * var(--space-12) - 3em);
+  width: auto; height: auto;
+  border-radius: var(--r-lg);
+}
+.lightbox-cap { color: rgba(255, 255, 255, 0.92); font-size: var(--fs-sm); text-align: center; }
+.lightbox-btn {
+  position: absolute;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+}
+.lightbox-btn:hover { background: rgba(255, 255, 255, 0.24); }
+.lightbox-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.lightbox-close { top: var(--space-4); right: var(--space-4); }
+.lightbox-prev  { left: var(--space-4);  top: 50%; transform: translateY(-50%); }
+.lightbox-next  { right: var(--space-4); top: 50%; transform: translateY(-50%); }
+@media (max-width: 580px) {
+  .lightbox-stage { padding: var(--space-16) var(--space-4); }
+  .lightbox-media img,
+  .lightbox-media video { max-width: calc(100vw - 2 * var(--space-4)); max-height: calc(100vh - 2 * var(--space-16) - 3em); }
+  .lightbox-prev, .lightbox-next { top: auto; bottom: var(--space-4); transform: none; }
+}
 @media (max-width: 580px) {
   .belief-item { grid-template-columns: 1fr; gap: var(--space-2); }
   .gallery-item { height: 260px; }
@@ -562,8 +609,8 @@ body {
         <p class="info-looking t-en">Open to <strong>Senior Product Designer</strong> roles in fintech, payments, or any product with complex flows and a team that measures outcomes. Prague · Remote, worldwide</p>
         <p class="info-looking t-ru">Ищу позицию <strong>Senior Product Designer</strong> в финтехе, платежах или любом продукте со сложными сценариями – там, где команда измеряет результат. Прага · удалённо по всему миру</p>
 
-        <p class="t-en">I moved to Prague myself, so I know what it’s like to figure out a new country from scratch. That’s why Profee’s users feel close to me – many of them live far from home too. I also keep a small Instagram blog about the move, sharing what I’ve learned along the way</p>
-        <p class="t-ru">Я сама переехала в Прагу и знаю, каково разбираться в новой стране с нуля. Поэтому мне близки пользователи Profee: многие из них тоже живут вдали от дома. А ещё я веду небольшой блог в Instagram про переезд – делюсь тем, что узнала сама</p>
+        <p class="t-en">I moved to Prague myself, so I know what it’s like to figure out a new country from scratch. That’s why Profee’s users feel close to me – many of them live far from home too</p>
+        <p class="t-ru">Я сама переехала в Прагу и знаю, каково разбираться в новой стране с нуля. Поэтому мне близки пользователи Profee: многие из них тоже живут вдали от дома</p>
       </div>
     </div>
   </div>
@@ -750,52 +797,110 @@ body {
       <div class="gallery-strip" id="galleryStrip">
         <div class="gallery-track">
 
+          <div class="gallery-item gallery-item--land">
+            <img src="media/photo-profee-ux-editor.jpg" alt="Selfie with a UX writer colleague from Profee in a bar">
+            <span class="gallery-badge"><span class="t-en">Profee</span><span class="t-ru">Profee</span></span>
+            <div class="gallery-cap"><span class="t-en">with my favourite UX writer</span><span class="t-ru">с любимым UX-редактором</span></div>
+          </div>
+
           <div class="gallery-item gallery-item--feat">
             <video autoplay loop muted playsinline>
-              <source src="media/video_2026-09-18_10-37-56.mp4" type="video/mp4">
+              <source src="media/video_.mp4" type="video/mp4">
             </video>
-            <span class="gallery-badge">Video</span>
-            <div class="gallery-cap"><span class="t-en">deadline mode</span><span class="t-ru">дедлайн-режим</span></div>
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">evening flow</span><span class="t-ru">вечером в потоке</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--land">
+            <img src="media/photo_17_2026-09-18_10-37-56.jpg" alt="Selfie with former Beeline colleagues at a long table in a restaurant">
+            <span class="gallery-badge"><span class="t-en">Beeline</span><span class="t-ru">Билайн</span></span>
+            <div class="gallery-cap"><span class="t-en">after-work hangout</span><span class="t-ru">посиделки после работы</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
-            <img src="media/photo_16_2026-09-18_10-37-56.jpg" alt="At a tech exhibition, standing in front of binary code projection">
-            <div class="gallery-cap"><span class="t-en">DesignConf, Moscow</span><span class="t-ru">DesignConf, Москва</span></div>
+            <img src="media/photo_16_2026-09-18_10-37-56.jpg" alt="At a design exhibition, standing in a binary code projection">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">at a design exhibition</span><span class="t-ru">на дизайнерской выставке</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--land">
+            <img src="media/photo-designer-friend.jpg" alt="Two laptops on a café table, one showing a video call with a designer friend">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">with my best designer friend</span><span class="t-ru">с лучшей подружкой-дизайнером</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
-            <img src="media/photo_13_2026-09-18_10-37-56.jpg" alt="Home desk setup with iMac, pink roses and books">
-            <div class="gallery-cap"><span class="t-en">home office</span><span class="t-ru">домашний офис</span></div>
+            <img src="media/photo_9_2026-09-18_10-37-56.jpg" alt="Selfie with colleagues from Sber at the office">
+            <span class="gallery-badge"><span class="t-en">Sber</span><span class="t-ru">Сбер</span></span>
+            <div class="gallery-cap"><span class="t-en">Masha, Ksyusha and me</span><span class="t-ru">Маша, Ксюша и я</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
             <img src="media/photo_24_2026-09-18_10-37-56.jpg" alt="Abyssinian cat lying on the desk next to laptop">
-            <div class="gallery-cap"><span class="t-en">junior Texas</span><span class="t-ru">младший Техас</span></div>
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">junior Texas</span><span class="t-ru">джуниор Техас</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
-            <img src="media/photo_9_2026-09-18_10-37-56.jpg" alt="Team selfie at the office with colleagues">
-            <div class="gallery-cap"><span class="t-en">the team</span><span class="t-ru">команда</span></div>
+            <img src="media/photo_22_2026-09-18_10-37-56.jpg" alt="Instax photo of three friends at a colleague's birthday party at her home">
+            <span class="gallery-badge"><span class="t-en">Sber</span><span class="t-ru">Сбер</span></span>
+            <div class="gallery-cap"><span class="t-en">birthday of my favourite colleague Masha</span><span class="t-ru">день рождения любимой коллеги Маши</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--feat">
+            <video autoplay loop muted playsinline>
+              <source src="media/video-gym.mp4" type="video/mp4">
+            </video>
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">after work – gym</span><span class="t-ru">после работы – в зал</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
-            <img src="media/photo_20_2026-09-18_10-37-56.jpg" alt="Working from a cafe – MacBook and flat white">
-            <div class="gallery-cap"><span class="t-en">Figma + flat white</span><span class="t-ru">Figma и флэт уайт</span></div>
-          </div>
-
-          <div class="gallery-item gallery-item--port">
-            <img src="media/photo_23_2026-09-18_10-37-56.jpg" alt="White cat sitting on lap while working on Profee">
-            <div class="gallery-cap"><span class="t-en">junior Alaska</span><span class="t-ru">младшая Аляска</span></div>
+            <img src="media/photo_13_2026-09-18_10-37-56.jpg" alt="Home desk setup with iMac, pink roses and books">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">home office</span><span class="t-ru">домашний офис</span></div>
           </div>
 
           <div class="gallery-item gallery-item--port">
             <img src="media/photo_4_2026-09-18_10-37-56.jpg" alt="Graffiti car at design conference with Ловлю на слове text">
+            <span class="gallery-badge"><span class="t-en">Sber</span><span class="t-ru">Сбер</span></span>
             <div class="gallery-cap"><span class="t-en">design community vibes</span><span class="t-ru">дизайн-тусовка</span></div>
           </div>
 
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_20_2026-09-18_10-37-56.jpg" alt="Working from a cafe – MacBook and flat white">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">sometimes I think I only buy coffee for the photo…</span><span class="t-ru">иногда мне кажется, я покупаю кофе только для фото…</span></div>
+          </div>
+
           <div class="gallery-item gallery-item--land">
-            <img src="media/photo_10_2026-09-18_10-37-56.jpg" alt="Team dinner at a restaurant with glass ceiling and plants">
-            <div class="gallery-cap"><span class="t-en">team dinner</span><span class="t-ru">командный ужин</span></div>
+            <img src="media/photo_10_2026-09-18_10-37-56.jpg" alt="New Year team party with Sber colleagues at a restaurant with a glass ceiling and plants">
+            <span class="gallery-badge"><span class="t-en">Sber</span><span class="t-ru">Сбер</span></span>
+            <div class="gallery-cap"><span class="t-en">New Year team party</span><span class="t-ru">новогодний корпоратив</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_19_2026-09-18_10-37-56.jpg" alt="Home desk with an iMac decorated with a fir garland and purple fairy lights">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">my desk's New Year outfit</span><span class="t-ru">новогодний аутфит рабочего места</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_7_2026-09-18_10-37-56.jpg" alt="Polaroid photos and a hand-drawn note from colleagues on a desk partition at Sber">
+            <span class="gallery-badge"><span class="t-en">Sber</span><span class="t-ru">Сбер</span></span>
+            <div class="gallery-cap"><span class="t-en">my wall of cuteness</span><span class="t-ru">моя стена милоты</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_23_2026-09-18_10-37-56.jpg" alt="White cat sitting on lap while working on Profee">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">junior Alaska</span><span class="t-ru">джуниор Аляска</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_5_2026-09-18_10-37-56.jpg" alt="Standing in the hall at DesignConf, facing the stage with a speaker on the big screen">
+            <span class="gallery-badge"><span class="t-en">Life</span><span class="t-ru">Жизнь</span></span>
+            <div class="gallery-cap"><span class="t-en">at DesignConf</span><span class="t-ru">на конференции DesignConf</span></div>
           </div>
 
         </div>
@@ -824,12 +929,24 @@ body {
 
 
 </div>
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <div class="lightbox-stage">
+    <div class="lightbox-media"></div>
+    <p class="lightbox-cap"></p>
+  </div>
+  <button type="button" class="lightbox-btn lightbox-close" aria-label="Close">✕</button>
+  <button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous">←</button>
+  <button type="button" class="lightbox-btn lightbox-next" aria-label="Next">→</button>
+</dialog>
+
 <script>
 (function () {
   var strip = document.getElementById('galleryStrip');
   if (!strip) return;
 
   var track = strip.querySelector('.gallery-track');
+  var lightbox = document.getElementById('lightbox');
+  var originals = Array.from(track.children);
 
   // Duplicate items for seamless infinite loop
   Array.from(track.children).forEach(function (item) {
@@ -844,7 +961,7 @@ body {
 
   // Auto-scroll loop
   function tick() {
-    if (!isDown && !isHovered) {
+    if (!isDown && !isHovered && !lightbox.open) {
       strip.scrollLeft += speed;
       if (strip.scrollLeft >= halfWidth) {
         strip.scrollLeft -= halfWidth;
@@ -863,8 +980,10 @@ body {
   });
 
   // Drag to scroll
+  var downX = 0;
   strip.addEventListener('mousedown', function (e) {
     isDown = true;
+    downX = e.pageX;
     strip.classList.add('is-dragging');
     startX = e.pageX - strip.offsetLeft;
     startScrollLeft = strip.scrollLeft;
@@ -890,6 +1009,58 @@ body {
   strip.addEventListener('touchmove', function (e) {
     strip.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
   }, { passive: true });
+
+  // Click to open full size; a drag that moved more than a few px is not a click
+  var media = lightbox.querySelector('.lightbox-media');
+  var cap = lightbox.querySelector('.lightbox-cap');
+  var current = 0;
+
+  function show(i) {
+    current = (i + originals.length) % originals.length;
+    var item = originals[current];
+    var src = item.querySelector('img, video');
+    media.innerHTML = '';
+    if (src.tagName === 'VIDEO') {
+      var v = document.createElement('video');
+      v.src = src.querySelector('source').getAttribute('src');
+      v.autoplay = v.loop = v.muted = v.playsInline = true;
+      media.appendChild(v);
+    } else {
+      var img = document.createElement('img');
+      img.src = src.getAttribute('src');
+      img.alt = src.getAttribute('alt') || '';
+      media.appendChild(img);
+    }
+    var lang = document.documentElement.lang === 'ru' ? '.t-ru' : '.t-en';
+    var c = item.querySelector('.gallery-cap ' + lang);
+    cap.textContent = c ? c.textContent : '';
+  }
+
+  track.querySelectorAll('.gallery-item').forEach(function (item, i) {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.addEventListener('click', function (e) {
+      if (Math.abs(e.pageX - downX) > 5 && downX) return;
+      show(i % originals.length);
+      lightbox.showModal();
+    });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
+
+  lightbox.querySelector('.lightbox-close').addEventListener('click', function () { lightbox.close(); });
+  lightbox.querySelector('.lightbox-prev').addEventListener('click', function () { show(current - 1); });
+  lightbox.querySelector('.lightbox-next').addEventListener('click', function () { show(current + 1); });
+  lightbox.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  // Click on the dark area around the photo closes the viewer
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) lightbox.close();
+  });
+  lightbox.addEventListener('close', function () { media.innerHTML = ''; });
 })();
 </script>
 <script src="scroll-reveal.js" defer></script>

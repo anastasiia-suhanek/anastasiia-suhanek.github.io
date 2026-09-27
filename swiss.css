@@ -1182,3 +1182,10 @@ html.swiss .core-item:first-child,
 html.swiss .belief-item:first-child,
 html.swiss .decision:first-child,
 html.swiss .principle:nth-child(-n+2) { border-top: 0; }
+
+/* Next case: the arrow is part of the title – it follows the last word, scales with the text */
+html.swiss .next-link { display: inline; }
+html.swiss .next-link svg {
+  display: inline-block; width: 0.85em; height: 0.85em;
+  margin-left: 0.08em; vertical-align: -0.12em;
+}

@@ -1,4 +1,4 @@
-/* Case pages: reading time in the eyebrow + sticky table of contents */
+/* Case pages: reading time and a jump to results in the eyebrow + sticky table of contents */
 (function () {
   'use strict';
 
@@ -12,6 +12,20 @@
     var min = Math.max(1, Math.round(words / 220));
     eyebrow.insertAdjacentHTML('beforeend',
       ' · <span class="t-en">' + min + ' min read</span><span class="t-ru">' + min + ' мин чтения</span>');
+  }
+
+  // For the reader who only wants the outcome: jump straight to the Results section
+  function jumpToResults() {
+    var eyebrow = document.querySelector('.hero-eyebrow');
+    var label = Array.prototype.find.call(document.querySelectorAll('.section-label.t-en'), function (el) {
+      return el.textContent.trim() === 'Results';
+    });
+    if (!eyebrow || !label) return;
+    var section = label.closest('section');
+    if (!section.id) section.id = 'results';
+    eyebrow.insertAdjacentHTML('beforeend',
+      ' · <a class="eyebrow-jump" href="#' + section.id + '">' +
+      '<span class="t-en">Jump to results ↓</span><span class="t-ru">К результатам ↓</span></a>');
   }
 
   function toc() {
@@ -89,5 +103,5 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { readingTime(); toc(); sliders(); });
+  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); });
 })();

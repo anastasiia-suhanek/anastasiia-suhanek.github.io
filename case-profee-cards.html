@@ -460,16 +460,57 @@ window.protoScripts = {
       <span class="t-en">From a picture of a card to a card with its money</span>
       <span class="t-ru">Было: картинка карты. Стало: карта и её деньги</span>
     </h2>
-    <p class="t-en">The tab went through several versions before launch. The old one showed cards as tiles in a carousel, with nothing about the money behind them. In the version that shipped, tapping Cards opens the card itself, with its linked EUR account and balance right above it and three main actions: Freeze, Card details, Reissue. One tap on View account opens the account – the balance first, Top up and Send, and the card as a strip underneath</p>
-    <p class="t-ru">До запуска у вкладки было несколько версий. В старой карты были плитками в карусели, и про деньги за ними ничего не говорилось. В финальной версии по нажатию на «Карты» открывается сама карта, над ней – привязанный счёт в евро с балансом, а главных действий три: «Заморозить», «Данные карты», «Перевыпустить». Одно касание по «Открыть счёт» – и открывается счёт: сверху баланс, кнопки «Пополнить» и «Отправить», а карта – полоска ниже</p>
+    <p class="t-en">The tab went through several versions before launch, in two directions. One put the EUR balance first and shrank the card to a thumbnail or a strip. The other put a big card first, with its balance underneath and Add to Apple Wallet as the main button. Neither won outright. In the version that shipped, tapping Cards opens the card itself, with its linked EUR account and balance right above it and three main actions: Freeze, Card details, Reissue. One tap on View account opens the account – the balance first, Top up and Send, and the card as a strip underneath. The balance-first direction didn't become the tab – it became the account screen</p>
+    <p class="t-ru">До запуска у вкладки было несколько версий в двух направлениях. В одном сверху был баланс в евро, а карта сжималась до миниатюры или полоски. В другом главной была большая карта, под ней баланс, а основная кнопка – «Добавить в Apple Wallet». Ни одно не победило целиком. В финальной версии по нажатию на «Карты» открывается сама карта, над ней – привязанный счёт в евро с балансом, а главных действий три: «Заморозить», «Данные карты», «Перевыпустить». Одно касание по «Открыть счёт» – и открывается счёт: сверху баланс, кнопки «Пополнить» и «Отправить», а карта – полоска ниже. Направление «сначала баланс» не стало вкладкой – оно стало экраном счёта</p>
+
+    <div class="screens-scroll">
+      <div class="screens-row">
+        <div class="screen-item">
+          <img src="images/cards/iterations/balance-card-tile.jpg" alt="Exploration: EUR balance first, the card as a small tile below" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Balance first</strong>
+            <strong class="t-ru">Сначала баланс</strong>
+            <span class="t-en">The card as a tile under the balance, an empty history</span>
+            <span class="t-ru">Карта – плитка под балансом, пустая история</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/iterations/balance-card-strip.jpg" alt="Exploration: EUR balance first, the card as a strip above the history" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Balance first, card strip</strong>
+            <strong class="t-ru">Сначала баланс, карта полоской</strong>
+            <span class="t-en">The card shrinks to a strip between the balance and the history</span>
+            <span class="t-ru">Карта сжимается до полоски между балансом и историей</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/iterations/card-grey.jpg" alt="Exploration: a big card first, the balance under it, Add to Apple Wallet" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Card first</strong>
+            <strong class="t-ru">Сначала карта</strong>
+            <span class="t-en">A big card, the balance under it, Apple Wallet as the main action</span>
+            <span class="t-ru">Большая карта, под ней баланс, главное действие – Apple Wallet</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/iterations/card-switcher.jpg" alt="Exploration: card thumbnails to switch between several cards" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Several cards</strong>
+            <strong class="t-ru">Несколько карт</strong>
+            <span class="t-en">Thumbnails on top to switch between cards</span>
+            <span class="t-ru">Миниатюры сверху, чтобы переключаться между картами</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="screens-scroll">
       <div class="screens-row">
         <div class="screen-item">
           <img src="images/cards/flow/03.jpg" alt="Cards tab: the card with its linked EUR account and balance above it, Freeze, Card details and Reissue below" loading="lazy">
           <div class="screen-cap">
-            <strong class="t-en">Cards tab</strong>
-            <strong class="t-ru">Вкладка «Карты»</strong>
+            <strong class="t-en">Shipped · Cards tab</strong>
+            <strong class="t-ru">В проде · вкладка «Карты»</strong>
             <span class="t-en">The card, with its linked account and balance one tap away above it</span>
             <span class="t-ru">Карта, а над ней привязанный счёт и баланс – в одно касание</span>
           </div>
@@ -477,8 +518,8 @@ window.protoScripts = {
         <div class="screen-item">
           <img src="images/cards/account-states.png" alt="Linked account: EUR balance first, Top up and Send, the card as a strip below" loading="lazy">
           <div class="screen-cap">
-            <strong class="t-en">Linked account</strong>
-            <strong class="t-ru">Привязанный счёт</strong>
+            <strong class="t-en">Shipped · Linked account</strong>
+            <strong class="t-ru">В проде · привязанный счёт</strong>
             <span class="t-en">The balance first, Top up and Send, the card as a strip below</span>
             <span class="t-ru">Сначала баланс, «Пополнить» и «Отправить», карта – полоской ниже</span>
           </div>

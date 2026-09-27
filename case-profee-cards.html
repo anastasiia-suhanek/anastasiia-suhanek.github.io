@@ -197,8 +197,8 @@ body {
       <span class="t-en">Cards – rebuilding a product area from the ground up</span>
       <span class="t-ru">Карты – раздел, собранный заново</span>
     </h1>
-    <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app, cramped and disconnected from the wallet. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
-    <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения, тесная и никак не связанная с кошельком. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
+    <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app: cards as tiles in a carousel, with nothing about the money behind them. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
+    <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения: карты плитками в карусели, и ни слова о деньгах за ними. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
     <dl class="case-facts">
       <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, three top-up iterations, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, три итерации пополнения, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
       <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
@@ -224,9 +224,11 @@ body {
       <span class="t-en">The card existed – nobody treated it as a product</span>
       <span class="t-ru">Карта была, но продуктом её никто не считал</span>
     </h2>
-    <p class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up – and a Cards tab inherited from an older version of the app: a carousel of cards, four buttons, an empty history, and no connection to the balance people actually held</p>
-    <p class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история и никакой связи с деньгами, которые у людей лежали на балансе</p>
+    <p class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up – and a Cards tab inherited from an older version of the app: a carousel of cards, four buttons, an empty history, and nothing that showed which account a card spends from</p>
+    <p class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история и ни слова о том, с какого счёта карта тратит деньги</p>
+    <p class="t-en"><strong>The constraint.</strong> Accounts existed in Profee long before this project, and the backend ties them to cards one way: every card gets its own EUR account when it is issued, one account per card. A card can't spend from an account the person already has, and one account can't hold several cards. The design had to make that clear, not hide it</p>
     <p class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the decision – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
+    <p class="t-ru"><strong>Ограничение.</strong> Счета в Profee появились задолго до этого проекта, и бэкенд связывает их с картами только в одну сторону: при выпуске у каждой карты открывается свой счёт в евро, один счёт на одну карту. Тратить с уже существующего счёта карта не может, и несколько карт на одном счёте тоже нельзя. Дизайн должен был сделать это понятным, а не спрятать</p>
     <p class="t-ru">У конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Исследований за решением не стояло – только отставание от конкурентов и ставка: удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
 
   </section>
@@ -365,8 +367,8 @@ body {
       </div>
     </div>
 
-    <p class="t-en"><strong>Copy without the routine.</strong> Cards was the feature where the team started using AI in everyday work. I wrote and checked every text in the area with my own Claude-based agents and uploaded the strings to Phrase through Claude – and later straight into the iOS and Android code, dropping Phrase altogether</p>
-    <p class="t-ru"><strong>Тексты без рутины.</strong> На картах команда начала всерьёз использовать ИИ в работе. Все тексты раздела я писала и проверяла своими агентами на Claude, строки заливала во Phrase через Claude, а потом – сразу в код iOS и Android, и от Phrase мы отказались</p>
+    <p class="t-en"><strong>Copy without the routine.</strong> Cards was the feature where the team started using AI in everyday work. I wrote, checked and localized every text in the area into 13 languages with my own Claude-based agents – they follow the editorial policy and rules we set for them – and uploaded the strings to Phrase through Claude – and later straight into the iOS and Android code, dropping Phrase altogether</p>
+    <p class="t-ru"><strong>Тексты без рутины.</strong> На картах команда начала всерьёз использовать ИИ в работе. Все тексты раздела я писала, проверяла и переводила на 13 языков своими агентами на Claude – они работают по редполитике и правилам, которые мы им задали, – строки заливала во Phrase через Claude, а потом – сразу в код iOS и Android, и от Phrase мы отказались</p>
   </section>
 </div>
 
@@ -457,21 +459,30 @@ window.protoScripts = {
     <p class="section-label t-en">Iterations</p>
     <p class="section-label t-ru">Итерации</p>
     <h2>
-      <span class="t-en">Balance first or card first? Both – on different screens</span>
-      <span class="t-ru">Сначала баланс или карта? И то и другое – на разных экранах</span>
+      <span class="t-en">Started from the balance, ended with the card</span>
+      <span class="t-ru">Начали с баланса, пришли к карте</span>
     </h2>
-    <p class="t-en">Before launch the tab went in two directions. One put the EUR balance on top and shrank the card to a tile or a strip. The other put a big card on top, with the balance and Add to Apple Wallet under it. Each answered a different question: "how much do I have" and "which card do I pay with". So in the shipped version they split: the Cards tab opens the card, with its linked balance one tap above it, and the balance-first layout became the account screen</p>
-    <p class="t-ru">До запуска вкладка шла в двух направлениях. В одном сверху был баланс в евро, а карта сжималась до плитки или полоски. В другом сверху была большая карта, под ней баланс и «Добавить в Apple Wallet». Каждое отвечало на свой вопрос: «сколько у меня денег» и «какой картой я плачу». Поэтому в финале они разошлись по разным экранам: вкладка «Карты» открывает карту с балансом в одном касании над ней, а вариант «сначала баланс» стал экраном счёта</p>
+    <p class="t-en">Accounts came first in Profee, so the first versions started there: the familiar account screen with the balance on top, and the card fitted in as a tile or a strip. But Cards is its own section of the app, and the link only goes one way – every card has an account, while an account can live without a card. So the tab turned card-first, and the account screen kept the balance on top, with the card added as a strip</p>
+    <p class="t-ru">Счета в Profee появились раньше карт, поэтому первые версии шли от них: привычный экран счёта с балансом наверху, а карта встраивалась плиткой или полоской. Но карты – отдельный раздел приложения, и связь работает только в одну сторону: у каждой карты есть счёт, а счёт может жить и без карты. Поэтому вкладка стала «сначала карта», а экран счёта остался с балансом наверху – в него добавилась полоска карты</p>
 
     <div class="screen-group-head">
       <div>
-        <h3><span class="t-en">Six versions, two directions</span><span class="t-ru">Шесть версий, два направления</span></h3>
-        <p class="t-en">Balance first – the first three. Card first – the last three</p>
-        <p class="t-ru">Первые три – сначала баланс. Последние три – сначала карта</p>
+        <h3><span class="t-en">From the account to the card</span><span class="t-ru">От счёта к карте</span></h3>
+        <p class="t-en">Where it started, three balance-first versions, three card-first ones</p>
+        <p class="t-ru">Откуда начали, три версии «сначала баланс» и три – «сначала карта»</p>
       </div>
     </div>
     <div class="screens-scroll">
       <div class="screens-row">
+        <div class="screen-item">
+          <img src="images/cards/iterations/start-account.jpg" alt="The existing Accounts screen: EUR balance, Top up and Send, history" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Starting point</strong>
+            <strong class="t-ru">Отправная точка</strong>
+            <span class="t-en">An ordinary account in Accounts – the screen cards had to fit into</span>
+            <span class="t-ru">Обычный счёт во вкладке «Счета» – экран, в который нужно было встроить карты</span>
+          </div>
+        </div>
         <div class="screen-item">
           <img src="images/cards/iterations/balance-card-tile.jpg" alt="Exploration: EUR balance first, the card as a small tile below" loading="lazy">
           <div class="screen-cap">
@@ -532,15 +543,15 @@ window.protoScripts = {
     <div class="tradeoff">
       <p class="tradeoff-label t-en">Behind the scenes</p>
       <p class="tradeoff-label t-ru">Внутренняя кухня</p>
-      <p class="t-en">Add to Apple Wallet was the main button in the card-first versions. Mid-project it turned out the app can't add the card to Apple Wallet directly – that takes a separate integration we didn't have. The button went, and the shipped version has a How to add to wallet guide instead</p>
-      <p class="t-ru">В версиях «сначала карта» главной кнопкой было «Добавить в Apple Wallet». По ходу работы выяснилось, что добавить карту в Apple Wallet прямо из приложения технически нельзя – для этого нужна отдельная интеграция, которой у нас не было. Кнопку убрали, а в финале вместо неё инструкция «Как добавить в Wallet»</p>
+      <p class="t-en">Add to Apple Wallet was the main button in the card-first versions. Mid-project it turned out that adding the card to Apple Wallet straight from the app needed work too heavy to fit the deadline. The button went, and the shipped version has a How to add to wallet guide instead</p>
+      <p class="t-ru">В версиях «сначала карта» главной кнопкой было «Добавить в Apple Wallet». По ходу работы выяснилось, что добавление карты в Apple Wallet прямо из приложения требует слишком тяжёлой доработки и не влезает в сроки. Кнопку убрали, а в финале вместо неё инструкция «Как добавить в Wallet»</p>
     </div>
 
     <div class="screen-group-head">
       <div>
         <h3><span class="t-en">What shipped</span><span class="t-ru">Что вышло</span></h3>
-        <p class="t-en">Each direction won its own screen</p>
-        <p class="t-ru">Каждое направление получило свой экран</p>
+        <p class="t-en">The card leads in Cards, the balance leads in the account</p>
+        <p class="t-ru">В «Картах» главная карта, в счёте – баланс</p>
       </div>
     </div>
     <div class="screens-scroll">
@@ -550,8 +561,8 @@ window.protoScripts = {
           <div class="screen-cap">
             <strong class="t-en">Cards tab</strong>
             <strong class="t-ru">Вкладка «Карты»</strong>
-            <span class="t-en">From card first: the card leads, its linked balance is one tap away above it</span>
-            <span class="t-ru">Из «сначала карта»: карта главная, привязанный баланс – в одно касание над ней</span>
+            <span class="t-en">The card leads, its linked account and balance are one tap away above it</span>
+            <span class="t-ru">Карта главная, привязанный счёт и баланс – в одно касание над ней</span>
           </div>
         </div>
         <div class="screen-item">
@@ -559,16 +570,16 @@ window.protoScripts = {
           <div class="screen-cap">
             <strong class="t-en">Linked account</strong>
             <strong class="t-ru">Привязанный счёт</strong>
-            <span class="t-en">From balance first: the balance, Top up and Send, the card as a strip below</span>
-            <span class="t-ru">Из «сначала баланс»: баланс, «Пополнить» и «Отправить», карта – полоской ниже</span>
+            <span class="t-en">The existing account screen, with the card added as a strip under the balance</span>
+            <span class="t-ru">Прежний экран счёта, в который добавилась полоска карты под балансом</span>
           </div>
         </div>
       </div>
     </div>
     <blockquote class="insight t-en">
-      Across the iterations the question changed: not "where do I put the card", but "what is the person looking for on this screen – the money or the card"
+      The rule that settled it: every card has an account, but not every account has a card – so the card leads in Cards, and the balance leads in the account
     </blockquote>
-    <blockquote class="insight t-ru">От версии к версии поменялся сам вопрос: не «куда поставить карту», а «что человек ищет на этом экране – деньги или карту»</blockquote>
+    <blockquote class="insight t-ru">Спор решило правило: у каждой карты есть счёт, но не у каждого счёта есть карта. Поэтому в «Картах» главная карта, а в счёте – баланс</blockquote>
   </section>
 </div>
 
@@ -635,8 +646,8 @@ window.protoScripts = {
           <div class="screen-cap">
             <strong class="t-en">Card is unfrozen</strong>
             <strong class="t-ru">Карта разморожена</strong>
-            <span class="t-en">Same toast pattern back, the card art clears</span>
-            <span class="t-ru">То же уведомление в обратную сторону – карта оттаивает</span>
+            <span class="t-en">Back to active: the frost clears and every action returns</span>
+            <span class="t-ru">Снова активна: иней сходит, все действия возвращаются</span>
           </div>
         </div>
         <div class="screen-item">

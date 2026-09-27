@@ -200,7 +200,7 @@ body {
     <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app, cramped and disconnected from the wallet. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
     <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения, тесная и никак не связанная с кошельком. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
     <dl class="case-facts">
-      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, three top-up iterations, the balance-first Cards tab, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, три итерации пополнения, вкладка с балансом на первом месте, тексты – с помощью своих агентов на Claude</span></dd></div>
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, three top-up iterations, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, три итерации пополнения, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
       <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
       <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd>2025–2026</dd></div>
       <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">iOS and Android</span><span class="t-ru">iOS и Android</span></dd></div>
@@ -239,8 +239,8 @@ body {
       <span class="t-en">The Cards tab, October 2025</span>
       <span class="t-ru">Вкладка «Карты», октябрь 2025</span>
     </h2>
-    <p class="t-en">Real screenshots from the app before the redesign. The card is the hero object, the balance is a small number in a corner, every action is a separate screen, and the empty state asks you to make a transfer – not to use the card</p>
-    <p class="t-ru">Настоящие скриншоты приложения до редизайна. В центре – карта, баланс – мелкая цифра в углу, каждое действие – отдельный экран, а пустое состояние предлагает сделать перевод, а не воспользоваться картой</p>
+    <p class="t-en">Real screenshots from the app before the redesign. Cards sit in a carousel of tiles with no link to the account behind them, every action is a separate screen, and the empty state asks you to make a transfer – not to use the card</p>
+    <p class="t-ru">Настоящие скриншоты приложения до редизайна. Карты – плитки в карусели без всякой связи со счётом, каждое действие – отдельный экран, а пустое состояние предлагает сделать перевод, а не воспользоваться картой</p>
     <div class="screens-scroll">
       <div class="screens-row">
       <div class="screen-item">
@@ -248,8 +248,8 @@ body {
         <div class="screen-cap">
           <strong class="t-en">Cards tab</strong>
           <strong class="t-ru">Вкладка «Карты»</strong>
-          <span class="t-en">Card carousel on top, four icon actions, an empty history that asks for a transfer</span>
-          <span class="t-ru">Сверху карусель карт, четыре кнопки-иконки и пустая история, которая предлагает сделать перевод</span>
+          <span class="t-en">Card carousel on top, four round buttons, an empty history that asks for a transfer</span>
+          <span class="t-ru">Сверху карусель карт, четыре круглые кнопки и пустая история, которая предлагает сделать перевод</span>
         </div>
       </div>
       <div class="screen-item">
@@ -364,6 +364,9 @@ body {
         <div class="scope-desc t-ru">Истёкшая карта, перевыпуск, заблокированная карта</div>
       </div>
     </div>
+
+    <p class="t-en"><strong>Copy without the routine.</strong> Cards was the feature where the team started using AI in everyday work. I wrote and checked every text in the area with my own Claude-based agents and uploaded the strings to Phrase through Claude – and later straight into the iOS and Android code, dropping Phrase altogether</p>
+    <p class="t-ru"><strong>Тексты без рутины.</strong> На картах команда начала всерьёз использовать ИИ в работе. Все тексты раздела я писала и проверяла своими агентами на Claude, строки заливала во Phrase через Claude, а потом – сразу в код iOS и Android, и от Phrase мы отказались</p>
   </section>
 </div>
 
@@ -454,38 +457,38 @@ window.protoScripts = {
     <p class="section-label t-en">Iterations</p>
     <p class="section-label t-ru">Итерации</p>
     <h2>
-      <span class="t-en">From the card as the hero to the balance as the hero</span>
-      <span class="t-ru">Было: главное – карта. Стало: главное – баланс</span>
+      <span class="t-en">From a picture of a card to a card with its money</span>
+      <span class="t-ru">Было: картинка карты. Стало: карта и её деньги</span>
     </h2>
-    <p class="t-en">The tab went through many versions before launch. The early ones kept the logic of the old app: the card is the main object, everything else hangs off it. The version that shipped opens with the EUR balance and two actions – Top up and Send – with the card as a strip underneath: the way you use the money, not the reason you came</p>
-    <p class="t-ru">До запуска у вкладки было много версий. Первые повторяли логику старого приложения: карта в центре, остальное к ней привязано. В финальной версии сверху баланс в евро и две кнопки – «Пополнить» и «Отправить», а карта – полоска ниже: это способ тратить деньги, а не причина открыть вкладку</p>
+    <p class="t-en">The tab went through several versions before launch. The old one showed cards as tiles in a carousel, with nothing about the money behind them. In the version that shipped, tapping Cards opens the card itself, with its linked EUR account and balance right above it and three main actions: Freeze, Card details, Reissue. One tap on View account opens the account – the balance first, Top up and Send, and the card as a strip underneath</p>
+    <p class="t-ru">До запуска у вкладки было несколько версий. В старой карты были плитками в карусели, и про деньги за ними ничего не говорилось. В финальной версии по нажатию на «Карты» открывается сама карта, над ней – привязанный счёт в евро с балансом, а главных действий три: «Заморозить», «Данные карты», «Перевыпустить». Одно касание по «Открыть счёт» – и открывается счёт: сверху баланс, кнопки «Пополнить» и «Отправить», а карта – полоска ниже</p>
 
     <div class="screens-scroll">
       <div class="screens-row">
         <div class="screen-item">
-          <img src="images/cards/before-tab.png" alt="Old Cards tab, October 2025 – card carousel first, balance in a corner" loading="lazy">
+          <img src="images/cards/flow/03.jpg" alt="Cards tab: the card with its linked EUR account and balance above it, Freeze, Card details and Reissue below" loading="lazy">
           <div class="screen-cap">
-            <strong class="t-en">Before</strong>
-            <strong class="t-ru">До</strong>
-            <span class="t-en">The card first, the balance in a corner, actions as icons</span>
-            <span class="t-ru">Сначала карта, баланс в углу, действия – иконками</span>
+            <strong class="t-en">Cards tab</strong>
+            <strong class="t-ru">Вкладка «Карты»</strong>
+            <span class="t-en">The card, with its linked account and balance one tap away above it</span>
+            <span class="t-ru">Карта, а над ней привязанный счёт и баланс – в одно касание</span>
           </div>
         </div>
         <div class="screen-item">
-          <img src="images/cards/account-states.png" alt="New Cards tab – EUR balance first, the card as a strip below" loading="lazy">
+          <img src="images/cards/account-states.png" alt="Linked account: EUR balance first, Top up and Send, the card as a strip below" loading="lazy">
           <div class="screen-cap">
-            <strong class="t-en">After</strong>
-            <strong class="t-ru">После</strong>
-            <span class="t-en">The EUR balance first, the card is how you access it</span>
-            <span class="t-ru">Сначала баланс в евро, карта – способ им пользоваться</span>
+            <strong class="t-en">Linked account</strong>
+            <strong class="t-ru">Привязанный счёт</strong>
+            <span class="t-en">The balance first, Top up and Send, the card as a strip below</span>
+            <span class="t-ru">Сначала баланс, «Пополнить» и «Отправить», карта – полоской ниже</span>
           </div>
         </div>
       </div>
     </div>
     <blockquote class="insight t-en">
-      The mental model changed across the iterations: not "get a card", but "you have an EUR account – the card is how you use it"
+      The mental model changed across the iterations: not "get a card", but "you get an EUR account, and the card is how you spend from it"
     </blockquote>
-    <blockquote class="insight t-ru">От версии к версии поменялась сама идея: не «получите карту», а «у вас есть счёт в евро, и карта – способ им пользоваться»</blockquote>
+    <blockquote class="insight t-ru">От версии к версии поменялась сама идея: не «получите карту», а «у вас появляется счёт в евро, и карта – способ с него тратить»</blockquote>
   </section>
 </div>
 
@@ -499,8 +502,8 @@ window.protoScripts = {
       <span class="t-ru">Детали, которые решили дело</span>
     </h2>
 
-    <p class="t-en"><strong>The dark gradient wallet view.</strong> The Cards tab needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
-    <p class="t-ru"><strong>Тёмный градиент кошелька.</strong> Вкладка «Карты» должна отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
+    <p class="t-en"><strong>The dark gradient account view.</strong> The card's account and top-up screens needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
+    <p class="t-ru"><strong>Тёмный градиент счёта.</strong> Счёт карты и пополнение должны отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
 
     <p class="t-en"><strong>Fee transparency in top-up.</strong> Three payment methods, three fee structures: 0 EUR via Profee account, 2 EUR via external card, zero-fee via bank transfer but with a delay. The fee is visible at the method selection step – before the user commits – so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
     <p class="t-ru"><strong>Комиссия видна сразу.</strong> Три способа пополнения – три разные комиссии: 0 EUR со счёта Profee, 2 EUR с внешней карты, без комиссии банковским переводом, но не мгновенно. Комиссию видно уже при выборе способа, до подтверждения, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>

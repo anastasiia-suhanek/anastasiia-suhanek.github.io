@@ -224,6 +224,7 @@ html.swiss .lang-toggle .lang-btn.lang-active { background: var(--text); color: 
   /* Full-width bottom line reads as a divider here – mark the active item on the left */
   html.swiss .nav-seg.active { box-shadow: inset 3px 0 0 var(--accent); }
   /* Dim the page under the open sheet so the menu doesn't blend into content */
+  html.swiss .nav.is-open { background: var(--bg); }
   html.swiss .nav.is-open::after {
     content: '';
     position: fixed;

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anastasiia Sukhanek – CV</title>
+<meta name="description" content="CV of Anastasiia Sukhanek, Product Designer (fintech, payments). Prague · Remote EU. Profee, Beeline, SberSpasibo.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anastasiia Sukhanek – CV">
+<meta property="og:description" content="CV of Anastasiia Sukhanek, Product Designer (fintech, payments). Prague · Remote EU. Profee, Beeline, SberSpasibo.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/inter.css">
+
+<style>
+/* CV – Swiss: white page, Inter, violet accent from the Profee product, hairline rules.
+   One design for screen and print; sizes follow the site's six-step scale. */
+:root {
+  --bg: #FFFFFF;
+  --text: #0B0B0B;
+  --text-mid: #3E3E3E;
+  --text-dim: #8A8A8A;
+  --rule: #E1E1DE;
+  --accent: #5046E5;
+  --f: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --t-name: 40px; --t-h3: 17px; --t-body: 14px; --t-small: 12px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); }
+body {
+  font-family: var(--f); font-size: var(--t-body); line-height: 1.55; color: var(--text);
+  background: var(--bg); padding-inline: 24px; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: #fff; }
+
+.doc { max-width: 900px; margin: 0 auto; padding-block: 40px 72px; }
+
+/* top bar: back to the site + print */
+.print-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 56px; }
+.cv-back { font-size: 14px; font-weight: 500; color: var(--text); }
+.cv-back:hover { color: var(--accent); }
+.print-btn {
+  font: 500 14px var(--f); color: var(--text); background: none; border: 0; padding: 0; cursor: pointer;
+}
+.print-btn::after { content: ' ↓'; color: var(--accent); }
+.print-btn:hover { color: var(--accent); }
+.print-btn:focus-visible, .cv-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* header */
+.cv-header {
+  display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end;
+  padding-bottom: 32px; margin-bottom: 40px; border-bottom: 1px solid var(--rule);
+}
+.name { font-size: var(--t-name); font-weight: 500; letter-spacing: -0.035em; line-height: 1; margin-bottom: 12px; }
+.role-tag { font-size: var(--t-small); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.contact-block { list-style: none; display: flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+.contact-block li { font-size: var(--t-small); color: var(--text-dim); line-height: 1.5; }
+.contact-block a { color: var(--text); }
+.contact-block a:hover { color: var(--accent); }
+
+/* two columns */
+.cv-body { display: grid; grid-template-columns: 200px 1fr; gap: 0 56px; }
+.sidebar { display: flex; flex-direction: column; gap: 36px; }
+.main { display: flex; flex-direction: column; gap: 40px; }
+
+.sec-label {
+  font-size: var(--t-small); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text);
+  padding-bottom: 10px; margin-bottom: 16px; border-bottom: 1px solid var(--rule);
+}
+
+/* sidebar */
+.skill-row { margin-bottom: 14px; }
+.skill-row:last-child { margin-bottom: 0; }
+.skill-cat { font-size: var(--t-small); font-weight: 500; color: var(--text-dim); margin-bottom: 3px; }
+.skill-items { font-size: var(--t-small) !important; color: var(--text); line-height: 1.7 !important; }
+.edu { margin-bottom: 12px; }
+.edu:last-child { margin-bottom: 0; }
+.edu-org { font-size: var(--t-small); font-weight: 600; line-height: 1.4; }
+.edu-detail { font-size: var(--t-small); color: var(--text-dim); line-height: 1.5; }
+.lang-row { display: flex; justify-content: space-between; gap: 8px; font-size: var(--t-small); padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.lang-row:last-child { border-bottom: 0; }
+.lang-level { color: var(--text-dim); text-align: right; }
+
+/* main */
+.summary { font-size: 16px; line-height: 1.6; color: var(--text); }
+.job { padding-bottom: 32px; margin-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.job:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+.job-co { font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.01em; }
+.job-dates { font-size: var(--t-small); color: var(--text-dim); white-space: nowrap; font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 8px; }
+.badge-now { font-size: var(--t-small); font-weight: 600; color: var(--accent); }
+.badge-now::before { content: '● '; font-size: 8px; vertical-align: 2px; }
+.job-title { font-size: var(--t-small); color: var(--text-mid); margin-bottom: 14px; }
+.bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.bullets li { font-size: var(--t-body); padding-left: 18px; position: relative; color: var(--text-mid); line-height: 1.55; }
+.bullets li::before { content: '–'; position: absolute; left: 0; color: var(--text-dim); }
+.outcomes { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; }
+.outcomes-hd { font-size: var(--t-small); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 10px; }
+.outcomes-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.outcomes-list li { font-size: var(--t-body); color: var(--text); line-height: 1.5; }
+.m { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 680px) {
+  body { padding-inline: 20px; }
+  .print-bar { margin-bottom: 40px; }
+  .cv-header { grid-template-columns: 1fr; align-items: start; gap: 20px; }
+  .contact-block { align-items: flex-start; }
+  .cv-body { grid-template-columns: 1fr; }
+  .sidebar { order: 2; padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--rule); }
+  .name { font-size: 34px; }
+}
+
+@media print {
+  @page { margin: 12mm 14mm; size: A4; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { padding: 0; font-size: 10.5pt; }
+  .doc { padding: 0; max-width: none; }
+  .print-bar { display: none; }
+  .cv-header { margin-bottom: 22px; padding-bottom: 18px; break-after: avoid; }
+  .name { font-size: 28pt; }
+  .cv-body { gap: 0 32px; grid-template-columns: 170px 1fr; }
+  .main { gap: 24px; }
+  .sidebar { gap: 22px; }
+  .job { padding-bottom: 18px; margin-bottom: 18px; }
+  .job-top, .job-title, .outcomes-hd { break-after: avoid; }
+  .bullets li, .outcomes-list li { break-inside: avoid; }
+  .sidebar section, .edu, .skill-row { break-inside: avoid; }
+  .sec-label { break-after: avoid; }
+  .bullets li, .outcomes-list li { font-size: 9pt; line-height: 1.4; }
+  .bullets { gap: 3px; margin-bottom: 10px; }
+  .outcomes-list { gap: 3px; }
+  .summary { font-size: 9.5pt; line-height: 1.5; }
+  body { font-size: 9.5pt; line-height: 1.45; }
+  .job-title { margin-bottom: 8px; }
+  .sec-label { margin-bottom: 10px; padding-bottom: 6px; }
+  .skill-items, .edu-org, .edu-detail, .lang-row, .skill-cat { font-size: 8.5pt !important; }
+}
+</style>
+
+<div class="doc">
+
+  <!-- Print helper -->
+  <div class="print-bar">
+    <a class="cv-back" href="index.html">← Portfolio</a>
+    <button class="print-btn" onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header class="cv-header">
+    <div>
+      <h1 class="name">Anastasiia Sukhanek</h1>
+      <p class="role-tag">Product Designer</p>
+    </div>
+    <ul class="contact-block">
+      <li><a href="mailto:anastasiia.suhanek@gmail.com">anastasiia.suhanek@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/anastasiiasuhanek/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.behance.net/anastasiiasuhanek" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="index.html">Portfolio</a></li>
+      <li>Prague, Czech Republic</li>
+    </ul>
+  </header>
+
+  <!-- ── BODY ── -->
+  <div class="cv-body">
+
+    <!-- ════ SIDEBAR ════ -->
+    <aside class="sidebar">
+
+      <section>
+        <p class="sec-label">Design Tools</p>
+        <div class="skill-row">
+          <p class="skill-cat">Interface</p>
+          <p class="skill-items">Figma – components, auto layout, variants, prototyping<br>ProtoPie · Adobe Photoshop · Illustrator</p>
+        </div>
+        <div class="skill-row">
+          <p class="skill-cat">Research &amp; Testing</p>
+          <p class="skill-items">Wynde · Usability sessions<br>Quantitative surveys · Analytics</p>
+        </div>
+        <div class="skill-row">
+          <p class="skill-cat">AI Tools</p>
+          <p class="skill-items">Claude · ChatGPT · Gemini · Midjourney · Figma AI</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Methods</p>
+        <div class="skill-items">
+          UX Research<br>
+          Usability Testing<br>
+          A/B Experiments<br>
+          Customer Journey Mapping<br>
+          User Flow Design<br>
+          Wireframing<br>
+          Design Systems<br>
+          Localisation (13+ languages)<br>
+          Agile<br>
+          Contractor Management
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Education</p>
+        <div class="edu">
+          <p class="edu-org">Bang Bang Education</p>
+          <p class="edu-detail">UX/UI Designer+, Product Design · 2024</p>
+        </div>
+        <div class="edu">
+          <p class="edu-org">British Higher School of Art &amp; Design</p>
+          <p class="edu-detail">Metaphor in Design · 2023</p>
+        </div>
+        <div class="edu">
+          <p class="edu-org">Moscow University for the Humanities</p>
+          <p class="edu-detail">BA, International Relations &amp; Cultural Studies · 2018</p>
+        </div>
+      </section>
+
+      <section>
+        <p class="sec-label">Languages</p>
+        <div class="lang-row">
+          <span>English</span>
+          <span class="lang-level">B2 · daily working language</span>
+        </div>
+        <div class="lang-row">
+          <span>Russian</span>
+          <span class="lang-level">Native</span>
+        </div>
+        <div class="lang-row">
+          <span>Spanish</span>
+          <span class="lang-level">A1 Beginner</span>
+        </div>
+      </section>
+
+    </aside>
+    <!-- ════ END SIDEBAR ════ -->
+
+    <!-- ════ MAIN ════ -->
+    <main class="main">
+
+      <!-- Profile -->
+      <section>
+        <p class="sec-label">Profile</p>
+        <p class="summary">Fintech and conversion-critical UX across eight-plus years of in-house product work – remittance at Profee, telecom loyalty at Beeline, gamification at Sberbank. Key outcomes: error handling redesign improved CR by <span class="m">+10%</span>, first-payment conversion lifted <span class="m">+6%</span> from a single onboarding screen, abandonment rate reduced <span class="m">−10%</span> across Russian-speaking flows. I work end-to-end: from discovery and research through A/B testing, design systems, and localisation at scale</p>
+      </section>
+
+      <!-- Experience -->
+      <section>
+        <p class="sec-label">Experience</p>
+
+        <!-- PROFEE -->
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">Profee.com</span>
+            <span class="job-dates">
+              Jan 2025 – Present
+              <span class="badge-now">Current</span>
+            </span>
+          </div>
+          <p class="job-title">Product Designer · Fintech / Remittance &amp; Payments</p>
+          <ul class="bullets">
+            <li>Full product design cycle: research, hypothesis, prototyping, usability testing, launch, metrics review</li>
+            <li>Shipped 2025: KYC verification, currency rate comparison tool, loyalty programme, cards management, wallet, C2B transfers, verification entry point redesign</li>
+            <li>Shipped 2026: cashback &amp; bonus programme, currency exchange flow, transfer status system, C2B mobile payments, Uzbekistan market expansion</li>
+            <li>Redesigned end-to-end user flows: entry points, transfers, error handling, and localised flows for Russian-speaking users</li>
+            <li>Built and scaled company-wide Figma master file – single source of truth across all product teams; developed workflow for tracking production UI text against codebase strings</li>
+            <li>Managed localisation projects across 13+ languages; contributed to shared Figma component library</li>
+            <li>Ran A/B experiments and UX validation via Wynde; presented findings and design decisions company-wide</li>
+            <li>Built AI-assisted UX writing workflow: generated copy variants via AI agents, created feature branches and opened PRs for developer review</li>
+            <li>Initiated Clean Thursday – biweekly sessions with engineers to address UI/UX debt and align on interaction details</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Key Outcomes</p>
+            <ul class="outcomes-list">
+              <li>Cards: rebuilt the product area on iOS and Android → monthly users of the Cards tab <span class="m">×7</span> in six months</li>
+              <li>Redesigned payment error handling → Conversion Rate <span class="m">+10%</span>, flow completion rate <span class="m">+5%</span></li>
+              <li>Pre-transfer hint screen for new users → first payment conversion <span class="m">+6%</span></li>
+              <li>Currency rate comparison tool → <span class="m">47%</span> of loyal users who viewed the chart completed a transfer</li>
+              <li>Automated document upload for KYC verification, eliminating need for support contacts</li>
+              <li>Moved verification nudge from email to main app screen, increasing entry-point visibility</li>
+              <li>Redesigned flows for Russian-speaking audience → Abandonment Rate <span class="m">−10%</span></li>
+              <li>Launched C2B transfer flow; expanded to Uzbekistan mobile payment market in 2026</li>
+              <li>Cashback &amp; bonus programme – designed to surface wallet and drive repeat transactions</li>
+              <li>Currency exchange flow – full end-to-end experience from rate discovery to execution</li>
+              <li>Transfer status system – complete redesign of transaction state communication to reduce support load</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- BEELINE -->
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">Beeline</span>
+            <span class="job-dates">Aug 2023 – Jan 2025</span>
+          </div>
+          <p class="job-title">Product Designer · Telecom Consumer App</p>
+          <ul class="bullets">
+            <li>Designed user flows, wireframes, and prototypes for the main telecom consumer app</li>
+            <li>Led quantitative and qualitative research; presented findings to product leadership</li>
+            <li>Ran usability tests and iterated based on behavioural data</li>
+            <li>Introduced gamification to the loyalty programme: cashback tower mechanic, cybersecurity awareness game</li>
+            <li>Coordinated external design contractors: timelines, design review, quality control</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Key Outcomes</p>
+            <ul class="outcomes-list">
+              <li>Internal channel top-up share: <span class="m">4% → 10%</span>; MAU growth <span class="m">+1 million</span> users</li>
+              <li>Top-up frequency <span class="m">2.5× /month</span> per user</li>
+              <li>ARPU <span class="m">+3%</span> through user-centred improvements</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- SBER -->
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">SberSpasibo (Sberbank)</span>
+            <span class="job-dates">Jan 2022 – Aug 2023</span>
+          </div>
+          <p class="job-title">UX/UI Designer · Gamification Products</p>
+          <ul class="bullets">
+            <li>Designed 4 gamification products: SberPrimeCity, Wheel of Fortune, Sea Treasures, Catch My Word</li>
+            <li>Prototyped and tested game mechanics and navigation for app and web</li>
+            <li>Conducted user interviews, usability tests, hypothesis validation</li>
+            <li>Managed contractor design work: planning, review, delivery; set up contractor workflow from scratch with all projects delivered on time</li>
+          </ul>
+          <div class="outcomes">
+            <p class="outcomes-hd">Key Outcomes</p>
+            <ul class="outcomes-list">
+              <li>Bonus redemption rate <span class="m">×3</span> in Sea Treasures, <span class="m">×1.5</span> in SberPrimeCity after redesign</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- TOY.RU -->
+        <article class="job">
+          <div class="job-top">
+            <span class="job-co">TOY.RU</span>
+            <span class="job-dates">Jan 2018 – Feb 2021</span>
+          </div>
+          <p class="job-title">UX/UI Designer · E-Commerce</p>
+          <ul class="bullets">
+            <li>Redesigned e-commerce website across Web, Mobile, and Desktop within engine and code constraints</li>
+            <li>Produced banners, landing pages, and campaign graphics; maintained visual consistency across channels</li>
+            <li>Introduced design and code review process, reducing revision cycles and accelerating delivery</li>
+          </ul>
+        </article>
+
+      </section>
+
+    </main>
+    <!-- ════ END MAIN ════ -->
+
+  </div>
+</div>

@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About – Anastasiia Sukhanek</title>
+<meta name="description" content="Remote product designer with 8+ years in fintech, telecom and e-commerce. Profee, Beeline, SberSpasibo. Principles, experience, skills.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About – Anastasiia Sukhanek">
+<meta property="og:description" content="Remote product designer with 8+ years in fintech, telecom and e-commerce. Profee, Beeline, SberSpasibo. Principles, experience, skills.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="scroll-reveal.css">
+<link rel="stylesheet" href="buttons.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="site.css">
+
+<style>
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--f-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+/* ── PAGE ── */
+.page {
+  max-width: var(--max-w); margin: 0 auto;
+  padding-inline: var(--gutter); padding-block: var(--space-20) var(--space-30);
+}
+
+/* ── INTRO HEADER ── */
+.about-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--space-16);
+  align-items: end;
+  margin-bottom: var(--space-20);
+}
+
+.page-eyebrow {
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: var(--ls-widest);
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-7);
+}
+.page-eyebrow::before {
+  content: ''; width: 24px; height: 2px;
+  background: var(--accent); flex-shrink: 0;
+}
+
+.about-headline {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  color: var(--text);
+  max-width: var(--max-w-content);
+}
+
+/* ── SECTIONS ── */
+.about-section {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 0 var(--space-12);
+  padding-block: var(--space-12);
+  border-top: 1px solid var(--border);
+  align-items: start;
+}
+
+.section-label {
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: var(--ls-widest);
+  text-transform: uppercase; color: var(--text-mid);
+  padding-top: var(--space-1);
+}
+
+.section-content { min-width: 0; }
+
+/* Information – animated phone */
+.info-animation {
+  width: 200px; aspect-ratio: 3/4; max-width: 100%;
+  margin-bottom: var(--space-8);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+
+.anim-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 60%, rgba(106,63,217,0.22) 0%, transparent 65%);
+}
+
+.anim-phone {
+  width: 96px; height: 168px;
+  background: var(--bg-card);
+  border-radius: var(--r-xl);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column;
+  overflow: hidden; position: relative; z-index: 1;
+  animation: phoneFloat 5s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+.anim-statusbar {
+  height: 12px; background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.anim-notch {
+  width: 22px; height: 4px; background: var(--border); border-radius: var(--r-pill);
+}
+
+.anim-screen { flex: 1; position: relative; overflow: hidden; }
+
+.anim-state {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--space-2); padding: var(--space-3) var(--space-2);
+  opacity: 0;
+}
+
+/* 6s loop: state 1 = 0-2s | state 2 = 2-4s | state 3 = 4-6s */
+.anim-state-1 { animation: stateShow1 6s ease-in-out infinite; }
+.anim-state-2 { animation: stateShow2 6s ease-in-out infinite; }
+.anim-state-3 { animation: stateShow3 6s ease-in-out infinite; }
+
+@keyframes stateShow1 {
+  0%   { opacity: 0; }
+  5%   { opacity: 1; }
+  28%  { opacity: 1; }
+  33%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes stateShow2 {
+  0%, 33% { opacity: 0; }
+  38%     { opacity: 1; }
+  61%     { opacity: 1; }
+  66%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+@keyframes stateShow3 {
+  0%, 66% { opacity: 0; }
+  71%     { opacity: 1; }
+  95%     { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+/* Transfer screen */
+.anim-tr-label {
+  font-size: 8px; font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider); text-transform: uppercase; color: var(--text-mid);
+}
+.anim-tr-amount {
+  font-family: var(--f-display);
+  font-size: var(--fs-lg); font-weight: var(--fw-semibold);
+  color: var(--text); letter-spacing: var(--ls-tight); line-height: var(--lh-none);
+}
+.anim-tr-recipient {
+  font-size: var(--fs-xs); color: var(--text-mid);
+  display: flex; align-items: center; gap: var(--space-1);
+}
+.anim-tr-arrow { color: var(--accent); }
+.anim-tr-btn {
+  margin-top: var(--space-2); width: 64px; height: 18px;
+  background: var(--accent); border-radius: var(--r-sm); opacity: 0.9;
+}
+
+/* Processing screen */
+.anim-spinner {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.anim-proc-text {
+  font-size: var(--fs-xs); color: var(--text-mid); font-weight: var(--fw-medium);
+}
+
+/* Success screen */
+.anim-success-ring {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  animation: successPop 6s ease-in-out infinite;
+}
+@keyframes successPop {
+  0%, 66%   { transform: scale(0.4); }
+  72%       { transform: scale(1.12); }
+  76%, 100% { transform: scale(1); }
+}
+.anim-success-label {
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--accent); letter-spacing: var(--ls-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-phone { animation: none; }
+  .anim-spinner { animation: none; }
+  .anim-state-1 { opacity: 1; animation: none; }
+  .anim-state-2, .anim-state-3 { animation: none; opacity: 0; }
+  .anim-success-ring { animation: none; transform: scale(1); }
+}
+
+.info-text p {
+  font-size: var(--fs-md); line-height: var(--lh-relaxed); color: var(--text);
+  margin-bottom: var(--space-4); max-width: 58ch;
+}
+.info-text p:last-child { margin-bottom: 0; }
+.info-text em { font-style: italic; color: var(--text-mid); }
+
+/* Core */
+.core-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0;
+}
+.core-item {
+  font-family: var(--f-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.core-item:first-child { border-top: 1px solid var(--border); }
+.core-item-sub {
+  font-family: var(--f-sans); font-size: var(--fs-xs); font-weight: var(--fw-medium);
+  color: var(--text-mid); letter-spacing: var(--ls-normal);
+  flex-shrink: 0; white-space: nowrap; text-align: right;
+  margin-left: var(--space-5);
+}
+
+/* Experience */
+.exp-list { display: flex; flex-direction: column; gap: var(--space-7); }
+.exp-item {}
+.exp-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: var(--space-1);
+}
+.exp-company {
+  font-size: var(--fs-md); font-weight: var(--fw-semibold); color: var(--text);
+  font-family: var(--f-sans);
+}
+.exp-period {
+  font-size: var(--fs-xs); color: var(--text-mid); font-variant-numeric: tabular-nums;
+}
+.exp-role { font-size: var(--fs-md); color: var(--text-mid); }
+.exp-bullets {
+  list-style: none;
+  margin-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.exp-bullets li {
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  padding-left: var(--space-4);
+  position: relative;
+}
+.exp-bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--border);
+}
+
+/* Tags */
+.tags-grid { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tag {
+  font-size: var(--fs-xs); font-weight: var(--fw-medium); color: var(--text);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  padding: var(--space-1) var(--space-3); border-radius: var(--r-pill); line-height: var(--lh-snug);
+}
+
+/* More / personal */
+.more-text {
+  font-family: var(--f-display);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-regular);
+  font-style: italic;
+  line-height: var(--lh-normal);
+  color: var(--text-mid);
+  max-width: 52ch;
+}
+
+/* Contact row */
+.contact-row {
+  display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-8);
+}
+.contact-btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: var(--fs-md); font-weight: var(--fw-semibold); font-family: var(--f-sans);
+  padding: var(--space-3) var(--space-5); border-radius: var(--r-md);
+  transition: background 0.15s, color 0.15s, gap 0.2s;
+}
+.contact-btn-primary {
+  background: var(--accent); color: var(--accent-ink);
+}
+.contact-btn-primary:hover { background: var(--accent-hover); gap: var(--space-3); }
+.contact-btn-outline {
+  border: 1px solid var(--border); color: var(--text-mid);
+}
+.contact-btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+/* ── FADE-IN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.about-header { animation: fadeUp 0.5s ease 0.05s both; }
+.about-section:nth-child(1) { animation: fadeUp 0.5s ease 0.1s both; }
+.about-section:nth-child(2) { animation: fadeUp 0.5s ease 0.16s both; }
+.about-section:nth-child(3) { animation: fadeUp 0.5s ease 0.22s both; }
+.about-section:nth-child(4) { animation: fadeUp 0.5s ease 0.28s both; }
+.about-section:nth-child(5) { animation: fadeUp 0.5s ease 0.34s both; }
+.about-section:nth-child(6) { animation: fadeUp 0.5s ease 0.40s both; }
+.about-section:nth-child(7) { animation: fadeUp 0.5s ease 0.46s both; }
+
+/* ── LANG TOGGLE ── */
+
+/* ── MOBILE NAV ── */
+
+/* ── BACK BUTTON ── */
+
+/* ── TWO-COLUMN LAYOUT ── */
+.about-body { display: block; }
+
+.about-left {
+  min-width: 0;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  padding-block: var(--space-16) var(--space-30);
+}
+
+/* Portrait card – sits beside the headline, same grid as the rest of the site */
+.about-portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  border: 1px solid var(--glass-line);
+  box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
+  background: var(--bg-deep);
+}
+.about-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+/* soft fade into the Dusk palette so the warm café light doesn't fight the page */
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--bg) 55%, transparent) 0%, transparent 38%),
+    linear-gradient(140deg, color-mix(in srgb, var(--orb-1) 14%, transparent), transparent 55%);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .about-header { grid-template-columns: minmax(0, 1fr) 240px; gap: var(--space-10); }
+}
+@media (max-width: 720px) {
+  .about-header { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .about-portrait { max-width: 320px; }
+  .about-section { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .section-label { padding-top: 0; }
+}
+@media (max-width: 580px) {
+  .about-left { padding-inline: var(--gutter-sm); padding-block: var(--space-14) var(--space-20); }
+  .about-header { margin-bottom: var(--space-14); }
+  .core-item { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+  .core-item-sub { white-space: normal; text-align: left; margin-left: 0; }
+}
+
+/* ── PRINCIPLES (merged from beliefs) ── */
+.beliefs-list { display: flex; flex-direction: column; }
+.belief-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0 var(--space-4);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border);
+  align-items: start;
+}
+.belief-item:first-child { border-top: 0; padding-top: 0; }
+.belief-num {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-wide);
+  padding-top: var(--space-1);
+}
+.belief-text {
+  font-family: var(--f-display);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+.belief-text strong { font-weight: var(--fw-semibold); }
+
+/* ── GALLERY (merged from beliefs) ── */
+.gallery-strip {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+  margin-bottom: var(--space-8);
+  border-radius: var(--r-lg);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--space-8), #000 calc(100% - var(--space-8)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--space-8), #000 calc(100% - var(--space-8)), transparent);
+}
+.gallery-strip::-webkit-scrollbar { display: none; }
+.gallery-strip.is-dragging { cursor: grabbing; }
+.gallery-track { display: flex; gap: var(--space-3); width: max-content; }
+.gallery-item {
+  flex-shrink: 0;
+  height: 300px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-deep);
+  border: 1px solid var(--glass-line);
+}
+.gallery-item img,
+.gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.gallery-item--port { width: 212px; }
+.gallery-item--feat { width: 248px; }
+.gallery-item--sq   { width: 300px; }
+.gallery-item--land { width: 412px; }
+.gallery-item--wide { width: 492px; }
+.gallery-cap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: var(--space-12) var(--space-4) var(--space-4);
+  background: linear-gradient(to bottom, transparent, rgba(3, 2, 16, 0.72));
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  pointer-events: none;
+}
+.gallery-badge {
+  position: absolute; top: var(--space-3); left: var(--space-3);
+  background: rgba(3, 2, 16, 0.5);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--r-sm);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+@media (max-width: 580px) {
+  .belief-item { grid-template-columns: 1fr; gap: var(--space-2); }
+  .gallery-item { height: 260px; }
+}
+
+/* looking-for line + experience outcomes */
+.info-looking {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  background: var(--bg-alt);
+  color: var(--text-mid);
+}
+.info-looking strong { color: var(--text); font-weight: var(--fw-semibold); }
+.exp-outcomes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 var(--space-4);
+}
+.exp-outcomes li {
+  font-size: var(--fs-sm);
+  color: var(--text-mid);
+  line-height: var(--lh-normal);
+}
+.exp-outcomes b {
+  color: var(--accent);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+}
+.tags-grid--after { margin-top: var(--space-6); }
+.exp-list, .core-list, .beliefs-list { max-width: 720px; }
+</style>
+<link rel="stylesheet" href="glass.css">
+<link rel="stylesheet" href="swiss.css">
+
+<!-- ── NAV ── -->
+<nav class="nav" id="main-nav"></nav>
+<script src="nav.js"></script>
+
+<div class="about-body">
+<main class="about-left">
+
+  <!-- ── INTRO ── -->
+  <div class="about-header">
+    <div class="about-header-text">
+    <p class="page-eyebrow">
+      <span class="t-en">About</span>
+      <span class="t-ru">Обо мне</span>
+    </p>
+    <h1 class="about-headline">
+      <span class="t-en">Product designer for fintech. Payments, verification, and the screens where people drop off</span>
+      <span class="t-ru">Продуктовый дизайнер в финтехе. Платежи, верификация и экраны, где люди уходят</span>
+    </h1>
+    </div>
+    <figure class="about-portrait">
+      <img src="images/photo-about-prague.jpg" alt="Anastasiia Sukhanek on a street in Prague with a yellow tram behind" width="1110" height="1298">
+    </figure>
+  </div>
+
+  <!-- ── INFORMATION ── -->
+  <div class="about-section">
+    <span class="section-label"><span class="t-en">Information</span><span class="t-ru">Информация</span></span>
+    <div class="section-content">
+      <div class="info-text">
+        <p class="t-en">I'm a product designer based in Prague with more than eight years of in-house experience across fintech, telecom, and e-commerce. Most of my work lives in the flows where users decide whether to complete something or give up – payment errors, onboarding moments, verification steps</p>
+        <p class="t-ru">Я продуктовый дизайнер, живу в Праге. Больше восьми лет работаю в продуктовых командах – финтех, телеком, e-commerce. Чаще всего проектирую моменты, где человек решает, идти дальше или бросить: ошибки оплаты, онбординг, верификацию</p>
+
+        <p class="t-en">At Profee I work on remittance products for people sending money across borders – from Europe to India, Pakistan, Uzbekistan and beyond</p>
+        <p class="t-ru">В Profee делаю продукт для тех, кто переводит деньги между странами – из Европы в Индию, Пакистан, Узбекистан и не только</p>
+
+        <p class="t-en">I also enjoy sharing what I know – I've mentored other designers, and seeing someone grow and get more confident in their work is one of my favourite parts of the job</p>
+        <p class="t-ru">Ещё я люблю делиться опытом – у меня есть опыт наставничества, и мне очень нравится видеть, как человек растёт и становится увереннее в своей работе</p>
+
+        <p class="info-looking t-en">Open to <strong>Senior Product Designer</strong> roles in fintech, payments, or any product with complex flows and a team that measures outcomes. Prague · Remote EU</p>
+        <p class="info-looking t-ru">Ищу позицию <strong>Senior Product Designer</strong> в финтехе, платежах или любом продукте со сложными сценариями – там, где команда измеряет результат. Прага · удалённо по ЕС</p>
+
+        <p class="t-en">Outside work, I keep a small Instagram blog about moving from Moscow to Prague – sharing what I’ve learned so the move feels a little easier for others. In a way, it’s an extension of my job: helping people find their way when everything feels new</p>
+        <p class="t-ru">А ещё я веду небольшой блог в Instagram про переезд из Москвы в Прагу – делюсь тем, что узнала сама, чтобы другим было чуть проще. Кажется, это продолжение моей работы: помогать людям разобраться, когда всё вокруг новое</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EXPERIENCE ── -->
+  <div class="about-section">
+    <span class="section-label"><span class="t-en">Experience</span><span class="t-ru">Опыт</span></span>
+    <div class="section-content">
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-top">
+            <span class="exp-company">Profee</span>
+            <span class="exp-period t-en">Jan 2025 – present</span>
+            <span class="exp-period t-ru">янв. 2025 – сейчас</span>
+          </div>
+          <p class="exp-role t-en">Product Designer – payments, cards, verification, design system</p>
+          <p class="exp-role t-ru">Продуктовый дизайнер – платежи, карты, верификация, дизайн-система</p>
+          <ul class="exp-outcomes">
+            <li class="t-en">Rebuilt Cards as a product area on iOS and Android; monthly users of the tab <b>×7</b> in six months</li>
+            <li class="t-ru">Пересобрала раздел «Карты» на iOS и Android: за полгода пользователей вкладки в месяц стало в <b>7 раз</b> больше</li>
+            <li class="t-en"><b>+10%</b> conversion after redesigning payment error handling</li>
+            <li class="t-ru"><b>+10%</b> к конверсии после редизайна ошибок оплаты</li>
+            <li class="t-en"><b>+6%</b> first-payment conversion from a pre-transfer hint for new users</li>
+            <li class="t-ru"><b>+6%</b> к конверсии в первый платёж – подсказка для новых пользователей перед переводом</li>
+            <li class="t-en"><b>−10%</b> abandonment in flows redesigned for Russian-speaking users</li>
+            <li class="t-ru"><b>−10%</b> отказов в сценариях, переработанных для русскоязычных пользователей</li>
+          </ul>
+          <ul class="exp-bullets">
+            <li class="t-en">Maintain the master Figma file – all product flows, copy synced with production</li>
+            <li class="t-ru">Веду главный файл в Figma: все сценарии продукта, тексты совпадают с продакшеном</li>
+            <li class="t-en">UX writing via a custom AI agent; create branches and hand off to devs for review</li>
+            <li class="t-ru">Пишу UX-тексты с помощью собственного AI-агента, сама завожу ветки и отдаю разработчикам на ревью</li>
+            <li class="t-en">Founded "Clean Thursday" – biweekly UI/UX debt sessions with engineers</li>
+            <li class="t-ru">Придумала «Чистый четверг» – раз в две недели разбираем с разработчиками долги по UI и UX</li>
+            <li class="t-en">Build and maintain design system components across iOS, Android, and Web</li>
+            <li class="t-ru">Создаю и поддерживаю компоненты дизайн-системы для iOS, Android и веба</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-top">
+            <span class="exp-company">Beeline</span>
+            <span class="exp-period t-en">Aug 2023 – Jan 2025</span>
+            <span class="exp-period t-ru">авг. 2023 – янв. 2025</span>
+          </div>
+          <p class="exp-role t-en">Product Designer – digital services, gamification, cybersecurity education</p>
+          <p class="exp-role t-ru">Продуктовый дизайнер – цифровые сервисы, геймификация, обучение кибербезопасности</p>
+          <ul class="exp-outcomes">
+            <li class="t-en"><b>+1M</b> monthly active users</li>
+            <li class="t-ru"><b>+1 млн</b> активных пользователей в месяц</li>
+            <li class="t-en">Internal-channel top-up share <b>4% → 10%</b></li>
+            <li class="t-ru">Доля пополнений через внутренний канал <b>4% → 10%</b></li>
+            <li class="t-en"><b>+3%</b> ARPU through user-centred improvements</li>
+            <li class="t-ru"><b>+3%</b> к ARPU за счёт улучшений для пользователей</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-top">
+            <span class="exp-company">SberSpasibo</span>
+            <span class="exp-period t-en">Jan 2022 – Aug 2023</span>
+            <span class="exp-period t-ru">янв. 2022 – авг. 2023</span>
+          </div>
+          <p class="exp-role t-en">UX/UI Designer with product scope – loyalty platform, 4 gamification products</p>
+          <p class="exp-role t-ru">UX/UI-дизайнер с продуктовыми задачами – программа лояльности, 4 игровых продукта</p>
+          <ul class="exp-outcomes">
+            <li class="t-en">Bonus redemption <b>×3</b> in Sea Treasures and <b>×1.5</b> in SberPrimeCity after redesign</li>
+            <li class="t-ru">После редизайна бонусы стали тратить в <b>3 раза</b> чаще в «Морских сокровищах» и в <b>1,5 раза</b> – в SberPrimeCity</li>
+            <li class="t-en">User interviews, usability tests and hypothesis validation for every game mechanic</li>
+            <li class="t-ru">Интервью, юзабилити-тесты и проверка гипотез для каждой игровой механики</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-top">
+            <span class="exp-company t-en">Earlier</span>
+            <span class="exp-company t-ru">Ранее</span>
+            <!-- TODO: CV starts at Jan 2018 (TOY.RU). If you had roles in 2016–2017, add them to the CV and restore "9 years" everywhere -->
+            <span class="exp-period">2018 – 2022</span>
+          </div>
+          <p class="exp-role t-en">UX/UI Designer – e-commerce, telecom, fintech agencies and in-house teams</p>
+          <p class="exp-role t-ru">UX/UI-дизайнер – e-commerce, телеком, финтех; агентства и продуктовые команды</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRINCIPLES ── -->
+  <div class="about-section" id="principles">
+    <span class="section-label"><span class="t-en">Principles</span><span class="t-ru">Принципы</span></span>
+    <div class="section-content">
+      <div class="beliefs-list">
+
+        <div class="belief-item">
+          <span class="belief-num">00</span>
+          <p class="belief-text t-en">
+            Design without a number to move is <em>decoration</em>.
+            I care about flows that get measured – conversion rates, drop-offs, time to complete
+          </p>
+          <p class="belief-text t-ru">Дизайн без метрики – это <em>декорация</em>. Мне интересны сценарии, у которых есть цифры: конверсия, отток, время до результата</p>
+        </div>
+
+        <div class="belief-item">
+          <span class="belief-num">01</span>
+          <p class="belief-text t-en">
+            A flow that works in one language is lucky.
+            <strong>One that works in thirteen is designed</strong>
+          </p>
+          <p class="belief-text t-ru">Если сценарий работает на одном языке – повезло. <strong>Если на тринадцати – его спроектировали</strong></p>
+        </div>
+
+        <div class="belief-item">
+          <span class="belief-num">02</span>
+          <p class="belief-text t-en">
+            Users don't read error messages. <em>They leave.</em>
+            Every friction point is a decision to abandon – so every decision deserves a reason
+          </p>
+          <p class="belief-text t-ru">Сообщения об ошибках не читают. <em>От них уходят.</em> Каждая шероховатость – повод бросить, поэтому у каждого решения должна быть причина</p>
+        </div>
+
+        <div class="belief-item">
+          <span class="belief-num">03</span>
+          <p class="belief-text t-en">
+            The best onboarding is the one the user
+            <em>doesn't notice finishing</em>
+          </p>
+          <p class="belief-text t-ru">Лучший онбординг – тот, который <em>закончился незаметно</em></p>
+        </div>
+
+        <div class="belief-item">
+          <span class="belief-num">04</span>
+          <p class="belief-text t-en">
+            Complexity is not the problem.
+            <strong>Unexplained complexity is.</strong>
+            Most fintech UX fails here
+          </p>
+          <p class="belief-text t-ru">Сложность – не проблема. <strong>Проблема – сложность без объяснений.</strong> На этом спотыкается большинство финтех-интерфейсов</p>
+        </div>
+
+        <div class="belief-item">
+          <span class="belief-num">05</span>
+          <p class="belief-text t-en">
+            I moved from Moscow to Prague and learned what it feels like
+            to send money across borders when you don't trust the system.
+            <em>That's the user I design for</em>
+          </p>
+          <p class="belief-text t-ru">Я переехала из Москвы в Прагу и узнала, каково это – отправлять деньги за границу, когда не доверяешь системе. <em>Для такого человека я и проектирую</em></p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SKILLS & TOOLS ── -->
+  <div class="about-section">
+    <span class="section-label"><span class="t-en">Skills & tools</span><span class="t-ru">Навыки и инструменты</span></span>
+    <div class="section-content">
+      <ul class="core-list">
+        <li class="core-item">
+          <span class="t-en">Conversion & payment flows</span>
+          <span class="t-ru">Платёжные сценарии и конверсия</span>
+          <span class="core-item-sub">Profee · Beeline</span>
+        </li>
+        <li class="core-item">
+          <span class="t-en">UX research & usability testing</span>
+          <span class="t-ru">UX-исследования и юзабилити-тесты</span>
+          <span class="core-item-sub t-en">Wynde · usability sessions</span>
+          <span class="core-item-sub t-ru">Wynde · юзабилити-сессии</span>
+        </li>
+        <li class="core-item">
+          <span class="t-en">Design systems (multi-platform)</span>
+          <span class="t-ru">Дизайн-системы для нескольких платформ</span>
+          <span class="core-item-sub">iOS · Android · Web</span>
+        </li>
+        <li class="core-item">
+          <span class="t-en">Localisation</span>
+          <span class="t-ru">Локализация</span>
+          <span class="core-item-sub t-en">13+ languages</span>
+          <span class="core-item-sub t-ru">13+ языков</span>
+        </li>
+        <li class="core-item">
+          <span class="t-en">A/B experiments & analytics</span>
+          <span class="t-ru">A/B-тесты и аналитика</span>
+          <span class="core-item-sub">Amplitude · Metabase</span>
+        </li>
+        <li class="core-item">
+          <span class="t-en">AI-assisted UX writing &amp; dev&nbsp;handoff</span>
+          <span class="t-ru">UX-тексты и передача в разработку с&nbsp;AI</span>
+          <span class="core-item-sub">Claude · ChatGPT · PR review</span>
+        </li>
+      </ul>
+      <div class="tags-grid tags-grid--after">
+        <span class="tag">Figma</span>
+        <span class="tag">ProtoPie</span>
+        <span class="tag">Wynde</span>
+        <span class="tag">Amplitude</span>
+        <span class="tag">Metabase</span>
+        <span class="tag">Notion</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Claude</span>
+        <span class="tag">ChatGPT</span>
+        <span class="tag">Gemini</span>
+        <span class="tag">Midjourney</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MORE ── -->
+  <div class="about-section">
+    <span class="section-label"><span class="t-en">Off-screen</span><span class="t-ru">Вне экрана</span></span>
+    <div class="section-content">
+      <div class="gallery-strip" id="galleryStrip">
+        <div class="gallery-track">
+
+          <div class="gallery-item gallery-item--feat">
+            <video autoplay loop muted playsinline>
+              <source src="media/video_2026-09-18_10-37-56.mp4" type="video/mp4">
+            </video>
+            <span class="gallery-badge">Video</span>
+            <div class="gallery-cap"><span class="t-en">deadline mode</span><span class="t-ru">дедлайн-режим</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_16_2026-09-18_10-37-56.jpg" alt="At a tech exhibition, standing in front of binary code projection">
+            <div class="gallery-cap"><span class="t-en">DesignConf, Moscow</span><span class="t-ru">DesignConf, Москва</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_13_2026-09-18_10-37-56.jpg" alt="Home desk setup with iMac, pink roses and books">
+            <div class="gallery-cap"><span class="t-en">home office</span><span class="t-ru">домашний офис</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_24_2026-09-18_10-37-56.jpg" alt="Abyssinian cat lying on the desk next to laptop">
+            <div class="gallery-cap"><span class="t-en">junior Texas</span><span class="t-ru">младший Техас</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_9_2026-09-18_10-37-56.jpg" alt="Team selfie at the office with colleagues">
+            <div class="gallery-cap"><span class="t-en">the team</span><span class="t-ru">команда</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_20_2026-09-18_10-37-56.jpg" alt="Working from a cafe – MacBook and flat white">
+            <div class="gallery-cap"><span class="t-en">Figma + flat white</span><span class="t-ru">Figma и флэт уайт</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_23_2026-09-18_10-37-56.jpg" alt="White cat sitting on lap while working on Profee">
+            <div class="gallery-cap"><span class="t-en">junior Alaska</span><span class="t-ru">младшая Аляска</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--port">
+            <img src="media/photo_4_2026-09-18_10-37-56.jpg" alt="Graffiti car at design conference with Ловлю на слове text">
+            <div class="gallery-cap"><span class="t-en">design community vibes</span><span class="t-ru">дизайн-тусовка</span></div>
+          </div>
+
+          <div class="gallery-item gallery-item--land">
+            <img src="media/photo_10_2026-09-18_10-37-56.jpg" alt="Team dinner at a restaurant with glass ceiling and plants">
+            <div class="gallery-cap"><span class="t-en">team dinner</span><span class="t-ru">командный ужин</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <a href="mailto:anastasiia.suhanek@gmail.com" class="contact-btn contact-btn-primary">
+          <span class="t-en">Get in touch →</span>
+          <span class="t-ru">Написать →</span>
+        </a>
+        <a href="https://www.linkedin.com/in/anastasiiasuhanek/" target="_blank" rel="noopener" class="contact-btn contact-btn-outline">
+          LinkedIn
+        </a>
+        <a href="https://www.behance.net/anastasiiasuhanek" target="_blank" rel="noopener" class="contact-btn contact-btn-outline">
+          Behance
+        </a>
+        <a href="anastasiia-cv.html" class="contact-btn contact-btn-outline">
+          <span class="t-en">CV →</span>
+          <span class="t-ru">CV →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+</div>
+<script>
+(function () {
+  var strip = document.getElementById('galleryStrip');
+  if (!strip) return;
+
+  var track = strip.querySelector('.gallery-track');
+
+  // Duplicate items for seamless infinite loop
+  Array.from(track.children).forEach(function (item) {
+    track.appendChild(item.cloneNode(true));
+  });
+
+  var halfWidth = track.scrollWidth / 2;
+  var speed = 0.6;   // px per frame
+  var isDown = false;
+  var isHovered = false;
+  var startX, startScrollLeft;
+
+  // Auto-scroll loop
+  function tick() {
+    if (!isDown && !isHovered) {
+      strip.scrollLeft += speed;
+      if (strip.scrollLeft >= halfWidth) {
+        strip.scrollLeft -= halfWidth;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // Pause on hover
+  strip.addEventListener('mouseenter', function () { isHovered = true; });
+  strip.addEventListener('mouseleave', function () {
+    isHovered = false;
+    isDown = false;
+    strip.classList.remove('is-dragging');
+  });
+
+  // Drag to scroll
+  strip.addEventListener('mousedown', function (e) {
+    isDown = true;
+    strip.classList.add('is-dragging');
+    startX = e.pageX - strip.offsetLeft;
+    startScrollLeft = strip.scrollLeft;
+    e.preventDefault();
+  });
+  document.addEventListener('mouseup', function () {
+    isDown = false;
+    strip.classList.remove('is-dragging');
+  });
+  strip.addEventListener('mousemove', function (e) {
+    if (!isDown) return;
+    strip.scrollLeft = startScrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.2;
+  });
+
+  // Touch support
+  var touchStartX, touchScrollLeft;
+  strip.addEventListener('touchstart', function (e) {
+    isHovered = true;
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = strip.scrollLeft;
+  }, { passive: true });
+  strip.addEventListener('touchend', function () { isHovered = false; }, { passive: true });
+  strip.addEventListener('touchmove', function (e) {
+    strip.scrollLeft = touchScrollLeft - (e.touches[0].pageX - touchStartX);
+  }, { passive: true });
+})();
+</script>
+<script src="scroll-reveal.js" defer></script>

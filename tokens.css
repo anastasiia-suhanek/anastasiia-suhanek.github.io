@@ -1,0 +1,139 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESIGN TOKENS — "Dusk": dark-only, cold violet, liquid glass
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   Layer 1 — palette (raw colors, never used by components directly)
+   Layer 2 — semantic tokens (what components use)
+   Effects (orbs, glass, glow) → glass.css
+   Brand accents              → theme-*.css, linked last
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:root {
+  color-scheme: dark;
+
+  /* ── Layer 1: palette ── */
+  --ink-950: #030210;
+  --ink-900: #07061A;
+  --ink-800: #0E0C24;
+  --ink-600: #6C6685;
+  --ink-400: #A39DBB;
+  --ink-100: #EEEAF7;
+
+  --violet-500:  #6A3FD9;
+  --indigo-500:  #3A3FB8;
+  --magenta-500: #B0468A;
+  --orchid-400:  #E07AB8;
+  --orchid-300:  #EA9BCB;
+  --orchid-950:  #1A0616;
+
+  /* ── Layer 2: surfaces ── */
+  --bg:       var(--ink-900);                 /* page */
+  --bg-deep:  var(--ink-950);                 /* media wells, deepest layer */
+  --bg-alt:   rgba(255, 255, 255, 0.03);      /* section tint, hover fill */
+  --bg-card:  rgba(255, 255, 255, 0.05);      /* flat cards */
+
+  /* ── Text ── */
+  --text:     var(--ink-100);   /* primary */
+  --text-mid: var(--ink-400);   /* secondary, captions */
+  --text-dim: var(--ink-600);   /* meta, disabled */
+
+  /* ── Lines ── */
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* ── Accent ── */
+  --accent:       var(--orchid-400);
+  --accent-hover: var(--orchid-300);
+  --accent-ink:   var(--orchid-950);          /* text on accent fill */
+  --accent-soft:  rgba(224, 122, 184, 0.12);
+  --m-bg:         rgba(224, 122, 184, 0.12);  /* metric badge bg */
+  --m-text:       var(--orchid-300);          /* metric badge text */
+
+  /* ── Glow (ambient orbs) ── */
+  --orb-1: var(--violet-500);
+  --orb-2: var(--indigo-500);
+  --orb-3: var(--magenta-500);
+  --glow:  0.3;                               /* orb opacity: 0 = off, 0.55 = loud */
+
+  /* ── Glass ── */
+  --glass-fill: rgba(150, 130, 255, 0.05);
+  --glass-line: rgba(255, 255, 255, 0.10);
+  --glass-hi:   rgba(255, 255, 255, 0.18);    /* top specular edge */
+  --glass-blur: blur(24px) saturate(1.6);
+  --shadow-lg:  0 24px 64px rgba(0, 0, 0, 0.40);
+
+  /* ── Typography ── */
+  --f-display: 'Manrope', -apple-system, sans-serif;
+  --f-sans:    'Manrope', -apple-system, sans-serif;
+
+  /* font-size — static */
+  --fs-xs:  12px;   /* eyebrows, chips, captions, badges */
+  --fs-sm:  14px;   /* nav links, glass pills, meta */
+  --fs-md:  16px;   /* body */
+  --fs-lg:  20px;   /* work titles, lead text */
+  --fs-xl:  24px;
+  --fs-2xl: 32px;   /* section headings */
+
+  /* font-size — fluid headings */
+  --fs-display: clamp(56px, 5.8vw, 80px); /* hero name */
+  --fs-h1:      clamp(32px, 5vw, 56px);   /* case hero title */
+  --fs-h2:      clamp(24px, 3vw, 36px);
+  --fs-h3:      clamp(20px, 2.2vw, 28px);
+  --fs-h4:      clamp(20px, 2vw, 24px);
+
+  /* line-height — ratios; on 16px body: normal = 24px, relaxed = 28px */
+  --lh-none:    1;
+  --lh-tight:   1.2;   /* headings */
+  --lh-snug:    1.4;   /* titles, chips, short UI text */
+  --lh-normal:  1.5;   /* UI, captions */
+  --lh-relaxed: 1.75;  /* body copy */
+
+  /* font-weight — only weights loaded from Google Fonts */
+  --fw-light:    300;   /* display caps */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-heavy:    800;   /* glowing display numbers only */
+
+  /* letter-spacing */
+  --ls-display: -0.03em; /* hero name */
+  --ls-tight:   -0.02em; /* serif headings */
+  --ls-normal:  0;
+  --ls-wide:    0.06em;  /* small labels */
+  --ls-wider:   0.1em;   /* uppercase labels, nav name */
+  --ls-widest:  0.16em;  /* eyebrows */
+  --ls-caps:    0.04em;  /* display caps (hero, section headings) */
+
+  /* ── Spacing scale (4px grid) — name = px ÷ 4 ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-30: 120px;
+
+  /* ── Layout ── */
+  --nav-height:    72px;   /* floating nav: 16px offset + 56px capsule */
+  --max-w:         1080px; /* full-width sections */
+  --max-w-content: 780px;  /* article body (case pages) */
+  --gutter:        var(--space-10); /* inline padding ≥ 581px */
+  --gutter-sm:     var(--space-5);  /* inline padding ≤ 580px */
+
+  /* ── Border-radius scale (4px grid) ── */
+  --r-sm:   4px;    /* badges, small labels */
+  --r-md:   8px;    /* buttons, work items, small cards */
+  --r-lg:   12px;   /* cards, tiles, galleries */
+  --r-xl:   16px;   /* featured card, large media */
+  --r-2xl:  24px;   /* screenshots, cards */
+  --r-3xl:  32px;   /* hero metric card */
+  --r-pill: 999px;  /* chips, glass pills, fully rounded bars */
+
+}

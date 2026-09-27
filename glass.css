@@ -1,0 +1,225 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GLASS — "Dusk" effects layer. Linked after page <style>.
+   Ambient orbs · liquid glass surfaces · display caps · chips vs buttons
+   All colors come from tokens.css.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Prevent layout shift from scrollbar appearing/disappearing between pages */
+html {
+  scrollbar-gutter: stable;
+  background: var(--bg);
+}
+body {
+  background: transparent;
+  font-family: var(--f-sans);
+}
+
+/* ── Ambient orbs: fixed layer behind everything ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vmax;
+  z-index: -2;
+  pointer-events: none;
+  opacity: var(--glow);
+  background:
+    radial-gradient(38vmax 34vmax at 18% 12%, var(--orb-1) 0%, transparent 70%),
+    radial-gradient(32vmax 30vmax at 88% 38%, var(--orb-2) 0%, transparent 70%),
+    radial-gradient(28vmax 26vmax at 42% 96%, var(--orb-3) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: orb-drift 40s ease-in-out infinite alternate;
+}
+/* film grain — keeps gradients from banding and adds texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes orb-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(4vmax, 3vmax, 0) scale(1.06); }
+  100% { transform: translate3d(-3vmax, 5vmax, 0) scale(0.96); }
+}
+@media (prefers-reduced-motion: reduce), (max-width: 640px) {
+  body::before { animation: none; }
+}
+@media (max-width: 640px) {
+  body::before { filter: blur(24px); }
+}
+
+/* ━━ LIQUID GLASS SURFACE ━━
+   Use for interactive / floating surfaces: nav, cards, pills.
+   NOT for long reading text — case body copy sits on the plain background. */
+.glass,
+.nav-inner,
+.work-card,
+.hero-feature-link,
+.contact-link,
+.platform-card,
+.principle {
+  background:
+    linear-gradient(140deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.01) 40%, rgba(255,255,255,0.04) 100%),
+    var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-line);
+  box-shadow:
+    inset 0 1px 0 var(--glass-hi),
+    inset 0 -1px 0 rgba(255,255,255,0.03),
+    var(--shadow-lg);
+}
+
+/* hover lift for glass cards */
+.work-card,
+.hero-feature-link,
+.contact-link,
+.platform-card {
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.3s;
+}
+@media (hover: hover) {
+  .work-card:hover,
+  .hero-feature-link:hover,
+  .contact-link:hover,
+  .platform-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow:
+      inset 0 1px 0 var(--glass-hi),
+      0 32px 80px rgba(0,0,0,0.5),
+      0 0 64px color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+}
+
+/* media wells inside glass cards sit on the deepest layer */
+.hero-feature-img { background: var(--bg-deep); }
+.hero-feature-foot { border-top-color: var(--glass-line); }
+
+/* ━━ DISPLAY CAPS — thin, wide, uppercase ━━ */
+.hero-name,
+.about-headline,
+.about-text h2,
+.contact-text h2,
+.section h2,
+.hero h1 {
+  font-family: var(--f-display);
+  font-weight: var(--fw-light);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  line-height: var(--lh-tight);
+}
+.hero-name { line-height: 1.02; }
+
+/* titles stay sentence case, medium weight */
+.work-title,
+.hero-feature-title,
+.footer-name {
+  font-family: var(--f-display);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-normal);
+}
+
+/* big numbers: light, tabular */
+.metric-num,
+.outcome-num,
+.iter-num,
+.principle-num {
+  font-family: var(--f-display);
+  font-weight: var(--fw-light);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Manrope has no italic — emphasis via color, not slant */
+.more-text { font-style: normal; }
+.belief-text { font-weight: var(--fw-light); }
+.belief-text em { font-style: normal; color: var(--accent-hover); }
+
+/* ━━ CHIPS vs BUTTONS ━━
+   Rule: pill + glass = clickable. Flat rectangle = information. */
+.hero-chip,
+.tag,
+.chip,
+.competitor-tag {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  cursor: default;
+}
+
+/* metric badges: status pills, tinted, never glass */
+.work-metric,
+.iteration-badge {
+  border-radius: var(--r-pill);
+  background: var(--m-bg);
+  color: var(--m-text);
+  padding: var(--space-1) var(--space-2);
+}
+
+/* primary button: accent pill with soft glow */
+.hero-btn-primary,
+.contact-btn {
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  padding: var(--space-3) var(--space-6);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.2),
+    0 6px 24px color-mix(in srgb, var(--accent) 28%, transparent);
+  transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s, background 0.2s, gap 0.2s;
+}
+.hero-btn-primary:hover,
+.contact-btn:hover {
+  background: var(--accent-hover);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.3),
+    0 10px 36px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* secondary button: glass pill */
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--glass-line);
+  box-shadow: inset 0 1px 0 var(--glass-hi);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  transition: transform 0.3s cubic-bezier(.2,.8,.2,1), background 0.2s;
+}
+.hero-btn-secondary:hover { background: rgba(255,255,255,0.10); }
+@media (hover: hover) {
+  .hero-btn-primary:hover,
+  .contact-btn:hover,
+  .hero-btn-secondary:hover { transform: translateY(-2px); }
+}
+
+/* ━━ MISC ━━ */
+.section-about { background: var(--bg-alt); }
+.eyebrow-line,
+.hero-eyebrow::before { height: 1px; }
+.anim-glow {
+  --glow-from: rgba(106, 63, 217, 0.12);
+  --glow-to:   rgba(106, 63, 217, 0.28);
+}
+::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--text); }

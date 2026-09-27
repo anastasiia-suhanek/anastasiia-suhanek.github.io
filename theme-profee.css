@@ -1,0 +1,10 @@
+/* THEME — Profee: mint accent on the Dusk palette. Link last. */
+
+:root {
+  --accent:       #5CC8A0;
+  --accent-hover: #7FD9B6;
+  --accent-ink:   #03140D;
+  --accent-soft:  rgba(92, 200, 160, 0.12);
+  --m-bg:         rgba(92, 200, 160, 0.12);
+  --m-text:       #7FD9B6;
+}

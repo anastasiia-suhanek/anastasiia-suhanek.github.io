@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transfer Statuses – Anastasiia Sukhanek</title>
+<meta name="description" content="Case study: a real-time transfer status system for Profee – five states, Updates timeline, inline action cards, app and web.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transfer Statuses – Anastasiia Sukhanek">
+<meta property="og:description" content="Case study: a real-time transfer status system for Profee – five states, Updates timeline, inline action cards, app and web.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="scroll-reveal.css">
+<link rel="stylesheet" href="buttons.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="case.css">
+
+<style>
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--f-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+
+/* HERO */
+
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  font-weight: var(--fw-medium);
+}
+
+/* OUTCOME STRIP */
+
+
+/* SECTIONS */
+
+/* INSIGHT */
+
+/* STATUS TABLE */
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--space-7);
+  font-size: var(--fs-md);
+}
+
+.status-table th {
+  text-align: left;
+  padding: 0 var(--space-4) var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.status-table td {
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-mid);
+  line-height: var(--lh-normal);
+  font-size: var(--fs-sm);
+}
+
+.status-table td:first-child { font-weight: var(--fw-semibold); color: var(--text); }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--r-lg);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+.status-badge.success { background: rgba(34, 197, 94, 0.14); color: #86EFAC; }
+.status-badge.progress { background: rgba(129, 140, 248, 0.16); color: #A5B4FC; }
+.status-badge.failed { background: rgba(248, 113, 113, 0.14); color: #FCA5A5; }
+.status-badge.refund { background: rgba(251, 191, 36, 0.14); color: #FCD34D; }
+.status-badge.neutral { background: var(--bg-alt); color: var(--text-mid); }
+
+
+
+/* SCREENS SCROLL */
+
+/* SPLIT: text + phone side-by-side */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: var(--space-12);
+  align-items: start;
+  margin-block: var(--space-7);
+}
+
+.split-phone img {
+  width: 100%;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* PRINCIPLE CARDS */
+.principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-block: var(--space-7);
+}
+
+.principle {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--space-5) var(--space-5);
+}
+
+.principle-num {
+  font-family: var(--f-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--accent);
+  opacity: 0.5;
+  margin-bottom: var(--space-2);
+}
+
+.principle-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.principle-desc {
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  line-height: var(--lh-normal);
+}
+
+/* WEB SECTION */
+
+/* TODO */
+
+/* NEXT */
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container, .container-wide { padding-inline: var(--gutter-sm); }
+      .split { grid-template-columns: 1fr; }
+  .split-phone { display: none; }
+  .principles { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 580px) {
+    .hero h1 { font-size: var(--fs-2xl); }
+        .status-table { font-size: var(--fs-md); }
+  .status-table th, .status-table td { padding: var(--space-3) var(--space-3); }
+}
+
+</style>
+<link rel="stylesheet" href="glass.css">
+<link rel="stylesheet" href="theme-profee.css">
+<link rel="stylesheet" href="swiss.css">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="t-en">Back</span>
+      <span class="t-ru">Назад</span>
+    </a>
+    <div class="nav-breadcrumb">
+      <span class="current t-en">Transfer Statuses</span>
+      <span class="current t-ru">Статусы переводов</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow">Profee · 2025 – 2026</p>
+    <h1>
+      <span class="t-en">Transfer Statuses – making the invisible visible</span>
+      <span class="t-ru">Статусы переводов – делаем невидимое видимым</span>
+    </h1>
+    <p class="hero-desc t-en">International bank transfers cross multiple systems and can get delayed, fail, or require user action mid-flight. Users had almost no visibility into what was happening. I redesigned the transfer detail screen to surface the full lifecycle of every transfer – in real time</p>
+    <p class="hero-desc t-ru">Международный перевод проходит через несколько систем и по дороге может задержаться, сорваться или потребовать чего-то от пользователя. А человек почти не видел, что происходит. Я переделала экран перевода так, чтобы на нём в реальном времени была видна вся его история</p>
+    <dl class="case-facts">
+      <div><dt><span class="t-en">Role</span><span class="t-ru">Роль</span></dt><dd><span class="t-en">Product Designer</span><span class="t-ru">Продуктовый дизайнер</span></dd></div>
+      <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">App · Web</span><span class="t-ru">Приложение · веб</span></dd></div>
+      <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Me, PM · design lead (review) · 2 frontend, 1 backend, QA</span><span class="t-ru">Я, PM · лид дизайна (ревью) · 2 фронтенда, 1 бэкенд, QA</span></dd></div>
+      <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd>2025–2026</dd></div>
+          <!-- TODO: verify – drafted from the case text; make sure the split with the design lead / PM is accurate -->
+      <div class="case-facts-wide"><dt><span class="t-en">My part</span><span class="t-ru">Моя часть</span></dt><dd><span class="t-en">End to end: the five-state status system and its copy, the Updates / Details structure, inline action cards, every app and web screen</span><span class="t-ru">От начала до конца: система из пяти статусов и тексты к ним, структура «Обновления / Детали», карточки действий в таймлайне, все экраны приложения и веба</span></dd></div>
+</dl>
+  </section>
+</div>
+
+<!-- OUTCOME STRIP -->
+<div class="outcome-strip">
+  <div class="container">
+    <div class="outcome-item">
+      <div class="outcome-num">73%</div>
+      <div class="outcome-label t-en">Act on the inline card<br>within a day</div>
+      <div class="outcome-label t-ru">Нажимают на карточку<br>действия в течение суток</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">9 <span class="t-en">s</span><span class="t-ru">сек</span></div>
+      <div class="outcome-label t-en">Median time from status<br>to action</div>
+      <div class="outcome-label t-ru">Медиана от статуса<br>до действия</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">59%</div>
+      <div class="outcome-label t-en">Of status views are<br>transfers in progress</div>
+      <div class="outcome-label t-ru">Просмотров статуса –<br>переводы в процессе</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Context</p>
+    <p class="section-label t-ru">Контекст</p>
+    <h2>
+      <span class="t-en">International transfers are a black box</span>
+      <span class="t-ru">Международные переводы – чёрный ящик</span>
+    </h2>
+
+    <div class="split">
+      <div class="split-text">
+        <p class="t-en">A Profee transfer touches many systems: the sender's card, Profee's exchange engine, a correspondent bank, and the recipient's local bank or wallet. End-to-end, this can take seconds – or days. And along the way, it can get stuck, declined, or require action from the user</p>
+        <p class="t-ru">Перевод в Profee проходит через несколько систем: карта отправителя, конвертация в Profee, банк-корреспондент и банк или кошелёк получателя. Весь путь занимает от нескольких секунд до нескольких дней. По дороге перевод может застрять, получить отказ или потребовать действия от пользователя</p>
+        <p class="t-en">The existing transfer detail screen showed one status: "In progress." No timeline. No explanation. No distinction between "we're processing this normally" and "the recipient's bank rejected the payment and we're sending your money back." Users had no way to know if they should wait, retry, or call support</p>
+        <p class="t-ru">Старый экран перевода показывал один статус – «В обработке». Ни таймлайна, ни объяснений. Никакой разницы между «всё идёт как обычно» и «банк получателя отклонил платёж, возвращаем деньги». Люди не понимали, что делать: ждать, пробовать снова или писать в поддержку</p>
+
+        <blockquote class="insight t-en">
+          Support enquiries about transfer status were one of the biggest categories in the help queue. Most of them were cases where the status had changed – but the app wasn't showing it
+        </blockquote>
+        <blockquote class="insight t-ru">Вопросы о статусе перевода были одной из самых частых тем в поддержке. Чаще всего статус уже поменялся – просто приложение этого не показывало</blockquote>
+      </div>
+      <div class="split-phone">
+        <img src="images/statuses/main-screen-old.png" alt="Before – the Transfers list showed one word per transfer (Pending, Refund in progress, Refunded) with nothing behind the tap">
+      </div>
+    </div>
+  </section>
+
+  <!-- THE APPROACH -->
+  <section class="section">
+    <p class="section-label t-en">Approach</p>
+    <p class="section-label t-ru">Подход</p>
+    <h2>
+      <span class="t-en">Two views for two kinds of questions</span>
+      <span class="t-ru">Два вопроса – две вкладки</span>
+    </h2>
+    <p class="t-en">Users looking at a transfer detail page have two different questions. Sometimes: <em>"what happened?"</em> – they want the narrative, the timeline, the sequence of events. Sometimes: <em>"what are the details?"</em> – they want the transaction number, the fee, the payment method</p>
+    <p class="t-ru">Открывая перевод, человек ищет ответ на один из двух вопросов. Иногда – <em>«что случилось?»</em>: ему нужна история, таймлайн, последовательность событий. Иногда – <em>«какие реквизиты?»</em>: номер операции, комиссия, способ оплаты</p>
+    <p class="t-en">I split these into two tabs: <strong>Updates</strong> and <strong>Details</strong>. Updates is the live story of the transfer. Details is the transaction record. Both tabs are visible at all times – no status is hidden behind a tap</p>
+    <p class="t-ru">Я развела их по двум вкладкам: <strong>«Обновления»</strong> и <strong>«Детали»</strong>. «Обновления» – живая история перевода, «Детали» – данные операции. Обе вкладки всегда на виду, ни один статус не спрятан</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div class="principle-title t-en">Updates tab – the story</div>
+        <div class="principle-title t-ru">Вкладка «Обновления» – история</div>
+        <div class="principle-desc t-en">A timestamped timeline of what happened and when. Steps completed are checked green; the current state is highlighted; future steps are shown greyed out so users know what's coming</div>
+        <div class="principle-desc t-ru">Таймлайн: что и когда произошло. Пройденные шаги отмечены зелёным, текущий выделен, будущие – серые, чтобы было понятно, что впереди</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div class="principle-title t-en">Details tab – the record</div>
+        <div class="principle-title t-ru">Вкладка «Детали» – данные</div>
+        <div class="principle-desc t-en">Transaction number, recipient, fee, payment method – all in one place. Status is surfaced at the top with a brief contextual explanation. CTAs appear only when the user can actually act</div>
+        <div class="principle-desc t-ru">Номер операции, получатель, комиссия, способ оплаты – всё в одном месте. Сверху статус и короткое объяснение. Кнопки появляются, только когда пользователь действительно может что-то сделать</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div class="principle-title t-en">Action cards in the timeline</div>
+        <div class="principle-title t-ru">Карточки действий прямо в таймлайне</div>
+        <div class="principle-desc t-en">When a transfer needs user input mid-flow (Blik code, additional questions for compliance), an action card appears inline in the Updates timeline – not a separate screen, not an email</div>
+        <div class="principle-desc t-ru">Если для перевода нужно что-то от пользователя – код Blik или ответы на вопросы комплаенса, – карточка появляется прямо в таймлайне, а не на отдельном экране и не в письме</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div class="principle-title t-en">Different copy for every state</div>
+        <div class="principle-title t-ru">Разные тексты для каждого статуса</div>
+        <div class="principle-desc t-en">Each status has its own headline, its own explanation, and its own CTA. "See why the delay" is different from "See why it failed" – both inform without alarming</div>
+        <div class="principle-desc t-ru">У каждого статуса свой заголовок, своё объяснение и своя кнопка. «Почему задержка» – это не «Почему не прошёл»: обе объясняют, но не пугают</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- STATUS SCREENS – 5 states -->
+<div class="container">
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/statuses/status-card-5.png" alt="Transfer completed – Status: Success">
+        <div class="screen-cap">
+          <strong class="t-en">Transfer completed</strong>
+          <strong class="t-ru">Перевод завершён</strong>
+          <span class="t-en">Status: Success (green). CTAs: "Repeat this transfer" and "Show receipt" – both available when the job is done</span>
+          <span class="t-ru">Статус «Выполнен» (зелёный). Кнопки «Повторить перевод» и «Показать квитанцию» – когда всё готово</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/status-card-3.png" alt="Transfer in progress – Status: In progress">
+        <div class="screen-cap">
+          <strong class="t-en">Transfer in progress</strong>
+          <strong class="t-ru">Перевод в обработке</strong>
+          <span class="t-en">Status: In progress. Copy: "We'll notify you once it's complete." CTA: "See why the delay" only when there is a delay</span>
+          <span class="t-ru">Статус «В обработке». Текст: «Сообщим, когда перевод дойдёт». Кнопка «Почему задержка» – только если перевод задерживается</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/status-card-1.png" alt="Transfer failed – Status: Failed">
+        <div class="screen-cap">
+          <strong class="t-en">Transfer failed</strong>
+          <strong class="t-ru">Перевод не прошёл</strong>
+          <span class="t-en">Status: Failed (red). Clear explanation. CTAs: "See why it failed" + "Contact support" – escape hatches, not dead ends</span>
+          <span class="t-ru">Статус «Не выполнен» (красный). Понятное объяснение и кнопки «Почему не прошёл» и «Написать в поддержку» – выход есть всегда</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/status-card-2.png" alt="Refund in progress">
+        <div class="screen-cap">
+          <strong class="t-en">Refund in progress</strong>
+          <strong class="t-ru">Возвращаем деньги</strong>
+          <span class="t-en">"The recipient's bank did not accept the money. Refunds will take up to 5 business days." Honest timeline</span>
+          <span class="t-ru">«Банк получателя не принял деньги. Вернём их в течение 5 рабочих дней». Честный срок</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/status-card-4.png" alt="Refunded">
+        <div class="screen-cap">
+          <strong class="t-en">Refunded</strong>
+          <strong class="t-ru">Деньги вернулись</strong>
+          <span class="t-en">Status: Refunded. The failure story is complete – money is back, user can act again</span>
+          <span class="t-ru">Статус «Возвращён». История закончена: деньги на месте, можно пробовать снова</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UPDATES TAB -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Updates tab</p>
+    <p class="section-label t-ru">Вкладка «Обновления»</p>
+    <h2>
+      <span class="t-en">The timeline that tells the whole story</span>
+      <span class="t-ru">Таймлайн, в котором видна вся история</span>
+    </h2>
+    <p class="t-en">The Updates tab shows the transfer lifecycle as it happens – each step timestamped, color-coded by outcome, and with clear labels. A user can return to any transfer, days later, and immediately understand the full sequence of events</p>
+    <p class="t-ru">Вкладка «Обновления» показывает путь перевода по мере того, как он идёт: у каждого шага время, цвет результата и понятная подпись. Можно открыть любой перевод через несколько дней и сразу понять, что с ним было</p>
+    <p class="t-en">When user action is required mid-flow – entering a Blik code for a Polish recipient, or answering compliance questions – an inline action card appears in the timeline, with a clear deadline and a direct CTA. This keeps the user in context instead of sending them to a separate flow</p>
+    <p class="t-ru">Если по дороге нужно действие пользователя – ввести код Blik для получателя в Польше или ответить на вопросы комплаенса, – в таймлайне появляется карточка с понятным сроком и кнопкой. Человек остаётся на месте, а не уходит в отдельный сценарий</p>
+  </section>
+</div>
+
+<!-- UPDATES SCREENS -->
+<div class="container">
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/statuses/transfer-flow-1.png" alt="Updates tab – transfer failed, simple timeline">
+        <div class="screen-cap">
+          <strong class="t-en">Simple failure</strong>
+          <strong class="t-ru">Простой сбой</strong>
+          <span class="t-en">Two events: transfer created ✓ → transfer failed ⚠️. Clean and unambiguous</span>
+          <span class="t-ru">Два события: перевод создан ✓ → перевод не прошёл ⚠️. Коротко и однозначно</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/transfer-flow-3.png" alt="Updates tab – Blik code required mid-flow">
+        <div class="screen-cap">
+          <strong class="t-en">Action required mid-flow</strong>
+          <strong class="t-ru">Нужно действие по дороге</strong>
+          <span class="t-en">Yellow action card: "Enter Blik code" with deadline and "Continue transfer" CTA. Future steps visible but greyed</span>
+          <span class="t-ru">Жёлтая карточка «Введите код Blik» со сроком и кнопкой «Продолжить перевод». Следующие шаги видны, но серые</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/transfer-flow-2.png" alt="Updates tab – multi-step failure with refund in progress">
+        <div class="screen-cap">
+          <strong class="t-en">Multi-step failure + refund</strong>
+          <strong class="t-ru">Сбой на полпути и возврат</strong>
+          <span class="t-en">Full story: created ✓ → EUR sent ✓ → bank declined ⚠️ → refund in progress ⏱. All with timestamps</span>
+          <span class="t-ru">Вся история: создан ✓ → евро отправлены ✓ → банк отклонил ⚠️ → возвращаем деньги ⏱. У каждого шага время</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS TABLE -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Status system</p>
+    <p class="section-label t-ru">Система статусов</p>
+    <h2>
+      <span class="t-en">Five states, each designed for a specific user need</span>
+      <span class="t-ru">Пять статусов – пять разных ситуаций</span>
+    </h2>
+    <p class="t-en">Every status has a distinct visual treatment, a distinct copy strategy, and distinct CTAs. The rule: show only the actions the user can take in this state, nothing else</p>
+    <p class="t-ru">У каждого статуса свой цвет, свой тон текста и свои кнопки. Правило одно: показывать только то, что пользователь может сделать прямо сейчас, и ничего лишнего</p>
+
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th class="t-en">Status</th>
+          <th class="t-ru">Статус</th>
+          <th class="t-en">Colour</th>
+          <th class="t-ru">Цвет</th>
+          <th class="t-en">Copy strategy</th>
+          <th class="t-ru">Тон текста</th>
+          <th class="t-en">CTA(s)</th>
+          <th class="t-ru">Кнопки</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="t-en">Transfer completed</span><span class="t-ru">Перевод завершён</span></td>
+          <td><span class="status-badge success">Success</span></td>
+          <td><span class="t-en">Clean – no explanation needed when things work</span><span class="t-ru">Коротко – когда всё хорошо, объяснять нечего</span></td>
+          <td><span class="t-en">Repeat this transfer · Show receipt</span><span class="t-ru">Повторить перевод · Показать квитанцию</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-en">Transfer in progress</span><span class="t-ru">Перевод в обработке</span></td>
+          <td><span class="status-badge progress">In progress</span></td>
+          <td><span class="t-en">"We'll notify you once it's complete" – reassuring</span><span class="t-ru">«Сообщим, когда дойдёт» – успокаивает</span></td>
+          <td><span class="t-en">See why the delay (only if delayed)</span><span class="t-ru">Почему задержка (только если задерживается)</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-en">Transfer failed</span><span class="t-ru">Перевод не прошёл</span></td>
+          <td><span class="status-badge failed">Failed</span></td>
+          <td><span class="t-en">Explain what went wrong, give a next step</span><span class="t-ru">Объяснить, что пошло не так, и дать следующий шаг</span></td>
+          <td><span class="t-en">See why it failed · Contact support</span><span class="t-ru">Почему не прошёл · Написать в поддержку</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-en">Refund in progress</span><span class="t-ru">Возвращаем деньги</span></td>
+          <td><span class="status-badge refund">Refunding</span></td>
+          <td><span class="t-en">Set expectations: "up to 5 business days"</span><span class="t-ru">Назвать срок: «до 5 рабочих дней»</span></td>
+          <td><span class="t-en">See why it failed · Contact support</span><span class="t-ru">Почему не прошёл · Написать в поддержку</span></td>
+        </tr>
+        <tr>
+          <td><span class="t-en">Refunded</span><span class="t-ru">Деньги вернулись</span></td>
+          <td><span class="status-badge neutral">Refunded</span></td>
+          <td><span class="t-en">Story complete – money is back</span><span class="t-ru">История закончена – деньги вернулись</span></td>
+          <td><span class="t-en">See why it failed</span><span class="t-ru">Почему не прошёл</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- WEB VERSION -->
+  <section class="section">
+    <p class="section-label t-en">Web version</p>
+    <p class="section-label t-ru">Веб-версия</p>
+    <h2>
+      <span class="t-en">Same system, adapted for the web context</span>
+      <span class="t-ru">Та же система – в вебе</span>
+    </h2>
+    <p class="t-en">Profee has both a mobile app and a web platform. The statuses system was designed for both, with the same logic and copy but adapted to wider viewports and different interaction patterns</p>
+    <p class="t-ru">У Profee есть и приложение, и веб-версия. Система статусов сделана для обеих: логика и тексты те же, но раскладка рассчитана на широкий экран и другое взаимодействие</p>
+    <p class="t-en">On web, the transfer card component shows the status inline – a status banner above the tabs, and the Updates/Details tab structure carried over. The action card ("Answer additional questions") appears in the same place in the timeline, with the same "Continue transfer" CTA</p>
+    <p class="t-ru">В вебе статус виден прямо в карточке перевода – баннером над вкладками, а вкладки «Обновления» и «Детали» остались те же. Карточка действия («Ответьте на дополнительные вопросы») стоит на том же месте в таймлайне и с той же кнопкой «Продолжить перевод»</p>
+  </section>
+</div>
+
+<!-- WEB COMPARISON -->
+<div class="container">
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/statuses/web-component.png" alt="Web version – transfer declined with Updates timeline and action card">
+        <div class="screen-cap">
+          <strong class="t-en">Web</strong>
+          <strong class="t-ru">Веб</strong>
+          <span class="t-en">Declined transfer with an action card in the Updates timeline</span>
+          <span class="t-ru">Перевод отклонён, карточка действия в таймлайне «Обновления»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/statuses/transfer-screen-main.png" alt="App version – Transfer in progress with See why the delay CTA">
+        <div class="screen-cap">
+          <strong class="t-en">App</strong>
+          <strong class="t-ru">Приложение</strong>
+          <span class="t-en">Transfer in progress with a contextual "See why the delay" button</span>
+          <span class="t-ru">Перевод в обработке, с кнопкой «Почему задержка»</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Results</p>
+    <p class="section-label t-ru">Результаты</p>
+    <h2>
+      <span class="t-en">When a transfer needs you, people act</span>
+      <span class="t-ru">Когда перевод ждёт действия, люди действуют</span>
+    </h2>
+    <p class="t-en">Rollout started in late January 2026 and reached everyone by April. Data from April to September 2026, all numbers are shares:</p>
+    <p class="t-ru">Запуск начался в конце января 2026, к апрелю новая система была у всех. Данные за апрель–сентябрь 2026, все цифры – доли:</p>
+
+    <div class="metrics">
+      <div class="metric-tile">
+        <div class="metric-num">73%</div>
+        <div class="metric-delta"><span class="t-en">Action required</span><span class="t-ru">Нужно действие</span><i>→</i><span class="t-en">Continue</span><span class="t-ru">Продолжить</span></div>
+        <div class="metric-label t-en">Users who tap the inline action card within a day of seeing the status</div>
+        <div class="metric-label t-ru">Нажимают на карточку действия в течение суток после того, как увидели статус</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">9 <span class="t-en">s</span><span class="t-ru">сек</span></div>
+        <div class="metric-delta"><span class="t-en">median</span><span class="t-ru">медиана</span></div>
+        <div class="metric-label t-en">From seeing the status to acting on it</div>
+        <div class="metric-label t-ru">От статуса до действия</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">59%</div>
+        <div class="metric-delta"><span class="t-en">of status views</span><span class="t-ru">просмотров статуса</span></div>
+        <div class="metric-label t-en">Are transfers still in progress – the moment the old screen said nothing</div>
+        <div class="metric-label t-ru">Приходятся на переводы в процессе – тот момент, когда старый экран молчал</div>
+      </div>
+    </div>
+
+    <!-- TODO: verify with PM/support – support clicks are only on in-flow failure screens, not the status screen; replace with ticket-share data when available -->
+    <div class="tradeoff">
+      <p class="tradeoff-label t-en">What we can't claim yet</p>
+      <p class="tradeoff-label t-ru">Что пока нельзя утверждать</p>
+      <p class="t-en">Support button taps per transfer fell by 24% compared to Oct–Dec 2025. But that button lives on failure screens, not in the status view, and the decline started before launch. The metric that started the project – the share of support tickets about transfer status – needs ticket data, and that's the next comparison</p>
+      <p class="t-ru">Нажатий на кнопку поддержки в расчёте на перевод стало на 24% меньше, чем в октябре–декабре 2025. Но эта кнопка стоит на экранах ошибки, а не в статусах, и снижение началось ещё до запуска. Метрику, с которой начался проект, – долю обращений о статусе перевода – можно посчитать только по тикетам поддержки, это следующее сравнение</p>
+    </div>
+  </section>
+</div>
+
+<!-- REFLECTION -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Reflection</p>
+    <p class="section-label t-ru">Рефлексия</p>
+    <h2>
+      <span class="t-en">Status design is copy design</span>
+      <span class="t-ru">Дизайн статусов – это дизайн текстов</span>
+    </h2>
+    <p class="t-en">The most important decisions in this project weren't visual – they were linguistic. What does "Transfer failed" mean to someone who sent money to a family member and doesn't know if it arrived? How do you explain a refund timeline in a way that's honest without being alarming?</p>
+    <p class="t-ru">Самые важные решения в этом проекте были не про картинку, а про слова. Что значит «Перевод не прошёл» для человека, который отправил деньги родным и не знает, дошли ли они? Как честно сказать о сроке возврата и не напугать?</p>
+    <p class="t-en"><strong>Each status needs its own voice.</strong> Success is clean and immediate – no explanation. In progress is reassuring – "we'll notify you." Failed is honest but constructive – what happened, and what can you do. Refund in progress sets a specific expectation. These are not interchangeable</p>
+    <p class="t-ru"><strong>У каждого статуса свой голос.</strong> Успех – коротко и сразу, без объяснений. «В обработке» – успокаивает: «сообщим, когда дойдёт». Ошибка – честно, но по делу: что случилось и что делать. Возврат – с конкретным сроком. Поменять их местами нельзя</p>
+    <p class="t-en">The inline action card in the Updates timeline was a key decision: when a user needs to enter a Blik code, putting that action in the status timeline keeps them informed AND able to act, in the same place. The alternative – a push notification to a separate screen – adds friction and loses context</p>
+    <p class="t-ru">Главным решением стала карточка действия прямо в таймлайне. Когда нужно ввести код Blik, человек в одном месте видит, что происходит, и сразу может действовать. Пуш с переходом на отдельный экран добавил бы лишний шаг и оторвал бы от контекста</p>
+    <!-- TODO: add a personal sentence about what this project meant to you -->
+  </section>
+
+  <!-- NEXT -->
+  <section class="next-case">
+    <p class="next-label t-en">Next case</p>
+    <p class="next-label t-ru">Следующий кейс</p>
+    <a href="case-profee-verification.html" class="next-link">
+      <span class="t-en">Making KYC moments clear</span><span class="t-ru">Верификация KYC без лишнего</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+</div>
+<script src="case.js"></script>
+<script src="scroll-reveal.js" defer></script>

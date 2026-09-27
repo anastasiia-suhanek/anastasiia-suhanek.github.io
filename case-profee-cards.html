@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profee Cards – Anastasiia Sukhanek</title>
+<meta name="description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – a ×7 growth of the Cards tab in six months, and an honest read of what the card did not change.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Profee Cards – Anastasiia Sukhanek">
+<meta property="og:description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – a ×7 growth of the Cards tab in six months, and an honest read of what the card did not change.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="scroll-reveal.css">
+<link rel="stylesheet" href="buttons.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="case.css">
+
+<style>
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--f-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HERO */
+
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  font-weight: var(--fw-medium);
+}
+
+/* OUTCOME STRIP */
+
+
+/* SECTIONS */
+
+/* INSIGHT */
+
+/* SCOPE GRID */
+/* Scope: a ledger – number, name, description on hairline rows (same language as the KYC table) */
+.scope-grid { margin-block: var(--space-7); border-top: 1px solid var(--border); }
+.scope-item {
+  display: grid; grid-template-columns: 40px 200px 1fr; gap: 0 var(--space-5);
+  padding-block: var(--space-4); border-bottom: 1px solid var(--border); align-items: baseline;
+}
+.scope-icon { font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide); color: var(--accent); font-variant-numeric: tabular-nums; }
+.scope-title { font-size: var(--fs-md); font-weight: var(--fw-medium); color: var(--text); }
+.scope-title.t-ru { grid-column: 2; }
+.scope-desc { grid-column: 3; font-size: var(--fs-md); color: var(--text-mid); line-height: var(--lh-normal); }
+@media (max-width: 700px) {
+  .scope-item { grid-template-columns: 40px 1fr; row-gap: var(--space-1); }
+  .scope-title.t-ru { grid-column: 2; }
+  .scope-desc { grid-column: 2; }
+}
+
+/* COMPETITOR ROW */
+.competitors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-5);
+}
+
+.competitor-tag {
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+}
+
+/* FLOW IMAGE */
+
+/* PHONE SCREENS */
+
+/* HERO SCREEN – big centered phone */
+.phone-hero {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-12);
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+
+
+
+/* WIDE VIDEO DEMO */
+.video-demo {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #000;
+  overflow: hidden;
+}
+
+.video-demo video {
+  display: block;
+  width: 100%;
+  max-height: 640px;
+  object-fit: cover;
+  filter: brightness(0.75) saturate(0.85);
+}
+
+/* ITERATIONS */
+/* METRICS */
+ 
+
+@media (max-width: 700px) {
+    }
+
+/* Zoomed-out working file: breaks out of the text column, click to open full size */
+.board-figure { margin: var(--space-7) 0 var(--space-6); }
+.board-figure a img { display: block; width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); cursor: zoom-in; }
+.board-figure figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug); }
+.board-figure figcaption a { color: var(--text-mid); text-decoration: underline; text-underline-offset: 2px; }
+.board-figure figcaption a:hover { color: var(--accent); }
+
+/* NEXT */
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container, .container-wide { padding-inline: var(--gutter-sm); }
+}
+
+@media (max-width: 580px) {
+    .hero h1 { font-size: var(--fs-2xl); }
+    }
+
+
+.scope-icon {
+  font-size: var(--fs-xs) !important;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+</style>
+<link rel="stylesheet" href="glass.css">
+<link rel="stylesheet" href="theme-profee.css">
+<link rel="stylesheet" href="swiss.css">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="t-en">Back</span>
+      <span class="t-ru">Назад</span>
+    </a>
+    <div class="nav-breadcrumb">
+      <span class="current t-en">Cards</span>
+      <span class="current t-ru">Карты</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow">Profee · 2025–2026</p>
+    <h1>
+      <span class="t-en">Cards – rebuilding a product area from the ground up</span>
+      <span class="t-ru">Карты – раздел, собранный заново</span>
+    </h1>
+    <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app, cramped and disconnected from the wallet. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
+    <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения, тесная и никак не связанная с кошельком. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
+    <dl class="case-facts">
+      <div><dt><span class="t-en">Role</span><span class="t-ru">Роль</span></dt><dd><span class="t-en">Product Designer</span><span class="t-ru">Продуктовый дизайнер</span></dd></div>
+      <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd>iOS · Android</dd></div>
+      <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Me, PM · design lead (review) · 2 frontend, 1 backend, QA</span><span class="t-ru">Я, PM · лид дизайна (ревью) · 2 фронтенда, 1 бэкенд, QA</span></dd></div>
+      <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd>2025–2026</dd></div>
+      <div class="case-facts-wide"><dt><span class="t-en">My part</span><span class="t-ru">Моя часть</span></dt><dd><span class="t-en">End to end: audit of 10+ card products, IA of the Cards tab, every iOS and Android flow, three top-up iterations, the balance-first Cards tab – and all the copy, written with my own Claude-based agents</span><span class="t-ru">От начала до конца: разбор 10+ карточных продуктов, структура вкладки «Карты», все сценарии iOS и Android, три итерации пополнения, вкладка с балансом на первом месте – и все тексты, которые я писала с помощью своих агентов на Claude</span></dd></div>
+</dl>
+  </section>
+</div>
+
+<!-- OUTCOME STRIP -->
+<div class="outcome-strip">
+  <div class="container">
+    <div class="outcome-item">
+      <div class="outcome-num">×7</div>
+      <div class="outcome-label t-en">Monthly users of the Cards tab, six months after launch</div>
+      <div class="outcome-label t-ru">Рост числа пользователей вкладки в месяц за полгода после запуска</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">×10</div>
+      <div class="outcome-label t-en">Share of active senders using the wallet – grown without the card</div>
+      <div class="outcome-label t-ru">Рост доли отправителей с кошельком – без участия карты</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">11%</div>
+      <div class="outcome-label t-en">Card holders who topped up the card within 30 days</div>
+      <div class="outcome-label t-ru">Владельцев карты пополнили её в первые 30 дней</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO DEMO -->
+<div class="video-demo">
+  <video autoplay loop muted playsinline preload="metadata" poster="media/cards-demo-poster.jpg">
+    <source src="media/cards-demo.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- CONTEXT -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Context</p>
+    <p class="section-label t-ru">Контекст</p>
+    <h2>
+      <span class="t-en">The card existed – nobody treated it as a product</span>
+      <span class="t-ru">Карта была, но продуктом её никто не считал</span>
+    </h2>
+    <p class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had an EUR wallet with a few hundred people topping it up every month – and a Cards tab inherited from an older version of the app: a carousel of cards, four buttons, an empty history, and no connection to the balance people actually held</p>
+    <p class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк в евро, который каждый месяц пополняли несколько сотен человек, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история и никакой связи с деньгами, которые у людей лежали на балансе</p>
+    <p class="t-en">Meanwhile, <strong>Apple Pay and Google Pay are the most common payment methods</strong> among Profee's target audience in Europe. Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. This was a gap in the product that directly limited how useful Profee was as a financial tool. There was no user research behind the decision – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
+    <p class="t-ru">При этом <strong>Apple Pay и Google Pay – самые популярные способы оплаты</strong> у аудитории Profee в Европе. А у конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Этот пробел прямо ограничивал, насколько Profee полезен как финансовый инструмент. Исследований за решением не стояло – только отставание от конкурентов и ставка: удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
+
+  </section>
+
+  <!-- BEFORE -->
+  <section class="section">
+    <p class="section-label t-en">Before</p>
+    <p class="section-label t-ru">До</p>
+    <h2>
+      <span class="t-en">The Cards tab, October 2025</span>
+      <span class="t-ru">Вкладка «Карты», октябрь 2025</span>
+    </h2>
+    <p class="t-en">Real screenshots from the app before the redesign. The card is the hero object, the balance is a small number in a corner, every action is a separate screen, and the empty state asks you to make a transfer – not to use the card</p>
+    <p class="t-ru">Настоящие скриншоты приложения до редизайна. В центре – карта, баланс – мелкая цифра в углу, каждое действие – отдельный экран, а пустое состояние предлагает сделать перевод, а не воспользоваться картой</p>
+    <div class="screens-scroll">
+      <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/cards/before-tab.png" alt="Old Cards tab: card carousel, four action buttons, empty history with a transfer prompt" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Cards tab</strong>
+          <strong class="t-ru">Вкладка «Карты»</strong>
+          <span class="t-en">Card carousel on top, four icon actions, an empty history that asks for a transfer</span>
+          <span class="t-ru">Сверху карусель карт, четыре кнопки-иконки и пустая история, которая предлагает сделать перевод</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/cards/before-issue.png" alt="Old card issuance screen with a card image and Issue now button" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Issue a card</strong>
+          <strong class="t-ru">Выпуск карты</strong>
+          <span class="t-en">A picture of the card, one line of copy, Issue now</span>
+          <span class="t-ru">Картинка карты, одна строка текста, «Выпустить сейчас»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/cards/before-topup.png" alt="Old top-up screen: from account to card, amount presets" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Top up</strong>
+          <strong class="t-ru">Пополнение</strong>
+          <span class="t-en">From account to card, presets of 100 / 25 / 10 €, fee shown as a dash</span>
+          <span class="t-ru">Со счёта на карту, готовые суммы 100 / 25 / 10 EUR, вместо комиссии прочерк</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/cards/before-details.png" alt="Old card details screen with balance, card image and a menu list" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Card details</strong>
+          <strong class="t-ru">Детали карты</strong>
+          <span class="t-en">Balance, card image, a menu of five items – Google Pay, limits, statement, fees, PIN</span>
+          <span class="t-ru">Баланс, картинка карты и меню из пяти пунктов – Google Pay, лимиты, выписка, тарифы, ПИН-код</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="section">
+    <p class="section-label t-en">Research</p>
+    <p class="section-label t-ru">Исследование</p>
+    <h2>
+      <span class="t-en">Studied 10+ competitors before drawing a single screen</span>
+      <span class="t-ru">Разобрала 10+ конкурентов, прежде чем рисовать</span>
+    </h2>
+    <p class="t-en">Before designing, I did a thorough competitive audit – looking at how the best card products in the world handle each scenario. The file includes research from:</p>
+    <p class="t-ru">До проектирования я подробно разобрала конкурентов – как лучшие карточные продукты решают каждый сценарий. В исследовании:</p>
+
+    <div class="competitors">
+      <span class="competitor-tag">Revolut</span>
+      <span class="competitor-tag">N26</span>
+      <span class="competitor-tag">Monzo</span>
+      <span class="competitor-tag">Wise</span>
+      <span class="competitor-tag">Cash App</span>
+      <span class="competitor-tag">Vivid</span>
+      <span class="competitor-tag">T-Bank</span>
+      <span class="competitor-tag">Sberbank</span>
+      <span class="competitor-tag">Ozon</span>
+      <span class="competitor-tag">Ya.Pay</span>
+    </div>
+
+    <figure class="board-figure">
+      <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">
+        <img src="images/cards/research-board.jpg" alt="Overview of the Figma working file: competitor boards for Revolut, N26, Wise, Cash App, T-Bank, Ozon and others on the left, iOS and Android flows on top, the full app flow at the bottom right" loading="lazy">
+      </a>
+      <figcaption>
+        <span class="t-en">The working file, zoomed out – competitor boards on the left, iOS and Android flows on top, the full app flow bottom right · <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span class="t-ru">Рабочий файл целиком: слева конкуренты, сверху сценарии iOS и Android, справа внизу полная схема приложения · <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
+    <p class="t-en">Key patterns I extracted: how to show card states without alarming users, where to put the freeze control, how to handle fee transparency in top-up flows, and what "blocked card" recovery looks like in apps people actually love</p>
+    <p class="t-ru">Что я оттуда вынесла: как показывать состояния карты, не пугая людей, где разместить заморозку, как честно показать комиссию при пополнении и как устроен выход из «заблокированной карты» в приложениях, которые действительно любят</p>
+  </section>
+
+  <!-- SCOPE -->
+  <section class="section">
+    <p class="section-label t-en">Scope</p>
+    <p class="section-label t-ru">Объём работы</p>
+    <h2>
+      <span class="t-en">A full product area – not a single feature</span>
+      <span class="t-ru">Целый раздел, а не одна функция</span>
+    </h2>
+    <p class="t-en">Cards isn't one screen or one flow. It's a product area with its own tab, its own information architecture, and a family of interconnected scenarios. I designed all of them</p>
+    <p class="t-ru">Карты – это не один экран и не один сценарий. Это раздел со своей вкладкой, своей структурой и набором связанных сценариев. Я спроектировала их все</p>
+
+    <div class="scope-grid">
+      <div class="scope-item">
+        <div class="scope-icon">01</div>
+        <div class="scope-title t-en">Card issuance</div>
+        <div class="scope-title t-ru">Выпуск карты</div>
+        <div class="scope-desc t-en">Entry point from main screen, onboarding, welcome state after card is created</div>
+        <div class="scope-desc t-ru">Вход с главного экрана, онбординг, приветственный экран после выпуска</div>
+      </div>
+      <div class="scope-item">
+        <div class="scope-icon">02</div>
+        <div class="scope-title t-en">Card details</div>
+        <div class="scope-title t-ru">Данные карты</div>
+        <div class="scope-desc t-en">Masked card number and CVV with secure "show details" reveal</div>
+        <div class="scope-desc t-ru">Номер и CVV скрыты, показываются по кнопке</div>
+      </div>
+      <div class="scope-item">
+        <div class="scope-icon">03</div>
+        <div class="scope-title t-en">Freeze / Unfreeze</div>
+        <div class="scope-title t-ru">Заморозка / Разморозка</div>
+        <div class="scope-desc t-en">One-tap freeze and unfreeze, with error states for both</div>
+        <div class="scope-desc t-ru">Заморозка и разморозка в одно касание, для обеих – экраны ошибок</div>
+      </div>
+      <div class="scope-item">
+        <div class="scope-icon">04</div>
+        <div class="scope-title t-en">Top up</div>
+        <div class="scope-title t-ru">Пополнение</div>
+        <div class="scope-desc t-en">Three payment methods: Profee account, external card, bank transfer</div>
+        <div class="scope-desc t-ru">Три способа оплаты: счёт Profee, внешняя карта, банковский перевод</div>
+      </div>
+      <div class="scope-item">
+        <div class="scope-icon">05</div>
+        <div class="scope-title t-en">Reissue & expiry</div>
+        <div class="scope-title t-ru">Перевыпуск и окончание срока</div>
+        <div class="scope-desc t-en">Expired card, reissue, blocked card</div>
+        <div class="scope-desc t-ru">Истёкшая карта, перевыпуск, заблокированная карта</div>
+      </div>
+      <div class="scope-item">
+        <div class="scope-icon">06</div>
+        <div class="scope-title t-en">Account states</div>
+        <div class="scope-title t-ru">Состояния аккаунта</div>
+        <div class="scope-desc t-en">Multiple states: new user, active card, low balance, card frozen, card blocked</div>
+        <div class="scope-desc t-ru">Новый пользователь, активная карта, мало денег, карта заморожена, карта заблокирована</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SCREENS – main flows -->
+<div class="container">
+</div>
+
+<!-- FLOW WALKTHROUGH – live prototype, see proto.js -->
+<div class="phone-scene">
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-island"></div>
+      <div class="proto" id="cardsProto" role="img" aria-label="Animated walkthrough of the Cards flow: issue a card, top it up, open card details, freeze and unfreeze"></div>
+    </div>
+    <button type="button" class="proto-hint" id="cardsProtoHint">
+      <span class="m-auto"><span class="t-en">Autoplay is on · Tap the phone to take over</span><span class="t-ru">Идёт автопоказ · Нажмите на телефон, чтобы управлять самим</span></span>
+      <span class="m-manual"><span class="t-en">Walk through the flow: issue a card, top it up, freeze it · Play it for me ▸</span><span class="t-ru">Пройдите сценарий: выпустите карту, пополните, заморозьте · Показать автоматически ▸</span></span>
+    </button>
+    <div class="phone-caption">
+      <strong class="t-en">The shipped flow, played back</strong>
+      <strong class="t-ru">Готовый сценарий в движении</strong>
+      <span class="t-en">Issue → top up → success → card details → freeze. Every transition is the real gesture: push, sheet, dissolve</span>
+      <span class="t-ru">Выпуск → пополнение → успех → данные карты → заморозка. Каждый переход – как в приложении: сдвиг экрана, лист снизу, плавная смена</span>
+    </div>
+  </div>
+</div>
+<script>
+window.protoScripts = {
+  cardsProto: {
+    base: 'images/cards/flow/',
+    screens: ['00','01','02','06e','06','07','08','09','10','11','03','04','05','12','13'],
+    tabbar:  ['00','01','03','12','13'],
+    start: '00',
+    hint: 'cardsProtoHint',
+    extra: {
+      '02': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '01' } }],
+      '06e': [{ box: [3, 6.5, 11, 6],       step: { tap: [8, 9.5], pop: '02' } }],
+      '06': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '02' } }],
+      '07': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '06' } }],
+      '08': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '07' } }],
+      '09': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '02' } }],
+      '10': [{ box: [3, 6.5, 11, 6],        step: { tap: [8, 9.5], pop: '09' } }],
+      '11': [{ box: [6.7, 88.5, 86.1, 6],   step: { tap: [50, 91.5], press: [6.7, 88.5, 86.1, 6], push: '06' } }],
+      '04': [{ box: [84.5, 57.8, 11, 6.5],  step: { tap: [90, 61], sheetDown: '03' } }],
+      '13': [{ box: [12, 40, 18, 12],       step: { tap: [21, 46], dissolve: '12', label: { en: 'Freeze again', ru: 'Заморозить снова' } } }]
+    },
+    steps: [
+      { hold: 900,  tap: [29, 93.2], press: [22, 88.5, 14, 9.5],     dissolve: '01',
+        label: { en: 'Start here – open Cards', ru: 'Начните здесь – откройте Cards' } },
+      { hold: 800,  tap: [50, 82.5], press: [6.7, 79.5, 86.1, 6],    push: '02',
+        label: { en: 'Issue the card', ru: 'Выпустите карту' } },
+      { hold: 800,  tap: [50, 76.3], press: [6.7, 73.3, 86.1, 6],    push: '06e',
+        label: { en: 'Top it up', ru: 'Пополните' } },
+      { hold: 500,  tap: [50, 28.5], press: [28, 22.5, 44, 12],
+        type: { to: '06' },
+        label: { en: 'Tap to enter the amount', ru: 'Нажмите, чтобы ввести сумму' } },
+      { hold: 400,  tap: [82, 48.5], press: [72.5, 45.8, 19.5, 5.6], push: '07',
+        label: { en: 'Choose how to pay', ru: 'Выберите, чем платить' } },
+      { hold: 700,  tap: [50, 39],   press: [4, 33, 92, 12.5],       push: '08',
+        label: { en: 'Pay with a card', ru: 'Оплатить картой' } },
+      { hold: 600,  tap: [50, 24.6], press: [6.7, 21.5, 86.6, 6.2],  pop:  '09',
+        label: { en: 'Pick the Mastercard', ru: 'Выберите Mastercard' } },
+      { hold: 700,  tap: [50, 58.5], press: [6.7, 55.4, 86.1, 6.1],  push: '10',
+        label: { en: 'Preview', ru: 'Проверьте' } },
+      { hold: 900,  tap: [50, 90.7], press: [6.7, 87.7, 86.1, 6],    dissolve: '11', scale: true,
+        label: { en: 'Confirm', ru: 'Подтвердите' } },
+      { hold: 1000, tap: [50, 82.5], press: [6.7, 79.5, 86.1, 6],    push: '03',
+        label: { en: 'Go to the card', ru: 'Перейдите к карте' } },
+      { hold: 800,  tap: [50, 46],   press: [41, 40, 18, 12],        sheet: '04', top: 57.1,
+        label: { en: 'Open card details', ru: 'Откройте детали карты' } },
+      { hold: 700,  tap: [50, 90.7], press: [6.7, 87.7, 86.1, 6],    sheetSwap: '05',
+        label: { en: 'Show the number', ru: 'Покажите номер' } },
+      { hold: 800,  tap: [90, 61],   press: [84.5, 57.8, 11, 6.5],   sheetDown: '03',
+        label: { en: 'Close', ru: 'Закройте' } },
+      { hold: 600,  tap: [21, 46],   press: [12, 40, 18, 12],        dissolve: '12',
+        label: { en: 'Freeze the card', ru: 'Заморозьте карту' } },
+      { hold: 900,  tap: [21, 55],   press: [12, 49, 18, 12],        dissolve: '13',
+        label: { en: 'Unfreeze', ru: 'Разморозьте' } },
+      { hold: 900,  reset: '00' }
+    ]
+  }
+};
+</script>
+
+<div class="container">
+  <!-- ITERATIONS -->
+  <section class="section">
+    <p class="section-label t-en">Iterations</p>
+    <p class="section-label t-ru">Итерации</p>
+    <h2>
+      <span class="t-en">From the card as the hero to the balance as the hero</span>
+      <span class="t-ru">Было: главное – карта. Стало: главное – баланс</span>
+    </h2>
+    <p class="t-en">The tab went through many versions before launch. The early ones kept the logic of the old app: the card is the main object, everything else hangs off it. The version that shipped opens with the EUR balance and two actions – Top up and Send – with the card as a strip underneath: the way you use the money, not the reason you came</p>
+    <p class="t-ru">До запуска у вкладки было много версий. Первые повторяли логику старого приложения: карта в центре, остальное к ней привязано. В финальной версии сверху баланс в евро и две кнопки – «Пополнить» и «Отправить», а карта – полоска ниже: это способ тратить деньги, а не причина открыть вкладку</p>
+
+    <div class="screens-scroll">
+      <div class="screens-row">
+        <div class="screen-item">
+          <img src="images/cards/before-tab.png" alt="Old Cards tab, October 2025 – card carousel first, balance in a corner" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Before</strong>
+            <strong class="t-ru">До</strong>
+            <span class="t-en">The card first, the balance in a corner, actions as icons</span>
+            <span class="t-ru">Сначала карта, баланс в углу, действия – иконками</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/account-states.png" alt="New Cards tab – EUR balance first, the card as a strip below" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">After</strong>
+            <strong class="t-ru">После</strong>
+            <span class="t-en">The EUR balance first, the card is how you access it</span>
+            <span class="t-ru">Сначала баланс в евро, карта – способ им пользоваться</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <blockquote class="insight t-en">
+      The mental model changed across the iterations: not "get a card", but "you have an EUR account – the card is how you use it"
+    </blockquote>
+    <blockquote class="insight t-ru">От версии к версии поменялась сама идея: не «получите карту», а «у вас есть счёт в евро, и карта – способ им пользоваться»</blockquote>
+  </section>
+</div>
+
+<!-- DESIGN DECISIONS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Design decisions</p>
+    <p class="section-label t-ru">Решения</p>
+    <h2>
+      <span class="t-en">Details that mattered</span>
+      <span class="t-ru">Детали, которые решили дело</span>
+    </h2>
+
+    <p class="t-en"><strong>The dark gradient wallet view.</strong> The Cards tab needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
+    <p class="t-ru"><strong>Тёмный градиент кошелька.</strong> Вкладка «Карты» должна отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
+
+    <p class="t-en"><strong>Fee transparency in top-up.</strong> Three payment methods, three fee structures: 0 EUR via Profee account, 2 EUR via external card, zero-fee via bank transfer but with a delay. The fee is visible at the method selection step – before the user commits – so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
+    <p class="t-ru"><strong>Комиссия видна сразу.</strong> Три способа пополнения – три разные комиссии: 0 EUR со счёта Profee, 2 EUR с внешней карты, без комиссии банковским переводом, но не мгновенно. Комиссию видно уже при выборе способа, до подтверждения, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>
+
+    <p class="t-en"><strong>Freezing without fear.</strong> People avoid freezing a card when they are not sure they will get their money back. So the freeze is designed as a story with no dead ends: a toast and a frosted card while it is frozen, an explanation one tap away behind the ?, and a failure state with a way out</p>
+    <p class="t-ru"><strong>Заморозка без страха.</strong> Люди не решаются заморозить карту, если не уверены, что потом вернут доступ к деньгам. Поэтому в заморозке нет тупиков: уведомление и заиндевевшая карта, объяснение в одно касание за значком «?» и экран ошибки, из которого всегда есть выход</p>
+
+    <figure class="clip">
+      <video autoplay loop muted playsinline preload="metadata" poster="media/cards-freeze-poster.jpg" width="1080" height="1350">
+        <source src="media/cards-freeze.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        <span class="t-en">The freeze itself: one tap, a toast, and the card frosts over – recorded from the working prototype</span>
+        <span class="t-ru">Заморозка вживую: одно касание, уведомление – и карта покрывается инеем. Запись с рабочего прототипа</span>
+      </figcaption>
+    </figure>
+
+    <div class="screens-scroll">
+      <div class="screens-row">
+        <div class="screen-item">
+          <img src="images/cards/flow/13.jpg" alt="Card active" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Card active</strong>
+            <strong class="t-ru">Карта активна</strong>
+            <span class="t-en">Freeze is one tap away – and the ? next to it opens the explanation</span>
+            <span class="t-ru">Заморозить можно в одно касание, а «?» рядом открывает объяснение</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/freeze-toast-frozen.jpg" alt="Card is frozen" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Card is frozen</strong>
+            <strong class="t-ru">Карта заморожена</strong>
+            <span class="t-en">A toast confirms it; the card art frosts over, Card details is disabled</span>
+            <span class="t-ru">Уведомление подтверждает, карта покрывается инеем, «Данные карты» недоступны</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/freeze-tooltip.jpg" alt="What happens when I freeze" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">What happens when I freeze</strong>
+            <strong class="t-ru">Что будет, если заморозить</strong>
+            <span class="t-en">Behind the ? – payments pause, the balance stays safe, unfreeze anytime</span>
+            <span class="t-ru">За значком «?»: платежи встанут, баланс в безопасности, разморозить можно в любой момент</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/freeze-toast-unfrozen.jpg" alt="Card is unfrozen" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">Card is unfrozen</strong>
+            <strong class="t-ru">Карта разморожена</strong>
+            <span class="t-en">Same toast pattern back, the card art clears</span>
+            <span class="t-ru">То же уведомление в обратную сторону – карта оттаивает</span>
+          </div>
+        </div>
+        <div class="screen-item">
+          <img src="images/cards/freeze-freeze-failed.jpg" alt="Freeze didn’t go through" loading="lazy">
+          <div class="screen-cap">
+            <strong class="t-en">If it fails</strong>
+            <strong class="t-ru">Если не получилось</strong>
+            <span class="t-en">One error pattern for freeze and unfreeze: what state the card is in now, and two ways out</span>
+            <span class="t-ru">Одна ошибка на заморозку и разморозку: в каком состоянии карта сейчас и два выхода</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- RESULTS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Results</p>
+    <p class="section-label t-ru">Результаты</p>
+    <h2>
+      <span class="t-en">The area works. The bet is only half won</span>
+      <span class="t-ru">Раздел работает. Ставка сыграла наполовину</span>
+    </h2>
+    <p class="t-en">The new Cards tab launched on March 6, 2026 on iOS and Android. Six months later the numbers from Amplitude say two things at once</p>
+    <p class="t-ru">Новая вкладка «Карты» вышла 6 марта 2026 года на iOS и Android. Через полгода данные Amplitude говорят сразу о двух вещах</p>
+    <p class="t-en"><strong>The product area is alive.</strong> Card issuance settled into a steady monthly rate after the launch spike, and the number of people using the Cards tab each month grew seven times between March and August</p>
+    <p class="t-ru"><strong>Раздел живёт.</strong> После всплеска на запуске карты выпускают в ровном темпе, а людей, которые каждый месяц заходят во вкладку, с марта по август стало в семь раз больше</p>
+    <p class="t-en"><strong>The card is not yet the reason to keep money.</strong> Only 11% of card holders topped up their card account within 30 days. Meanwhile the wallet itself grew from 1% to 10.6% of all active senders – through new top-up methods that have nothing to do with the card. Fewer than 5% of the people topping up the wallet hold a card</p>
+    <p class="t-ru"><strong>Держать деньги из-за карты пока не стали.</strong> Только 11% владельцев пополнили карту в первые 30 дней. А кошельком за это время стали пользоваться 10,6% активных отправителей вместо 1% – благодаря новым способам пополнения, которые с картой никак не связаны. Из тех, кто пополняет кошелёк, карта есть меньше чем у 5%</p>
+
+    <div class="metrics">
+      <div class="metric-tile">
+        <div class="metric-num">×7.3</div>
+        <div class="metric-delta"><span class="t-en">Mar</span><span class="t-ru">март</span><i>→</i><span class="t-en">Aug 2026</span><span class="t-ru">авг. 2026</span></div>
+        <div class="metric-label t-en">Monthly users of the Cards tab</div>
+        <div class="metric-label t-ru">Рост числа пользователей вкладки в месяц</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">×10</div>
+        <div class="metric-delta"><b>1%</b><i>→</i><b>10.6%</b></div>
+        <div class="metric-label t-en">Active senders using the wallet – grown without the card</div>
+        <div class="metric-label t-ru">Доля отправителей с кошельком – рост без участия карты</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">11%</div>
+        <div class="metric-delta"><span class="t-en">within 30 days of issuing</span><span class="t-ru">в первые 30 дней после выпуска</span></div>
+        <div class="metric-label t-en">Card holders who topped up the card within 30 days</div>
+        <div class="metric-label t-ru">Владельцев карты пополнили её за 30 дней</div>
+      </div>
+    </div>
+
+    <div class="tradeoff">
+      <p class="tradeoff-label t-en">Honest read</p>
+      <p class="tradeoff-label t-ru">Если честно</p>
+      <p class="t-en">The hypothesis was "a good card makes people keep money in Profee". The outcome happened – people do keep money in Profee now – but the mechanism was different: they keep it in the wallet, and the card is a feature few of them reach for. The redesign delivered a product area people use; it hasn't yet made the card the reason to stay</p>
+      <p class="t-ru">Гипотеза была такая: «хорошая карта заставит людей держать деньги в Profee». Деньги в Profee теперь действительно держат, но не из-за карты: их держат в кошельке, а до карты доходят немногие. Редизайн дал раздел, которым пользуются, но причиной оставаться карта пока не стала</p>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section">
+    <p class="section-label t-en">Reflection</p>
+    <p class="section-label t-ru">Рефлексия</p>
+    <h2>
+      <span class="t-en">What I learned, and what's next</span>
+      <span class="t-ru">Что я поняла и что дальше</span>
+    </h2>
+    <p class="t-en">The question that reframed the work was not about screens: not "how do we make card issuance smoother", but "how do we make people feel they have a place to keep their money". Once that model was clear, every architecture decision got easier – and it is the same model the numbers later confirmed, just not through the card</p>
+    <p class="t-ru">Работу изменил вопрос, который был не про экраны. Не «как упростить выпуск карты», а «как сделать так, чтобы у людей было место, где лежат их деньги». Когда это стало ясно, решения по структуре пошли легче. И цифры потом подтвердили именно эту идею – просто не через карту</p>
+    <p class="t-en">The top-up iteration loop (3 rounds in 2 weeks) confirmed a pattern I've seen before: <strong>the first design of a multi-method payment flow is almost always wrong on fee communication</strong>. Users need to see the cost before choosing, not after</p>
+    <p class="t-ru">Три итерации пополнения за две недели подтвердили то, что я уже встречала: <strong>в первой версии оплаты с несколькими способами комиссию почти всегда показывают неудачно</strong>. Цену надо видеть до выбора, а не после</p>
+    <p class="t-en"><strong>What's next.</strong> The wallet grew without the card, so the card has to earn its place inside the wallet: appear where people already top up, and give them a reason to spend from there – Apple Pay and Google Pay from the balance, not from a separate card screen</p>
+    <p class="t-ru"><strong>Что дальше.</strong> Кошелёк вырос без карты – значит, карте нужно заслужить место в кошельке: появляться там, где люди уже пополняют баланс, и давать повод тратить с него. Apple Pay и Google Pay – прямо с баланса, а не с отдельного экрана карты</p>
+  </section>
+
+  <!-- NEXT -->
+  <section class="next-case">
+    <p class="next-label t-en">Next case</p>
+    <p class="next-label t-ru">Следующий кейс</p>
+    <a href="case-profee-statuses.html" class="next-link">
+      <span class="t-en">Transfer Statuses – making the invisible visible</span>
+      <span class="t-ru">Статусы переводов – делаем невидимое видимым</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+</div>
+<script src="case.js"></script>
+<script src="proto.js" defer></script>
+<script src="scroll-reveal.js" defer></script>

@@ -1,0 +1,141 @@
+/* SITE — floating segmented glass nav (home / about / beliefs).
+   Glass surface for .nav-inner comes from glass.css. */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  padding: var(--space-4) var(--gutter) 0;
+  display: flex;
+  align-items: flex-start;
+}
+.nav-inner {
+  max-width: calc(var(--max-w) - 2 * var(--gutter));
+  width: 100%;
+  height: 56px;
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-6);
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.nav-name {
+  font-family: var(--f-display);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.nav-name:hover { color: var(--accent); }
+
+/* ── Segmented control ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.nav-seg {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-mid);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  transition: color 0.2s, background 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s;
+}
+.nav-seg:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+.nav-seg.active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.nav-seg--cta,
+.nav-sheet-lang { display: none; }
+
+/* ── Right side: CTA + language ── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.nav-cta {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 20px color-mix(in srgb, var(--accent) 28%, transparent);
+  transition: background 0.2s, box-shadow 0.3s;
+}
+.nav-cta:hover { background: var(--accent-hover); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3), 0 6px 28px color-mix(in srgb, var(--accent) 40%, transparent); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: var(--r-pill);
+  transition: transform 0.22s ease, opacity 0.18s ease;
+}
+.nav.is-open .nav-hamburger span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav.is-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav.is-open .nav-hamburger span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-cta { display: none; }
+}
+
+@media (max-width: 640px) {
+  .nav { padding-inline: var(--gutter-sm); }
+  .nav-inner { padding-left: var(--space-5); }
+  .nav-hamburger { display: flex; width: 44px; height: 44px; }
+  .nav-actions > .lang-toggle { display: none; }
+  .nav-sheet-lang { display: flex; padding: var(--space-3) var(--space-5) var(--space-2); }
+  .nav-sheet-lang .lang-btn { font-size: var(--fs-sm); padding: var(--space-2) var(--space-4); }
+  /* menu opens as a glass sheet under the capsule */
+  .nav-links {
+    position: fixed;
+    top: calc(var(--nav-height) + var(--space-2));
+    left: var(--gutter-sm);
+    right: var(--gutter-sm);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    border-radius: var(--r-2xl);
+    background: rgba(14, 12, 36, 0.72);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-line);
+    box-shadow: inset 0 1px 0 var(--glass-hi), var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
+    z-index: 99;
+  }
+  .nav.is-open .nav-links { opacity: 1; transform: none; pointer-events: auto; }
+  .nav-seg { font-size: var(--fs-md); padding: var(--space-4) var(--space-5); border-radius: var(--r-xl); }
+  .nav-seg--cta { display: block; color: var(--accent); }
+}

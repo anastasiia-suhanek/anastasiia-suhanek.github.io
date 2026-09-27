@@ -1,0 +1,885 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SWISS — second visual direction over the same markup.
+   Active only when <html class="swiss"> (set by lang.js from ?style=swiss).
+   White page, one grotesque, black rules, one red accent.
+   No glass, no gradients, no glow, no pills. Linked last on every page.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@import url('fonts/inter.css');
+
+/* ── Tokens ── */
+html.swiss {
+  color-scheme: light;
+
+  --bg:       #FFFFFF;
+  --bg-deep:  #F1F1EF;
+  --bg-alt:   #F5F5F3;
+  --bg-card:  #FFFFFF;
+
+  --text:     #0B0B0B;
+  --text-mid: #3E3E3E;
+  --text-dim: #8A8A8A;
+
+  --border:        #E1E1DE;
+  --border-strong: #0B0B0B;
+
+  --accent:       #E4351B;
+  --accent-hover: #BF2811;
+  --accent-ink:   #FFFFFF;
+  --accent-soft:  rgba(228, 53, 27, 0.08);
+  --m-bg:         transparent;
+  --m-text:       #E4351B;
+
+  --orb-1: #EDEDEB; --orb-2: #EDEDEB; --orb-3: #EDEDEB;
+  --glow: 0;
+  --glass-fill: #FFFFFF;
+  --glass-line: #E1E1DE;
+  --glass-hi:   transparent;
+  --glass-blur: none;
+  --shadow-lg:  none;
+
+  --f-display: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --f-sans:    'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --r-sm: 0; --r-md: 0; --r-lg: 0; --r-xl: 0; --r-3xl: 0; --r-pill: 0;
+  --r-2xl: 18px;   /* phone screenshots keep a device corner */
+
+  background: #FFFFFF;
+}
+html.swiss body {
+  background: #FFFFFF;
+  color: var(--text);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html.swiss body::before,
+html.swiss body::after { display: none; }
+html.swiss ::selection { background: var(--accent); color: #fff; }
+
+/* ── Surfaces: no glass anywhere ── */
+html.swiss .glass,
+html.swiss .nav-inner,
+html.swiss .work-card,
+html.swiss .hero-feature-link,
+html.swiss .contact-link,
+html.swiss .platform-card,
+html.swiss .principle,
+html.swiss .metric-tile,
+html.swiss .outcome-item {
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+html.swiss .work-card:hover,
+html.swiss .hero-feature-link:hover,
+html.swiss .contact-link:hover,
+html.swiss .platform-card:hover { transform: none; box-shadow: none; }
+
+/* ── Type: sentence case, tight, medium — no thin display caps ── */
+html.swiss .hero-name,
+html.swiss .about-headline,
+html.swiss .about-text h2,
+html.swiss .contact-text h2,
+html.swiss .section h2,
+html.swiss .hero h1 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  color: var(--text);
+}
+html.swiss .work-title,
+html.swiss .hero-feature-title,
+html.swiss .footer-name,
+html.swiss .next-link,
+html.swiss .screen-group-head h3,
+html.swiss .decision h3 { font-family: var(--f-display); font-weight: 500; letter-spacing: -0.02em; }
+html.swiss .metric-num,
+html.swiss .outcome-num,
+html.swiss .principle-num {
+  font-family: var(--f-display);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  color: var(--text);
+}
+
+/* ── Chips: hairline rectangles, not badges ── */
+html.swiss .hero-chip,
+html.swiss .tag,
+html.swiss .chip,
+html.swiss .competitor-tag {
+  background: none;
+  border: 1px solid var(--text);
+  border-radius: 0;
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 9px;
+}
+html.swiss .work-metric,
+html.swiss .iteration-badge {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Buttons: black rectangles; secondary = outline ── */
+html.swiss .hero-btn-primary,
+html.swiss .contact-btn,
+html.swiss .contact-btn-primary,
+html.swiss .nav-cta {
+  background: var(--text);
+  color: #fff;
+  border: 1px solid var(--text);
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 500;
+}
+html.swiss .hero-btn-primary:hover,
+html.swiss .contact-btn:hover,
+html.swiss .contact-btn-primary:hover,
+html.swiss .nav-cta:hover { background: var(--accent); border-color: var(--accent); box-shadow: none; transform: none; }
+html.swiss .hero-btn-secondary,
+html.swiss .contact-btn-outline {
+  background: none;
+  color: var(--text);
+  border: 1px solid var(--text);
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+html.swiss .hero-btn-secondary:hover,
+html.swiss .contact-btn-outline:hover { background: var(--text); color: #fff; transform: none; }
+
+/* ── Nav: a white bar with a black rule, links as plain text ── */
+html.swiss .nav {
+  height: 64px;
+  padding: 0 var(--gutter);
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--text);
+  align-items: center;
+}
+html.swiss .nav-inner {
+  height: 64px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  max-width: calc(var(--max-w) - 2 * var(--gutter));
+}
+html.swiss .nav-name {
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+html.swiss .nav-name:hover { color: var(--accent); }
+html.swiss .nav-seg {
+  border-radius: 0;
+  color: var(--text-mid);
+  padding: 6px 12px;
+}
+html.swiss .nav-seg:hover { background: none; color: var(--text); }
+html.swiss .nav-seg.active {
+  background: none;
+  box-shadow: inset 0 -2px 0 var(--accent);
+  color: var(--text);
+}
+html.swiss .nav-breadcrumb { color: var(--text-dim); }
+html.swiss .nav-breadcrumb .current { color: var(--text); font-weight: 500; }
+html.swiss .nav-back,
+html.swiss .back-btn {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: 6px 0;
+  color: var(--text);
+}
+html.swiss .nav-back:hover,
+html.swiss .back-btn:hover { background: none; color: var(--accent); }
+html.swiss .lang-toggle { background: none; border: 1px solid var(--text); border-radius: 0; padding: 0; gap: 0; }
+html.swiss .lang-toggle .lang-btn { border-radius: 0; color: var(--text); padding: 5px 8px; }
+html.swiss .lang-toggle .lang-btn.lang-active { background: var(--text); color: #fff; box-shadow: none; }
+@media (max-width: 640px) {
+  html.swiss .nav { padding-inline: var(--gutter-sm); }
+  html.swiss .nav-links {
+    top: 64px; left: 0; right: 0;
+    background: #FFFFFF;
+    border: 0; border-bottom: 1px solid var(--text);
+    border-radius: 0; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  html.swiss .nav-seg { border-radius: 0; border-bottom: 1px solid var(--border); }
+}
+
+/* ━━ HOME ━━ */
+html.swiss .hero-eyebrow { color: var(--text); letter-spacing: 0.08em; }
+html.swiss .hero-eyebrow::before { background: var(--accent); height: 2px; width: 28px; }
+html.swiss .hero-name {
+  font-size: clamp(56px, 6.6vw, 104px);
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+  margin-bottom: var(--space-8);
+}
+html.swiss .hero-inner .hero-desc {
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.4;
+  color: var(--text);
+  max-width: 30ch;
+}
+
+/* The feature metric becomes a red poster block */
+html.swiss .hero-metric {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+html.swiss .hero-metric:hover { transform: none; box-shadow: none; }
+html.swiss .hero-metric-num {
+  color: #fff;
+  filter: none;
+  text-shadow: none;
+  font-family: var(--f-display);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  font-size: clamp(84px, 8.6vw, 138px);
+  z-index: 0;
+}
+html.swiss .hero-metric:hover .hero-metric-num { transform: translate(-50%, -50%); }
+html.swiss .hero-metric-top,
+html.swiss .hero-metric-foot { position: relative; z-index: 1; color: #fff; }
+html.swiss .hero-metric-foot { border-top: 1px solid rgba(255,255,255,0.5); padding-top: var(--space-4); }
+html.swiss .hero-metric-foot p,
+html.swiss .hero-metric-top span { color: #fff; }
+
+html.swiss .section-eyebrow {
+  color: var(--text);
+  letter-spacing: 0.08em;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--text);
+}
+
+/* Work list: flat grey wells, black rule above each title */
+html.swiss .work-grid { gap: var(--space-12) var(--space-8); }
+html.swiss .work-card {
+  padding: 0;
+  gap: 0;
+  border: 0;
+  border-radius: 0;
+}
+html.swiss .work-cover,
+html.swiss .work-card--c2 .work-cover,
+html.swiss .work-card--c3 .work-cover {
+  background: var(--bg-deep);
+  border-radius: 0;
+}
+html.swiss .work-cover img {
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--border);
+}
+html.swiss .work-card:hover .work-cover img,
+html.swiss .work-card:hover .work-cover img:nth-child(2) { transform: none; }
+html.swiss .work-body {
+  padding: var(--space-4) 0 0;
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--text);
+}
+html.swiss .work-title { font-size: clamp(22px, 2vw, 28px); line-height: 1.15; }
+html.swiss .work-card--wide .work-title { font-size: clamp(26px, 2.6vw, 36px); }
+html.swiss .work-company { color: var(--text-dim); }
+html.swiss .work-excerpt { color: var(--text-mid); }
+html.swiss .work-card:hover .work-title { color: var(--accent); }
+
+/* Contact: a ruled list instead of boxes */
+html.swiss .contact-links { gap: 0; border-top: 1px solid var(--text); }
+html.swiss .contact-link {
+  border: 0;
+  border-bottom: 1px solid var(--text);
+  border-radius: 0;
+  padding: var(--space-4) 0;
+}
+html.swiss .contact-link:hover { border-color: var(--text); color: var(--accent); }
+html.swiss .contact-link:hover .contact-link-value { color: var(--accent); }
+html.swiss .contact-text h2 { font-size: clamp(36px, 4vw, 56px); }
+html.swiss .section-contact,
+html.swiss .footer { border-top-color: var(--text); }
+
+/* ━━ ABOUT ━━ */
+html.swiss .about-headline { font-size: clamp(40px, 5vw, 72px); letter-spacing: -0.045em; line-height: 1; }
+html.swiss .page-eyebrow,
+html.swiss .about-section .section-label { color: var(--text); }
+html.swiss .page-eyebrow::before { background: var(--accent); }
+html.swiss .about-section { border-top-color: var(--text); }
+html.swiss .about-portrait,
+html.swiss .about-portrait img { border-radius: 0; }
+html.swiss .about-portrait::after { display: none; }
+html.swiss .core-item { border-color: var(--border); font-family: var(--f-display); font-weight: 500; letter-spacing: -0.02em; }
+html.swiss .core-item:first-child { border-top-color: var(--text); }
+html.swiss .belief-item { border-top-color: var(--border); }
+html.swiss .belief-num { color: var(--accent); }
+html.swiss .belief-text { font-family: var(--f-display); font-weight: 400; letter-spacing: -0.015em; color: var(--text); }
+html.swiss .belief-text em { color: var(--accent); }
+html.swiss .exp-company { font-family: var(--f-display); font-weight: 600; }
+html.swiss .exp-bullets li::before { color: var(--accent); }
+html.swiss .gallery-item,
+html.swiss .gallery-item img,
+html.swiss .gallery-item video { border-radius: 0; }
+html.swiss .gallery-badge { border-radius: 0; background: var(--text); color: #fff; }
+html.swiss .info-looking { border-color: var(--text); }
+
+/* ━━ CASES ━━ */
+html.swiss .hero { border-bottom: 1px solid var(--text); }
+html.swiss .hero h1 {
+  font-size: clamp(42px, 5.4vw, 80px);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+html.swiss .hero .hero-eyebrow { color: var(--accent); }
+html.swiss .hero .hero-desc { color: var(--text); font-size: 19px; line-height: 1.5; max-width: 640px; }
+html.swiss .case-facts { border-top: 1px solid var(--text); }
+html.swiss .case-facts dt { color: var(--text-dim); }
+html.swiss .case-facts-wide { border-top-color: var(--border); }
+
+html.swiss .outcome-num,
+html.swiss .metric-num { font-size: clamp(38px, 3.6vw, 54px); white-space: nowrap; }
+html.swiss .metrics { border-top-color: var(--text); }
+html.swiss .metric-delta i,
+html.swiss .ledger-cell.cta .arrow { color: var(--accent); }
+html.swiss .ledger-row.header { color: var(--text-dim); }
+html.swiss .ledger { border-top: 1px solid var(--text); padding-top: var(--space-3); }
+
+/* Numbered sections: 01 Context, 02 The problem… */
+html.swiss body { counter-reset: swiss-sec; }
+html.swiss .section:has(> .section-label) { counter-increment: swiss-sec; }
+html.swiss .section > .section-label {
+  color: var(--text);
+  letter-spacing: 0.08em;
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--text);
+  margin-bottom: var(--space-6);
+}
+html.swiss .section > .section-label::before {
+  content: counter(swiss-sec, decimal-leading-zero);
+  color: var(--accent);
+}
+html.swiss .section { border-bottom: 0; }
+html.swiss .section h2 {
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.05;
+  margin-bottom: var(--space-6);
+}
+html.swiss .section p { color: var(--text-mid); font-size: 17px; line-height: 1.6; }
+html.swiss .section p strong { color: var(--text); font-weight: 600; }
+
+html.swiss .insight {
+  background: none;
+  border: 0;
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  padding: 2px 0 2px var(--space-5);
+  font-family: var(--f-display);
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-style: normal;
+  color: var(--text);
+}
+html.swiss .insight-source { color: var(--text-dim); }
+html.swiss .tradeoff {
+  background: var(--bg-alt);
+  border: 0;
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+}
+html.swiss .tradeoff-label { color: var(--text); }
+html.swiss .decision,
+html.swiss .principle {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--text);
+  border-radius: 0;
+  padding: var(--space-5) 0;
+}
+html.swiss .decision-num,
+html.swiss .screen-group-num,
+html.swiss .scope-icon { color: var(--accent); }
+
+html.swiss .screen-item img { border-radius: var(--r-2xl); box-shadow: none; border: 1px solid var(--border); }
+html.swiss .screen-cap strong { color: var(--text); font-weight: 600; }
+html.swiss .slider-btn { border-radius: 0; background: none; border: 1px solid var(--text); color: var(--text); }
+html.swiss .slider-btn:hover { background: var(--text); color: #fff; }
+
+html.swiss .phone-scene {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--text);
+}
+html.swiss .phone-frame {
+  background: #0B0B0B;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+html.swiss .phone-frame::before { display: none; }
+html.swiss .phone-caption strong { color: var(--text); }
+html.swiss .proto-hint { border-radius: 0; background: #fff; border-color: var(--text); color: var(--text); }
+html.swiss .proto-hint:hover { background: var(--text); color: #fff; }
+
+html.swiss .case-toc a { color: var(--text-dim); }
+html.swiss .case-toc a:hover,
+html.swiss .case-toc a.is-active { color: var(--text); }
+html.swiss .case-toc a.is-active::before { background: var(--accent); }
+
+html.swiss .next-case { border-top: 1px solid var(--text); }
+html.swiss .next-link { font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -0.03em; }
+html.swiss .next-link:hover { color: var(--accent); }
+
+html.swiss .step-num { background: none; border: 1px solid var(--text); color: var(--text); border-radius: 0; }
+html.swiss .before-grid img,
+html.swiss .mail-chrome,
+html.swiss .mail-body,
+html.swiss .board-figure a img,
+html.swiss .clip video { border-radius: 0; }
+html.swiss .clip video { border-color: var(--border); }
+
+/* Hero sits on the grid, not in the middle of the viewport */
+html.swiss .hero-inner { align-items: end; }
+html.swiss body > .hero,
+html.swiss section.hero:not(:has(h1)) { min-height: 0; padding-block: var(--space-20) var(--space-16); }
+
+/* Status badges were tuned for a dark page — solid light tints on white */
+html.swiss .status-badge { border-radius: 0; }
+html.swiss .status-badge.success  { background: #E3F3E7; color: #16733A; }
+html.swiss .status-badge.progress { background: #ECEEFE; color: #3940C4; }
+html.swiss .status-badge.failed   { background: #FCE9E6; color: #B42516; }
+html.swiss .status-badge.refund   { background: #FFF3DB; color: #855400; }
+html.swiss .status-badge.neutral  { background: #EFEFED; color: #3E3E3E; }
+html.swiss .platform-card { border: 1px solid var(--border); }
+html.swiss .platform-label { background: var(--bg-alt); color: var(--text); }
+
+html.swiss .next-link { line-height: 1.1; text-wrap: balance; align-items: flex-end; }
+
+@media (max-width: 640px) {
+  html.swiss .hero-metric { min-height: 320px; }
+  html.swiss .hero-metric-num { font-size: 72px; top: 44%; }
+  html.swiss .hero .hero-desc { font-size: 17px; }
+}
+
+/* Lighter rules: black only for the section-label rule; everything else hairline grey */
+html.swiss { --rule: #D9D9D5; }
+html.swiss .nav { border-bottom-color: var(--rule); }
+html.swiss .hero,
+html.swiss .section-contact,
+html.swiss .footer,
+html.swiss .next-case,
+html.swiss .phone-scene,
+html.swiss .about-section { border-color: var(--rule) !important; }
+html.swiss .section-work { border-top: 0; }
+html.swiss .work-body,
+html.swiss .contact-links,
+html.swiss .contact-link,
+html.swiss .case-facts,
+html.swiss .metrics,
+html.swiss .ledger,
+html.swiss .decision,
+html.swiss .principle,
+html.swiss .core-item:first-child,
+html.swiss .info-looking { border-color: var(--rule); }
+html.swiss .section-eyebrow { border-top: 0; padding-top: 0; }
+
+/* ━━ HOME · work as a numbered index, not tiles ━━ */
+html.swiss .work-grid {
+  display: block;
+  counter-reset: swiss-work;
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--text);
+}
+html.swiss .work-card,
+html.swiss .work-card--wide {
+  counter-increment: swiss-work;
+  display: grid;
+  grid-template-columns: 56px 1fr 280px;
+  grid-template-areas: "num body cover";
+  column-gap: var(--space-8);
+  align-items: start;
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--rule);
+}
+html.swiss .work-card::before {
+  grid-area: num;
+  content: counter(swiss-work, decimal-leading-zero);
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  padding-top: 6px;
+}
+html.swiss .work-body {
+  grid-area: body;
+  margin: 0; padding: 0; border: 0;
+  display: flex; flex-direction: column;
+}
+html.swiss .work-meta { order: 3; margin-top: var(--space-5); display: flex; gap: var(--space-4); justify-content: flex-start; }
+html.swiss .work-title,
+html.swiss .work-card--wide .work-title { order: 1; font-size: clamp(28px, 3vw, 44px); line-height: 1.05; margin-bottom: var(--space-3); }
+html.swiss .work-excerpt { order: 2; max-width: 46ch; font-size: 16px; line-height: 1.5; }
+html.swiss .work-metric { font-size: 15px; }
+html.swiss .work-cover,
+html.swiss .work-card--wide .work-cover {
+  grid-area: cover;
+  height: 200px;
+  padding-top: var(--space-5);
+  gap: var(--space-2);
+}
+html.swiss .work-cover img,
+html.swiss .work-card--wide .work-cover img { width: 96px; border-radius: 10px; }
+html.swiss .work-cover img:nth-child(3) { display: none; }
+html.swiss .work-card:hover .work-title { color: var(--accent); }
+@media (max-width: 760px) {
+  html.swiss .work-card,
+  html.swiss .work-card--wide {
+    grid-template-columns: 40px 1fr;
+    grid-template-areas: "num body" ". cover";
+    row-gap: var(--space-5);
+  }
+  html.swiss .work-cover { height: 180px; }
+}
+
+/* Facts, not buttons: chips lose their box and read as a line of metadata */
+html.swiss .hero-chips { gap: 0; }
+html.swiss .hero-chip {
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+html.swiss .hero-chips .hero-chip:not(:first-child)::before {
+  content: '·';
+  margin: 0 10px;
+  color: var(--text-dim);
+}
+html.swiss .tag,
+html.swiss .competitor-tag {
+  border: 0;
+  background: var(--bg-alt);
+  padding: 5px 9px;
+}
+html.swiss[lang="ru"] .hero-chips .hero-chip.t-ru:nth-child(2)::before { content: none; }
+
+/* Nav right side: quiet text controls instead of two black blocks */
+html.swiss .nav-actions { gap: var(--space-6); }
+html.swiss .nav-cta {
+  background: none;
+  border: 0;
+  color: var(--text);
+  padding: 6px 0;
+  font-weight: 500;
+}
+html.swiss .nav-cta::after { content: ' →'; color: var(--accent); }
+html.swiss .nav-cta:hover { background: none; color: var(--accent); }
+html.swiss .lang-toggle { border: 0; gap: 2px; }
+html.swiss .lang-toggle .lang-btn { padding: 4px 2px; color: var(--text-dim); font-weight: 500; letter-spacing: 0.02em; }
+html.swiss .lang-toggle .lang-btn.lang-active { background: none; color: var(--text); box-shadow: none; }
+html.swiss .lang-toggle .lang-btn + .lang-btn::before { content: '/'; margin-right: 4px; color: var(--text-dim); }
+
+/* Device details keep their real shapes even though Swiss squares everything else */
+html.swiss .phone-island { border-radius: 999px; }
+html.swiss .proto-label,
+html.swiss .proto-hot,
+html.swiss .proto-hot::before { border-radius: 999px; }
+html.swiss .proto-label { border-radius: 8px; }
+
+/* ━━ More air: white pages need wider margins and a slower vertical rhythm ━━ */
+html.swiss { --max-w: 1200px; --max-w-content: 820px; --gutter: 64px; }
+@media (max-width: 900px) { html.swiss { --gutter: 32px; } }
+@media (max-width: 580px) { html.swiss { --gutter: 20px; } }
+
+/* home */
+html.swiss .hero { padding-block: 120px 128px; }
+html.swiss .hero-inner { gap: 96px; }
+html.swiss .hero-name { margin-bottom: 40px; }
+html.swiss .hero-inner .hero-desc { margin-bottom: 36px; }
+html.swiss .hero-chips { margin-bottom: 48px; }
+html.swiss .section-work { padding-block: 128px; }
+html.swiss .work-grid { margin-top: 32px; }
+html.swiss .work-card,
+html.swiss .work-card--wide { padding: 48px 0; }
+html.swiss .section-contact { padding-block: 144px; }
+html.swiss .footer { padding-block: 40px; }
+
+/* cases */
+html.swiss .container,
+html.swiss .container-wide { padding-inline: var(--gutter); }
+html.swiss section.hero:has(h1) { padding-block: 104px 88px; }
+html.swiss .hero h1 { margin-bottom: 36px; }
+html.swiss .hero .hero-desc { margin-bottom: 56px; }
+html.swiss .case-facts { margin-top: 56px; padding-top: 28px; row-gap: 28px; }
+html.swiss .outcome-strip { padding-block: 56px 96px; }
+html.swiss .section { padding-block: 112px; }
+html.swiss .section > .section-label { margin-bottom: 40px; }
+html.swiss .section h2 { margin-bottom: 32px; }
+html.swiss .section p { margin-bottom: 20px; }
+html.swiss .screens-scroll { margin-block: 48px; }
+html.swiss .screens-row { gap: 32px; }
+html.swiss .metrics { margin-top: 56px; padding-top: 32px; }
+html.swiss .phone-scene { padding-block: 96px; }
+html.swiss .insight { margin-block: 40px; }
+html.swiss .next-case { padding-block: 96px 128px; }
+
+/* about */
+html.swiss .page { padding-block: 104px 160px; }
+html.swiss .about-section { column-gap: 72px; }
+html.swiss .about-section { padding-block: 72px; }
+
+@media (max-width: 640px) {
+  html.swiss .hero { padding-block: 72px 80px; }
+  html.swiss .section-work { padding-block: 80px; }
+  html.swiss .section { padding-block: 72px; }
+  html.swiss section.hero:has(h1) { padding-block: 64px 56px; }
+  html.swiss .section-contact { padding-block: 96px; }
+}
+
+/* All rules hairline grey — structure comes from space and the red numbers, not black lines */
+html.swiss .section > .section-label,
+html.swiss .work-grid,
+html.swiss .ledger,
+html.swiss .metrics,
+html.swiss .case-facts,
+html.swiss .decision,
+html.swiss .principle,
+html.swiss .contact-links,
+html.swiss .contact-link,
+html.swiss .core-item:first-child,
+html.swiss .about-section,
+html.swiss .scope-grid { border-color: var(--rule) !important; }
+html.swiss .slider-btn { border-color: var(--rule); }
+html.swiss .slider-btn:hover { border-color: var(--text); }
+
+/* ━━ Profee violet instead of red: the accent is the product's own button colour ━━ */
+html.swiss {
+  --accent:       #5046E5;
+  --accent-hover: #3F36C9;
+  --accent-soft:  rgba(80, 70, 229, 0.08);
+  --m-text:       #5046E5;
+  --bg-deep:      #F2F1F8;   /* screenshot wells pick up a trace of the violet */
+  --bg-alt:       #F5F5F9;
+}
+html.swiss ::selection { background: #5046E5; color: #fff; }
+html.swiss .work-cover,
+html.swiss .work-card--c2 .work-cover,
+html.swiss .work-card--c3 .work-cover { background: var(--bg-deep); }
+/* Metric cover echoes the deep violet of the app's top-up header */
+html.swiss .hero-metric { background: #2A1D6E; }
+html.swiss .hero-metric-foot { border-top-color: rgba(255,255,255,0.3); }
+
+/* Tighter gap between sections: ~128px at a seam instead of ~224 */
+html.swiss .section { padding-block: 64px; }
+@media (max-width: 640px) { html.swiss .section { padding-block: 44px; } }
+
+/* Emails are quoted documents — keep them at mail-client size, not body-copy size */
+html.swiss .section .mail-body p,
+html.swiss .section .mail-body li { font-size: 13px; line-height: 1.55; margin-bottom: 10px; color: #2B2840; }
+html.swiss .section .mail-body ul { margin-bottom: 10px; }
+html.swiss .section .mail-body li { margin-bottom: 0; }
+html.swiss .section .mail-body p strong { color: #1B1830; }
+html.swiss .mail-chrome { font-size: 11px; }
+html.swiss .mail-subject { font-size: 12px; }
+
+/* KYC research map: more air in the tree and between the tree and the findings table */
+html.swiss .kyc-map { margin-block: 72px; }
+html.swiss .mm-caption { margin-bottom: 40px; font-size: 16px; }
+html.swiss .mm { row-gap: 44px; column-gap: 56px; }
+html.swiss .mm-leaves { gap: 10px; }
+html.swiss .mm-leaf { font-size: 15px; }
+html.swiss .mm-findings { margin-top: 80px; }
+html.swiss .mm-findings-head { padding-bottom: 16px; }
+html.swiss .mm-finding { padding-block: 22px; font-size: 16px; line-height: 1.55; gap: 40px; border-color: var(--rule, var(--border)); }
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TYPE SYSTEM — one family (Inter), six steps. Everything below snaps to these.
+   Last block in the file on purpose: it overrides the ad-hoc sizes above.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+html.swiss {
+  --t-display: clamp(52px, 6.2vw, 88px);   /* name, case title */
+  --t-h2:      clamp(32px, 3.4vw, 44px);   /* section heading, big numbers */
+  --t-h3:      clamp(22px, 2vw, 26px);     /* sub-heads, case names in lists */
+  --t-lead:    20px;                       /* lead paragraphs, pull quotes */
+  --t-body:    17px;                       /* reading text */
+  --t-small:   13px;                       /* captions, labels, tables, meta */
+  --lh-display: 1.0;
+  --lh-head:    1.15;
+  --lh-read:    1.6;
+  --lh-small:   1.45;
+}
+
+/* 1 · display */
+html.swiss .hero-name,
+html.swiss .hero h1,
+html.swiss .about-headline { font-size: var(--t-display); line-height: var(--lh-display); font-weight: 500; letter-spacing: -0.035em; }
+
+/* 2 · h2 + big numbers */
+html.swiss .section h2,
+html.swiss .contact-text h2,
+html.swiss .next-link,
+html.swiss .outcome-num,
+html.swiss .metric-num { font-size: var(--t-h2); line-height: var(--lh-head); font-weight: 500; letter-spacing: -0.025em; }
+html.swiss .hero-metric-num { font-size: clamp(84px, 8.6vw, 138px); letter-spacing: -0.04em; font-weight: 500; }
+
+/* 3 · h3 */
+html.swiss .work-title,
+html.swiss .work-card--wide .work-title,
+html.swiss .screen-group-head h3,
+html.swiss .decision h3,
+html.swiss .core-item,
+html.swiss .exp-company,
+html.swiss .belief-text { font-size: var(--t-h3); line-height: var(--lh-head); font-weight: 500; letter-spacing: -0.015em; }
+
+/* 4 · lead */
+html.swiss .hero-inner .hero-desc,
+html.swiss .hero .hero-desc,
+html.swiss .insight,
+html.swiss .contact-link-value,
+html.swiss .phone-caption strong { font-size: var(--t-lead); line-height: 1.45; letter-spacing: -0.005em; font-style: normal; }
+html.swiss .insight { font-weight: 400; }
+
+/* 5 · body */
+html.swiss .section p,
+html.swiss .info-text p,
+html.swiss .work-excerpt,
+html.swiss .decision p,
+html.swiss .step-body strong,
+html.swiss .step-body span,
+html.swiss .scope-title,
+html.swiss .scope-desc,
+html.swiss .tradeoff p,
+html.swiss .exp-role,
+html.swiss .contact-text p,
+html.swiss .hero-chip,
+html.swiss .nav-seg,
+html.swiss .nav-cta,
+html.swiss .hero-btn-primary,
+html.swiss .hero-btn-secondary,
+html.swiss .contact-btn { font-size: var(--t-body); line-height: var(--lh-read); letter-spacing: 0; }
+html.swiss .decision h3 + p,
+html.swiss .step-body strong { font-weight: 500; }
+html.swiss .nav-seg,
+html.swiss .nav-cta,
+html.swiss .hero-btn-primary,
+html.swiss .hero-btn-secondary,
+html.swiss .contact-btn,
+html.swiss .hero-chip { font-size: 15px; line-height: 1.2; }  /* UI controls: body family, one step lighter */
+
+/* 6 · small — captions, meta, tables, labels */
+html.swiss .screen-cap,
+html.swiss .screen-cap strong,
+html.swiss .case-facts dd,
+html.swiss .outcome-label,
+html.swiss .metric-label,
+html.swiss .metric-delta,
+html.swiss .ledger-cell,
+html.swiss .mm-finding,
+html.swiss .mm-leaf,
+html.swiss .mm-caption,
+html.swiss .board-figure figcaption,
+html.swiss .clip figcaption,
+html.swiss .inbox-cap,
+html.swiss .work-meta,
+html.swiss .work-company,
+html.swiss .work-metric,
+html.swiss .exp-period,
+html.swiss .exp-bullets li,
+html.swiss .exp-outcomes li,
+html.swiss .core-item-sub,
+html.swiss .gallery-cap,
+html.swiss .phone-caption span,
+html.swiss .proto-hint,
+html.swiss .tag,
+html.swiss .competitor-tag,
+html.swiss .footer-name,
+html.swiss .footer-note,
+html.swiss .insight-source,
+html.swiss .nav-name { font-size: var(--t-small); line-height: var(--lh-small); letter-spacing: 0; text-transform: none; }
+html.swiss .screen-cap strong,
+html.swiss .ledger-cell.context,
+html.swiss .nav-name,
+html.swiss .footer-name { font-weight: 600; }
+html.swiss .nav-name { font-size: 15px; }
+
+/* The only uppercase voice: section labels and eyebrows */
+html.swiss .section-label,
+html.swiss .hero-eyebrow,
+html.swiss .page-eyebrow,
+html.swiss .section-eyebrow,
+html.swiss .next-label,
+html.swiss .tradeoff-label { font-size: var(--t-small); line-height: 1; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+/* Everything else that was tracked caps becomes quiet grey sentence case */
+html.swiss .case-facts dt,
+html.swiss .contact-link-label,
+html.swiss .ledger-row.header,
+html.swiss .mm-findings-head,
+html.swiss .work-company { font-size: var(--t-small); font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text-dim); }
+
+/* Numbers in the red/violet voice share one size */
+html.swiss .scope-icon,
+html.swiss .decision-num,
+html.swiss .screen-group-num,
+html.swiss .belief-num,
+html.swiss .work-card::before { font-size: var(--t-small); font-weight: 600; letter-spacing: 0; font-family: var(--f-sans); }
+
+/* KYC map root had a serif token that Swiss doesn't define */
+html.swiss .mm-root-title { font-family: var(--f-sans); font-size: var(--t-lead); font-weight: 600; }
+html.swiss .mm-root-sub,
+html.swiss .mm-branch-label { font-size: var(--t-small); }
+
+/* Work index: tighter rows, smaller thumbnail so the row height follows the text */
+html.swiss .work-card,
+html.swiss .work-card--wide { padding: 28px 0; align-items: center; grid-template-columns: 56px 1fr 220px; }
+html.swiss .work-cover,
+html.swiss .work-card--wide .work-cover { height: 140px; padding-top: 14px; }
+html.swiss .work-cover img,
+html.swiss .work-card--wide .work-cover img { width: 72px; border-radius: 8px; }
+html.swiss .work-title,
+html.swiss .work-card--wide .work-title { margin-bottom: 8px; }
+html.swiss .work-meta { margin-top: 12px; }
+html.swiss .work-card::before { align-self: start; padding-top: 10px; }
+
+/* Case titles and the About headline are article titles, not posters */
+html.swiss { --t-title: clamp(40px, 4.4vw, 60px); }
+html.swiss .hero h1,
+html.swiss .about-headline { font-size: var(--t-title); line-height: 1.05; letter-spacing: -0.03em; }
+html.swiss .hero h1 { margin-bottom: 28px; }
+
+/* Phone screenshots: one corner radius for every mock, scaled to its width
+   like the live phone (44/324 ≈ 13%). It is always larger than the corners
+   baked into the PNGs (7–12%), so those never show a second corner */
+html.swiss .screen-item,
+html.swiss .split-phone,
+html.swiss .platform-card { container-type: inline-size; }
+html.swiss .screen-item img,
+html.swiss .split-phone img,
+html.swiss .platform-card img { border-radius: 13cqw; border: 1px solid var(--border); }
+html.swiss .work-cover img,
+html.swiss .work-card--wide .work-cover img { border-radius: 9px; }
+/* Platform pair: the screen stands on its own, the label is a caption */
+html.swiss .platform-card { border: 0; background: none; overflow: visible; border-radius: 0; }
+html.swiss .platform-label { border-top: 0; background: none; padding: 12px 0 0; font-size: var(--t-small); }
+/* Cropped screen recording: rounded like the screens, framed on all sides */
+html.swiss .clip video { border-radius: 16px; border: 1px solid var(--border); }

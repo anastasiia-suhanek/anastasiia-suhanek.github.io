@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Making KYC moments clear – Anastasiia Sukhanek</title>
+<meta name="description" content="Case study: redesigning 10 KYC verification entry points in the Profee app and web. +71.9% users reaching the main CTA, +6.9% completed verifications.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Making KYC moments clear – Anastasiia Sukhanek">
+<meta property="og:description" content="Case study: redesigning 10 KYC verification entry points in the Profee app and web. +71.9% users reaching the main CTA, +6.9% completed verifications.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="scroll-reveal.css">
+<link rel="stylesheet" href="buttons.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="case.css">
+
+<style>
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--f-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+
+/* ── CONTAINER ── */
+
+/* ── HERO ── */
+
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text);
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  font-weight: var(--fw-medium);
+}
+
+/* ── OUTCOME STRIP ── */
+
+
+/* ── SECTIONS ── */
+
+/* ── INSIGHT ── */
+
+/* ── STEP LIST ── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block: var(--space-7);
+}
+
+.step {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--accent);
+  margin-top: 0;
+}
+
+.step-body strong {
+  display: block;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  margin-bottom: var(--space-1);
+}
+
+.step-body span {
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+}
+
+/* ── SCENARIOS TABLE ── */
+
+/* ── FLOW IMAGE ── */
+.flow-wrap {
+  margin-block: var(--space-8);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.flow-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+.flow-caption {
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+
+/* ── PHONE SCREENS ── */
+
+/* ── VIDEO PAIR ── */
+.video-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  justify-content: center;
+  margin-block: var(--space-10);
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  width: 220px;
+  flex: 0 0 220px;
+}
+
+.video-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.22) 0%,
+    rgba(255,255,255,0.07) 38%,
+    rgba(200,235,215,0.09) 68%,
+    rgba(255,255,255,0.16) 100%
+  );
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  border-radius: 36px;
+  padding: var(--space-2);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.60),
+    inset 0 -1px 0 rgba(0,0,0,0.10),
+    inset 1px 0 0 rgba(255,255,255,0.20),
+    inset -1px 0 0 rgba(255,255,255,0.08),
+    0 0 0 0.5px rgba(255,255,255,0.20),
+    0 4px 16px rgba(0,0,0,0.10),
+    0 20px 50px rgba(0,0,0,0.16),
+    0 48px 96px rgba(0,0,0,0.10);
+}
+
+.video-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.38) 0%,
+    rgba(255,255,255,0.10) 22%,
+    transparent 45%,
+    transparent 70%,
+    rgba(255,255,255,0.06) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.video-frame video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 780;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 28px;
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .video-pair { gap: var(--space-4); }
+  .video-item { width: 160px; flex-basis: 160px; }
+}
+
+/* ── METRICS ── */
+ 
+.before-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+  margin-block: var(--space-6) var(--space-7);
+  align-items: start;
+}
+.before-grid figure { margin: 0; }
+.before-grid figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug);
+}
+/* Email mock-ups: re-typed “before” emails, kept in English on both languages */
+.mail {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.mail-chrome {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 14px 28px;
+  background: #ECEBF3; color: #4A4762;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  border: 1px solid var(--border); border-bottom: 0;
+  font-size: 11px; line-height: 1.3;
+}
+.mail-subject { color: #1B1830; font-weight: 600; font-size: 12px; }
+.mail-body {
+  background: #FFFFFF; color: #2B2840;
+  padding: 28px 28px 16px;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  border: 1px solid var(--border); border-top: 0;
+  font-size: 13px; line-height: 1.55;
+}
+.mail-body p, .mail-body ul { margin: 0 0 12px; color: inherit; font-size: inherit; line-height: inherit; }
+.mail-body ul { padding-left: 18px; }
+.mail-body li { margin: 0; }
+.section .mail-body p strong, .mail-body strong { color: #1B1830; font-weight: 600; }
+.section .mail-body p, .section .mail-body li { color: #2B2840; }
+.mail-body a { color: #5B4BDB; text-decoration: underline; word-break: break-all; }
+.mail-logo { display: block; width: auto; height: 18px; margin-bottom: 22px; }
+@media (max-width: 580px) { .before-grid { grid-template-columns: 1fr; } }
+/* Inbox: the "before" emails as a mail client – list on the left, reading pane on the right */
+.inbox {
+  display: grid; grid-template-columns: 240px 1fr;
+  margin-block: var(--space-7) var(--space-8);
+  border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+  background: #FFFFFF;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.inbox-list { background: #F4F3F8; border-right: 1px solid #E4E2EC; display: flex; flex-direction: column; }
+.inbox-item {
+  text-align: left; border: 0; background: none; cursor: pointer; font: inherit;
+  padding: 14px 16px; border-bottom: 1px solid #E4E2EC; display: flex; flex-direction: column; gap: 3px;
+  transition: background .15s;
+}
+.inbox-item:hover { background: #ECEBF3; }
+.inbox-item.is-active { background: #FFFFFF; box-shadow: inset 3px 0 0 #5046E5; }
+.inbox-row { display: flex; justify-content: space-between; font-size: 12px; color: #1B1830; font-weight: 600; }
+.inbox-day { color: #8A879A; font-weight: 400; }
+.inbox-subj { font-size: 12.5px; color: #1B1830; }
+.inbox-prev { font-size: 11.5px; color: #8A879A; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.inbox-read { position: relative; min-height: 460px; }
+.inbox-pane { display: none; animation: inboxIn .25s ease-out; }
+.inbox-pane.is-active { display: block; }
+@keyframes inboxIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.inbox .mail-chrome { border: 0; border-bottom: 1px solid #E4E2EC; border-radius: 0; }
+.inbox .mail-body { border: 0; border-radius: 0; padding: 24px 32px 8px; max-width: 560px; }
+.inbox-cap {
+  margin: 0; padding: 12px 32px 16px; border-top: 1px solid #E4E2EC;
+  font-size: 12px !important; color: #8A879A !important; line-height: 1.45 !important;
+  font-family: var(--f-sans);
+}
+@media (max-width: 640px) {
+  .inbox { grid-template-columns: 1fr; }
+  .inbox-list { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid #E4E2EC; }
+  .inbox-item { min-width: 70%; border-bottom: 0; border-right: 1px solid #E4E2EC; }
+  .inbox .mail-body { padding: 20px 20px 8px; }
+  .inbox-cap { padding: 12px 20px 16px; }
+}
+.insight-source {
+  margin: var(--space-2) 0 var(--space-6);
+  font-size: var(--fs-xs); font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider); text-transform: uppercase; color: var(--text-dim);
+}
+
+/* ── NEXT CASE ── */
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .container, .container-wide { padding-inline: var(--gutter-sm); }
+}
+
+@media (max-width: 580px) {
+    .hero h1 { font-size: var(--fs-2xl); }
+  .screens-row { gap: var(--space-4); }
+    }
+
+</style>
+<link rel="stylesheet" href="glass.css">
+<link rel="stylesheet" href="theme-profee.css">
+<link rel="stylesheet" href="kyc-map.css">
+<link rel="stylesheet" href="swiss.css">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="t-en">Back</span>
+      <span class="t-ru">Назад</span>
+    </a>
+    <div class="nav-breadcrumb">
+      <span class="current t-en">KYC verification</span>
+      <span class="current t-ru">Верификация KYC</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow">Profee · 2025</p>
+    <h1>
+      <span class="t-en">Making KYC moments clear</span>
+      <span class="t-ru">Верификация KYC без лишнего</span>
+    </h1>
+    <p class="hero-desc t-en">KYC verification is mandatory on a remittance platform – but hitting a verification wall without clear guidance leads to abandonment and support overload. I mapped every scenario where users encounter verification requirements and redesigned the entry points for each</p>
+    <p class="hero-desc t-ru">Без KYC-верификации переводы не работают. Но когда человек упирается в неё без внятного объяснения, он уходит или пишет в поддержку. Я собрала все сценарии, где просят пройти верификацию, и переделала точку входа в каждом</p>
+    <dl class="case-facts">
+      <div><dt><span class="t-en">Role</span><span class="t-ru">Роль</span></dt><dd><span class="t-en">Product Designer</span><span class="t-ru">Продуктовый дизайнер</span></dd></div>
+      <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">App · Web</span><span class="t-ru">Приложение · веб</span></dd></div>
+      <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Me, PM, UX writer · design lead (review) · 2 frontend, 1 backend, QA</span><span class="t-ru">Я, PM, UX-редактор · лид дизайна (ревью) · 2 фронтенда, 1 бэкенд, QA</span></dd></div>
+      <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd><span class="t-en">~3 months · 2025</span><span class="t-ru">~3 месяца · 2025</span></dd></div>
+      <div class="case-facts-wide"><dt><span class="t-en">My part</span><span class="t-ru">Моя часть</span></dt><dd><span class="t-en">End to end: audit of 10 scenarios, the flow map, every app and web screen, and copy with the UX writer</span><span class="t-ru">От начала до конца: разбор 10 сценариев, карта состояний, все экраны приложения и веба, тексты – вместе с UX-редактором</span></dd></div>
+</dl>
+  </section>
+</div>
+
+<!-- OUTCOME STRIP -->
+<div class="outcome-strip">
+  <div class="container">
+    <div class="outcome-item">
+      <div class="outcome-num">+6.7 <span class="t-en">pp</span><span class="t-ru">п.п.</span></div>
+      <div class="outcome-label t-en">CTA click rate<br>from the entry point</div>
+      <div class="outcome-label t-ru">Доля нажатий<br>на кнопку в точке входа</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">+71.9%</div>
+      <div class="outcome-label t-en">Users clicking<br>the main CTA</div>
+      <div class="outcome-label t-ru">Рост числа людей,<br>нажавших главную кнопку</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-num">+6.9%</div>
+      <div class="outcome-label t-en">Completed<br>verifications</div>
+      <div class="outcome-label t-ru">Рост завершённых<br>верификаций</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO DEMO -->
+<div class="phone-scene">
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-island"></div>
+      <video autoplay loop muted playsinline preload="metadata" poster="videos/verif-success-poster.jpg" width="390" height="846">
+        <source src="videos/verif-success.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="phone-caption">
+      <strong class="t-en">Verification success flow</strong>
+      <strong class="t-ru">Успешная верификация</strong>
+      <span class="t-en">Docs submitted → checking state → confirmed</span>
+      <span class="t-ru">Документы отправлены → проверка → готово</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Context</p>
+    <p class="section-label t-ru">Контекст</p>
+    <h2>
+      <span class="t-en">Profee is a cross-border remittance platform</span>
+      <span class="t-ru">Profee – платформа международных переводов</span>
+    </h2>
+    <p class="t-en">Users send money internationally – from Europe to India, Pakistan, Uzbekistan, and other countries. To comply with AML regulations, every user must complete KYC (Know Your Customer) identity verification before sending</p>
+    <p class="t-ru">Пользователи отправляют деньги за границу – из Европы в Индию, Пакистан, Узбекистан и другие страны. По требованиям AML перед первым переводом каждый должен пройти KYC – подтвердить личность</p>
+    <p class="t-en">This is non-negotiable. But <strong>when and how users encounter verification requirements</strong> varied dramatically from screen to screen</p>
+    <p class="t-ru">Этого не избежать. Но <strong>где и как человек узнавал о верификации</strong>, сильно зависело от экрана</p>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <p class="section-label t-en">The Problem</p>
+    <p class="section-label t-ru">Проблема</p>
+    <h2>
+      <span class="t-en">Ten scenarios, zero consistency</span>
+      <span class="t-ru">Десять сценариев – и все по-разному</span>
+    </h2>
+    <p class="t-en">Verification surfaced in ten scenarios across app and web, each with its own copy, hierarchy and CTA label</p>
+    <p class="t-ru">Верификация появлялась в десяти сценариях в приложении и вебе – и в каждом были свои тексты, своя иерархия и своя кнопка</p>
+
+    <blockquote class="insight t-en">
+      Not all customers understood what to do when asked to verify – or that they needed to at all. Some abandoned the app. Others opened a support chat to ask basic questions that the UI should have answered
+    </blockquote>
+    <blockquote class="insight t-ru">Не все понимали, что от них хотят, – или что верификация им вообще нужна. Кто-то бросал приложение. Кто-то шёл в чат поддержки с простыми вопросами, на которые должен был ответить интерфейс</blockquote>
+    <p class="insight-source t-en">Source: review of support chat enquiries, 2025</p>
+    <p class="insight-source t-ru">Источник: разбор обращений в чат поддержки, 2025</p>
+
+    <p class="t-en">In the app, entry points ranged from unclear banners to hard blocks with no explanation. The main nudge lived outside the app altogether: an email asking the user to leave their inbox for a verification bot. In support chats people said exactly that – <strong>going from an email into a bot didn't feel trustworthy</strong>. On top of that sat <strong>KYC Refresh</strong> – the case of already verified users whose documents expire</p>
+    <p class="t-ru">В приложении точки входа были какими угодно – от невнятных баннеров до жёстких блокировок без объяснений. А главное напоминание вообще жило за пределами приложения: в письме, из которого нужно было перейти в бота. В поддержке так и говорили: <strong>переход из письма в бота не вызывает доверия</strong>. И отдельная история – <strong>KYC Refresh</strong>: уже проверенные пользователи, у которых истекают документы</p>
+
+    <div class="inbox" id="kycInbox">
+      <div class="inbox-list" role="tablist">
+        <button type="button" class="inbox-item is-active" data-mail="0" aria-pressed="true">
+          <span class="inbox-row"><span class="inbox-from">Profee Support</span><span class="inbox-day">Mon</span></span>
+          <span class="inbox-subj">Additional information required</span>
+          <span class="inbox-prev">Thank you for choosing Profee! We would like to inform you that your Profee account is currently under review…</span>
+        </button>
+        <button type="button" class="inbox-item" data-mail="1" aria-pressed="false">
+          <span class="inbox-row"><span class="inbox-from">Profee Support</span><span class="inbox-day">Thu</span></span>
+          <span class="inbox-subj">Your transfers are paused</span>
+          <span class="inbox-prev">Unfortunately, you can't make transfers right now…</span>
+        </button>
+      </div>
+      <div class="inbox-read">
+      <div class="inbox-pane is-active" data-mail="0">
+        <div class="mail-chrome">
+          <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
+          <span class="mail-subject">Additional information required</span>
+        </div>
+        <div class="mail-body">
+          <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
+          <p>Dear Customer,</p>
+          <p>Thank you for choosing Profee! We would like to inform you that your Profee account is currently under review. In order to finalize our standard checks on your account, we require some additional information.</p>
+          <p>We kindly ask you to provide us with a proof of address document. As proof of address we may accept one of the following:</p>
+          <ul>
+            <li>House insurance</li>
+            <li>Bank statement</li>
+            <li>Municipal tax bill</li>
+            <li>Utility bill (electricity, water, etc.)</li>
+            <li>Residence permit that lists your address in EU, UK or Switzerland</li>
+          </ul>
+          <p>Please ensure that the document is not older than 6 months and states your current address. Kindly note that all four corners of the document must be visible.</p>
+          <p>To fulfill these requirements, you are kindly requested to follow the instructions here: <a>https://www.profee.com/transfer/verification</a></p>
+          <p>We remain at your disposal for any clarifications that you might need.</p>
+          <p>Regards,<br>Profee Customer Support</p>
+        </div>
+        <p class="inbox-cap"><span class="t-en">Before · document request by email – a wall of text, a list of documents and a link out to the bot</span>
+          <span class="t-ru">До · запрос документов по почте – стена текста, список документов и ссылка из письма в бота</span></p>
+      </div>
+      <div class="inbox-pane" data-mail="1">
+        <div class="mail-chrome">
+          <span class="mail-from">Profee Customer Support &lt;support@profee.com&gt;</span>
+          <span class="mail-subject">Your transfers are paused</span>
+        </div>
+        <div class="mail-body">
+          <img class="mail-logo" src="images/profee-logo-dark.svg" alt="Profee" width="500" height="101">
+          <p>Hello, Customer!</p>
+          <p><strong>Unfortunately, you can't make transfers right now.</strong> We understand how important it is for you to send money, and we're sorry you can't do it at the moment.</p>
+          <p><strong>Why did this happen?</strong><br>Some requests from your account looked unusual to us, and we automatically paused transfers to keep your funds safe.</p>
+          <p><strong>What to do now?</strong><br>Write to us in the support chat in the app or at <a>help@profee.com</a>, and we will help you restore your account.</p>
+          <p>The decision takes some time – we will do everything we can to get back to you as soon as possible.</p>
+        </div>
+        <p class="inbox-cap"><span class="t-en">Before · account paused – the reason is vague and the only next step is “write to support”</span>
+          <span class="t-ru">До · переводы приостановлены – причина неясна, единственный вариант – «напишите в поддержку»</span></p>
+      </div>
+      </div>
+    </div>
+    <script>
+    (function () {
+      var box = document.getElementById('kycInbox'); if (!box) return;
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('.inbox-item'); if (!b) return;
+        var k = b.getAttribute('data-mail');
+        box.querySelectorAll('.inbox-item').forEach(function (x) { var on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-pressed', on); });
+        box.querySelectorAll('.inbox-pane').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-mail') === k); });
+      });
+    })();
+    </script>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <p class="section-label t-en">Process</p>
+    <p class="section-label t-ru">Процесс</p>
+    <h2>
+      <span class="t-en">Mapping every scenario before designing anything</span>
+      <span class="t-ru">Сначала все сценарии, потом экраны</span>
+    </h2>
+    <p class="t-en">Before touching a single screen, I built a complete map of all verification states across both platforms. The goal: no scenario should leave a user without a clear next action</p>
+    <p class="t-ru">До первого экрана я собрала карту всех состояний верификации на обеих платформах. Цель – чтобы ни в одном сценарии человек не остался без понятного следующего шага</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong class="t-en">Audit existing entry points</strong>
+          <strong class="t-ru">Аудит существующих точек входа</strong>
+          <span class="t-en">Catalogued every place in app and web where verification could surface – ten scenarios, each with different copy and CTAs</span>
+          <span class="t-ru">Собрала все места в приложении и вебе, где появляется верификация, – вышло десять сценариев с разными текстами и кнопками</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong class="t-en">Define user states for each scenario</strong>
+          <strong class="t-ru">Состояния пользователя в каждом сценарии</strong>
+          <span class="t-en">For every entry point: what does the user know, what are they trying to do, and what's the minimum information needed to unblock them?</span>
+          <span class="t-ru">Для каждой точки входа: что человек уже знает, что пытается сделать и какой минимум информации нужен, чтобы он пошёл дальше?</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong class="t-en">Design the decision tree for KYC Refresh</strong>
+          <strong class="t-ru">Дерево решений для KYC Refresh</strong>
+          <span class="t-en">Built a branching flow for the most complex case – already verified users whose documents expire</span>
+          <span class="t-ru">Построила дерево для самого сложного случая – проверенных пользователей, у которых истекают документы</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong class="t-en">Systematise the component</strong>
+          <strong class="t-ru">Один компонент на всё</strong>
+          <span class="t-en">Designed one flexible entry point component whose heading, illustration and CTA urgency adapt to the context</span>
+          <span class="t-ru">Собрала гибкий компонент точки входа: заголовок, иллюстрация и срочность кнопки подстраиваются под ситуацию</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- KYC RESEARCH MAP -->
+<div class="container">
+  <div id="kyc-map" class="kyc-map"></div>
+  <noscript><img src="images/verif/flow-entry-points-2400.jpg" alt="Full user flow map – entry points and verification flows across app and web" style="width:100%;display:block;margin-block:var(--space-8);"></noscript>
+</div>
+
+<!-- SOLUTION -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Solution</p>
+    <p class="section-label t-ru">Решение</p>
+    <h2>
+      <span class="t-en">One component, many contexts</span>
+      <span class="t-ru">Один компонент – много ситуаций</span>
+    </h2>
+    <p class="t-en">A single, flexible entry point pattern – a card or bottom sheet with an illustration, a clear status message, and one primary action. Three decisions shaped it:</p>
+    <p class="t-ru">Единый паттерн точки входа – карточка или нижний лист с иллюстрацией, понятным статусом и одной главной кнопкой. Его сформировали три решения:</p>
+
+    <div class="decisions">
+      <div class="decision">
+        <span class="decision-num">01</span>
+        <div>
+          <h3 class="t-en">One default action</h3>
+          <h3 class="t-ru">Одно действие по умолчанию</h3>
+          <p class="t-en">By default the CTA is <em>Open bot</em> – the verification channel – so users learn the action once. It changes only when the bot can't resolve the case: a limits review goes to support, extra details go to email</p>
+          <p class="t-ru">По умолчанию кнопка одна – <em>Открыть бота</em>: верификация проходит там, и действие достаточно запомнить один раз. Кнопка меняется, только если бот не поможет: с проверкой лимитов – в поддержку, с дополнительными данными – на почту</p>
+        </div>
+      </div>
+      <div class="decision">
+        <span class="decision-num">02</span>
+        <div>
+          <h3 class="t-en">Urgency grows with risk</h3>
+          <h3 class="t-ru">Чем выше риск, тем настойчивее</h3>
+          <p class="t-en">While docs are only expiring, the nudge can wait: a sheet with “Do it later” and a banner the user can close. Once they've expired, the sheet comes back on launch and a card stays on the main screen and in the profile until the docs are updated</p>
+          <p class="t-ru">Пока документы только истекают, напоминание может подождать: лист с кнопкой «Сделать позже» и баннер, который можно закрыть. Когда срок вышел, лист появляется при каждом запуске, а карточка висит на главном экране и в профиле, пока документы не обновят</p>
+        </div>
+      </div>
+      <div class="decision">
+        <span class="decision-num">03</span>
+        <div>
+          <h3 class="t-en">Checking never blocks</h3>
+          <h3 class="t-ru">Проверка ничего не блокирует</h3>
+          <p class="t-en">Once documents are submitted, a status banner replaces the prompt and users keep using the app while review is in progress</p>
+          <p class="t-ru">Когда документы отправлены, вместо призыва появляется баннер со статусом – и приложением можно пользоваться, пока идёт проверка</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="t-en" style="margin-top: var(--space-8);"><strong>The system at a glance.</strong> Ten states, three patterns – every state has exactly one place and one action</p>
+    <p class="t-ru" style="margin-top: var(--space-8);"><strong>Вся система на одном экране.</strong> Десять состояний, три паттерна – у каждого состояния одно место и одно действие</p>
+    <div class="ledger">
+      <div class="ledger-row header">
+        <div class="ledger-cell t-en">Entry point</div>
+        <div class="ledger-cell t-ru">Точка входа</div>
+        <div class="ledger-cell t-en">User states</div>
+        <div class="ledger-cell t-ru">Состояния пользователя</div>
+        <div class="ledger-cell t-en">Pattern</div>
+        <div class="ledger-cell t-ru">Паттерн</div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-cell context"><span class="t-en">App · Main screen</span><span class="t-ru">Приложение · Главный экран</span></div>
+        <div class="ledger-cell msg"><span class="t-en">Docs needed, not finished, failed, checking – 4 scenarios</span><span class="t-ru">Нужны документы, не закончил, не прошла, на проверке – 4 сценария</span></div>
+        <div class="ledger-cell cta"><span class="t-en">Card, sheet or status banner <span class="arrow">→</span> one primary action, Open bot by default</span><span class="t-ru">Карточка, лист или баннер статуса <span class="arrow">→</span> одна главная кнопка, по умолчанию «Открыть бота»</span></div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-cell context"><span class="t-en">App · Mid-transfer</span><span class="t-ru">Приложение · Во время перевода</span></div>
+        <div class="ledger-cell msg"><span class="t-en">Close to the limit, limit reached, limits review, extra details – 4 scenarios</span><span class="t-ru">Близко к лимиту, лимит исчерпан, проверка лимитов, доп. данные – 4 сценария</span></div>
+        <div class="ledger-cell cta"><span class="t-en">Bottom sheet: the reason + one primary action</span><span class="t-ru">Нижний лист: причина и одна главная кнопка</span></div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-cell context"><span class="t-en">KYC Refresh · Main screen + Profile</span><span class="t-ru">KYC Refresh · Главный экран + Профиль</span></div>
+        <div class="ledger-cell msg"><span class="t-en">Docs expiring (3–4 months before the block) or expired – 2 scenarios</span><span class="t-ru">Документы скоро истекут (за 3–4 месяца до блокировки) или уже истекли – 2 сценария</span></div>
+        <div class="ledger-cell cta"><span class="t-en">Nudge that can wait <span class="arrow">→</span> card that stays</span><span class="t-ru">Напоминание, которое можно отложить <span class="arrow">→</span> карточка, которая не уходит</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SCREENS – grouped by scenario -->
+<div class="container">
+
+  <div class="screen-group-head">
+    <span class="screen-group-num">01</span>
+    <div>
+      <h3><span class="t-en">First-time verification</span><span class="t-ru">Первая верификация</span></h3>
+      <p class="t-en">From “docs needed” to “we're checking” – the main screen always shows where the user is</p>
+      <p class="t-ru">От «нужны документы» до «проверяем» – на главном экране всегда видно, на каком этапе человек</p>
+    </div>
+  </div>
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/verif/screen-entry-banner.png" alt="Transfers screen with 'Extra documents needed' entry point banner" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs needed</strong>
+          <strong class="t-ru">Нужны документы</strong>
+          <span class="t-en">Entry point card on the main screen – visible, not blocking. One clear action: Open bot</span>
+          <span class="t-ru">Карточка на главном экране – заметна, но ничего не блокирует. Одна кнопка: «Открыть бота»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/screen-finish-verif.png" alt="'Finish verification' modal with megaphone illustration" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Finish verification</strong>
+          <strong class="t-ru">Завершите верификацию</strong>
+          <span class="t-en">Started but didn't finish – a nudge to come back and complete the flow</span>
+          <span class="t-ru">Начал и бросил – мягкое напоминание вернуться и закончить</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/screen-failed.png" alt="'Verification didn't go through' modal with cat illustration" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Verification failed</strong>
+          <strong class="t-ru">Верификация не прошла</strong>
+          <span class="t-en">Friendly error state: what happened and a clear recovery path</span>
+          <span class="t-ru">Спокойная ошибка: что случилось и что делать дальше</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/screen-checking-new.png" alt="Transfers main screen with 'Checking your docs' status banner" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Checking docs</strong>
+          <strong class="t-ru">Проверяем документы</strong>
+          <span class="t-en">Docs submitted, review in progress</span>
+          <span class="t-ru">Документы отправлены, идёт проверка</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-group-head">
+    <span class="screen-group-num">02</span>
+    <div>
+      <h3><span class="t-en">Mid-transfer: limits & checks</span><span class="t-ru">Во время перевода: лимиты и проверки</span></h3>
+      <p class="t-en">Verification surfaces right when the user tries to send. Hard stops only here, always with the reason and one next step</p>
+      <p class="t-ru">Верификация появляется в момент отправки. Жёстко останавливаем только здесь – и всегда с причиной и одним следующим шагом</p>
+    </div>
+  </div>
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/verif/midflow-left-to-send.png" alt="'You have X EUR left to send' bottom sheet" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Close to the limit</strong>
+          <strong class="t-ru">Близко к лимиту</strong>
+          <span class="t-en">Before the block: how much is left, and two ways out – verify in the bot or change the amount</span>
+          <span class="t-ru">Ещё до блокировки: сколько осталось и два выхода – пройти верификацию в боте или уменьшить сумму</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/midflow-limit-reached.png" alt="'Today's limit reached' bottom sheet" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Limit reached</strong>
+          <strong class="t-ru">Лимит исчерпан</strong>
+          <span class="t-en">Daily limit hit – verification in the bot unlocks more</span>
+          <span class="t-ru">Дневной лимит исчерпан – верификация в боте его увеличит</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/midflow-limits-review.png" alt="'Let us check the limits first' bottom sheet" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Limits review</strong>
+          <strong class="t-ru">Проверка лимитов</strong>
+          <span class="t-en">The bot can't solve this one – so the action switches to Contact support</span>
+          <span class="t-ru">Здесь бот не поможет, поэтому кнопка – «Написать в поддержку»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/midflow-check-email.png" alt="'Check your email' bottom sheet" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Check your email</strong>
+          <strong class="t-ru">Проверьте почту</strong>
+          <span class="t-en">Extra details are confirmed by email – the action opens the mail app</span>
+          <span class="t-ru">Дополнительные данные подтверждают по почте – кнопка открывает почтовое приложение</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-group-head">
+    <span class="screen-group-num">03</span>
+    <div>
+      <h3><span class="t-en">KYC Refresh: expiring documents</span><span class="t-ru">KYC Refresh: документы истекают</span></h3>
+      <p class="t-en">Previously verified users are nudged before their docs expire – and can't miss it once they have. Two branches: expiring and expired</p>
+      <p class="t-ru">Проверенным пользователям напоминаем заранее, а когда срок вышел – пропустить напоминание уже нельзя. Две ветки: скоро истекут и уже истекли</p>
+    </div>
+  </div>
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/verif/refresh-expiring-banner.png" alt="Main screen with a dismissable 'Let's update your docs' banner showing the deadline" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs expiring · banner you can close</strong>
+          <strong class="t-ru">Документы скоро истекут · баннер можно закрыть</strong>
+          <span class="t-en">Shows the deadline – “by X” – and has a close button: there's still time</span>
+          <span class="t-ru">Указан срок – «до X» – и есть крестик: время ещё есть</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/refresh-expired-card.png" alt="Main screen with a persistent 'Let's update your docs' card without a close button" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs expired · card that stays</strong>
+          <strong class="t-ru">Документы истекли · карточка не уходит</strong>
+          <span class="t-en">No close button – the card stays at the top until the docs are updated. One action: Open bot</span>
+          <span class="t-ru">Без крестика – карточка остаётся наверху, пока документы не обновят. Одна кнопка: «Открыть бота»</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="screen-group-head">
+    <span class="screen-group-num">04</span>
+    <div>
+      <h3><span class="t-en">Web: every state has a twin</span><span class="t-ru">Веб: у каждого состояния есть пара</span></h3>
+      <!-- TODO: verify – on web the entry CTA reads "Confirm ID" and the failed state shows "Upload failed": is the upload done in the browser, with the bot as fallback? -->
+      <p class="t-en">The same six states, rendered in the mobile browser on the Send money screen: same illustrations, same copy, one primary action. Where the upload happens in the browser the CTA reads Confirm ID; where it doesn't, Open bot</p>
+      <p class="t-ru">Те же шесть состояний в мобильном браузере, на экране отправки денег: те же иллюстрации, те же тексты, одна главная кнопка. Если документы загружают прямо в браузере, кнопка – «Подтвердить личность», если нет – «Открыть бота»</p>
+    </div>
+  </div>
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/verif/web-docs-needed.png" alt="Web Send money screen with a 'Before sending money – Confirm ID' card above the transfer form" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs needed</strong>
+          <strong class="t-ru">Нужны документы</strong>
+          <span class="t-en">Card above the transfer form, which stays visible – the user sees what they are unlocking</span>
+          <span class="t-ru">Карточка над формой перевода, форма остаётся видна – человек понимает, что именно разблокирует</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/web-finish.png" alt="Web 'Finish verification' sheet with megaphone illustration" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Finish verification</strong>
+          <strong class="t-ru">Завершите верификацию</strong>
+          <span class="t-en">Same megaphone, same nudge as in the app – Finish or Not now</span>
+          <span class="t-ru">Тот же мегафон и тот же призыв, что в приложении: «Завершить» или «Не сейчас»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/web-failed.png" alt="Web: 'Upload failed' inline state and 'Verification didn't go through' sheet with Open bot" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Verification failed</strong>
+          <strong class="t-ru">Верификация не прошла</strong>
+          <span class="t-en">Upload failed inline, the sheet explains why – and the way out is still Open bot</span>
+          <span class="t-ru">Ошибка загрузки видна прямо в карточке, лист объясняет причину, а выход всё тот же – «Открыть бота»</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/web-checking.png" alt="Web main screen with 'Checking your docs' status banner and Continue disabled" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Checking docs</strong>
+          <strong class="t-ru">Проверяем документы</strong>
+          <span class="t-en">Status banner on top, the form is visible but Continue waits for the review</span>
+          <span class="t-ru">Сверху баннер статуса, форма видна, но кнопка «Продолжить» ждёт окончания проверки</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/web-refresh-expiring.png" alt="Web 'Let's update your docs' sheet with Open bot and Do it later" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs expiring</strong>
+          <strong class="t-ru">Документы истекают</strong>
+          <span class="t-en">Deadline “by X”, secondary action Do it later – there is still time</span>
+          <span class="t-ru">Срок «до X» и вторая кнопка «Сделать позже» – время ещё есть</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/verif/web-refresh-expired.png" alt="Web 'Let's update your docs' sheet for expired documents with Open bot and All clear" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Docs expired</strong>
+          <strong class="t-ru">Документы истекли</strong>
+          <span class="t-en">Same sheet; the secondary action is All clear instead of Do it later</span>
+          <span class="t-ru">Тот же лист; второе действие – «Понятно» вместо «Сделать позже»</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- RESULTS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Results</p>
+    <p class="section-label t-ru">Результаты</p>
+    <h2>
+      <span class="t-en">More people started, more people finished</span>
+      <span class="t-ru">Больше людей начали – больше закончили</span>
+    </h2>
+    <p class="t-en">Full rollout in October 2025. Comparing Aug–Sep to Nov–Dec 2025. All three are relative: the click rate is a share and doesn't depend on traffic, the other two are growth against the same window before launch:</p>
+    <p class="t-ru">Полностью запустили в октябре 2025. Сравниваем август–сентябрь с ноябрём–декабрём 2025. Все три метрики относительные: доля нажатий не зависит от трафика, две другие – рост к такому же периоду до запуска:</p>
+
+    <div class="metrics">
+      <div class="metric-tile">
+        <div class="metric-num">+6.7 <span class="t-en">pp</span><span class="t-ru">п.п.</span></div>
+        <div class="metric-delta"><b>49.7%</b><i>→</i><b>56.4%</b></div>
+        <div class="metric-label t-en">CTA click rate from the entry point</div>
+        <div class="metric-label t-ru">Доля нажатий на кнопку в точке входа</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">+71.9%</div>
+        <div class="metric-delta"><span class="t-en">Aug–Sep</span><span class="t-ru">авг.–сент.</span><i>→</i><span class="t-en">Nov–Dec 2025</span><span class="t-ru">нояб.–дек. 2025</span></div>
+        <div class="metric-label t-en">Users clicking the main CTA</div>
+        <div class="metric-label t-ru">Рост числа людей, нажавших главную кнопку</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">+6.9%</div>
+        <div class="metric-delta"><span class="t-en">Aug–Sep</span><span class="t-ru">авг.–сент.</span><i>→</i><span class="t-en">Nov–Dec 2025</span><span class="t-ru">нояб.–дек. 2025</span></div>
+        <div class="metric-label t-en">Completed verifications</div>
+        <div class="metric-label t-ru">Рост завершённых верификаций</div>
+      </div>
+    </div>
+
+    <div class="tradeoff">
+      <p class="tradeoff-label t-en">Trade-off</p>
+      <p class="tradeoff-label t-ru">Компромисс</p>
+      <p class="t-en">Click-to-completion conversion dropped from 73% to 45% – expected when the top of the funnel widens this much. The new entry points reached users who had never seen a verification prompt before. The metric that matters grew: more verified users in absolute numbers. It also moved the bottleneck: the entry points now do their job, so the next work is everything that happens after the click</p>
+      <p class="t-ru">Конверсия из нажатия в завершённую верификацию упала с 73% до 45% – это ожидаемо, когда верх воронки так расширяется. Новые точки входа дошли до людей, которые раньше вообще не видели просьбы пройти верификацию. Главная метрика выросла: верифицированных пользователей стало больше. И узкое место сместилось: точки входа свою работу делают, дальше – всё, что происходит после нажатия</p>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section">
+    <p class="section-label t-en">Reflection</p>
+    <p class="section-label t-ru">Рефлексия</p>
+    <h2>
+      <span class="t-en">What I learned, and what's next</span>
+      <span class="t-ru">Что я поняла и что дальше</span>
+    </h2>
+    <p class="t-en">The project confirmed something I now apply to every flow: <strong>mapping the problem space thoroughly before designing saves more time than it costs</strong>. The table of scenarios felt like overhead early on – it ended up preventing a lot of back-and-forth in review</p>
+    <p class="t-ru">Проект подтвердил то, что я теперь делаю в каждом сценарии: <strong>подробная карта проблемы до проектирования экономит больше времени, чем отнимает</strong>. Таблица сценариев сначала казалась лишней работой – в итоге она избавила от многих кругов правок на ревью</p>
+    <p class="t-en">Not every exception could be designed away. The two exceptions from decision 01 still send users out of the flow because of technical constraints we couldn't remove yet. That friction is real. But each exception now explains why it happens and gives one clear next step. <strong>It's already much better than it was, and it moves in the right direction</strong></p>
+    <p class="t-ru">Не все исключения удалось убрать дизайном. Два исключения из решения 01 по-прежнему уводят человека из сценария – пока не пускают технические ограничения. Это неудобство никуда не делось. Но теперь каждое исключение объясняет, почему так, и даёт один понятный следующий шаг. <strong>Это уже намного лучше, чем было, и мы движемся в нужную сторону</strong></p>
+    <p class="t-en">If I had more time, I'd have pushed harder on user testing the KYC Refresh nudges specifically – we had qualitative signal that urgency was landing correctly, but quantitative validation came only after shipping</p>
+    <p class="t-ru">Будь у меня больше времени, я бы добилась отдельного теста напоминаний KYC Refresh. Качественные сигналы говорили, что срочность считывается правильно, но цифрами это подтвердилось только после запуска</p>
+    <p class="t-en"><strong>What's next.</strong> Extra documents are still confirmed by hand through support – that is being automated now. The longer goal is to bring the whole verification into the app: upload documents, see their status and fix problems there, without leaving for the bot at all</p>
+    <p class="t-ru"><strong>Что дальше.</strong> Дополнительные документы пока подтверждают вручную через поддержку – сейчас это автоматизируем. Цель на будущее – перенести верификацию целиком в приложение: загружать документы, видеть статус и решать проблемы там же, вообще без бота</p>
+  </section>
+
+  <!-- NEXT -->
+  <section class="next-case">
+    <p class="next-label t-en">Next case</p>
+    <p class="next-label t-ru">Следующий кейс</p>
+    <a href="case-profee-cards.html" class="next-link">
+      <span class="t-en">Cards – rebuilding a product area</span>
+      <span class="t-ru">Карты – пересборка продуктового раздела</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+</div>
+<script src="case.js"></script>
+<script src="scroll-reveal.js" defer></script>
+<script src="kyc-map.js" defer></script>

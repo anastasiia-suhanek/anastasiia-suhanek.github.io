@@ -30,7 +30,8 @@
     eyebrow.appendChild(meta);
     eyebrow.insertAdjacentHTML('beforeend',
       '<a class="eyebrow-jump" href="#' + section.id + '">' +
-      '<span class="t-en">Jump to results ↓</span><span class="t-ru">К результатам ↓</span></a>');
+      '<span class="t-en"><span class="jump-long">Jump to results</span><span class="jump-short">Results</span> ↓</span>' +
+      '<span class="t-ru"><span class="jump-long">К результатам</span><span class="jump-short">Итоги</span> ↓</span></a>');
   }
 
   function toc() {

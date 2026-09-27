@@ -730,7 +730,8 @@ html.swiss .work-cover,
 html.swiss .work-card--c2 .work-cover,
 html.swiss .work-card--c3 .work-cover { background: var(--bg-deep); }
 /* Metric cover echoes the deep violet of the app's top-up header */
-html.swiss .hero-metric { background: #2A1D6E; }
+html.swiss .hero-metric { background: #2A1D6E; transition: background 0.25s ease; }
+html.swiss .hero-metric:hover { background: #372B87; }
 html.swiss .hero-metric-foot { border-top-color: rgba(255,255,255,0.3); }
 
 /* Tighter gap between sections: ~128px at a seam instead of ~224 */

@@ -48,50 +48,9 @@
   // Set immediately to avoid flash of wrong language
   document.documentElement.lang = detect();
 
-  // ?intro forces the picker, e.g. to preview it after a language is already saved
-  var firstVisit = !getSaved() || /[?&]intro\b/.test(location.search);
-
-  // First visit: a full-screen language picker. The browser language is pre-highlighted.
-  function showPicker() {
-    var guess = detect();
-    var el = document.createElement('div');
-    el.className = 'lang-splash';
-    el.setAttribute('role', 'dialog');
-    el.setAttribute('aria-label', 'Choose language');
-    el.innerHTML =
-      '<div class="lang-splash-inner">' +
-        '<p class="lang-splash-name">Anastasiia Sukhanek</p>' +
-        '<p class="lang-splash-q"><span lang="ru">На каком языке хотите со мной познакомиться?</span><span lang="en">Which language would you like to meet me in?</span></p>' +
-        '<div class="lang-splash-opts">' +
-          '<button type="button" data-lang="en"' + (guess === 'en' ? ' class="is-guess"' : '') + '><span class="lang-splash-big">English</span></button>' +
-          '<button type="button" data-lang="ru"' + (guess === 'ru' ? ' class="is-guess"' : '') + '><span class="lang-splash-big">Русский</span></button>' +
-        '</div>' +
-      '</div>';
-    document.body.appendChild(el);
-    document.documentElement.classList.add('has-splash');
-    requestAnimationFrame(function () { el.classList.add('is-in'); });
-    function choose(lang) {
-      apply(lang);
-      // The first page after the splash is the home page, not About.
-      // Case links still open the case: someone was sent there on purpose
-      if (/about\.html$/.test(location.pathname)) { location.replace('index.html' + location.search); return; }
-      el.classList.remove('is-in');
-      el.classList.add('is-out');
-      document.documentElement.classList.remove('has-splash');
-      setTimeout(function () { el.remove(); }, 450);
-    }
-    el.addEventListener('click', function (e) {
-      var b = e.target.closest('button[data-lang]'); if (b) choose(b.getAttribute('data-lang'));
-    });
-    document.addEventListener('keydown', function onKey(e) {
-      if (!document.body.contains(el)) return document.removeEventListener('keydown', onKey);
-      if (e.key === 'Escape' || e.key === 'Enter') choose(guess);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
-    if (firstVisit) { document.documentElement.lang = detect(); showPicker(); }
-    else apply(detect());
+    // No language picker: the browser language decides, the EN / RU toggle is always in the nav
+    apply(detect());
     var hasSwitcher = false;
     try { hasSwitcher = false; } catch (e) {}
     if (hasSwitcher) {

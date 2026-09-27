@@ -970,8 +970,8 @@ html.swiss .hero .hero-desc { max-width: 680px; }
 html.swiss .hero .hero-eyebrow { margin-bottom: var(--s3); }
 html.swiss .hero h1 { margin-bottom: var(--s4); }
 html.swiss .hero .hero-desc { margin-bottom: 0; }
-html.swiss .case-facts { margin-top: var(--s5); padding-top: var(--s4); row-gap: var(--s4); }
-html.swiss .case-facts dt { margin-bottom: var(--s1); line-height: 1.3; }
+html.swiss .case-facts { margin-top: var(--s5); padding-top: var(--s4); row-gap: var(--s3); }
+html.swiss .case-facts dt { margin-bottom: 0; line-height: 1.3; }
 html.swiss .case-facts dd { line-height: 1.45; }
 html.swiss .case-facts-wide { margin-top: 0; padding-top: var(--s4); }
 html.swiss section.hero:has(h1) { padding-bottom: var(--s6); }

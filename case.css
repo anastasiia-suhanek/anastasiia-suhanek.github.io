@@ -55,13 +55,19 @@
   max-width: 620px;
   margin-bottom: var(--space-8);
 }
+/* Case facts: a ledger — label column + value column, ordered by importance */
 .case-facts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
   margin-top: var(--space-8);
   padding-top: var(--space-6);
   border-top: 1px solid var(--border);
+}
+.case-facts > div {
+  display: grid;
+  grid-template-columns: 160px minmax(0, var(--max-w-content));
+  gap: var(--space-6);
+  align-items: baseline;
 }
 .case-facts dt {
   font-size: var(--fs-xs);
@@ -69,7 +75,6 @@
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: var(--space-1);
 }
 .case-facts dd {
   font-size: var(--fs-sm);
@@ -77,15 +82,8 @@
   line-height: var(--lh-snug);
 }
 .case-facts .fact-line + .fact-line::before { content: " · "; color: var(--text-dim); }
-.case-facts-wide {
-  grid-column: 1 / -1;
-  margin-top: var(--space-2);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border);
-}
-.case-facts-wide dd { max-width: var(--max-w-content); }
 @media (max-width: 580px) {
-  .case-facts { grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-4); }
+  .case-facts > div { grid-template-columns: 1fr; gap: var(--space-1); }
 }
 .meta-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 /* Hero outcomes: a quiet ledger row — no boxes, hairline dividers, one big number per column */

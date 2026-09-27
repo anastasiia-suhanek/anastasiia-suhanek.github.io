@@ -353,8 +353,8 @@ body {
         <div class="scope-icon">04</div>
         <div class="scope-title t-en">Top up</div>
         <div class="scope-title t-ru">Пополнение</div>
-        <div class="scope-desc t-en">Three payment methods: Profee account, external card, bank transfer – and a low-balance state</div>
-        <div class="scope-desc t-ru">Три способа оплаты: счёт Profee, внешняя карта, банковский перевод – и состояние «мало денег»</div>
+        <div class="scope-desc t-en">Every way to pay: Profee wallet, card, Google Pay, Apple Pay, bank transfer – and a low-balance state</div>
+        <div class="scope-desc t-ru">Все способы оплаты: кошелёк Profee, карта, Google Pay, Apple Pay, банковский перевод – и состояние «мало денег»</div>
       </div>
       <div class="scope-item">
         <div class="scope-icon">05</div>
@@ -505,8 +505,8 @@ window.protoScripts = {
     <p class="t-en"><strong>The dark gradient account view.</strong> The card's account and top-up screens needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
     <p class="t-ru"><strong>Тёмный градиент счёта.</strong> Счёт карты и пополнение должны отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
 
-    <p class="t-en"><strong>Fee transparency in top-up.</strong> Three payment methods, three fee structures: 0 EUR via Profee account, 2 EUR via external card, zero-fee via bank transfer but with a delay. The fee is visible at the method selection step – before the user commits – so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
-    <p class="t-ru"><strong>Комиссия видна сразу.</strong> Три способа пополнения – три разные комиссии: 0 EUR со счёта Profee, 2 EUR с внешней карты, без комиссии банковским переводом, но не мгновенно. Комиссию видно уже при выборе способа, до подтверждения, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>
+    <p class="t-en"><strong>Fee transparency in top-up.</strong> Every way to pay has its own fee and speed – from the Profee wallet and a card to Google Pay, Apple Pay and a bank transfer. Both are shown as tags right in the list of methods, before the user chooses, so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
+    <p class="t-ru"><strong>Комиссия видна сразу.</strong> У каждого способа оплаты своя комиссия и скорость – от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое видно метками прямо в списке способов, до выбора, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>
 
     <p class="t-en"><strong>Freezing without fear.</strong> A freeze is only useful if it feels reversible – if people aren't sure they'll get access back, they won't tap it. So the freeze is designed as a story with no dead ends: a toast and a frosted card while it is frozen, an explanation one tap away behind the ?, and a failure state with a way out</p>
     <p class="t-ru"><strong>Заморозка без страха.</strong> Заморозка полезна, только если понятно, что её можно отменить: если человек не уверен, что вернёт доступ к деньгам, он не нажмёт. Поэтому в заморозке нет тупиков: уведомление и заиндевевшая карта, объяснение в одно касание за значком «?» и экран ошибки, из которого всегда есть выход</p>
@@ -586,21 +586,15 @@ window.protoScripts = {
     <p class="t-ru">Новая вкладка «Карты» вышла 6 марта 2026 года на iOS и Android. Если сравнить апрель, первый полный месяц, с августом, данные Amplitude говорят сразу о двух вещах</p>
     <p class="t-en"><strong>The product area is alive.</strong> Card issuance settled into a steady monthly rate after the launch spike, and the share of active senders who open the Cards tab in a month doubled</p>
     <p class="t-ru"><strong>Раздел живёт.</strong> После всплеска на запуске карты выпускают в ровном темпе, а доля активных отправителей, которые заходят во вкладку за месяц, выросла вдвое</p>
-    <p class="t-en"><strong>The card is not yet the reason to keep money.</strong> The share of senders who top up the wallet grew seven times – through Google Pay, Apple Pay and BLIK, not through the card. Fewer than 5% of them hold a card</p>
-    <p class="t-ru"><strong>Держать деньги из-за карты пока не стали.</strong> Доля отправителей, которые пополняют кошелёк, выросла в семь раз – через Google Pay, Apple Pay и BLIK, а не через карту. Карта есть меньше чем у 5% из них</p>
+    <p class="t-en"><strong>The card is not yet the reason to keep money.</strong> The share of senders who top up the wallet grew seven times, from 1.5% to 10.5% – through Google Pay, Apple Pay and BLIK, top-up methods that weren't part of this project. Fewer than 5% of them hold a card</p>
+    <p class="t-ru"><strong>Держать деньги из-за карты пока не стали.</strong> Доля отправителей, которые пополняют кошелёк, выросла в семь раз, с 1,5% до 10,5% – через Google Pay, Apple Pay и BLIK, а эти способы пополнения в мой проект не входили. Карта есть меньше чем у 5% из них</p>
 
-    <div class="metrics">
+    <div class="metrics metrics--2">
       <div class="metric-tile">
         <div class="metric-num">×2</div>
         <div class="metric-delta"><b>3.9%</b><i>→</i><b>8%</b></div>
         <div class="metric-label t-en">Active senders who open<br>the Cards tab in a month,<br>April → August</div>
         <div class="metric-label t-ru">Доля активных отправителей,<br>которые заходят во вкладку<br>за месяц, апрель → август</div>
-      </div>
-      <div class="metric-tile">
-        <div class="metric-num">×7</div>
-        <div class="metric-delta"><b>1.5%</b><i>→</i><b>10.5%</b></div>
-        <div class="metric-label t-en">Active senders who topped up<br>the wallet in a month, April →<br>August – without the card</div>
-        <div class="metric-label t-ru">Доля активных отправителей,<br>которые пополнили кошелёк<br>за месяц, апрель → август –<br>без участия карты</div>
       </div>
       <div class="metric-tile">
         <div class="metric-num">&lt;5%</div>

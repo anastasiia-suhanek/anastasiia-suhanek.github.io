@@ -121,6 +121,7 @@
   padding-top: var(--space-6);
   border-top: 1px solid var(--border);
 }
+.metrics--2 { grid-template-columns: repeat(2, 1fr); }
 .metric-tile {
   min-width: 0;
   padding: var(--space-2) var(--space-6) var(--space-2) var(--space-6);

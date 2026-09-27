@@ -200,7 +200,7 @@ body {
     <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app: cards as tiles in a carousel, with nothing about the money behind them. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
     <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения: карты плитками в карусели, и ни слова о деньгах за ними. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
     <dl class="case-facts">
-      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, an unmoderated usability test, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, немодерируемый юзабилити-тест, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
       <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
       <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd>2025–2026</dd></div>
       <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">iOS and Android</span><span class="t-ru">iOS и Android</span></dd></div>
@@ -227,9 +227,9 @@ body {
     <p class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up – and a Cards tab inherited from an older version of the app: a carousel of cards, four buttons, an empty history, and nothing that showed which account a card spends from</p>
     <p class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история и ни слова о том, с какого счёта карта тратит деньги</p>
     <p class="t-en"><strong>The constraint.</strong> Accounts existed in Profee long before this project, and the backend ties them to cards one way: every card gets its own EUR account when it is issued, one account per card. A card can't spend from an account the person already has, and one account can't hold several cards. The design had to make that clear, not hide it</p>
-    <p class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the decision – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
+    <p class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the decision to build the card – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
     <p class="t-ru"><strong>Ограничение.</strong> Счета в Profee появились задолго до этого проекта, и бэкенд связывает их с картами только в одну сторону: при выпуске у каждой карты открывается свой счёт в евро, один счёт на одну карту. Тратить с уже существующего счёта карта не может, и несколько карт на одном счёте тоже нельзя. Дизайн должен был сделать это понятным, а не спрятать</p>
-    <p class="t-ru">У конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Исследований за решением не стояло – только отставание от конкурентов и ставка: удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
+    <p class="t-ru">У конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Исследований за решением делать карту не стояло – только отставание от конкурентов и ставка: удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
 
     <p class="t-en"><strong>What the design had to do</strong></p>
     <p class="t-ru"><strong>Что должен был сделать дизайн</strong></p>
@@ -538,6 +538,36 @@ window.protoScripts = {
       <p class="t-en">Add to Apple Wallet was the main button in the card-first versions. Mid-project it turned out that adding the card to Apple Wallet straight from the app needed work too heavy to fit the deadline. The button went, and the shipped version has a How to add to wallet guide instead</p>
       <p class="t-ru">В версиях «сначала карта» главной кнопкой было «Добавить в Apple Wallet». По ходу работы выяснилось, что добавление карты в Apple Wallet прямо из приложения требует слишком тяжёлой доработки и не влезает в сроки. Кнопку убрали, а в финале вместо неё инструкция «Как добавить в Wallet»</p>
     </div>
+
+    <div class="screen-group-head">
+      <div>
+        <h3><span class="t-en">Tested with people</span><span class="t-ru">Проверили на людях</span></h3>
+        <p class="t-en">November 2025, an unmoderated test in Wynde on the in-between version: 5 paid respondents from the Wynde panel and 8 colleagues, three tasks in the Figma prototype</p>
+        <p class="t-ru">Ноябрь 2025, немодерируемый тест в Wynde на промежуточной версии: 5 платных респондентов из панели Wynde и 8 коллег, три задачи в прототипе Figma</p>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="metric-tile">
+        <div class="metric-num">5 / 5</div>
+        <div class="metric-delta"><span class="t-en">median 28 s</span><span class="t-ru">медиана 28 с</span></div>
+        <div class="metric-label t-en">Got the card and topped it up</div>
+        <div class="metric-label t-ru">Выпустили карту и пополнили её</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">5 / 5</div>
+        <div class="metric-delta"><span class="t-en">median 7 s</span><span class="t-ru">медиана 7 с</span></div>
+        <div class="metric-label t-en">Sent money from the card account</div>
+        <div class="metric-label t-ru">Отправили деньги со счёта карты</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">5 / 5</div>
+        <div class="metric-delta"><span class="t-en">median 11 s</span><span class="t-ru">медиана 11 с</span></div>
+        <div class="metric-label t-en">Froze the card</div>
+        <div class="metric-label t-ru">Заморозили карту</div>
+      </div>
+    </div>
+    <p class="t-en">The numbers are from the panel group. Five people is a small sample, so the comments mattered more than the times: one person had to search for the freeze and missed the step where you pick the recipient, and another asked for a separate section for the card. In the shipped version the card has its own tab, and Freeze is the first action on it</p>
+    <p class="t-ru">Цифры – по группе из панели. Пять человек – маленькая выборка, поэтому комментарии важнее времени: один участник искал заморозку и пропустил шаг выбора получателя, другой попросил отдельный раздел для карты. В финальной версии у карты своя вкладка, а «Заморозить» – первое действие на ней</p>
 
     <div class="screen-group-head">
       <div>

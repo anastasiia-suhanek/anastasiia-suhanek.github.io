@@ -1143,3 +1143,41 @@ html.swiss .belief-note { font-size: var(--t-body); line-height: var(--lh-read);
   html.swiss .belief-item { grid-template-columns: 1fr; row-gap: var(--s3); }
   html.swiss .belief-num { font-size: 32px; }
 }
+
+/* ━━ LINES — one system ━━
+   1. A full rule marks a section boundary: hero bottom, section labels, about sections, contact, footer, next case.
+   2. Inside lists and tables, rules only sit BETWEEN items (and under a table header) — never around the list.
+   3. Everything else groups by space: case facts, outcome/metric rows, media bands, callouts */
+html.swiss .case-facts,
+html.swiss .metrics,
+html.swiss .ledger,
+html.swiss .scope-grid,
+html.swiss .work-grid,
+html.swiss .contact-links { border-top: 0; }
+html.swiss .case-facts { padding-top: 0; }
+html.swiss .ledger { padding-top: 0; }
+
+html.swiss .outcome-item,
+html.swiss .metric-tile { border-left: 0; border-top: 0; }
+
+html.swiss .phone-scene,
+html.swiss .video-demo,
+html.swiss .phone-hero { border-top: 0; border-bottom: 0; }
+
+html.swiss .tradeoff { border-left: 0; }
+
+/* lists ruled from below: drop the last rule */
+html.swiss .work-card:last-child,
+html.swiss .contact-link:last-child,
+html.swiss .core-item:last-child,
+html.swiss .mm-finding:last-child,
+html.swiss .ledger-row:last-child,
+html.swiss .scope-item:last-child,
+html.swiss .status-table tr:last-child,
+html.swiss .status-table tr:last-child td { border-bottom: 0; }
+
+/* lists ruled from above: drop the first rule */
+html.swiss .core-item:first-child,
+html.swiss .belief-item:first-child,
+html.swiss .decision:first-child,
+html.swiss .principle:nth-child(-n+2) { border-top: 0; }

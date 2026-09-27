@@ -129,43 +129,6 @@ body {
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
-/* PRINCIPLE CARDS */
-.principles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-  margin-block: var(--space-7);
-}
-
-.principle {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: var(--space-5) var(--space-5);
-}
-
-.principle-num {
-  font-family: var(--f-display);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-semibold);
-  color: var(--accent);
-  opacity: 0.5;
-  margin-bottom: var(--space-2);
-}
-
-.principle-title {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  color: var(--text);
-  margin-bottom: var(--space-2);
-}
-
-.principle-desc {
-  font-size: var(--fs-md);
-  color: var(--text-mid);
-  line-height: var(--lh-normal);
-}
-
 /* WEB SECTION */
 
 /* TODO */
@@ -177,7 +140,6 @@ body {
   .container, .container-wide { padding-inline: var(--gutter-sm); }
       .split { grid-template-columns: 1fr; }
   .split-phone { display: none; }
-  .principles { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 580px) {
@@ -295,34 +257,42 @@ body {
     <p class="t-en">I split these into two tabs: <strong>Updates</strong> and <strong>Details</strong>. Updates is the live story of the transfer. Details is the transaction record. Both tabs are visible at all times – no status is hidden behind a tap</p>
     <p class="t-ru">Я развела их по двум вкладкам: <strong>«Обновления»</strong> и <strong>«Детали»</strong>. «Обновления» – живая история перевода, «Детали» – данные операции. Обе вкладки всегда на виду, ни один статус не спрятан</p>
 
-    <div class="principles">
-      <div class="principle">
-        <div class="principle-num">01</div>
-        <div class="principle-title t-en">Updates tab – the story</div>
-        <div class="principle-title t-ru">Вкладка «Обновления» – история</div>
-        <div class="principle-desc t-en">A timestamped timeline of what happened and when. Steps completed are checked green; the current state is highlighted; future steps are shown greyed out so users know what's coming</div>
-        <div class="principle-desc t-ru">Таймлайн: что и когда произошло. Пройденные шаги отмечены зелёным, текущий выделен, будущие – серые, чтобы было понятно, что впереди</div>
+    <div class="decisions">
+      <div class="decision">
+        <span class="decision-num">01</span>
+        <div>
+          <h3 class="t-en">Updates tab – the story</h3>
+          <h3 class="t-ru">Вкладка «Обновления» – история</h3>
+          <p class="t-en">A timestamped timeline of what happened and when. Steps completed are checked green; the current state is highlighted; future steps are shown greyed out so users know what's coming</p>
+          <p class="t-ru">Таймлайн: что и когда произошло. Пройденные шаги отмечены зелёным, текущий выделен, будущие – серые, чтобы было понятно, что впереди</p>
+        </div>
       </div>
-      <div class="principle">
-        <div class="principle-num">02</div>
-        <div class="principle-title t-en">Details tab – the record</div>
-        <div class="principle-title t-ru">Вкладка «Детали» – данные</div>
-        <div class="principle-desc t-en">Transaction number, recipient, fee, payment method – all in one place. Status is surfaced at the top with a brief contextual explanation. CTAs appear only when the user can actually act</div>
-        <div class="principle-desc t-ru">Номер операции, получатель, комиссия, способ оплаты – всё в одном месте. Сверху статус и короткое объяснение. Кнопки появляются, только когда пользователь действительно может что-то сделать</div>
+      <div class="decision">
+        <span class="decision-num">02</span>
+        <div>
+          <h3 class="t-en">Details tab – the record</h3>
+          <h3 class="t-ru">Вкладка «Детали» – данные</h3>
+          <p class="t-en">Transaction number, recipient, fee, payment method – all in one place. Status is surfaced at the top with a brief contextual explanation. CTAs appear only when the user can actually act</p>
+          <p class="t-ru">Номер операции, получатель, комиссия, способ оплаты – всё в одном месте. Сверху статус и короткое объяснение. Кнопки появляются, только когда пользователь действительно может что-то сделать</p>
+        </div>
       </div>
-      <div class="principle">
-        <div class="principle-num">03</div>
-        <div class="principle-title t-en">Action cards in the timeline</div>
-        <div class="principle-title t-ru">Карточки действий прямо в таймлайне</div>
-        <div class="principle-desc t-en">When a transfer needs user input mid-flow (Blik code, additional questions for compliance), an action card appears inline in the Updates timeline – not a separate screen, not an email</div>
-        <div class="principle-desc t-ru">Если для перевода нужно что-то от пользователя – код Blik или ответы на вопросы комплаенса, – карточка появляется прямо в таймлайне, а не на отдельном экране и не в письме</div>
+      <div class="decision">
+        <span class="decision-num">03</span>
+        <div>
+          <h3 class="t-en">Action cards in the timeline</h3>
+          <h3 class="t-ru">Карточки действий прямо в таймлайне</h3>
+          <p class="t-en">When a transfer needs user input mid-flow (Blik code, additional questions for compliance), an action card appears inline in the Updates timeline – not a separate screen, not an email</p>
+          <p class="t-ru">Если для перевода нужно что-то от пользователя – код Blik или ответы на вопросы комплаенса, – карточка появляется прямо в таймлайне, а не на отдельном экране и не в письме</p>
+        </div>
       </div>
-      <div class="principle">
-        <div class="principle-num">04</div>
-        <div class="principle-title t-en">Different copy for every state</div>
-        <div class="principle-title t-ru">Разные тексты для каждого статуса</div>
-        <div class="principle-desc t-en">Each status has its own headline, its own explanation, and its own CTA. "See why the delay" is different from "See why it failed" – both inform without alarming</div>
-        <div class="principle-desc t-ru">У каждого статуса свой заголовок, своё объяснение и своя кнопка. «Почему задержка» – это не «Почему не прошёл»: обе объясняют, но не пугают</div>
+      <div class="decision">
+        <span class="decision-num">04</span>
+        <div>
+          <h3 class="t-en">Different copy for every state</h3>
+          <h3 class="t-ru">Разные тексты для каждого статуса</h3>
+          <p class="t-en">Each status has its own headline, its own explanation, and its own CTA. "See why the delay" is different from "See why it failed" – both inform without alarming</p>
+          <p class="t-ru">У каждого статуса свой заголовок, своё объяснение и своя кнопка. «Почему задержка» – это не «Почему не прошёл»: обе объясняют, но не пугают</p>
+        </div>
       </div>
     </div>
   </section>

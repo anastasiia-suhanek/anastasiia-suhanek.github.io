@@ -69,47 +69,10 @@ body {
 /* ── INSIGHT ── */
 
 /* ── STEP LIST ── */
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  margin-block: var(--space-7);
-}
 
-.step {
-  display: flex;
-  gap: var(--space-4);
-  align-items: flex-start;
-}
 
-.step-num {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  color: var(--accent);
-  margin-top: 0;
-}
 
-.step-body strong {
-  display: block;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  color: var(--text);
-  margin-bottom: var(--space-1);
-}
 
-.step-body span {
-  font-size: var(--fs-md);
-  color: var(--text-mid);
-}
 
 /* ── SCENARIOS TABLE ── */
 
@@ -511,41 +474,41 @@ body {
     <p class="t-en">Before touching a single screen, I built a complete map of all verification states across both platforms. The goal: no scenario should leave a user without a clear next action</p>
     <p class="t-ru">До первого экрана я собрала карту всех состояний верификации на обеих платформах. Цель – чтобы ни в одном сценарии человек не остался без понятного следующего шага</p>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <strong class="t-en">Audit existing entry points</strong>
-          <strong class="t-ru">Аудит существующих точек входа</strong>
-          <span class="t-en">Catalogued every place in app and web where verification could surface – ten scenarios, each with different copy and CTAs</span>
-          <span class="t-ru">Собрала все места в приложении и вебе, где появляется верификация, – вышло десять сценариев с разными текстами и кнопками</span>
+    <div class="decisions">
+      <div class="decision">
+        <span class="decision-num">01</span>
+        <div>
+          <h3 class="t-en">Audit existing entry points</h3>
+          <h3 class="t-ru">Аудит существующих точек входа</h3>
+          <p class="t-en">Catalogued every place in app and web where verification could surface – ten scenarios, each with different copy and CTAs</p>
+          <p class="t-ru">Собрала все места в приложении и вебе, где появляется верификация, – вышло десять сценариев с разными текстами и кнопками</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <strong class="t-en">Define user states for each scenario</strong>
-          <strong class="t-ru">Состояния пользователя в каждом сценарии</strong>
-          <span class="t-en">For every entry point: what does the user know, what are they trying to do, and what's the minimum information needed to unblock them?</span>
-          <span class="t-ru">Для каждой точки входа: что человек уже знает, что пытается сделать и какой минимум информации нужен, чтобы он пошёл дальше?</span>
+      <div class="decision">
+        <span class="decision-num">02</span>
+        <div>
+          <h3 class="t-en">Define user states for each scenario</h3>
+          <h3 class="t-ru">Состояния пользователя в каждом сценарии</h3>
+          <p class="t-en">For every entry point: what does the user know, what are they trying to do, and what's the minimum information needed to unblock them?</p>
+          <p class="t-ru">Для каждой точки входа: что человек уже знает, что пытается сделать и какой минимум информации нужен, чтобы он пошёл дальше?</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <strong class="t-en">Design the decision tree for KYC Refresh</strong>
-          <strong class="t-ru">Дерево решений для KYC Refresh</strong>
-          <span class="t-en">Built a branching flow for the most complex case – already verified users whose documents expire</span>
-          <span class="t-ru">Построила дерево для самого сложного случая – проверенных пользователей, у которых истекают документы</span>
+      <div class="decision">
+        <span class="decision-num">03</span>
+        <div>
+          <h3 class="t-en">Design the decision tree for KYC Refresh</h3>
+          <h3 class="t-ru">Дерево решений для KYC Refresh</h3>
+          <p class="t-en">Built a branching flow for the most complex case – already verified users whose documents expire</p>
+          <p class="t-ru">Построила дерево для самого сложного случая – проверенных пользователей, у которых истекают документы</p>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <strong class="t-en">Systematise the component</strong>
-          <strong class="t-ru">Один компонент на всё</strong>
-          <span class="t-en">Designed one flexible entry point component whose heading, illustration and CTA urgency adapt to the context</span>
-          <span class="t-ru">Собрала гибкий компонент точки входа: заголовок, иллюстрация и срочность кнопки подстраиваются под ситуацию</span>
+      <div class="decision">
+        <span class="decision-num">04</span>
+        <div>
+          <h3 class="t-en">Systematise the component</h3>
+          <h3 class="t-ru">Один компонент на всё</h3>
+          <p class="t-en">Designed one flexible entry point component whose heading, illustration and CTA urgency adapt to the context</p>
+          <p class="t-ru">Собрала гибкий компонент точки входа: заголовок, иллюстрация и срочность кнопки подстраиваются под ситуацию</p>
         </div>
       </div>
     </div>
@@ -634,7 +597,6 @@ body {
 <div class="container">
 
   <div class="screen-group-head">
-    <span class="screen-group-num">01</span>
     <div>
       <h3><span class="t-en">First-time verification</span><span class="t-ru">Первая верификация</span></h3>
       <p class="t-en">From “docs needed” to “we're checking” – the main screen always shows where the user is</p>
@@ -683,7 +645,6 @@ body {
   </div>
 
   <div class="screen-group-head">
-    <span class="screen-group-num">02</span>
     <div>
       <h3><span class="t-en">Mid-transfer: limits & checks</span><span class="t-ru">Во время перевода: лимиты и проверки</span></h3>
       <p class="t-en">Verification surfaces right when the user tries to send. Hard stops only here, always with the reason and one next step</p>
@@ -732,7 +693,6 @@ body {
   </div>
 
   <div class="screen-group-head">
-    <span class="screen-group-num">03</span>
     <div>
       <h3><span class="t-en">KYC Refresh: expiring documents</span><span class="t-ru">KYC Refresh: документы истекают</span></h3>
       <p class="t-en">Previously verified users are nudged before their docs expire – and can't miss it once they have. Two branches: expiring and expired</p>
@@ -763,7 +723,6 @@ body {
   </div>
 
   <div class="screen-group-head">
-    <span class="screen-group-num">04</span>
     <div>
       <h3><span class="t-en">Web: every state has a twin</span><span class="t-ru">Веб: у каждого состояния есть пара</span></h3>
       <!-- TODO: verify – on web the entry CTA reads "Confirm ID" and the failed state shows "Upload failed": is the upload done in the browser, with the bot as fallback? -->

@@ -392,9 +392,10 @@ html.swiss .ledger-cell.cta .arrow { color: var(--accent); }
 html.swiss .ledger-row.header { color: var(--text-dim); }
 html.swiss .ledger { border-top: 1px solid var(--text); padding-top: var(--space-3); }
 
-/* Numbered sections: 01 Context, 02 The problem… */
+/* Label roles: numbered black = chapter, accent = sub-label inside a chapter.
+   The sub role is the explicit .section-label--sub – never a side effect of nesting */
 html.swiss body { counter-reset: swiss-sec; }
-html.swiss .section:has(> .section-label) { counter-increment: swiss-sec; }
+html.swiss .section:has(> .section-label:not(.section-label--sub)) { counter-increment: swiss-sec; }
 html.swiss .section > .section-label {
   color: var(--text);
   letter-spacing: 0.08em;
@@ -409,6 +410,13 @@ html.swiss .section > .section-label::before {
   content: counter(swiss-sec, decimal-leading-zero);
   color: var(--accent);
 }
+html.swiss .section-label--sub,
+html.swiss .section > .section-label--sub {
+  color: var(--accent);
+  border-top: 0;
+  padding-top: 0;
+}
+html.swiss .section > .section-label--sub::before { content: none; }
 html.swiss .section { border-bottom: 0; }
 html.swiss .section h2 {
   font-size: clamp(30px, 3.6vw, 48px);
@@ -1113,7 +1121,8 @@ html.swiss .phone-caption span { display: block; line-height: 1.5; }
 
 /* ── Next case ── */
 html.swiss .next-case { padding-block: calc(var(--s7) / 2) var(--s7); }
-html.swiss .next-label { margin-bottom: var(--s2); }
+/* Accent, same as sub-labels: "not a chapter", and it sits above a link */
+html.swiss .next-label { margin-bottom: var(--s2); color: var(--accent); }
 
 /* ── Home ── */
 html.swiss .hero-eyebrow { margin-bottom: var(--s3); }

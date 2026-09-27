@@ -274,6 +274,7 @@ html.swiss .hero-metric:hover .hero-metric-num { transform: translate(-50%, -50%
 html.swiss .hero-metric-top,
 html.swiss .hero-metric-foot { position: relative; z-index: 1; color: #fff; }
 html.swiss .hero-metric-foot { border-top: 1px solid rgba(255,255,255,0.5); padding-top: var(--space-4); }
+html.swiss .hero-metric-foot p { text-wrap: balance; }
 html.swiss .hero-metric-foot p,
 html.swiss .hero-metric-top span { color: #fff; }
 
@@ -1201,14 +1202,12 @@ html.swiss .ledger { padding-top: 0; }
 
 html.swiss .outcome-item,
 html.swiss .metric-tile { border-left: 0; border-top: 0; }
-/* No dividers: the row spans the container – first item on the left edge, last on the right, equal gaps between */
+/* No dividers: the row spans the container in equal columns, labels wrap inside their own column */
 html.swiss .outcome-strip .container,
 html.swiss .metrics { column-gap: var(--s5); }
 @media (min-width: 901px) {
   html.swiss .outcome-strip .container,
-  html.swiss .metrics { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: space-between; }
-  html.swiss .outcome-label,
-  html.swiss .metric-label { white-space: nowrap; }
+  html.swiss .metrics { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
 }
 html.swiss .outcome-item,
 html.swiss .metric-tile { padding-inline: 0; }

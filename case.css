@@ -81,7 +81,6 @@
   color: var(--text);
   line-height: var(--lh-snug);
 }
-.case-facts .fact-line + .fact-line::before { content: " · "; color: var(--text-dim); }
 @media (max-width: 580px) {
   .case-facts > div { grid-template-columns: 1fr; gap: var(--space-1); }
 }

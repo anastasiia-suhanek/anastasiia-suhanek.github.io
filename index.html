@@ -12,6 +12,10 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+  // Hero variant B preview: ?hero=live shows the live-product hero, nothing is persisted
+  if (/[?&]hero=live/.test(location.search)) document.documentElement.classList.add('hero-live');
+</script>
 <script src="lang.js"></script>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="scroll-reveal.css">
@@ -219,6 +223,51 @@ body {
   transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
 }
 .hero-metric:hover .hero-metric-arrow { transform: translateX(4px); }
+
+/* ── Hero variant B: live product instead of the poster (?hero=live) ── */
+.hero-proto { display: none; }
+html.hero-live .hero-metric { display: none; }
+html.hero-live .hero-proto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  justify-self: center;
+  text-decoration: none;
+}
+.hero-proto-phone {
+  display: block;
+  position: relative;
+  width: 272px;
+  padding: 9px;
+  border-radius: 42px;
+  background: #0B0B0B;
+  box-shadow: 0 24px 64px rgba(11, 11, 11, 0.16);
+}
+.hero-proto-phone video { display: block; width: 100%; height: auto; border-radius: 34px; }
+.hero-proto-island {
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  width: 78px; height: 20px;
+  border-radius: 11px;
+  background: #000;
+  z-index: 1;
+}
+.hero-proto-chip {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-mid, #3E3E3E);
+}
+.hero-proto-chip strong { font-weight: 600; color: var(--text, #0B0B0B); }
+.hero-proto-chip .hero-metric-arrow { color: var(--text, #0B0B0B); font-size: 15px; }
+.hero-proto:hover .hero-metric-arrow { transform: translateX(4px); }
+@media (max-width: 900px) {
+  html.hero-live .hero-proto { justify-self: start; }
+  .hero-proto-phone { width: 240px; }
+}
 
 /* ── SECTION HEADER ── */
 .section-eyebrow {
@@ -734,6 +783,20 @@ body {
           </p>
           <span class="hero-metric-arrow">→</span>
         </div>
+      </a>
+
+      <!-- Hero variant B (?hero=live): the product itself instead of the poster -->
+      <a href="case-profee-verification.html" class="hero-proto">
+        <span class="hero-proto-phone">
+          <span class="hero-proto-island"></span>
+          <video autoplay loop muted playsinline preload="metadata" poster="videos/verif-success-poster.jpg" width="390" height="846">
+            <source src="videos/verif-success.mp4" type="video/mp4">
+          </video>
+        </span>
+        <span class="hero-proto-chip">
+          <span><span class="t-en">Profee · KYC verification · <strong>59% click through</strong></span><span class="t-ru">Profee · Верификация KYC · <strong>59% нажимают</strong></span></span>
+          <span class="hero-metric-arrow">→</span>
+        </span>
       </a>
     </div>
 

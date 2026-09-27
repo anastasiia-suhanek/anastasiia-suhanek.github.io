@@ -562,17 +562,23 @@ html.swiss .work-card:hover .work-title { color: var(--accent); }
 }
 
 /* Facts, not buttons: chips lose their box and read as a line of metadata */
-html.swiss .hero-chips { gap: 0; }
+/* Each chip carries its separator in a 24px slot to its left; the list clips its own left edge,
+   so the dot of whichever chip starts a line is hidden and a wrap never leaves a dangling "·" */
+html.swiss .hero-chips { gap: 0 24px; overflow: hidden; }
 html.swiss .hero-chip {
   border: 0;
-  padding: 0;
+  padding: 0 0 0 24px;
+  margin-left: -24px;
   font-size: 15px;
   font-weight: 500;
   color: var(--text-mid);
 }
-html.swiss .hero-chips .hero-chip:not(:first-child)::before {
+html.swiss .hero-chips .hero-chip::before {
   content: '·';
-  margin: 0 10px;
+  display: inline-block;
+  width: 24px;
+  margin-left: -24px;
+  text-align: center;
   color: var(--text-dim);
 }
 html.swiss .tag,
@@ -581,7 +587,6 @@ html.swiss .competitor-tag {
   background: var(--bg-alt);
   padding: 5px 9px;
 }
-html.swiss[lang="ru"] .hero-chips .hero-chip.t-ru:nth-child(2)::before { content: none; }
 
 /* Nav right side: quiet text controls instead of two black blocks */
 html.swiss .nav-actions { gap: var(--space-6); }

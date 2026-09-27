@@ -1168,6 +1168,7 @@ html.swiss .metric-tile { padding-inline: 0; }
 html.swiss .outcome-meta { display: block; margin-top: 4px; color: var(--text-dim); }
 html.swiss .outcome-label,
 html.swiss .metric-label { text-wrap: balance; }
+html.swiss .section .metrics { margin-bottom: var(--s5); }
 
 html.swiss .phone-scene,
 html.swiss .video-demo,

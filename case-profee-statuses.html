@@ -130,7 +130,7 @@ body {
 }
 
 /* Filmed clip on the right: dimmed like the Cards hero video */
-.split--video { grid-template-columns: 1fr 280px; align-items: center; }
+.split--video { grid-template-columns: 1fr 360px; gap: var(--space-8); align-items: center; }
 .split-video { border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--border); }
 .split-video video { display: block; width: 100%; height: auto; filter: brightness(0.75) saturate(0.85); }
 
@@ -145,7 +145,7 @@ body {
   .container, .container-wide { padding-inline: var(--gutter-sm); }
       .split { grid-template-columns: 1fr; }
   .split-phone { display: none; }
-  .split-video { max-width: 320px; margin-inline: auto; width: 100%; }
+  .split-video { max-width: 400px; margin-inline: auto; width: 100%; }
 }
 
 @media (max-width: 580px) {

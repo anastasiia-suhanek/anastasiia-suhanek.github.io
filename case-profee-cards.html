@@ -200,7 +200,7 @@ body {
     <p class="hero-desc t-en">Profee already had cards – a tab left over from an older generation of the app: cards as tiles in a carousel, with nothing about the money behind them. The bet: a card that looks and works like a real product will make people keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
     <p class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения: карты плитками в карусели, и ни слова о деньгах за ними. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить ею. Я заново спроектировала весь раздел для iOS и Android</p>
     <dl class="case-facts">
-      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, three top-up iterations, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, три итерации пополнения, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards tab, every iOS and Android flow, the Cards tab and the linked account screen, and the copy with my own Claude-based agents</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор карточных продуктов конкурентов, структура вкладки «Карты», все сценарии iOS и Android, вкладка «Карты» и экран привязанного счёта, тексты – с помощью своих агентов на Claude</span></dd></div>
       <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
       <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd>2025–2026</dd></div>
       <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">iOS and Android</span><span class="t-ru">iOS и Android</span></dd></div>
@@ -230,6 +230,19 @@ body {
     <p class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the decision – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
     <p class="t-ru"><strong>Ограничение.</strong> Счета в Profee появились задолго до этого проекта, и бэкенд связывает их с картами только в одну сторону: при выпуске у каждой карты открывается свой счёт в евро, один счёт на одну карту. Тратить с уже существующего счёта карта не может, и несколько карт на одном счёте тоже нельзя. Дизайн должен был сделать это понятным, а не спрятать</p>
     <p class="t-ru">У конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Исследований за решением не стояло – только отставание от конкурентов и ставка: удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
+
+    <p class="t-en"><strong>What the design had to do</strong></p>
+    <p class="t-ru"><strong>Что должен был сделать дизайн</strong></p>
+    <ol class="goals t-en">
+      <li>Show which account a card spends from – the constraint, made visible</li>
+      <li>Put everything you do with a card on one screen, not a screen per action</li>
+      <li>Show what a top-up costs before the person picks how to pay</li>
+    </ol>
+    <ol class="goals t-ru">
+      <li>Показать, с какого счёта тратит карта, – ограничение, которое видно, а не спрятано</li>
+      <li>Собрать всё, что делают с картой, на одном экране, а не по экрану на действие</li>
+      <li>Показать, сколько стоит пополнение, до того как человек выберет способ</li>
+    </ol>
 
   </section>
 
@@ -550,8 +563,8 @@ window.protoScripts = {
     <div class="screen-group-head">
       <div>
         <h3><span class="t-en">What shipped</span><span class="t-ru">Что вышло</span></h3>
-        <p class="t-en">The card leads in Cards, the balance leads in the account</p>
-        <p class="t-ru">В «Картах» главная карта, в счёте – баланс</p>
+        <p class="t-en">The card leads in Cards, the balance leads in the account. Goals 1 and 2: the linked account sits above the card, and Freeze, Card details and Reissue are on the same screen</p>
+        <p class="t-ru">В «Картах» главная карта, в счёте – баланс. Цели 1 и 2: привязанный счёт – над картой, а «Заморозить», «Данные карты» и «Перевыпустить» – на одном экране</p>
       </div>
     </div>
     <div class="screens-scroll">
@@ -596,8 +609,8 @@ window.protoScripts = {
     <p class="t-en"><strong>The dark gradient account view.</strong> The card's account and top-up screens needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
     <p class="t-ru"><strong>Тёмный градиент счёта.</strong> Счёт карты и пополнение должны отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
 
-    <p class="t-en"><strong>Fee transparency in top-up.</strong> Every way to pay has its own fee and speed – from the Profee wallet and a card to Google Pay, Apple Pay and a bank transfer. Both are shown as tags right in the list of methods, before the user chooses, so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
-    <p class="t-ru"><strong>Комиссия видна сразу.</strong> У каждого способа оплаты своя комиссия и скорость – от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое видно метками прямо в списке способов, до выбора, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>
+    <p class="t-en"><strong>Fee transparency in top-up – goal 3.</strong> Every way to pay has its own fee and speed – from the Profee wallet and a card to Google Pay, Apple Pay and a bank transfer. Both are shown as tags right in the list of methods, before the user chooses, so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
+    <p class="t-ru"><strong>Комиссия видна сразу – цель 3.</strong> У каждого способа оплаты своя комиссия и скорость – от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое видно метками прямо в списке способов, до выбора, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>
 
     <p class="t-en"><strong>Freezing without fear.</strong> A freeze is only useful if it feels reversible – if people aren't sure they'll get access back, they won't tap it. So the freeze is designed as a story with no dead ends: a toast and a frosted card while it is frozen, an explanation one tap away behind the ?, and a failure state with a way out</p>
     <p class="t-ru"><strong>Заморозка без страха.</strong> Заморозка полезна, только если понятно, что её можно отменить: если человек не уверен, что вернёт доступ к деньгам, он не нажмёт. Поэтому в заморозке нет тупиков: уведомление и заиндевевшая карта, объяснение в одно касание за значком «?» и экран ошибки, из которого всегда есть выход</p>
@@ -677,10 +690,10 @@ window.protoScripts = {
     <p class="t-ru">Новая вкладка «Карты» вышла 6 марта 2026 года на iOS и Android. Если сравнить апрель, первый полный месяц, с августом, данные Amplitude говорят сразу о двух вещах</p>
     <p class="t-en"><strong>The product area is alive.</strong> Card issuance settled into a steady monthly rate after the launch spike, and the share of active senders who open the Cards tab in a month doubled</p>
     <p class="t-ru"><strong>Раздел живёт.</strong> После всплеска на запуске карты выпускают в ровном темпе, а доля активных отправителей, которые заходят во вкладку за месяц, выросла вдвое</p>
-    <p class="t-en"><strong>The card is not yet the reason to keep money.</strong> The share of senders who top up the wallet grew seven times, from 1.5% to 10.5% – through Google Pay, Apple Pay and BLIK, top-up methods that weren't part of this project. Fewer than 5% of them hold a card</p>
-    <p class="t-ru"><strong>Держать деньги из-за карты пока не стали.</strong> Доля отправителей, которые пополняют кошелёк, выросла в семь раз, с 1,5% до 10,5% – через Google Pay, Apple Pay и BLIK, а эти способы пополнения в мой проект не входили. Карта есть меньше чем у 5% из них</p>
+    <p class="t-en"><strong>The card is not yet the reason to keep money.</strong> The share of senders who top up the wallet grew seven times, from 1.5% to 10.5% – through Google Pay, Apple Pay and BLIK, top-up methods that weren't part of this project. Fewer than 5% of them hold a card. Card payments themselves aren't visible in Amplitude – they happen at the card processor. The closest signal: 40% of Android card holders open Google Pay from the card within 30 days, most within seconds of issuing it. On iOS, where the Apple Wallet button was cut, there is no such path</p>
+    <p class="t-ru"><strong>Держать деньги из-за карты пока не стали.</strong> Доля отправителей, которые пополняют кошелёк, выросла в семь раз, с 1,5% до 10,5% – через Google Pay, Apple Pay и BLIK, а эти способы пополнения в мой проект не входили. Карта есть меньше чем у 5% из них. Сами оплаты картой в Amplitude не видны – они проходят у процессинга. Ближайший сигнал: 40% владельцев карты на Android открывают Google Pay прямо из карты в первые 30 дней, большинство – через несколько секунд после выпуска. На iOS, где кнопку Apple Wallet пришлось убрать, такого пути нет</p>
 
-    <div class="metrics metrics--2">
+    <div class="metrics">
       <div class="metric-tile">
         <div class="metric-num">×2</div>
         <div class="metric-delta"><b>3.9%</b><i>→</i><b>8%</b></div>
@@ -692,6 +705,12 @@ window.protoScripts = {
         <div class="metric-delta"><span class="t-en">August 2026</span><span class="t-ru">август 2026</span></div>
         <div class="metric-label t-en">People topping up the wallet<br>who hold a card</div>
         <div class="metric-label t-ru">Доля владельцев карты<br>среди тех, кто пополняет<br>кошелёк</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">40%</div>
+        <div class="metric-delta"><span class="t-en">Android · 30 days</span><span class="t-ru">Android · 30 дней</span></div>
+        <div class="metric-label t-en">Card holders who open Google Pay from the card</div>
+        <div class="metric-label t-ru">Владельцев карты открывают Google Pay прямо из карты</div>
       </div>
     </div>
 
@@ -711,10 +730,10 @@ window.protoScripts = {
       <span class="t-en">What I learned, and what's next</span>
       <span class="t-ru">Что я поняла и что дальше</span>
     </h2>
-    <p class="t-en">The question that reframed the work was not about screens: not "how do we make card issuance smoother", but "how do we make people feel they have a place to keep their money". Once that model was clear, every architecture decision got easier. The numbers later showed people do want that place – they found it in the wallet, not in the card</p>
-    <p class="t-ru">Работу изменил вопрос, который был не про экраны. Не «как упростить выпуск карты», а «как сделать так, чтобы у людей было место, где лежат их деньги». Когда это стало ясно, решения по структуре пошли легче. Цифры потом показали, что такое место людям нужно, – только нашли они его в кошельке, а не в карте</p>
-    <p class="t-en"><strong>What's next.</strong> The wallet grew without the card, so the card has to live inside the wallet: one balance, and a card that spends straight from it. Then every Google Pay or Apple Pay top-up is money the card can already spend, with no transfer in between</p>
-    <p class="t-ru"><strong>Что дальше.</strong> Кошелёк вырос без карты – значит, карта должна жить внутри кошелька: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay – это деньги, которые картой уже можно потратить, без перевода между счетами</p>
+    <p class="t-en">The constraint mattered more than any screen. One account per card decided the architecture, the direction of the iterations and, in the end, why the card stays apart from the money people keep in Profee. Design could make that constraint visible and easy to live with – it couldn't remove it</p>
+    <p class="t-ru">Ограничение оказалось важнее любого экрана. «Один счёт – одна карта» определило структуру, направление итераций и в итоге то, почему карта живёт отдельно от денег, которые люди держат в Profee. Дизайн мог сделать это ограничение видимым и удобным – но убрать его не мог</p>
+    <p class="t-en"><strong>What's next.</strong> So the next step is not a screen but a change in the backend. The wallet grew without the card, so the card has to live inside the wallet: one balance, and a card that spends straight from it. Then every Google Pay or Apple Pay top-up is money the card can already spend, with no transfer in between</p>
+    <p class="t-ru"><strong>Что дальше.</strong> Поэтому следующий шаг – не экран, а изменение в бэкенде. Кошелёк вырос без карты – значит, карта должна жить внутри кошелька: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay – это деньги, которые картой уже можно потратить, без перевода между счетами</p>
   </section>
 
   <!-- NEXT -->

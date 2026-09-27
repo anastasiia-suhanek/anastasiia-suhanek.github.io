@@ -2,11 +2,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Transfer Statuses – Anastasiia Sukhanek</title>
-<meta name="description" content="Case study: a real-time transfer status system for Profee – five states, Updates timeline, inline action cards, app and web.">
+<meta name="description" content="Case study: an Updates timeline for Profee transfers – full transfer history and inline action cards, app and web.">
 <meta name="author" content="Anastasiia Sukhanek">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transfer Statuses – Anastasiia Sukhanek">
-<meta property="og:description" content="Case study: a real-time transfer status system for Profee – five states, Updates timeline, inline action cards, app and web.">
+<meta property="og:description" content="Case study: an Updates timeline for Profee transfers – full transfer history and inline action cards, app and web.">
 <meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image-swiss.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -63,53 +63,6 @@ body {
 /* SECTIONS */
 
 /* INSIGHT */
-
-/* STATUS TABLE */
-.status-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-block: var(--space-7);
-  font-size: var(--fs-md);
-}
-
-.status-table th {
-  text-align: left;
-  padding: 0 var(--space-4) var(--space-3) 0;
-  border-bottom: 1px solid var(--border);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.status-table td {
-  padding: var(--space-4) var(--space-4) var(--space-4) 0;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  color: var(--text-mid);
-  line-height: var(--lh-normal);
-  font-size: var(--fs-sm);
-}
-
-.status-table td:first-child { font-weight: var(--fw-semibold); color: var(--text); }
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--r-lg);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-}
-.status-badge.success { background: rgba(34, 197, 94, 0.14); color: #86EFAC; }
-.status-badge.progress { background: rgba(129, 140, 248, 0.16); color: #A5B4FC; }
-.status-badge.failed { background: rgba(248, 113, 113, 0.14); color: #FCA5A5; }
-.status-badge.refund { background: rgba(251, 191, 36, 0.14); color: #FCD34D; }
-.status-badge.neutral { background: var(--bg-alt); color: var(--text-mid); }
-
-
 
 /* SCREENS SCROLL */
 
@@ -205,18 +158,18 @@ body {
   <div class="container">
     <div class="outcome-item">
       <div class="outcome-num">73%</div>
-      <div class="outcome-label t-en">Act on the inline card<br>within a day</div>
-      <div class="outcome-label t-ru">Нажимают на карточку<br>действия в течение суток</div>
+      <div class="outcome-label t-en">Tap "Continue transfer"<br>within a day</div>
+      <div class="outcome-label t-ru">Нажимают «Продолжить<br>перевод» в течение суток</div>
     </div>
     <div class="outcome-item">
       <div class="outcome-num">9 <span class="t-en">s</span><span class="t-ru">сек</span></div>
-      <div class="outcome-label t-en">Median time from status<br>to action</div>
-      <div class="outcome-label t-ru">Медиана от статуса<br>до действия</div>
+      <div class="outcome-label t-en">Median time from seeing<br>the card to the tap</div>
+      <div class="outcome-label t-ru">Медиана от карточки<br>до нажатия</div>
     </div>
     <div class="outcome-item">
-      <div class="outcome-num">59%</div>
-      <div class="outcome-label t-en">Of status views are<br>transfers in progress</div>
-      <div class="outcome-label t-ru">Просмотров статуса –<br>переводы в процессе</div>
+      <div class="outcome-num">43%</div>
+      <div class="outcome-label t-en">Finish the transfer<br>within a day</div>
+      <div class="outcome-label t-ru">Завершают перевод<br>в течение суток</div>
     </div>
   </div>
 </div>
@@ -414,27 +367,27 @@ body {
       <span class="t-en">When a transfer needs you, people act</span>
       <span class="t-ru">Когда перевод ждёт действия, люди действуют</span>
     </h2>
-    <p class="t-en">Rollout started in late January 2026 and reached everyone by April. Data from April to September 2026, all numbers are shares:</p>
-    <p class="t-ru">Запуск начался в конце января 2026, к апрелю новая система была у всех. Данные за апрель–сентябрь 2026, все цифры – доли:</p>
+    <p class="t-en">Rollout started in late January 2026 and reached everyone by April. Data from April to September 2026, for users who opened a transfer waiting for their action. The events appeared together with the new screen, so there is no "before" to compare with:</p>
+    <p class="t-ru">Запуск начался в конце января 2026, к апрелю новая версия была у всех. Данные за апрель–сентябрь 2026 – по тем, кто открыл перевод, ждущий их действия. События появились вместе с новым экраном, поэтому сравнить с «до» не с чем:</p>
 
     <div class="metrics">
       <div class="metric-tile">
         <div class="metric-num">73%</div>
-        <div class="metric-delta"><span class="t-en">status</span><span class="t-ru">статус</span><i>→</i><span class="t-en">tap</span><span class="t-ru">нажатие</span></div>
-        <div class="metric-label t-en">Users who tap the inline action card<br>within a day of seeing the status</div>
-        <div class="metric-label t-ru">Нажимают на карточку действия<br>в течение суток после того,<br>как увидели статус</div>
+        <div class="metric-delta"><span class="t-en">card</span><span class="t-ru">карточка</span><i>→</i><span class="t-en">tap</span><span class="t-ru">нажатие</span></div>
+        <div class="metric-label t-en">Tap "Continue transfer"<br>within a day of seeing the card</div>
+        <div class="metric-label t-ru">Нажимают «Продолжить перевод»<br>в течение суток после того,<br>как увидели карточку</div>
       </div>
       <div class="metric-tile">
         <div class="metric-num">9 <span class="t-en">s</span><span class="t-ru">сек</span></div>
         <div class="metric-delta"><span class="t-en">median</span><span class="t-ru">медиана</span></div>
-        <div class="metric-label t-en">From seeing the status<br>to acting on it</div>
-        <div class="metric-label t-ru">От статуса<br>до действия</div>
+        <div class="metric-label t-en">From seeing the card to the tap –<br>no one has to look for it</div>
+        <div class="metric-label t-ru">От карточки до нажатия –<br>искать её не приходится</div>
       </div>
       <div class="metric-tile">
-        <div class="metric-num">59%</div>
-        <div class="metric-delta"><span class="t-en">of status views</span><span class="t-ru">просмотров статуса</span></div>
-        <div class="metric-label t-en">Are transfers still in progress –<br>the moment the old screen<br>said nothing</div>
-        <div class="metric-label t-ru">Приходятся на переводы в процессе –<br>тот момент, когда старый<br>экран молчал</div>
+        <div class="metric-num">43%</div>
+        <div class="metric-delta"><span class="t-en">card</span><span class="t-ru">карточка</span><i>→</i><span class="t-en">done</span><span class="t-ru">готово</span></div>
+        <div class="metric-label t-en">Finish the transfer within a day –<br>about 6 in 10 of those who tapped</div>
+        <div class="metric-label t-ru">Завершают перевод в течение суток –<br>примерно 6 из 10 нажавших</div>
       </div>
     </div>
 
@@ -442,8 +395,8 @@ body {
     <div class="tradeoff">
       <p class="tradeoff-label t-en">What's next</p>
       <p class="tradeoff-label t-ru">Что дальше</p>
-      <p class="t-en">The action card speeds up the return but doesn't increase it: the share of people who left at confirmation and came back stayed at 15–19%. Our hypothesis is that they never reopen the history, so the next iteration is a nudge at the moment a transfer needs action. The share of support tickets about transfer status needs ticket data, and that's the next comparison</p>
-      <p class="t-ru">Карточка ускоряет возвращение, но не увеличивает его: доля тех, кто ушёл на подтверждении и вернулся, осталась на уровне 15–19%. Гипотеза — ушедшие просто не открывают историю, поэтому следующая итерация — напоминание в момент, когда перевод ждёт действия. Долю обращений о статусе перевода считаем по тикетам поддержки, это следующее сравнение</p>
+      <p class="t-en">The card does its part: people who see it tap fast. The loss comes after the tap, when the flow goes on to the bank – a 3DS check or a redirect – and that's where the next iteration looks. The share of support tickets about transfer status needs ticket data, and that's the next comparison</p>
+      <p class="t-ru">Карточка свою работу делает: кто её видит, нажимает быстро. Теряем людей после нажатия, когда сценарий уходит в банк – на проверку 3DS или редирект. Туда и смотрит следующая итерация. Долю обращений о статусе перевода считаем по тикетам поддержки, это следующее сравнение</p>
     </div>
   </section>
 </div>
@@ -454,15 +407,13 @@ body {
     <p class="section-label t-en">Reflection</p>
     <p class="section-label t-ru">Рефлексия</p>
     <h2>
-      <span class="t-en">Status design is copy design</span>
-      <span class="t-ru">Дизайн статусов – это дизайн текстов</span>
+      <span class="t-en">Put the action where the story is</span>
+      <span class="t-ru">Действие – там, где история</span>
     </h2>
-    <p class="t-en">The most important decisions in this project weren't visual – they were linguistic. What does "Transfer failed" mean to someone who sent money to a family member and doesn't know if it arrived? How do you explain a refund timeline in a way that's honest without being alarming?</p>
-    <p class="t-ru">Самые важные решения в этом проекте были не про картинку, а про слова. Что значит «Перевод не прошёл» для человека, который отправил деньги родным и не знает, дошли ли они? Как честно сказать о сроке возврата и не напугать?</p>
-    <p class="t-en"><strong>Each status needs its own voice.</strong> Success is clean and immediate – no explanation. In progress is reassuring – "we'll notify you." Failed is honest but constructive – what happened, and what can you do. Refund in progress sets a specific expectation. These are not interchangeable</p>
-    <p class="t-ru"><strong>У каждого статуса свой голос.</strong> Успех – коротко и сразу, без объяснений. «В обработке» – успокаивает: «сообщим, когда дойдёт». Ошибка – честно, но по делу: что случилось и что делать. Возврат – с конкретным сроком. Поменять их местами нельзя</p>
-    <p class="t-en">The inline action card in the Updates timeline was a key decision: when a user needs to enter a Blik code, putting that action in the status timeline keeps them informed AND able to act, in the same place. The alternative – a push notification to a separate screen – adds friction and loses context</p>
-    <p class="t-ru">Главным решением стала карточка действия прямо в таймлайне. Когда нужно ввести код Blik, человек в одном месте видит, что происходит, и сразу может действовать. Пуш с переходом на отдельный экран добавил бы лишний шаг и оторвал бы от контекста</p>
+    <p class="t-en">The key decision was to put the action inside the history. When a transfer needs a Blik code, the user sees what's happening and can act in the same place. The alternative – a push leading to a separate screen – adds a step and pulls the action out of context</p>
+    <p class="t-ru">Главным решением было встроить действие в историю. Когда перевод ждёт код Blik, человек в одном месте видит, что происходит, и сразу может действовать. Пуш с переходом на отдельный экран добавил бы шаг и оторвал бы действие от контекста</p>
+    <p class="t-en">What I'd do differently is the measurement. The events appeared together with the new screen, so I can say how people use it, but not how much better it is than before. Next time I'd agree on the metric and add tracking to the old screen before the design starts</p>
+    <p class="t-ru">Что бы я сделала иначе – измерения. События появились вместе с новым экраном, поэтому я могу сказать, как им пользуются, но не насколько он лучше старого. В следующий раз я бы договорилась о метрике и добавила аналитику на старый экран до начала дизайна</p>
     <!-- TODO: add a personal sentence about what this project meant to you -->
   </section>
 

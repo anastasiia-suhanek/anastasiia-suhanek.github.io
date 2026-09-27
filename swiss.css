@@ -223,12 +223,13 @@ html.swiss .lang-toggle .lang-btn.lang-active { background: var(--text); color: 
   html.swiss .nav-seg { border-radius: 0; border-bottom: 1px solid var(--border); }
   /* Full-width bottom line reads as a divider here – mark the active item on the left */
   html.swiss .nav-seg.active { box-shadow: inset 3px 0 0 var(--accent); }
-  /* Dim the page under the open sheet so the menu doesn't blend into content */
-  html.swiss .nav.is-open { background: var(--bg); }
+  /* Dim the page under the open sheet so the menu doesn't blend into content.
+     Starts below the bar: a negative-z child still paints over the nav's own
+     background, so covering the bar would grey it out */
   html.swiss .nav.is-open::after {
     content: '';
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 64px; left: 0; right: 0; bottom: 0;
     background: rgba(11, 11, 11, 0.35);
     z-index: -1;
   }

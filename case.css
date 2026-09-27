@@ -321,11 +321,16 @@
   transition: color 0.15s;
 }
 .next-link:hover { color: var(--accent); }
-.next-link svg,
-.next-link .next-arrow { display: inline-block; transition: transform 0.15s; }
-.next-link .next-arrow { font-weight: 400; font-size: 0.9em; }
-.next-link:hover svg,
-.next-link:hover .next-arrow { transform: translateX(4px); }
+.next-link svg { transition: transform 0.15s; }
+.next-link:hover svg { transform: translateX(4px); }
+/* Text arrow stays a plain inline so no line break is allowed before it –
+   the nbsp in the markup glues it to the last word of the title */
+.next-link .next-arrow {
+  font-weight: 400;
+  font-size: 0.9em;
+  transition: margin-left 0.15s;
+}
+.next-link:hover .next-arrow { margin-left: 4px; }
 
 @media (max-width: 900px) {
   .outcome-strip .container,

@@ -189,11 +189,10 @@ body {
       <span class="t-en">Transfer Statuses – making the invisible visible</span>
       <span class="t-ru">Статусы переводов – делаем невидимое видимым</span>
     </h1>
-    <p class="hero-desc t-en">International bank transfers cross multiple systems and can get delayed, fail, or require user action mid-flight. Users had almost no visibility into what was happening. I redesigned the transfer detail screen to surface the full lifecycle of every transfer – in real time</p>
-    <p class="hero-desc t-ru">Международный перевод проходит через несколько систем и по дороге может задержаться, сорваться или потребовать чего-то от пользователя. А человек почти не видел, что происходит. Я переделала экран перевода так, чтобы на нём в реальном времени была видна вся его история</p>
+    <p class="hero-desc t-en">International bank transfers cross multiple systems and can get delayed, fail, or require user action mid-flight. The transfer screen showed only the current status – nothing about what had already happened or what was next. I added an Updates tab with the full history of every transfer and put the actions it needs right into that history</p>
+    <p class="hero-desc t-ru">Международный перевод проходит через несколько систем и по дороге может задержаться, сорваться или потребовать чего-то от пользователя. Экран перевода показывал только текущий статус – ни что уже произошло, ни что будет дальше. Я добавила вкладку «Обновления» со всей историей перевода и встроила в неё действия, которых перевод ждёт от человека</p>
     <dl class="case-facts">
-      <!-- TODO: verify – drafted from the case text; make sure the split with the design lead / PM is accurate -->
-      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: the five-state status system, the Updates / Details structure, inline action cards, every app and web screen, and the copy with the UX writer</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: система из пяти статусов, структура «Обновления / Детали», карточки действий в таймлайне, все экраны приложения и веба, тексты – вместе с UX-редактором</span></dd></div>
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: the Updates / Details tabs, the transfer timeline, inline action cards, app and web screens, and the timeline copy with the UX writer</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: вкладки «Обновления / Детали», таймлайн перевода, карточки действий, экраны приложения и веба, тексты таймлайна – вместе с UX-редактором</span></dd></div>
       <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, UX writer, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, UX-редактор, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
       <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd><span class="t-en">Oct–Dec 2025</span><span class="t-ru">Окт–дек 2025</span></dd></div>
       <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">App and web</span><span class="t-ru">Приложение и веб</span></dd></div>
@@ -238,13 +237,12 @@ body {
         <p class="t-ru">Перевод в Profee проходит через несколько систем: карта отправителя, конвертация в Profee, банк-корреспондент и банк или кошелёк получателя. Весь путь занимает от нескольких секунд до нескольких дней. По дороге перевод может застрять, получить отказ или потребовать действия от пользователя</p>
         <p class="t-en"><strong>Nobody waits for the transfer.</strong> People confirm, see "Processing your transfer" and switch to another app. Whatever happens next – a delay, a refund, a request for a Blik code – happens while they're gone</p>
         <p class="t-ru"><strong>Перевод никто не ждёт.</strong> Человек подтверждает, видит «Обрабатываем перевод» и уходит в другое приложение. Всё, что случится дальше – задержка, возврат, запрос кода Blik, – происходит, пока его нет</p>
-        <p class="t-en">When they came back, the transfer showed one status: "In progress." No timeline. No explanation. No distinction between "we're processing this normally" and "the recipient's bank rejected the payment and we're sending your money back." Users had no way to know if they should wait, retry, or call support</p>
-        <p class="t-ru">А когда возвращался, видел у перевода один статус – «В обработке». Ни таймлайна, ни объяснений. Никакой разницы между «всё идёт как обычно» и «банк получателя отклонил платёж, возвращаем деньги». Люди не понимали, что делать: ждать, пробовать снова или писать в поддержку</p>
+        <p class="t-en">When they came back, the screen showed a single line: the current status. No history – what had already happened, where the transfer was stuck, what was coming next. The status screen is opened most often while a transfer is still in progress: 59% of views, the exact moment one line of status says the least</p>
+        <p class="t-ru">А когда возвращался, видел одну строку – текущий статус. Никакой истории: что уже произошло, где перевод застрял, что будет дальше. Чаще всего экран статуса открывают, пока перевод ещё идёт, – 59% просмотров. Как раз тогда одна строка статуса говорит меньше всего</p>
 
-        <blockquote class="insight t-en">
-          Support enquiries about transfer status were one of the biggest categories in the help queue. Most of them were cases where the status had changed – but the app wasn't showing it
-        </blockquote>
-        <blockquote class="insight t-ru">Вопросы о статусе перевода были одной из самых частых тем в поддержке. Чаще всего статус уже поменялся – просто приложение этого не показывало</blockquote>
+        <!-- TODO: add the share of support tickets about transfer status once the data is at hand -->
+        <blockquote class="insight t-en">Questions about transfer status came to support regularly – people wrote in to ask what was happening with a transfer the app could have explained itself</blockquote>
+        <blockquote class="insight t-ru">Вопросы о статусе перевода регулярно приходили в поддержку – люди спрашивали то, что приложение могло бы объяснить само</blockquote>
       </div>
       <div class="split-video">
         <video autoplay loop muted playsinline preload="metadata" poster="media/statuses-leave-poster.jpg" width="720" height="1080" aria-label="A person confirms a transfer, sees the processing screen and switches to Instagram">
@@ -264,8 +262,8 @@ body {
     </h2>
     <p class="t-en">Users looking at a transfer detail page have two different questions. Sometimes: <em>"what happened?"</em> – they want the narrative, the timeline, the sequence of events. Sometimes: <em>"what are the details?"</em> – they want the transaction number, the fee, the payment method</p>
     <p class="t-ru">Открывая перевод, человек ищет ответ на один из двух вопросов. Иногда – <em>«что случилось?»</em>: ему нужна история, таймлайн, последовательность событий. Иногда – <em>«какие реквизиты?»</em>: номер операции, комиссия, способ оплаты</p>
-    <p class="t-en">I split these into two tabs: <strong>Updates</strong> and <strong>Details</strong>. Updates is the live story of the transfer. Details is the transaction record. Both tabs are visible at all times – no status is hidden behind a tap</p>
-    <p class="t-ru">Я развела их по двум вкладкам: <strong>«Обновления»</strong> и <strong>«Детали»</strong>. «Обновления» – живая история перевода, «Детали» – данные операции. Обе вкладки всегда на виду, ни один статус не спрятан</p>
+    <p class="t-en">The old screen answered only the second one. I kept it as the <strong>Details</strong> tab and added <strong>Updates</strong> next to it – the story of the transfer. The tab switch sits right under the amount, so both answers are one tap apart</p>
+    <p class="t-ru">Старый экран отвечал только на второй. Я оставила его вкладкой <strong>«Детали»</strong> и добавила рядом <strong>«Обновления»</strong> – историю перевода. Переключатель стоит сразу под суммой, так что оба ответа в одном нажатии друг от друга</p>
 
     <div class="decisions">
       <div class="decision">
@@ -280,10 +278,10 @@ body {
       <div class="decision">
         <span class="decision-num">02</span>
         <div>
-          <h3 class="t-en">Details tab – the record</h3>
-          <h3 class="t-ru">Вкладка «Детали» – данные</h3>
-          <p class="t-en">Transaction number, recipient, fee, payment method – all in one place. Status is surfaced at the top with a brief contextual explanation. CTAs appear only when the user can actually act</p>
-          <p class="t-ru">Номер операции, получатель, комиссия, способ оплаты – всё в одном месте. Сверху статус и короткое объяснение. Кнопки появляются, только когда пользователь действительно может что-то сделать</p>
+          <h3 class="t-en">Details tab – the record, unchanged</h3>
+          <h3 class="t-ru">Вкладка «Детали» – данные, как были</h3>
+          <p class="t-en">The existing screen – status, explanation, buttons, transaction number, fee – moved under the second tab as it was. People who came for a receipt or a fee find it where they always did</p>
+          <p class="t-ru">Прежний экран – статус, объяснение, кнопки, номер операции, комиссия – целиком переехал во вторую вкладку. Кто пришёл за квитанцией или комиссией, находит их там же, где всегда</p>
         </div>
       </div>
       <div class="decision">
@@ -291,70 +289,43 @@ body {
         <div>
           <h3 class="t-en">Action cards in the timeline</h3>
           <h3 class="t-ru">Карточки действий прямо в таймлайне</h3>
-          <p class="t-en">When a transfer needs user input mid-flow (Blik code, additional questions for compliance), an action card appears inline in the Updates timeline – not a separate screen, not an email</p>
-          <p class="t-ru">Если для перевода нужно что-то от пользователя – код Blik или ответы на вопросы комплаенса, – карточка появляется прямо в таймлайне, а не на отдельном экране и не в письме</p>
-        </div>
-      </div>
-      <div class="decision">
-        <span class="decision-num">04</span>
-        <div>
-          <h3 class="t-en">Different copy for every state</h3>
-          <h3 class="t-ru">Разные тексты для каждого статуса</h3>
-          <p class="t-en">Each status has its own headline, its own explanation, and its own CTA. "See why the delay" is different from "See why it failed" – both inform without alarming</p>
-          <p class="t-ru">У каждого статуса свой заголовок, своё объяснение и своя кнопка. «Почему задержка» – это не «Почему не прошёл»: обе объясняют, но не пугают</p>
+          <p class="t-en">When a transfer needs something from the user mid-flow – a Blik code or answers to compliance questions – a card with a deadline and a "Continue transfer" button appears right in the timeline, at the step where the transfer stopped</p>
+          <p class="t-ru">Если перевод по дороге ждёт чего-то от пользователя – кода Blik или ответов на вопросы комплаенса, – прямо в таймлайне, на том шаге, где перевод остановился, появляется карточка со сроком и кнопкой «Продолжить перевод»</p>
         </div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- STATUS SCREENS – 5 states -->
+<!-- BEFORE / AFTER -->
 <div class="container">
   <div class="screens-scroll">
     <div class="screens-row">
       <div class="screen-item">
-        <img src="images/statuses/status-card-5.png" alt="Transfer completed – Status: Success">
+        <img src="images/statuses/transfer-screen-main.png" alt="Before: transfer screen with the status only, no tabs">
         <div class="screen-cap">
-          <strong class="t-en">Transfer completed</strong>
-          <strong class="t-ru">Перевод завершён</strong>
-          <span class="t-en">Status: Success (green). CTAs: "Repeat this transfer" and "Show receipt" – both available when the job is done</span>
-          <span class="t-ru">Статус «Выполнен» (зелёный). Кнопки «Повторить перевод» и «Показать квитанцию» – когда всё готово</span>
+          <strong class="t-en">Before</strong>
+          <strong class="t-ru">До</strong>
+          <span class="t-en">One screen: the current status and transaction data. No history</span>
+          <span class="t-ru">Один экран: текущий статус и данные операции. Истории нет</span>
         </div>
       </div>
       <div class="screen-item">
-        <img src="images/statuses/status-card-3.png" alt="Transfer in progress – Status: In progress">
+        <img src="images/statuses/status-card-3.png" alt="After: the same screen as the Details tab">
         <div class="screen-cap">
-          <strong class="t-en">Transfer in progress</strong>
-          <strong class="t-ru">Перевод в обработке</strong>
-          <span class="t-en">Status: In progress. Copy: "We'll notify you once it's complete." CTA: "See why the delay" only when there is a delay</span>
-          <span class="t-ru">Статус «В обработке». Текст: «Сообщим, когда перевод дойдёт». Кнопка «Почему задержка» – только если перевод задерживается</span>
+          <strong class="t-en">After – Details</strong>
+          <strong class="t-ru">После – «Детали»</strong>
+          <span class="t-en">The same screen, now the second tab</span>
+          <span class="t-ru">Тот же экран, теперь вторая вкладка</span>
         </div>
       </div>
       <div class="screen-item">
-        <img src="images/statuses/status-card-1.png" alt="Transfer failed – Status: Failed">
+        <img src="images/statuses/transfer-flow-3.png" alt="After: Updates tab with the Blik code action card">
         <div class="screen-cap">
-          <strong class="t-en">Transfer failed</strong>
-          <strong class="t-ru">Перевод не прошёл</strong>
-          <span class="t-en">Status: Failed (red). Clear explanation. CTAs: "See why it failed" + "Contact support" – escape hatches, not dead ends</span>
-          <span class="t-ru">Статус «Не выполнен» (красный). Понятное объяснение и кнопки «Почему не прошёл» и «Написать в поддержку» – выход есть всегда</span>
-        </div>
-      </div>
-      <div class="screen-item">
-        <img src="images/statuses/status-card-2.png" alt="Refund in progress">
-        <div class="screen-cap">
-          <strong class="t-en">Refund in progress</strong>
-          <strong class="t-ru">Возвращаем деньги</strong>
-          <span class="t-en">"The recipient's bank did not accept the money. Refunds will take up to 5 business days." Honest timeline</span>
-          <span class="t-ru">«Банк получателя не принял деньги. Вернём их в течение 5 рабочих дней». Честный срок</span>
-        </div>
-      </div>
-      <div class="screen-item">
-        <img src="images/statuses/status-card-4.png" alt="Refunded">
-        <div class="screen-cap">
-          <strong class="t-en">Refunded</strong>
-          <strong class="t-ru">Деньги вернулись</strong>
-          <span class="t-en">Status: Refunded. The failure story is complete – money is back, user can act again</span>
-          <span class="t-ru">Статус «Возвращён». История закончена: деньги на месте, можно пробовать снова</span>
+          <strong class="t-en">After – Updates</strong>
+          <strong class="t-ru">После – «Обновления»</strong>
+          <span class="t-en">The same transfer: what has happened, what it's waiting for and what comes next</span>
+          <span class="t-ru">Тот же перевод: что произошло, чего он ждёт и что будет дальше</span>
         </div>
       </div>
     </div>
@@ -370,10 +341,8 @@ body {
       <span class="t-en">The timeline that tells the whole story</span>
       <span class="t-ru">Таймлайн, в котором видна вся история</span>
     </h2>
-    <p class="t-en">The Updates tab shows the transfer lifecycle as it happens – each step timestamped, color-coded by outcome, and with clear labels. A user can return to any transfer, days later, and immediately understand the full sequence of events</p>
-    <p class="t-ru">Вкладка «Обновления» показывает путь перевода по мере того, как он идёт: у каждого шага время, цвет результата и понятная подпись. Можно открыть любой перевод через несколько дней и сразу понять, что с ним было</p>
-    <p class="t-en">When user action is required mid-flow – entering a Blik code for a Polish recipient, or answering compliance questions – an inline action card appears in the timeline, with a clear deadline and a direct CTA. This keeps the user in context instead of sending them to a separate flow</p>
-    <p class="t-ru">Если по дороге нужно действие пользователя – ввести код Blik для получателя в Польше или ответить на вопросы комплаенса, – в таймлайне появляется карточка с понятным сроком и кнопкой. Человек остаётся на месте, а не уходит в отдельный сценарий</p>
+    <p class="t-en">Each step has a time and a plain label – "We sent EUR", "Recipient's bank or wallet declined the payment". A user can open any transfer days later and see the whole sequence at once, including where it stopped and why</p>
+    <p class="t-ru">У каждого шага время и простая подпись – «Мы отправили евро», «Банк или кошелёк получателя отклонил платёж». Можно открыть любой перевод через несколько дней и сразу увидеть всю последовательность – в том числе где он остановился и почему</p>
   </section>
 </div>
 
@@ -391,15 +360,6 @@ body {
         </div>
       </div>
       <div class="screen-item">
-        <img src="images/statuses/transfer-flow-3.png" alt="Updates tab – Blik code required mid-flow">
-        <div class="screen-cap">
-          <strong class="t-en">Action required mid-flow</strong>
-          <strong class="t-ru">Нужно действие по дороге</strong>
-          <span class="t-en">Yellow action card: "Enter Blik code" with deadline and "Continue transfer" CTA. Future steps visible but greyed</span>
-          <span class="t-ru">Жёлтая карточка «Введите код Blik» со сроком и кнопкой «Продолжить перевод». Следующие шаги видны, но серые</span>
-        </div>
-      </div>
-      <div class="screen-item">
         <img src="images/statuses/transfer-flow-2.png" alt="Updates tab – multi-step failure with refund in progress">
         <div class="screen-cap">
           <strong class="t-en">Multi-step failure + refund</strong>
@@ -412,66 +372,7 @@ body {
   </div>
 </div>
 
-<!-- STATUS TABLE -->
 <div class="container">
-  <section class="section">
-    <p class="section-label t-en">Status system</p>
-    <p class="section-label t-ru">Система статусов</p>
-    <h2>
-      <span class="t-en">Five states, each designed for a specific user need</span>
-      <span class="t-ru">Пять статусов – пять разных ситуаций</span>
-    </h2>
-    <p class="t-en">Every status has a distinct visual treatment, a distinct copy strategy, and distinct CTAs. The rule: show only the actions the user can take in this state, nothing else</p>
-    <p class="t-ru">У каждого статуса свой цвет, свой тон текста и свои кнопки. Правило одно: показывать только то, что пользователь может сделать прямо сейчас, и ничего лишнего</p>
-
-    <table class="status-table">
-      <thead>
-        <tr>
-          <th class="t-en">Status</th>
-          <th class="t-ru">Статус</th>
-          <th class="t-en">Colour</th>
-          <th class="t-ru">Цвет</th>
-          <th class="t-en">Copy strategy</th>
-          <th class="t-ru">Тон текста</th>
-          <th class="t-en">CTA(s)</th>
-          <th class="t-ru">Кнопки</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="t-en">Transfer completed</span><span class="t-ru">Перевод завершён</span></td>
-          <td><span class="status-badge success">Success</span></td>
-          <td><span class="t-en">Clean – no explanation needed when things work</span><span class="t-ru">Коротко – когда всё хорошо, объяснять нечего</span></td>
-          <td><span class="t-en">Repeat this transfer · Show receipt</span><span class="t-ru">Повторить перевод · Показать квитанцию</span></td>
-        </tr>
-        <tr>
-          <td><span class="t-en">Transfer in progress</span><span class="t-ru">Перевод в обработке</span></td>
-          <td><span class="status-badge progress">In progress</span></td>
-          <td><span class="t-en">"We'll notify you once it's complete" – reassuring</span><span class="t-ru">«Сообщим, когда дойдёт» – успокаивает</span></td>
-          <td><span class="t-en">See why the delay (only if delayed)</span><span class="t-ru">Почему задержка (только если задерживается)</span></td>
-        </tr>
-        <tr>
-          <td><span class="t-en">Transfer failed</span><span class="t-ru">Перевод не прошёл</span></td>
-          <td><span class="status-badge failed">Failed</span></td>
-          <td><span class="t-en">Explain what went wrong, give a next step</span><span class="t-ru">Объяснить, что пошло не так, и дать следующий шаг</span></td>
-          <td><span class="t-en">See why it failed · Contact support</span><span class="t-ru">Почему не прошёл · Написать в поддержку</span></td>
-        </tr>
-        <tr>
-          <td><span class="t-en">Refund in progress</span><span class="t-ru">Возвращаем деньги</span></td>
-          <td><span class="status-badge refund">Refunding</span></td>
-          <td><span class="t-en">Set expectations: "up to 5 business days"</span><span class="t-ru">Назвать срок: «до 5 рабочих дней»</span></td>
-          <td><span class="t-en">See why it failed · Contact support</span><span class="t-ru">Почему не прошёл · Написать в поддержку</span></td>
-        </tr>
-        <tr>
-          <td><span class="t-en">Refunded</span><span class="t-ru">Деньги вернулись</span></td>
-          <td><span class="status-badge neutral">Refunded</span></td>
-          <td><span class="t-en">Story complete – money is back</span><span class="t-ru">История закончена – деньги вернулись</span></td>
-          <td><span class="t-en">See why it failed</span><span class="t-ru">Почему не прошёл</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
   <!-- WEB VERSION -->
   <section class="section">
     <p class="section-label t-en">Web version</p>
@@ -480,8 +381,8 @@ body {
       <span class="t-en">Same system, adapted for the web context</span>
       <span class="t-ru">Та же система – в вебе</span>
     </h2>
-    <p class="t-en">Profee has both a mobile app and a web platform. The statuses system was designed for both, with the same logic and copy but adapted to wider viewports and different interaction patterns</p>
-    <p class="t-ru">У Profee есть и приложение, и веб-версия. Система статусов сделана для обеих: логика и тексты те же, но раскладка рассчитана на широкий экран и другое взаимодействие</p>
+    <p class="t-en">Profee has both a mobile app and a web platform. The tabs, the timeline and the action cards were designed for both, with the same logic and copy but adapted to a wider viewport</p>
+    <p class="t-ru">У Profee есть и приложение, и веб-версия. Вкладки, таймлайн и карточки действий сделаны для обеих: логика и тексты те же, раскладка – под широкий экран</p>
     <p class="t-en">On web, the transfer card component shows the status inline – a status banner above the tabs, and the Updates/Details tab structure carried over. The action card ("Answer additional questions") appears in the same place in the timeline, with the same "Continue transfer" CTA</p>
     <p class="t-ru">В вебе статус виден прямо в карточке перевода – баннером над вкладками, а вкладки «Обновления» и «Детали» остались те же. Карточка действия («Ответьте на дополнительные вопросы») стоит на том же месте в таймлайне и с той же кнопкой «Продолжить перевод»</p>
   </section>
@@ -496,17 +397,8 @@ body {
         <div class="screen-cap">
           <strong class="t-en">Web</strong>
           <strong class="t-ru">Веб</strong>
-          <span class="t-en">Declined transfer with an action card in the Updates timeline</span>
-          <span class="t-ru">Перевод отклонён, карточка действия в таймлайне «Обновления»</span>
-        </div>
-      </div>
-      <div class="screen-item">
-        <img src="images/statuses/transfer-screen-main.png" alt="App version – Transfer in progress with See why the delay CTA">
-        <div class="screen-cap">
-          <strong class="t-en">App</strong>
-          <strong class="t-ru">Приложение</strong>
-          <span class="t-en">Transfer in progress with a contextual "See why the delay" button</span>
-          <span class="t-ru">Перевод в обработке, с кнопкой «Почему задержка»</span>
+          <span class="t-en">Status banner above the tabs, action card in the Updates timeline</span>
+          <span class="t-ru">Баннер статуса над вкладками, карточка действия в таймлайне «Обновления»</span>
         </div>
       </div>
     </div>

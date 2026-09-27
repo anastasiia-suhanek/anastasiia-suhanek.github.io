@@ -642,7 +642,7 @@ html.swiss .section > .section-label { margin-bottom: 40px; }
 html.swiss .section h2 { margin-bottom: 32px; }
 html.swiss .section p { margin-bottom: 20px; }
 html.swiss .screens-scroll { margin-block: 48px; }
-html.swiss .screens-row { gap: 32px; }
+html.swiss .screens-row { column-gap: 32px; }
 html.swiss .metrics { margin-top: 56px; padding-top: 32px; }
 html.swiss .phone-scene { padding-block: 96px; }
 html.swiss .insight { margin-block: 40px; }
@@ -875,12 +875,13 @@ html.swiss .hero h1 { margin-bottom: 28px; }
 /* Phone screenshots: one corner radius for every mock, scaled to its width
    like the live phone (44/324 ≈ 13%). It is always larger than the corners
    baked into the PNGs (7–12%), so those never show a second corner */
-html.swiss .screen-item,
 html.swiss .split-phone,
 html.swiss .platform-card { container-type: inline-size; }
-html.swiss .screen-item img,
 html.swiss .split-phone img,
 html.swiss .platform-card img { border-radius: 13cqw; border: 1px solid var(--border); }
+/* slider screens can't be size containers (that would break the caption subgrid),
+   so their radius comes from the fixed screen width instead */
+html.swiss .screen-item img { border-radius: calc(var(--shot-w) * 0.13); border: 1px solid var(--border); }
 html.swiss .work-cover img,
 html.swiss .work-card--wide .work-cover img { border-radius: 9px; }
 /* Platform pair: the screen stands on its own, the label is a caption */

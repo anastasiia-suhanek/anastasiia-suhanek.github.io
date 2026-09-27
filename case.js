@@ -73,7 +73,7 @@
       strip.parentNode.insertBefore(controls, strip);
       var prev = controls.children[0], next = controls.children[1];
 
-      function step() { return item.getBoundingClientRect().width + 20; }
+      function step() { return item.getBoundingClientRect().width + (parseFloat(getComputedStyle(item.parentNode).columnGap) || 0); }
       function update() {
         var max = strip.scrollWidth - strip.clientWidth - 2;
         controls.style.display = max <= 0 ? 'none' : '';

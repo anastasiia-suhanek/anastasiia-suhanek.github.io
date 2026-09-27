@@ -1160,9 +1160,15 @@ html.swiss .ledger { padding-top: 0; }
 
 html.swiss .outcome-item,
 html.swiss .metric-tile { border-left: 0; border-top: 0; }
-/* No dividers, so columns are spaced by gap: equal columns from edge to edge of the container */
+/* No dividers: the row spans the container – first item on the left edge, last on the right, equal gaps between */
 html.swiss .outcome-strip .container,
 html.swiss .metrics { column-gap: var(--s5); }
+@media (min-width: 901px) {
+  html.swiss .outcome-strip .container,
+  html.swiss .metrics { grid-template-columns: repeat(3, max-content); justify-content: space-between; }
+  html.swiss .outcome-label,
+  html.swiss .metric-label { white-space: nowrap; }
+}
 html.swiss .outcome-item,
 html.swiss .metric-tile { padding-inline: 0; }
 html.swiss .outcome-meta { display: block; margin-top: 4px; color: var(--text-dim); }

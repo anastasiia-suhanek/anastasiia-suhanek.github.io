@@ -306,17 +306,8 @@ body {
       <span class="t-en">Studied the competition before drawing a single screen</span>
       <span class="t-ru">Разобрала конкурентов, прежде чем рисовать</span>
     </h2>
-    <p class="t-en">Before designing, I did a thorough competitive audit – looking at how leading card products handle each scenario. The file includes research from:</p>
-    <p class="t-ru">До проектирования я подробно разобрала конкурентов – как ведущие карточные продукты решают каждый сценарий. В исследовании:</p>
-
-    <div class="competitors">
-      <span class="competitor-tag">Revolut</span>
-      <span class="competitor-tag">N26</span>
-      <span class="competitor-tag">Monzo</span>
-      <span class="competitor-tag">Wise</span>
-      <span class="competitor-tag">Cash App</span>
-      <span class="competitor-tag">Vivid</span>
-    </div>
+    <p class="t-en">Before designing, I went through Revolut, N26, Monzo, Wise, Cash App and Vivid scenario by scenario: how they show card states, where freeze lives, how top-up fees are shown and how a blocked card recovers</p>
+    <p class="t-ru">До проектирования я прошла Revolut, N26, Monzo, Wise, Cash App и Vivid по сценариям: как они показывают состояния карты, где живёт заморозка, как показана комиссия при пополнении и как выйти из блокировки карты</p>
 
     <figure class="board-figure">
       <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">
@@ -327,8 +318,6 @@ body {
         <span class="t-ru">Рабочий файл целиком: слева конкуренты, сверху сценарии iOS и Android, справа внизу полная схема приложения · <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
       </figcaption>
     </figure>
-    <p class="t-en">Key patterns I extracted: how to show card states without alarming users, where to put the freeze control, how to handle fee transparency in top-up flows, and what "blocked card" recovery looks like in apps people actually love</p>
-    <p class="t-ru">Что я оттуда вынесла: как показывать состояния карты, не пугая людей, где разместить заморозку, как честно показать комиссию при пополнении и как устроен выход из «заблокированной карты» в приложениях, которые действительно любят</p>
   </section>
 
   <!-- SCOPE -->
@@ -339,44 +328,34 @@ body {
       <span class="t-en">A full product area – not a single feature</span>
       <span class="t-ru">Целый раздел, а не одна функция</span>
     </h2>
-    <p class="t-en">Cards isn't one screen or one flow. It's a product area with its own tab, its own information architecture, and a family of interconnected scenarios. I designed all of them</p>
-    <p class="t-ru">Карты – это не один экран и не один сценарий. Это раздел со своей вкладкой, своей структурой и набором связанных сценариев. Я спроектировала их все</p>
+    <p class="t-en">Cards is a section with its own tab and structure, not one flow. I designed every scenario in it</p>
+    <p class="t-ru">Карты – раздел со своей вкладкой и структурой, а не один сценарий. Я спроектировала в нём все сценарии</p>
 
     <div class="scope-grid">
       <div class="scope-item">
         <div class="scope-icon">01</div>
         <div class="scope-title t-en">Card issuance</div>
         <div class="scope-title t-ru">Выпуск карты</div>
-        <div class="scope-desc t-en">Entry point from main screen, empty state for a new user, onboarding, welcome state after card is created</div>
-        <div class="scope-desc t-ru">Вход с главного экрана, пустое состояние для нового пользователя, онбординг, приветственный экран после выпуска</div>
       </div>
       <div class="scope-item">
         <div class="scope-icon">02</div>
         <div class="scope-title t-en">Card details</div>
         <div class="scope-title t-ru">Данные карты</div>
-        <div class="scope-desc t-en">Masked card number and CVV with secure "show details" reveal</div>
-        <div class="scope-desc t-ru">Номер и CVV скрыты, показываются по кнопке</div>
       </div>
       <div class="scope-item">
         <div class="scope-icon">03</div>
         <div class="scope-title t-en">Freeze / Unfreeze</div>
         <div class="scope-title t-ru">Заморозка / Разморозка</div>
-        <div class="scope-desc t-en">One-tap freeze and unfreeze, with error states for both</div>
-        <div class="scope-desc t-ru">Заморозка и разморозка в одно касание, для обеих – экраны ошибок</div>
       </div>
       <div class="scope-item">
         <div class="scope-icon">04</div>
         <div class="scope-title t-en">Top up</div>
         <div class="scope-title t-ru">Пополнение</div>
-        <div class="scope-desc t-en">Every way to pay: Profee wallet, card, Google Pay, Apple Pay, bank transfer – and a low-balance state</div>
-        <div class="scope-desc t-ru">Все способы оплаты: кошелёк Profee, карта, Google Pay, Apple Pay, банковский перевод – и состояние «мало денег»</div>
       </div>
       <div class="scope-item">
         <div class="scope-icon">05</div>
         <div class="scope-title t-en">Reissue & expiry</div>
         <div class="scope-title t-ru">Перевыпуск и окончание срока</div>
-        <div class="scope-desc t-en">Expired card, reissue, blocked card</div>
-        <div class="scope-desc t-ru">Истёкшая карта, перевыпуск, заблокированная карта</div>
       </div>
     </div>
 
@@ -605,9 +584,6 @@ window.protoScripts = {
       <span class="t-en">Details that mattered</span>
       <span class="t-ru">Детали, которые решили дело</span>
     </h2>
-
-    <p class="t-en"><strong>The dark gradient account view.</strong> The card's account and top-up screens needed to feel distinct from the rest of Profee – it's a different relationship with money (storing and spending, not just sending). The deep purple gradient communicates "your money, at rest" versus the clean white of the transfer flows</p>
-    <p class="t-ru"><strong>Тёмный градиент счёта.</strong> Счёт карты и пополнение должны отличаться от остального Profee – здесь деньги хранят и тратят, а не только отправляют. Глубокий фиолетовый говорит «ваши деньги на месте», в отличие от белых экранов переводов</p>
 
     <p class="t-en"><strong>Fee transparency in top-up – goal 3.</strong> Every way to pay has its own fee and speed – from the Profee wallet and a card to Google Pay, Apple Pay and a bank transfer. Both are shown as tags right in the list of methods, before the user chooses, so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
     <p class="t-ru"><strong>Комиссия видна сразу – цель 3.</strong> У каждого способа оплаты своя комиссия и скорость – от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое видно метками прямо в списке способов, до выбора, поэтому на последнем экране сюрпризов нет. За две недели было три итерации, и с каждой комиссия становилась понятнее</p>

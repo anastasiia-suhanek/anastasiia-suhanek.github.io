@@ -1106,9 +1106,8 @@ html.swiss .contact-link-label { margin-bottom: var(--s1); }
 
 /* ── About ── */
 html.swiss .page-eyebrow { margin-bottom: var(--s3); }
-html.swiss .about-header { margin-bottom: 0; }
+html.swiss .about-header { margin-bottom: var(--s6); }
 html.swiss .about-section { padding-block: calc(var(--s7) / 2); }
-html.swiss .about-section:first-of-type { margin-top: calc(var(--s7) / 2); }
 html.swiss .info-text p { margin-bottom: var(--s3); }
 html.swiss .exp-list { gap: var(--s5); }
 html.swiss .belief-item { padding-block: var(--s4); }

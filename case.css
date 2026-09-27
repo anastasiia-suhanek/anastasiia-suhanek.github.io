@@ -378,10 +378,9 @@
 
 /* Before → after metric tiles (glass surface from glass.css) */
 .metric-delta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-2);
+  display: block;                 /* one short line: "before → after" or a unit, never wraps */
+  white-space: nowrap;
+  line-height: var(--lh-normal);
   margin-block: var(--space-2) var(--space-3);
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
@@ -389,7 +388,7 @@
   font-variant-numeric: tabular-nums;
 }
 .metric-delta b { color: var(--text); font-weight: var(--fw-semibold); }
-.metric-delta i { font-style: normal; color: var(--accent); }
+.metric-delta i { font-style: normal; color: var(--accent); margin-inline: 0.35em; }
 
 /* Trade-off / honest caveat callout */
 .tradeoff {

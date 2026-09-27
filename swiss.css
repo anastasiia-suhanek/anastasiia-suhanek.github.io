@@ -1231,3 +1231,4 @@ html.swiss .next-link svg {
   display: inline-block; width: 0.85em; height: 0.85em;
   margin-left: 0.08em; vertical-align: -0.12em;
 }
+html.swiss .next-link .next-arrow { font-size: 0.85em; }

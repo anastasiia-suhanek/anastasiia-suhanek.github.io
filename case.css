@@ -321,8 +321,11 @@
   transition: color 0.15s;
 }
 .next-link:hover { color: var(--accent); }
-.next-link svg { transition: transform 0.15s; }
-.next-link:hover svg { transform: translateX(4px); }
+.next-link svg,
+.next-link .next-arrow { display: inline-block; transition: transform 0.15s; }
+.next-link .next-arrow { font-weight: 400; font-size: 0.9em; }
+.next-link:hover svg,
+.next-link:hover .next-arrow { transform: translateX(4px); }
 
 @media (max-width: 900px) {
   .outcome-strip .container,

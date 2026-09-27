@@ -23,8 +23,13 @@
     if (!eyebrow || !label) return;
     var section = label.closest('section');
     if (!section.id) section.id = 'results';
+    // Meta on the left, the jump pinned to the right edge of the container
+    var meta = document.createElement('span');
+    meta.className = 'eyebrow-meta';
+    while (eyebrow.firstChild) meta.appendChild(eyebrow.firstChild);
+    eyebrow.appendChild(meta);
     eyebrow.insertAdjacentHTML('beforeend',
-      ' · <a class="eyebrow-jump" href="#' + section.id + '">' +
+      '<a class="eyebrow-jump" href="#' + section.id + '">' +
       '<span class="t-en">Jump to results ↓</span><span class="t-ru">К результатам ↓</span></a>');
   }
 

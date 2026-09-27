@@ -292,8 +292,8 @@ body {
     <p class="hero-desc t-en">KYC verification is mandatory on a remittance platform – but hitting a verification wall without clear guidance leads to abandonment and support overload. I mapped every scenario where users encounter verification requirements and redesigned the entry points for each</p>
     <p class="hero-desc t-ru">Без KYC-верификации переводы не работают. Но когда человек упирается в неё без внятного объяснения, он уходит или пишет в поддержку. Я собрала все сценарии, где просят пройти верификацию, и переделала точку входа в каждом</p>
     <dl class="case-facts">
-      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">Product designer, end to end: audit of 10 scenarios, the flow map, every app and web screen, and the copy with the UX writer</span><span class="t-ru">Продуктовый дизайнер, от начала до конца: разбор 10 сценариев, карта состояний, все экраны приложения и веба, тексты – вместе с UX-редактором</span></dd></div>
-      <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, UX writer, design lead on review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, UX-редактор, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">The only designer on the project. With the UX writer and the KYC team we dug out every scenario and built a huge Figma map that we still keep up to date. I came up with one component in three forms and designed every app and web screen. Worked closely with developers: the hard part was working out what to show and at which moment. Reviewed the front end and went through the metrics after launch</span><span class="t-ru">Единственный дизайнер на проекте. Вместе с UX-редактором и командой KYC раскопали все сценарии и собрали огромную карту в Figma – её поддерживаем до сих пор. Придумала один компонент в трёх формах и спроектировала все экраны приложения и веба. Плотно работала с разработкой: самое сложное было понять, что и в какой момент показывать. Делала ревью фронта и разбирала метрики после запуска</span></dd></div>
+      <div><dt><span class="t-en">Team</span><span class="t-ru">Команда</span></dt><dd><span class="t-en">Product manager, UX writer, KYC team, design lead for support and review, iOS and Android developers, backend and QA</span><span class="t-ru">Продакт-менеджер, UX-редактор, команда KYC, лид дизайна на поддержке и ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
       <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd><span class="t-en">~3 months, 2025</span><span class="t-ru">~3 месяца, 2025</span></dd></div>
       <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">App and web</span><span class="t-ru">Приложение и веб</span></dd></div>
 </dl>
@@ -795,6 +795,27 @@ body {
     </h2>
     <p class="t-en">Not every exception could be designed away. The two exceptions from decision 01 still send users out of the flow because of technical constraints we couldn't remove yet. That friction is real. But each exception now explains why it happens and gives one clear next step</p>
     <p class="t-ru">Не все исключения удалось убрать дизайном. Два исключения из решения 01 по-прежнему уводят человека из сценария – пока не пускают технические ограничения. Это неудобство никуда не делось. Но теперь каждое исключение объясняет, почему так, и даёт один понятный следующий шаг</p>
+    <p class="t-en"><strong>Not everything stuck.</strong> Along with the entry points we launched a sheet right after a successful transfer: you're close to your limit, verify now to keep sending. Almost everyone closed it – nobody wants to take care of their future self the moment a transfer goes through – so we dropped it. A limit reminder works when the limit gets in the way: at the moment of sending</p>
+    <p class="t-ru"><strong>Не всё прижилось.</strong> Вместе с точками входа мы запустили лист сразу после успешного перевода: лимит почти исчерпан, пройдите верификацию сейчас. Почти все его закрывали – сразу после перевода никто не хочет заботиться о будущем себе, – и мы его убрали. Напоминание о лимите работает, когда лимит мешает: в момент отправки</p>
+  </section>
+</div>
+<div class="container">
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/verif/dropped-lift-limit.png" alt="'Let's lift your limit' sheet over the successful transfer screen, with a limit progress bar and Open bot" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Dropped: lift the limit after a transfer</strong>
+          <strong class="t-ru">Убрали: поднять лимит после перевода</strong>
+          <span class="t-en">Right after a successful transfer nobody wanted to think about the next one</span>
+          <span class="t-ru">Сразу после успешного перевода о следующем никто думать не хотел</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <section class="section" style="padding-top: 0;">
     <p class="t-en">If I had more time, I'd have pushed for a separate user test of the KYC Refresh nudges – all we had was qualitative signal that the urgency was landing right</p>
     <p class="t-ru">Будь у меня больше времени, я бы добилась отдельного теста напоминаний KYC Refresh – были только качественные сигналы, что срочность считывается правильно</p>
     <p class="t-en"><strong>What's next.</strong> Extra documents are still requested by email and checked by support by hand – that is being automated now. The longer goal is to bring the whole verification into the app: upload documents, see their status and fix problems there, without leaving for the bot at all</p>

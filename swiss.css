@@ -371,6 +371,8 @@ html.swiss .info-looking { border-color: var(--text); }
 
 /* ━━ CASES ━━ */
 html.swiss .hero { border-bottom: 1px solid var(--text); }
+/* Hero straight into a labelled section: the section rule already marks the boundary, skip the double line */
+html.swiss .container:has(+ .container > .section:first-child > .section-label) > section.hero { border-bottom: 0; }
 html.swiss .hero h1 {
   font-size: clamp(42px, 5.4vw, 80px);
   letter-spacing: -0.045em;

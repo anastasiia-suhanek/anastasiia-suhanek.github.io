@@ -1059,9 +1059,14 @@ html.swiss .section .before-grid,
 html.swiss .screens-scroll { margin-block: var(--s5); }
 html.swiss .section .metrics { margin-top: var(--s5); padding-top: var(--s4); }
 html.swiss .section .metrics + .tradeoff { margin-top: var(--s5); }
-/* A quote and its source are one unit */
-html.swiss .insight:has(+ .insight-source) { margin-bottom: 0; }
-html.swiss .insight-source { margin: var(--s2) 0 var(--s5); }
+/* A quote and its source are one unit: the source is a small caption hung under the quote text.
+   The RU/EN twins sit between them in the markup, hence the second :has */
+html.swiss .insight:is(:has(+ .insight-source), :has(+ .insight + .insight-source)) { margin-bottom: 0; }
+html.swiss .section .insight-source {
+  margin: 12px 0 var(--s5) calc(3px + var(--space-5));
+  font-size: var(--t-small); line-height: var(--lh-small); font-weight: 400;
+  letter-spacing: 0; text-transform: none; color: var(--text-dim);
+}
 /* A figure and its caption */
 html.swiss .board-figure figcaption,
 html.swiss .clip figcaption { margin-top: var(--s2); }

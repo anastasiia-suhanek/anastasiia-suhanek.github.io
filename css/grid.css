@@ -117,3 +117,62 @@ html.swiss.g4 .lang-toggle .lang-btn.lang-active { background: none; color: var(
 @media (max-width: 640px) {
   html.swiss.g4 .nav-inner { display: flex; }
 }
+
+/* ── About on the grid: headline across columns 1–3, portrait in 4;
+   every section opens under a black rule, label in column 1, content in 2–4 ── */
+@media (min-width: 901px) {
+  html.swiss.g4 .about-left { max-width: var(--max-w); }
+  html.swiss.g4 .about-header {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--g-gap);
+    align-items: end; margin-bottom: 96px;
+  }
+  html.swiss.g4 .about-header-text { grid-column: 1 / 4; }
+  html.swiss.g4 .about-portrait { grid-column: 4; margin: 0; }
+  html.swiss.g4 .about-portrait img { width: 100%; height: auto; display: block; }
+  html.swiss.g4 .about-section {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--g-gap);
+    padding-block: 16px 72px; border-top: 1px solid var(--text) !important;
+  }
+  html.swiss.g4 .about-section > .section-label { grid-column: 1; }
+  html.swiss.g4 .about-section > .section-content { grid-column: 2 / -1; }
+  html.swiss.g4 .about-section .info-text,
+  html.swiss.g4 .about-section .exp-list,
+  html.swiss.g4 .about-section .beliefs-list,
+  html.swiss.g4 .about-section .core-list { max-width: 680px; }
+  /* The photo strip runs across the whole grid under its label */
+  html.swiss.g4 .about-section:has(.gallery-strip) > .section-content { grid-column: 1 / -1; margin-top: 32px; }
+}
+html.swiss.g4 .page-eyebrow::before { content: none; }
+html.swiss.g4 .page-eyebrow { font-size: 13px; letter-spacing: 0.06em; margin-bottom: 24px; }
+html.swiss.g4 .about-headline {
+  font-size: clamp(36px, 4.6vw, 68px); font-weight: 500; line-height: 1.02; letter-spacing: -0.03em;
+  text-wrap: balance; max-width: 16ch;
+}
+html.swiss.g4 .about-section > .section-label {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--text); padding-top: 0;
+}
+/* "Looking for" is the page's one call-out: the same inset rule as the quotes in the cases, no box */
+html.swiss.g4 .info-looking {
+  background: none; border: 0; border-left: 3px solid var(--accent); border-radius: 0;
+  padding: 2px 0 2px calc(var(--inset, 24px) - 3px); color: var(--text);
+  font-size: clamp(18px, 1.5vw, 21px); line-height: 1.4;
+}
+/* Experience: one company per row under a hairline, name set like the CV */
+html.swiss.g4 .exp-item { border-top: 1px solid var(--border); padding-top: 16px; }
+html.swiss.g4 .exp-item:first-child { border-top: 0; padding-top: 0; }
+html.swiss.g4 .exp-company { font-size: clamp(22px, 2vw, 28px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+html.swiss.g4 .exp-period { font-size: 14px; color: var(--text-dim); }
+html.swiss.g4 .exp-list { gap: 32px; }
+
+@media (max-width: 900px) {
+  html.swiss.g4 .about-section { padding-block: 16px 48px; border-top: 1px solid var(--text) !important; }
+  html.swiss.g4 .about-section > .section-label { margin-bottom: 20px; display: block; }
+}
+/* About polish: photo without its placeholder well, outcomes at reading size, principles closer together */
+html.swiss.g4 .about-portrait { background: none !important; border: 0 !important; aspect-ratio: auto !important; height: auto !important; }
+html.swiss.g4 .about-portrait img { aspect-ratio: auto; object-fit: initial; }
+html.swiss.g4 .about-headline { max-width: none; }
+html.swiss.g4 .exp-outcomes li,
+html.swiss.g4 .exp-bullets li { font-size: 15px !important; line-height: 1.5; }
+html.swiss.g4 .belief-item { padding-block: 24px !important; }
+html.swiss.g4 .belief-item:first-child { padding-top: 0 !important; }

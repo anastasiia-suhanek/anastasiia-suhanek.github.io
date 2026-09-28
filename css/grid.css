@@ -448,3 +448,18 @@ html.g4 .section [id] { scroll-margin-top: 124px; }
 /* Header language toggle everywhere: the slash sits in the middle of the gap */
 html.swiss.g4 .lang-toggle .lang-btn + .lang-btn { padding-left: 0 !important; }
 html.swiss.g4 .lang-toggle .lang-btn + .lang-btn::before { margin-right: 6px; }
+
+/* About · closing step to the work, set like «Next case» at the end of a case: label in column 1, link in 2–4 */
+.ab-next { margin-top: 96px; padding-top: 16px; border-top: 1px solid var(--text); }
+.ab-next-label { margin: 0 0 12px; font-size: var(--ts-caption, 13px); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.ab-next-link { font-size: var(--ts-heading, 32px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: var(--text); text-decoration: none; }
+.ab-next-link:hover { color: var(--accent); }
+.ab-next-arrow { display: inline-block; transition: transform .15s ease; }
+.ab-next-link:hover .ab-next-arrow { transform: translateX(4px); }
+@media (min-width: 901px) {
+  html.g4 .ab-next { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--g-gap); align-items: baseline; }
+  html.g4 .ab-next-label { grid-column: 1; margin: 0; }
+  html.g4 .ab-next-link { grid-column: 2 / -1; }
+}
+@media (max-width: 900px) { .ab-next { margin-top: 64px; } }
+@media (prefers-reduced-motion: reduce) { .ab-next-arrow { transition: none; } }

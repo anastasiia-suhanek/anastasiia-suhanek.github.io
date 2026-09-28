@@ -154,6 +154,47 @@
     });
   }
 
+  // In-page links («Jump to results», the chapter bar, anchors in the text): scroll, then check where we landed.
+  // Anything that grows above the target while we scroll (a lazy image, a video poster) would leave us short;
+  // once the scroll settles off target, go again. Stops as soon as the reader scrolls themselves
+  function anchors() {
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a || e.defaultPrevented || a.hasAttribute('data-lightbox') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      var id = decodeURIComponent(a.getAttribute('href').slice(1));
+      var el = id && document.getElementById(id);
+      if (!el) return;
+      if (!el.offsetParent) el = document.getElementById(id + '-ru') || el;
+      e.preventDefault();
+      if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+      go(el);
+    });
+    function go(el) {
+      var behavior = still.matches ? 'auto' : 'smooth';
+      el.scrollIntoView({ behavior: behavior, block: 'start' });
+      var until = Date.now() + 6000, lastY = -1, calm = 0, tries = 0;
+      var t = setInterval(function () {
+        var y = window.scrollY;
+        calm = Math.abs(y - lastY) < 1 ? calm + 1 : 0;
+        lastY = y;
+        if (Date.now() > until) return stop();
+        if (calm < 2) return;
+        var want = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        var off = el.getBoundingClientRect().top - want;
+        var bottom = window.innerHeight + y >= document.documentElement.scrollHeight - 2;
+        if (Math.abs(off) <= 3 || (bottom && off > 0) || tries > 4) return stop();
+        tries++; calm = 0;
+        el.scrollIntoView({ behavior: behavior, block: 'start' });
+      }, 120);
+      function stop() {
+        clearInterval(t);
+        ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.removeEventListener(ev, stop); });
+      }
+      ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, stop, { passive: true }); });
+    }
+  }
+
   // Images marked data-lightbox open over the page; siblings in the same group page with ← →.
   // Every app screen in a case opens the same way: on a phone a 200px screen is too small to read,
   // so a tap shows it full size and a swipe pages through its strip
@@ -271,5 +312,5 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); lightbox(); toTop(); });
+  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); anchors(); lightbox(); toTop(); });
 })();

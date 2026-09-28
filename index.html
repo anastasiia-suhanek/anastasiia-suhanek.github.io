@@ -370,6 +370,13 @@ html.g4-lines .sw::after {
   box-shadow: inset -1px 0 0 rgba(228, 53, 27, 0.55);
 }
 
+/* Facts keep two lines per cell: fewer, wider columns as the screen narrows */
+@media (max-width: 1180px) and (min-width: 901px) {
+  html.g4 .sw-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+}
+@media (max-width: 560px) {
+  html.g4 .sw-meta { grid-template-columns: 1fr; row-gap: 12px; }
+}
 @media (max-width: 900px) {
   html.g4 .sw { --cols: 2; min-height: 0; }
   html.g4 .sw-meta { row-gap: 16px; }
@@ -873,7 +880,7 @@ html.g4-lines .sw::after {
       <p><span class="t-en">Senior product designer<br>Fintech</span><span class="t-ru">Senior продуктовый дизайнер<br>Финтех</span></p>
       <p><span class="t-en">Payments, verification<br>and errors</span><span class="t-ru">Оплата, верификация<br>и ошибки</span></p>
       <p><span class="t-en">8+ years in design<br>Profee · Beeline · Sber</span><span class="t-ru">8+ лет в дизайне<br>Profee · Билайн · Сбер</span></p>
-      <p><span class="t-en">Open to new roles · remote<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span><span class="t-ru">Открыта к предложениям · удалённо<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span></p>
+      <p><span class="t-en">Open to new roles · remote<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span><span class="t-ru">Открыта к работе · удалённо<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span></p>
     </div>
     <h1 class="sw-name">Anastasiia<br>Sukhanek</h1>
     <div class="sw-foot">

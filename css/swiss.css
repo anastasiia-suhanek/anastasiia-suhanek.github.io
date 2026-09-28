@@ -1301,3 +1301,22 @@ html.swiss ol.goals li::before { content: counter(goal, decimal-leading-zero); }
 
 /* L3 · the dash */
 html.swiss .exp-bullets li::before { color: var(--text-dim); font-size: inherit; font-weight: 400; }
+
+/* ━━ Alignment pass ━━ */
+/* Chapter numbers are tabular, so every chapter name starts on the same line (01 is narrower than 02) */
+html.swiss .section > .section-label::before { font-variant-numeric: tabular-nums; }
+/* One eyebrow dash across pages */
+html.swiss .page-eyebrow::before,
+html.swiss .hero-eyebrow::before { width: 28px; }
+/* Inset blocks – quote, trade-off, the About note – put their text on one inset: rule + padding = 24px */
+html.swiss { --inset: 24px; }
+html.swiss .insight { border-left-width: 3px; padding-left: calc(var(--inset) - 3px); }
+html.swiss .tradeoff { padding-left: var(--inset); padding-right: var(--inset); }
+html.swiss .info-looking { border-left-width: 3px; padding-left: calc(var(--inset) - 3px); }
+html.swiss .section .insight-source { margin-left: var(--inset); }
+/* Inline clips sit flush left on the text column like everything else, caption included */
+html.swiss .clip video { margin: 0; }
+html.swiss .clip figcaption { text-align: left; }
+/* Slider arrows belong to their strip: one tight gap, never the 40px between blocks */
+html.swiss .section .slider-controls + .screens-scroll,
+html.swiss .slider-controls + .screens-scroll { margin-top: 16px; }

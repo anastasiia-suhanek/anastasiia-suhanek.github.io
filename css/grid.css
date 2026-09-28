@@ -49,7 +49,7 @@ html.swiss.g4 .section > .section-label:not(.section-label--sub) {
 html.swiss.g4 .section > h2 { margin-top: 0; }
 
 /* Wide content: all four columns */
-html.swiss.g4 .section > :is(.screens-scroll, .slider-controls, .screen-group-head, .ledger, .metrics,
+html.swiss.g4 .section > :is(.screens-scroll, .slider-controls, .ledger, .metrics,
   .status-table, .before-grid, .platform-split, .split, .competitors, .board-figure, .mails) {
   grid-column: 1 / -1;
 }

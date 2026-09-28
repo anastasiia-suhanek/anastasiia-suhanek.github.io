@@ -8,6 +8,22 @@
 
 html.g4 { --g-cols: 4; --g-gap: 24px; }
 
+/* ── Type: full Inter 4 with the optical-size axis (opsz 14–32), Latin + Cyrillic, self-hosted.
+   The browser picks the cut from the font size: text stays Inter Text, 32px and up becomes Inter Display –
+   tighter, finer detail, closer to the Helvetica posters. Only downloaded when the grid is on ── */
+@font-face {
+  font-family: 'Inter Var';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(../fonts/InterVar.woff2) format('woff2');
+}
+html.swiss.g4 {
+  --f-display: 'Inter Var', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --f-sans:    'Inter Var', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-optical-sizing: auto;
+}
+
 /* ── Case pages ── */
 html.g4 .case-toc { display: none; }
 html.g4 .container { max-width: var(--max-w); }
@@ -19,7 +35,7 @@ html.swiss.g4 .container > .hero {
 }
 html.swiss.g4 .container > .hero > * { grid-column: 1 / -1; }
 html.swiss.g4 .container > .hero h1 {
-  font-size: clamp(44px, 6.2vw, 92px); line-height: 0.98; letter-spacing: -0.045em; font-weight: 500;
+  font-size: clamp(44px, 6.2vw, 92px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 500;
   max-width: 14ch; margin-bottom: 32px;
 }
 html.swiss.g4 .container > .hero .hero-desc { grid-column: 1 / 4; max-width: 36ch; }
@@ -47,10 +63,12 @@ html.swiss.g4 .section > .section-label:not(.section-label--sub) {
   border-top: 0; padding-top: 0; margin: 0;
 }
 html.swiss.g4 .section > h2 { margin-top: 0; }
+/* The Display cut is already tighter than Inter Text: headings need less negative tracking */
+html.swiss.g4 .section > h2 { letter-spacing: -0.02em; }
 
 /* Wide content: all four columns */
 html.swiss.g4 .section > :is(.screens-scroll, .slider-controls, .ledger, .metrics,
-  .status-table, .before-grid, .platform-split, .split, .competitors, .board-figure, .mails) {
+  .status-table, .before-grid, .platform-split, .split, .competitors, .board-figure) {
   grid-column: 1 / -1;
 }
 html.swiss.g4 .kyc-map { max-width: none; }

@@ -137,7 +137,7 @@
       if (!img.complete) img.addEventListener('load', align, { once: true });
     });
     window.addEventListener('load', align, { once: true });
-    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) {
       window.addEventListener(ev, function () { until = 0; }, { once: true, passive: true });
     });
   }
@@ -183,5 +183,27 @@
     d.addEventListener('close', function () { img.removeAttribute('src'); });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); lightbox(); });
+  // Arriving on Results (from «Jump to results» or the home ticker) leaves no quick way back up:
+  // a small button returns to the case cover, shown once the cover is out of view
+  function toTop() {
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'to-top';
+    b.innerHTML = '<span class="t-en">↑ To the top</span><span class="t-ru">↑ К началу</span>';
+    b.addEventListener('click', function () {
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    });
+    document.body.appendChild(b);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { b.classList.toggle('is-visible', !e[0].isIntersecting); }).observe(hero);
+    } else {
+      b.classList.add('is-visible');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); lightbox(); toTop(); });
 })();

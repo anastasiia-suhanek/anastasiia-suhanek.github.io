@@ -17,7 +17,7 @@
               ['Каждую ситуацию объясняли по-своему и в разных местах: профиль, экран успеха, экран блокировки, письмо', 'единый компонент точки входа в приложении и вебе']],
     [['Verification status lived only in email', 'status right in the app'],
               ['Статус проверки был только в письме', 'статус прямо в приложении']],
-    [['Progress wasn’t saved, and nothing brought people back after leaving halfway', '“Finish your verification” banner'],
+    [['Progress wasn’t saved, and nothing brought people back after leaving halfway', '“Finish verification” banner'],
               ['Прогресс не сохранялся, и тех, кто бросил на полпути, ничто не возвращало', 'баннер «Завершите верификацию»']],
     [['Reminders went only to email', 'banners on the main screen'],
               ['Напоминания приходили только на почту', 'баннеры на главном экране']],

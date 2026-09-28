@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SberSpasibo games – Anastasiia Sukhanek</title>
+<meta name="description" content="Case study: games and tasks in the SberSpasibo loyalty programme, and moving it from the app to the web.">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SberSpasibo games – Anastasiia Sukhanek">
+<meta property="og:description" content="Case study: games and tasks in the SberSpasibo loyalty programme, and moving it from the app to the web.">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image-swiss.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script src="js/lang.js"></script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/scroll-reveal.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/case.css">
+
+<style>
+img { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--f-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+
+/* HERO */
+
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-5);
+  text-wrap: balance;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-md);
+  color: var(--text-mid);
+  font-weight: var(--fw-medium);
+}
+
+/* OUTCOME STRIP */
+
+
+/* SECTIONS */
+
+/* INSIGHT */
+
+/* BOARD FIGURE (same as Cards case) */
+.board-figure { margin: var(--space-7) 0 var(--space-6); }
+.board-figure a img { display: block; width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); cursor: zoom-in; }
+.board-figure figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug); }
+.board-figure figcaption a { color: var(--text-mid); text-decoration: underline; text-underline-offset: 2px; }
+.board-figure figcaption a:hover { color: var(--accent); }
+
+/* SCREENS SCROLL */
+
+/* SPLIT: text + phone side-by-side */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: var(--space-12);
+  align-items: start;
+  margin-block: var(--space-7);
+}
+
+.split-phone img {
+  width: 100%;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* Filmed clip on the right: dimmed like the Cards hero video */
+.split--video { grid-template-columns: 1fr 360px; gap: var(--space-8); align-items: start; }
+.split-video { border-radius: 16px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+.split-video video { display: block; width: 100%; height: auto; filter: brightness(0.75) saturate(0.85); }
+
+/* WEB SECTION */
+
+/* TODO */
+
+/* NEXT */
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container, .container-wide { padding-inline: var(--gutter-sm); }
+      .split { grid-template-columns: 1fr; }
+  .split-phone { display: none; }
+  .split-video { max-width: 400px; margin-inline: auto; width: 100%; }
+}
+
+@media (max-width: 580px) {
+    .hero h1 { font-size: var(--fs-2xl); }
+        .status-table { font-size: var(--fs-md); }
+  .status-table th, .status-table td { padding: var(--space-3) var(--space-3); }
+}
+
+</style>
+<link rel="stylesheet" href="css/glass.css">
+<link rel="stylesheet" href="css/swiss.css">
+<link rel="stylesheet" href="css/grid.css">
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="t-en">Back</span>
+      <span class="t-ru">Назад</span>
+    </a>
+    <div class="nav-breadcrumb">
+      <span class="current t-en">SberSpasibo games</span>
+      <span class="current t-ru">Игры СберСпасибо</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow"><span class="t-en">SberSpasibo · 2022–2023</span><span class="t-ru">СберСпасибо · 2022–2023</span></p>
+    <h1>
+      <span class="t-en">SberSpasibo: games that make bonuses worth spending</span>
+      <span class="t-ru">СберСпасибо: игры, ради которых тратят бонусы</span>
+    </h1>
+    <p class="hero-desc t-en">SberSpasibo is Sber's loyalty programme: people earn bonuses for paying by card and spend them with partners. Many earned bonuses but didn't come back to use them. I designed games and tasks around the bonuses, and when the app left the stores, moved the whole thing to the web</p>
+    <p class="hero-desc t-ru">СберСпасибо – программа лояльности Сбера: бонусы начисляются за оплату картой, а потратить их можно у партнёров. Многие копили бонусы, но не возвращались, чтобы их потратить. Я спроектировала игры и задания вокруг бонусов, а когда приложение пропало из сторов, перенесла всё это в веб</p>
+    <!-- TODO: add a Team row (who else was on the project) -->
+    <dl class="case-facts">
+      <div><dt><span class="t-en">My role</span><span class="t-ru">Моя роль</span></dt><dd><span class="t-en">UX/UI designer with product scope: 4 game products – SberPrimeCity, Sea Treasures, Wheel of Fortune and Catch My Word – from research and game mechanics to the app and web screens. Ran the interviews and usability tests and managed the contractors' design work</span><span class="t-ru">UX/UI-дизайнер с продуктовыми задачами: 4 игровых продукта – SberPrimeCity, «Морские сокровища», «Колесо фортуны» и «Ловлю на слове» – от исследования и игровых механик до экранов приложения и веба. Проводила интервью и юзабилити-тесты, руководила работой подрядчиков</span></dd></div>
+      <div><dt><span class="t-en">Timeline</span><span class="t-ru">Сроки</span></dt><dd><span class="t-en">Jan 2022 – Aug 2023</span><span class="t-ru">Январь 2022 – август 2023</span></dd></div>
+      <div><dt><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></dt><dd><span class="t-en">App, then web</span><span class="t-ru">Приложение, потом веб</span></dd></div>
+    </dl>
+  </section>
+</div>
+
+<!-- CONTEXT -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Context</p>
+    <p class="section-label t-ru">Контекст</p>
+    <h2>
+      <span class="t-en">Bonuses piled up, people didn't come back</span>
+      <span class="t-ru">Бонусы копились, а люди не возвращались</span>
+    </h2>
+    <p class="t-en">People had bonuses but no reason to open the programme regularly. There were no missions or challenges to come back for, and it wasn't clear how to earn bonuses or what to spend them on</p>
+    <p class="t-ru">Бонусы у людей были, а повода регулярно заходить в программу – нет. Ни заданий, ни испытаний, ради которых стоило бы вернуться, и непонятно, как заработать бонусы и на что их потратить</p>
+    <p class="t-en">Midway the task changed: the app was removed from the stores, and the programme had to keep working on the web – quickly and without a personal account</p>
+    <p class="t-ru">По ходу работы задача поменялась: приложение удалили из сторов, и программе нужно было продолжить работу в вебе – быстро и без личного кабинета</p>
+    <blockquote class="insight t-en">Give people a reason to come back – and make it obvious what their bonuses can buy</blockquote>
+    <blockquote class="insight t-ru">Дать человеку повод вернуться – и показать, что можно получить за бонусы</blockquote>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="section">
+    <p class="section-label t-en">Approach</p>
+    <p class="section-label t-ru">Подход</p>
+    <h2>
+      <span class="t-en">Tasks give moves, moves are spent in games</span>
+      <span class="t-ru">Задания дают ходы, ходы тратятся в играх</span>
+    </h2>
+    <div class="decisions">
+      <div class="decision">
+        <span class="decision-num">01</span>
+        <div>
+          <h3 class="t-en">A task list with a clear reward</h3>
+          <h3 class="t-ru">Список заданий с понятной наградой</h3>
+          <p class="t-en">Partner tasks – pay with a Sber card at a store, subscribe to Okko – each show what they give: +1 or +2 moves. Open a task and you see the deadline and which games the moves work in</p>
+          <p class="t-ru">Задания партнёров – оплатить картой Сбера в магазине, оформить подписку Okko – сразу показывают, что за них дадут: +1 или +2 хода. В самом задании видно срок и в каких играх эти ходы пригодятся</p>
+        </div>
+      </div>
+      <div class="decision">
+        <span class="decision-num">02</span>
+        <div>
+          <h3 class="t-en">Games in one place</h3>
+          <h3 class="t-ru">Все игры в одном месте</h3>
+          <p class="t-en">A Games section with every game, a picture and one line of rules each, and the bonuses already won on top. From there it's one tap to play</p>
+          <p class="t-ru">Раздел «Игры»: все игры с картинкой и правилами в одну строку, а сверху – сколько бонусов уже выиграно. Оттуда до игры одно нажатие</p>
+        </div>
+      </div>
+      <div class="decision">
+        <span class="decision-num">03</span>
+        <div>
+          <h3 class="t-en">Rewards you can use right away</h3>
+          <h3 class="t-ru">Награды, которыми сразу можно воспользоваться</h3>
+          <p class="t-en">Rewards split into available and received. A won promo code shows its validity, the code to copy and which game it came from</p>
+          <p class="t-ru">Награды разделены на доступные и полученные. У выигранного промокода видно срок, код, который можно скопировать, и игру, в которой он получен</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- APP SCREENS -->
+<div class="container">
+  <div class="screens-scroll">
+    <div class="screens-row">
+      <div class="screen-item">
+        <img src="images/sber/app-main.png" alt="SberSpasibo home: bonus balance, level, Earn and Spend sections" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Home</strong>
+          <strong class="t-ru">Главная</strong>
+          <span class="t-en">Balance, level and where to earn or spend</span>
+          <span class="t-ru">Баланс, уровень и где заработать или потратить</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-games.png" alt="Games section: bonuses won in games, rewards on offer, game list" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Games</strong>
+          <strong class="t-ru">Игры</strong>
+          <span class="t-en">What you've won so far and what you can still get</span>
+          <span class="t-ru">Сколько уже выиграно и что ещё можно получить</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-all-games.png" alt="All games: SberPrimeCity, Aktivisaction, Target Practice, Number Game, Sea Treasure, Basketball" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">All games</strong>
+          <strong class="t-ru">Все игры</strong>
+          <span class="t-en">A picture and one line of rules for each</span>
+          <span class="t-ru">У каждой картинка и правила в одну строку</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-game-play.png" alt="SberPrimeCity game: a city map with a Throw button" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">SberPrimeCity</strong>
+          <strong class="t-ru">SberPrimeCity</strong>
+          <span class="t-en">Throw the dice and travel the map collecting prizes</span>
+          <span class="t-ru">Бросаешь кубик и идёшь по карте, собирая призы</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-tasks.png" alt="My tasks: partner tasks with the number of moves each one gives" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Tasks</strong>
+          <strong class="t-ru">Задания</strong>
+          <span class="t-en">Every task says how many moves it gives</span>
+          <span class="t-ru">У каждого задания видно, сколько ходов оно даст</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-task-sheet.png" alt="Task from Okko: subscribe for 3 months, get 2 moves, games where moves can be used" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">A task</strong>
+          <strong class="t-ru">Задание</strong>
+          <span class="t-en">Deadline, reward and the games it works in</span>
+          <span class="t-ru">Срок, награда и игры, где она пригодится</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-rewards.png" alt="Rewards: increased cashback in categories and partner promo codes" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Rewards</strong>
+          <strong class="t-ru">Награды</strong>
+          <span class="t-en">Available and received, side by side</span>
+          <span class="t-ru">Доступные и полученные рядом</span>
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="images/sber/app-reward-claimed.png" alt="Your reward: an Okko promo code with validity, code to copy and the game it came from" loading="lazy">
+        <div class="screen-cap">
+          <strong class="t-en">Your reward</strong>
+          <strong class="t-ru">Ваша награда</strong>
+          <span class="t-en">The code, how long it's valid and where it came from</span>
+          <span class="t-ru">Код, срок действия и откуда он взялся</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEB -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">From app to web</p>
+    <p class="section-label t-ru">Из приложения в веб</p>
+    <h2>
+      <span class="t-en">The same games, without a personal account</span>
+      <span class="t-ru">Те же игры, но без личного кабинета</span>
+    </h2>
+    <p class="t-en">When the app was removed from the stores, the games had to live on the web. Instead of building a personal account there, we kept the core – games, tasks and rewards – and made them work without it. That's what let the web version launch fast</p>
+    <p class="t-ru">Когда приложение удалили из сторов, игры должны были переехать в веб. Вместо того чтобы делать там личный кабинет, мы оставили главное – игры, задания и награды – и сделали так, чтобы они работали без него. Благодаря этому веб-версия вышла быстро</p>
+
+    <figure class="board-figure">
+      <a href="images/sber/web-games.png" target="_blank" rel="noopener">
+        <img src="images/sber/web-games.png" alt="Web: the Games page with six games in a grid" loading="lazy">
+      </a>
+      <figcaption>
+        <span class="t-en">Web: every game on one page, same pictures and one-line rules as in the app · <a href="images/sber/web-games.png" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span class="t-ru">Веб: все игры на одной странице, те же картинки и правила в одну строку, что в приложении · <a href="images/sber/web-games.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
+
+    <figure class="board-figure">
+      <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">
+        <img src="images/sber/web-game-page.png" alt="Web: SberPrimeCity game page with rules, prizes and a Play button" loading="lazy">
+      </a>
+      <figcaption>
+        <span class="t-en">Web: a game page – rules, prizes and one button to play · <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span class="t-ru">Веб: страница игры – правила, призы и одна кнопка, чтобы начать · <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
+
+    <div class="tradeoff">
+      <p class="tradeoff-label t-en">Trade-off</p>
+      <p class="tradeoff-label t-ru">Компромисс</p>
+      <p class="t-en">Without an account, the web version lost personalisation: no tasks picked for you and no progress history. We accepted it to keep the programme running while the app was gone</p>
+      <p class="t-ru">Без личного кабинета веб-версия потеряла персонализацию: нет заданий, подобранных под человека, и нет истории прогресса. Мы пошли на это, чтобы программа продолжала работать, пока приложения нет</p>
+    </div>
+  </section>
+</div>
+
+<!-- RESEARCH & RESULTS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label t-en">Research</p>
+    <p class="section-label t-ru">Исследование</p>
+    <h2>
+      <span class="t-en">Every mechanic was tested before launch</span>
+      <span class="t-ru">Каждую механику проверяли до запуска</span>
+    </h2>
+    <p class="t-en">Research with 50+ respondents, usability tests on clickable prototypes and heatmaps. With the prototypes we checked whether tasks bring people back, whether progress keeps them motivated and whether the simpler reward system is easier to understand</p>
+    <p class="t-ru">Исследование на 50+ респондентах, юзабилити-тесты на кликабельных прототипах и тепловые карты. На прототипах проверяли, возвращают ли задания людей, мотивирует ли прогресс и понятнее ли упрощённая система наград</p>
+  </section>
+
+  <section class="section" id="results">
+    <p class="section-label t-en">Results</p>
+    <p class="section-label t-ru">Результаты</p>
+    <h2>
+      <span class="t-en">People started spending their bonuses</span>
+      <span class="t-ru">Бонусы начали тратить</span>
+    </h2>
+    <div class="metrics">
+      <div class="metric-tile">
+        <div class="metric-num">×3</div>
+        <div class="metric-delta"><span class="t-en">Sea Treasures</span><span class="t-ru">«Морские сокровища»</span></div>
+        <div class="metric-label t-en">Bonus redemption after the redesign</div>
+        <div class="metric-label t-ru">Во столько раз чаще тратят бонусы после редизайна</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num"><span class="t-en">×1.5</span><span class="t-ru">×1,5</span></div>
+        <div class="metric-delta">SberPrimeCity</div>
+        <div class="metric-label t-en">Bonus redemption after the redesign</div>
+        <div class="metric-label t-ru">Во столько раз чаще тратят бонусы после редизайна</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section class="next-case">
+    <p class="next-label t-en">Next case</p>
+    <p class="next-label t-ru">Следующий кейс</p>
+    <a href="case-eaveai.html" class="next-link">
+      <span class="t-en">EaveAI: a Telegram mini app for X Spaces&nbsp;<span class="next-arrow" aria-hidden="true">→</span></span><span class="t-ru">EaveAI: мини-приложение в Telegram для X Spaces&nbsp;<span class="next-arrow" aria-hidden="true">→</span></span>
+    </a>
+  </section>
+</div>
+<script src="js/case.js"></script>
+<script src="js/scroll-reveal.js" defer></script>

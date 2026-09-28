@@ -814,7 +814,7 @@ body {
   <div class="about-section">
     <span class="section-label"><span class="t-en">Off-screen</span><span class="t-ru">Вне экрана</span></span>
     <div class="section-content">
-      <div class="ab-index" id="abIndex" hidden><ol class="ab-index-list"></ol><button type="button" class="ab-index-stage" aria-label="Open full size"></button></div>
+      <div class="ab-index" id="abIndex" hidden><ol class="ab-index-list"></ol><div class="ab-index-view"><button type="button" class="ab-index-stage" aria-label="Open full size"></button><div class="ab-index-bar"><span class="ab-index-count"></span><button type="button" class="ab-index-nav" data-d="-1" aria-label="Previous photo">←</button><button type="button" class="ab-index-nav" data-d="1" aria-label="Next photo">→</button></div></div></div>
       <div class="gallery-strip" id="galleryStrip">
         <div class="gallery-track">
 
@@ -1102,17 +1102,25 @@ body {
   items.forEach(function (it, i) {
     var li = document.createElement('li'), b = document.createElement('button');
     b.type = 'button';
+    var th = document.createElement('span'); th.className = 'ab-ix-thumb';
+    var src = it.querySelector('img') ? it.querySelector('img').getAttribute('src') : null;
+    if (src) th.style.backgroundImage = 'url("' + src + '")'; else { var v = it.querySelector('video').cloneNode(true); v.removeAttribute('autoplay'); v.muted = true; v.preload = 'metadata'; th.appendChild(v); }
     b.innerHTML = '<i>' + String(i + 1).padStart(2, '0') + '</i><span class="ab-ix-tag">' + it.querySelector('.gallery-badge').innerHTML + '</span><span class="ab-ix-cap">' + it.querySelector('.gallery-cap').innerHTML + '</span>';
     b.addEventListener('mouseenter', function () { touched = true; show(i); });
     b.addEventListener('focus', function () { touched = true; show(i); });
     b.addEventListener('click', function () { touched = true; show(i); });
-    li.appendChild(b); list.appendChild(li);
+    b.insertBefore(th, b.children[1]); li.appendChild(b); list.appendChild(li);
   });
   function show(i) {
     if (i === cur) return; cur = i;
     media.forEach(function (m, k) { m.classList.toggle('is-on', k === i); if (m.tagName === 'VIDEO') { k === i && !still ? m.play().catch(function () {}) : m.pause(); } });
     Array.prototype.forEach.call(list.children, function (li, k) { li.classList.toggle('is-on', k === i); });
+    count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(items.length).padStart(2, '0');
   }
+  var count = box.querySelector('.ab-index-count');
+  Array.prototype.forEach.call(box.querySelectorAll('.ab-index-nav'), function (n) {
+    n.addEventListener('click', function () { touched = true; show((cur + +n.dataset.d + items.length) % items.length); });
+  });
   stage.addEventListener('click', function () { items[cur].click(); });
   show(0);
   box.hidden = false;

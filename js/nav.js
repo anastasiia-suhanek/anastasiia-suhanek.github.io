@@ -10,7 +10,7 @@
 
   // Segmented glass nav: the current page is the raised segment
   var links = [
-    { href: workHref,       en: 'Cases',          ru: 'Кейсы',     active: isHome },
+    { href: workHref,       en: 'Cases',          ru: 'Кейсы',     active: isHome || page.indexOf('case-') === 0 },
     { href: 'about.html',   en: 'About',          ru: 'Обо мне',   active: page === 'about.html' },
     { href: 'anastasiia-cv.html', en: 'CV', ru: 'Резюме', active: page === 'anastasiia-cv.html' },
   ];

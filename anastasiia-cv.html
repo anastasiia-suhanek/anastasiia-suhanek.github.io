@@ -283,13 +283,28 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   .pb-word { display: none; }
   html.g4 .summary { font-size: 18px !important; }
 }
+
+/* Top bar = the site header: bold wordmark to the home page, rule underneath, full-bleed, sticky */
+@media screen {
+  html .print-bar, html.g4 .print-bar {
+    position: sticky; top: 0; z-index: 50; height: 64px;
+    margin: 0 calc(50% - 50vw) 56px; padding: 0 calc(50vw - 50%);
+    background: var(--bg); border-bottom: 1px solid var(--rule);
+  }
+  html.g4 .print-bar .cv-back, html .print-bar .cv-back { font-size: 20px !important; font-weight: 800 !important; letter-spacing: -0.035em; line-height: 1; }
+  .doc { padding-top: 0 !important; }
+}
+@media screen and (max-width: 680px) {
+  html .print-bar, html.g4 .print-bar { margin-bottom: 40px; }
+  html.g4 .print-bar .cv-back, html .print-bar .cv-back { font-size: 18px !important; }
+}
 </style>
 
 <div class="doc" data-lang="en" lang="en">
 
   <!-- Print helper -->
   <div class="print-bar">
-    <a class="cv-back" href="index.html">← Portfolio</a>
+    <a class="cv-back" href="index.html">Anastasiia Sukhanek</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en" class="is-on">EN</button><button type="button" data-set-lang="ru">RU</button></div>
       <a class="print-btn" href="anastasiia-sukhanek-cv.pdf" download><span class="pb-word">Download </span>PDF</a>
@@ -509,7 +524,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 <div class="doc" data-lang="ru" lang="ru">
 
   <div class="print-bar">
-    <a class="cv-back" href="index.html">← Портфолио</a>
+    <a class="cv-back" href="index.html">Anastasiia Sukhanek</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en">EN</button><button type="button" data-set-lang="ru" class="is-on">RU</button></div>
       <a class="print-btn" href="anastasiia-sukhanek-cv-ru.pdf" download><span class="pb-word">Скачать </span>PDF</a>

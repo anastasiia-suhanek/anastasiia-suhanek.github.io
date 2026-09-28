@@ -413,8 +413,6 @@ html.swiss.g4 .ab-portrait { padding: 0; border: 0; }
 @media (max-width: 580px) {
   html.swiss.g4 .hero .sw-lead { font-size: var(--ts-lead) !important; line-height: 1.3; }
 }
-/* On the home page the big name is the wordmark: the nav name steps down to plain text so it isn't said twice */
-html.swiss.g4 .nav .nav-name[href="#"] { font-size: var(--ts-body) !important; font-weight: 600; letter-spacing: -0.01em; }
 /* Phones: the case cards follow right after the hero, so the short index would say the same thing twice */
 @media (max-width: 560px) { html.g4 .hero .sw-label, html.g4 .hero .sw-index { display: none; } }
 html.g4 .section [id] { scroll-margin-top: 124px; }

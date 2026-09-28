@@ -244,7 +244,9 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 @media screen and (min-width: 681px) and (max-width: 1000px) {
   html.g4 body { padding-inline: 32px; }
   html.g4 .name { font-size: calc((100vw - 64px) * var(--name-fit)); }
-  html.g4 .contact-block { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Tablet: two columns filled row by row – the desktop 4-column flow put the email under LinkedIn */
+  html.g4 .contact-block { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-flow: row; column-gap: 24px; }
+  html.g4 .contact-block li:last-child { grid-column: 1 / -1; grid-row: auto; margin-top: 4px; }
   html.g4 .sidebar { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; order: 2; margin-top: 56px; }
   html.g4 .main { grid-column: 1 / -1; }
 }
@@ -261,6 +263,8 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 :is(.skill-items, .bullets li, .summary) { overflow-wrap: break-word; }
   /* A long company name + dates don't fit one 280px line: dates drop under the name */
   html.g4 .job-top { flex-wrap: wrap; row-gap: 2px; }
+  /* The sidebar's grey rule sat 40px above the black rule of its first section: keep only the black one */
+  html.g4 .sidebar { border-top: 0; padding-top: 0; }
 }
 
 /* Type scale on screen, same six steps as the site: heading 32 · lead 20 · body 16 · caption 13 (print keeps its own sizes) */
@@ -271,6 +275,14 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 :is(.sec-label, .outcomes-hd, .job-dates, .skill-cat, .skill-items, .edu-org, .edu-detail, .lang-row, .cv-lang button, .badge-now) { font-size: 13px !important; }
   html.g4 .skill-cat { font-weight: 400 !important; }
 }
+/* Small phones: back link, EN/RU and Download PDF stay on one line each instead of wrapping into two */
+@media screen and (max-width: 400px) {
+  .bar-right { gap: 12px; }
+  .cv-back, .print-btn, .cv-lang { white-space: nowrap; }
+  .cv-lang button { padding-inline: 6px; }
+  .pb-word { display: none; }
+  html.g4 .summary { font-size: 18px !important; }
+}
 </style>
 
 <div class="doc" data-lang="en" lang="en">
@@ -280,7 +292,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
     <a class="cv-back" href="index.html">← Portfolio</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en" class="is-on">EN</button><button type="button" data-set-lang="ru">RU</button></div>
-      <a class="print-btn" href="anastasiia-sukhanek-cv.pdf" download>Download PDF</a>
+      <a class="print-btn" href="anastasiia-sukhanek-cv.pdf" download><span class="pb-word">Download </span>PDF</a>
     </div>
   </div>
 
@@ -501,7 +513,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
     <a class="cv-back" href="index.html">← Портфолио</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en">EN</button><button type="button" data-set-lang="ru" class="is-on">RU</button></div>
-      <a class="print-btn" href="anastasiia-sukhanek-cv-ru.pdf" download>Скачать PDF</a>
+      <a class="print-btn" href="anastasiia-sukhanek-cv-ru.pdf" download><span class="pb-word">Скачать </span>PDF</a>
     </div>
   </div>
 

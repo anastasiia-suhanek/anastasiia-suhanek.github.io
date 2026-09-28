@@ -140,6 +140,8 @@
     var id = decodeURIComponent(location.hash.slice(1));
     var el = id && document.getElementById(id);
     if (!el) return;
+    // Anchors inside the text sit on the EN copy; in Russian that copy is hidden, so land on its RU twin
+    if (!el.offsetParent) el = document.getElementById(id + '-ru') || el;
     var until = Date.now() + 4000;
     function align() { if (Date.now() < until) el.scrollIntoView({ behavior: 'instant', block: 'start' }); }
     align();

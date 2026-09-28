@@ -176,3 +176,66 @@ html.swiss.g4 .exp-outcomes li,
 html.swiss.g4 .exp-bullets li { font-size: 15px !important; line-height: 1.5; }
 html.swiss.g4 .belief-item { padding-block: 24px !important; }
 html.swiss.g4 .belief-item:first-child { padding-top: 0 !important; }
+
+/* ━━ About · second pass: a person, not a document ━━
+   Short statement + large portrait; experience as a four-row ledger; principles as three columns;
+   tools as one line; the photo strip stays. The long intro, bullets and skill table are for the CV */
+.ab-hero, .ab-ledger, .ab-more { display: none; }
+html.swiss.g4 .about-header,
+html.swiss.g4 .exp-list,
+html.swiss.g4 .core-list { display: none; }
+
+html.swiss.g4 .ab-hero {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--g-gap);
+  align-items: end; margin-bottom: 96px;
+}
+html.swiss.g4 .ab-hero-text { grid-column: 1 / 3; }
+html.swiss.g4 .ab-portrait { grid-column: 3 / -1; margin: 0; }
+html.swiss.g4 .ab-portrait img { display: block; width: 100%; height: auto; }
+html.swiss.g4 .ab-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+html.swiss.g4 .ab-title {
+  font-family: var(--f-display); font-size: clamp(40px, 5.4vw, 80px); font-weight: 700; line-height: 0.96; letter-spacing: -0.04em;
+  color: var(--text); margin-bottom: 32px; text-wrap: balance;
+}
+html.swiss.g4 .ab-sub { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.4; color: var(--text-mid); max-width: 32ch; margin: 0; }
+
+/* Experience ledger: years | company | role | the one result */
+html.swiss.g4 .ab-ledger { display: block; list-style: none; margin: 0; padding: 0; }
+html.swiss.g4 .ab-ledger li {
+  display: grid; grid-template-columns: 96px minmax(180px, 0.8fr) minmax(0, 1.3fr) minmax(0, 1.2fr); column-gap: 24px;
+  align-items: baseline; padding: 14px 0; border-top: 1px solid var(--border);
+}
+html.swiss.g4 .ab-ledger li:first-child { border-top: 0; padding-top: 0; }
+html.swiss.g4 .ab-y { font-size: 14px; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+html.swiss.g4 .ab-co { font-size: clamp(20px, 1.8vw, 24px); font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+html.swiss.g4 .ab-role { font-size: 15px; color: var(--text-mid); line-height: 1.4; }
+html.swiss.g4 .ab-out { font-size: 15px; color: var(--text); line-height: 1.4; }
+html.swiss.g4 .ab-out b { font-weight: 600; color: var(--accent); }
+html.swiss.g4 .ab-more { display: block; margin: 20px 0 0; font-size: 15px; }
+html.swiss.g4 .ab-more a { color: var(--text); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+html.swiss.g4 .ab-more a:hover { color: var(--accent); }
+html.swiss.g4 .about-section .exp-list ~ * { }
+html.swiss.g4 .about-section:has(.ab-ledger) .section-content { max-width: none; }
+
+/* Principles: three columns across the whole grid, the number large on top */
+@media (min-width: 901px) {
+  html.swiss.g4 .about-section:has(.beliefs-list) > .section-content { grid-column: 1 / -1; margin-top: 32px; }
+  html.swiss.g4 .beliefs-list { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--g-gap); max-width: none !important; }
+  html.swiss.g4 .belief-item { display: block !important; padding: 0 !important; border: 0 !important; }
+}
+html.swiss.g4 .belief-num { display: block; font-size: clamp(48px, 5vw, 72px) !important; font-weight: 700 !important; letter-spacing: -0.04em !important; line-height: 1 !important; color: var(--accent); margin-bottom: 16px; }
+html.swiss.g4 .belief-title { font-size: clamp(20px, 1.8vw, 24px) !important; font-weight: 600 !important; line-height: 1.2 !important; margin-bottom: 10px !important; }
+
+/* Tools: the tag cloud becomes one plain line */
+html.swiss.g4 .tags-grid { display: block; font-size: 15px; line-height: 1.8; color: var(--text); }
+html.swiss.g4 .tags-grid .tag { display: inline; background: none; border: 0; padding: 0; font-size: inherit; font-weight: 400; }
+html.swiss.g4 .tags-grid .tag + .tag::before { content: ' · '; color: var(--text-dim); }
+
+@media (max-width: 900px) {
+  html.swiss.g4 .ab-hero { grid-template-columns: 1fr; row-gap: 32px; margin-bottom: 56px; }
+  html.swiss.g4 .ab-hero-text, html.swiss.g4 .ab-portrait { grid-column: 1; }
+  html.swiss.g4 .ab-ledger li { grid-template-columns: 80px minmax(0, 1fr); row-gap: 4px; }
+  html.swiss.g4 .ab-role, html.swiss.g4 .ab-out { grid-column: 2; }
+  html.swiss.g4 .beliefs-list { display: flex !important; flex-direction: column; gap: 40px; }
+  html.swiss.g4 .belief-item { display: block !important; padding: 0 !important; border: 0 !important; }
+}

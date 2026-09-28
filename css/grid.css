@@ -590,7 +590,7 @@ html.swiss.g4 .contact-links { margin-top: 0 !important; }
 html.swiss.g4 .contact-link { margin: 0 !important; }
 html.swiss.g4 .contact-link:first-child { padding-top: 0 !important; }
 html.swiss.g4 .split-text .insight { margin-top: var(--s3) !important; }
-html.swiss.g4 .rb li:last-child .rb-row, html.swiss.g4 .rb-row:last-child { border-bottom: 0 !important; padding-bottom: 0 !important; }
+html.swiss.g4 .rb li:last-child > .rb-row { border-bottom: 0 !important; padding-bottom: 0 !important; }
 /* About text: paragraphs s2 apart, the "Looking for" call-out s3 around (block flow, margins collapse) */
 html.swiss.g4 .about-section .section-content p { margin-block: 0 var(--s2) !important; }
 html.swiss.g4 .about-section .section-content .info-looking { margin-block: var(--s3) !important; }

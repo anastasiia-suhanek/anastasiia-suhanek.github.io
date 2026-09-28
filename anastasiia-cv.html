@@ -250,6 +250,8 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 { --f: 'Inter Var', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-optical-sizing: auto; }
   html.g4 .name { font-size: min(64px, (100vw - 40px) * 0.2); font-weight: 800; letter-spacing: -0.05em; line-height: 0.9; }
   html.g4 .name { white-space: normal; }
+  /* The first section already opens with a black rule: no second, grey one under the header */
+  html.g4 .cv-header { border-bottom: 0; padding-bottom: 0; }
   html.g4 .role-tag { font-size: 15px; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--text); margin-top: 8px; }
   html.g4 .contact-block a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   html.g4 .sec-label { border-bottom: 0; border-top: 1px solid var(--text); padding: 12px 0 0; }

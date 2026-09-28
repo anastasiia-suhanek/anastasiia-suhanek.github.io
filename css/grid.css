@@ -439,8 +439,8 @@ html.g4 .section [id] { scroll-margin-top: 124px; }
   html.swiss.g4 .nav .nav-links .nav-seg--cta::after { content: '→'; font-size: 0.8em; color: var(--accent); }
   html.swiss.g4 .nav .nav-sheet-lang { margin-top: auto; padding: 24px 0 0; }
   html.swiss.g4 .nav .nav-sheet-lang .lang-toggle { gap: 0; }
-  html.swiss.g4 .nav .nav-sheet-lang .lang-btn { font-size: var(--ts-body, 16px) !important; padding: 12px 8px 12px 0 !important; margin: 0 !important; }
-  html.swiss.g4 .nav .nav-sheet-lang .lang-btn + .lang-btn::before { margin-right: 8px; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-btn { font-size: var(--ts-body, 16px) !important; padding: 12px 12px 12px 0 !important; margin: 0 !important; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-btn + .lang-btn::before { margin-right: 12px; }
   /* The sheet covers the page, so the dimmed backdrop is no longer needed */
   html.swiss.g4 .nav.is-open::after { content: none; }
 }

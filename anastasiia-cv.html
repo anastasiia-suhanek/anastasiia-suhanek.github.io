@@ -139,7 +139,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 .bar-right { display: flex; align-items: center; gap: 24px; }
 .cv-lang { display: flex; gap: 2px; font-size: 14px; }
 .cv-lang button { font: 500 14px var(--f); color: var(--text-dim); background: none; border: 0; padding: 0 2px; cursor: pointer; letter-spacing: 0.02em; }
-.cv-lang button + button::before { content: '/'; margin-right: 6px; color: var(--text-dim); }
+.cv-lang button + button::before { content: '/'; margin-right: 8px; color: var(--text-dim); }
 /* The slash belongs to the gap: equal space on both sides of it */
 .cv-lang button + button { padding-left: 0 !important; }
 .cv-lang button.is-on { color: var(--text); }
@@ -150,7 +150,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 
 @media (pointer: coarse) {
   .contact-block a, .cv-back, .print-btn, .cv-lang button { display: inline-block; padding-block: 12px; margin-block: -12px; }
-  .cv-lang button { padding-inline: 6px; }
+  .cv-lang button { padding-inline: 8px; }
 }
 @media (max-width: 680px) {
   body { padding-inline: 20px; }

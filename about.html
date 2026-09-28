@@ -814,6 +814,7 @@ body {
   <div class="about-section">
     <span class="section-label"><span class="t-en">Off-screen</span><span class="t-ru">Вне экрана</span></span>
     <div class="section-content">
+      <div class="ab-index" id="abIndex" hidden><ol class="ab-index-list"></ol><button type="button" class="ab-index-stage" aria-label="Open full size"></button></div>
       <div class="gallery-strip" id="galleryStrip">
         <div class="gallery-track">
 
@@ -1081,6 +1082,42 @@ body {
     if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) lightbox.close();
   });
   lightbox.addEventListener('close', function () { media.innerHTML = ''; });
+})();
+</script>
+<script>
+/* Grid layout: the photo strip becomes an index – numbered captions on the left, the photo large on the right.
+   Built from the strip's own items, so there is one source of truth; the strip stays for phones */
+(function () {
+  var box = document.getElementById('abIndex'), strip = document.getElementById('galleryStrip');
+  if (!box || !strip || !document.documentElement.classList.contains('g4')) return;
+  var items = Array.prototype.slice.call(strip.querySelectorAll('.gallery-item'));
+  items = items.slice(0, Math.ceil(items.length / 2) === items.length ? items.length : items.length / 2);
+  var list = box.querySelector('.ab-index-list'), stage = box.querySelector('.ab-index-stage');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, cur = -1, timer = null, touched = false;
+  var media = items.map(function (it) {
+    var m = it.querySelector('img, video').cloneNode(true);
+    if (m.tagName === 'VIDEO') { m.muted = true; m.setAttribute('playsinline', ''); if (still) m.removeAttribute('autoplay'); }
+    m.removeAttribute('loading'); m.className = ''; stage.appendChild(m); return m;
+  });
+  items.forEach(function (it, i) {
+    var li = document.createElement('li'), b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML = '<i>' + String(i + 1).padStart(2, '0') + '</i><span class="ab-ix-tag">' + it.querySelector('.gallery-badge').innerHTML + '</span><span class="ab-ix-cap">' + it.querySelector('.gallery-cap').innerHTML + '</span>';
+    b.addEventListener('mouseenter', function () { touched = true; show(i); });
+    b.addEventListener('focus', function () { touched = true; show(i); });
+    b.addEventListener('click', function () { touched = true; show(i); });
+    li.appendChild(b); list.appendChild(li);
+  });
+  function show(i) {
+    if (i === cur) return; cur = i;
+    media.forEach(function (m, k) { m.classList.toggle('is-on', k === i); if (m.tagName === 'VIDEO') { k === i && !still ? m.play().catch(function () {}) : m.pause(); } });
+    Array.prototype.forEach.call(list.children, function (li, k) { li.classList.toggle('is-on', k === i); });
+  }
+  stage.addEventListener('click', function () { items[cur].click(); });
+  show(0);
+  box.hidden = false;
+  if (!still) timer = setInterval(function () { if (!touched) show((cur + 1) % items.length); }, 3500);
+  box.addEventListener('mouseleave', function () { touched = false; });
 })();
 </script>
 <script src="js/scroll-reveal.js" defer></script>

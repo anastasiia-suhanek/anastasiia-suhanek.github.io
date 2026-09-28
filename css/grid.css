@@ -463,3 +463,9 @@ html.swiss.g4 .lang-toggle .lang-btn + .lang-btn::before { margin-right: 6px; }
 }
 @media (max-width: 900px) { .ab-next { margin-top: 64px; } }
 @media (prefers-reduced-motion: reduce) { .ab-next-arrow { transition: none; } }
+
+/* ━━ Rules: black opens a section, grey divides inside one or belongs to the interface (nav, chapter bar, footer) ━━ */
+html.swiss.g4 .next-case,
+html.swiss.g4 .section-contact { border-top: 1px solid var(--text) !important; }
+/* Case cover: the facts row already carries a hairline – no second one under the cover */
+html.swiss.g4 .container > .hero { border-bottom: 0 !important; }

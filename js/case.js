@@ -142,5 +142,46 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); });
+  // Images marked data-lightbox open over the page; siblings in the same group page with ← →
+  function lightbox() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('a[data-lightbox]'));
+    if (!links.length || typeof HTMLDialogElement !== 'function') return;
+    var d = document.createElement('dialog');
+    d.className = 'lightbox';
+    d.setAttribute('aria-label', document.documentElement.lang === 'ru' ? 'Просмотр изображения' : 'Image viewer');
+    d.innerHTML = '<div class="lightbox-stage"><img alt=""><p class="lightbox-cap"></p></div>' +
+      '<button type="button" class="lightbox-btn lightbox-close" aria-label="Close">✕</button>' +
+      '<button type="button" class="lightbox-btn lightbox-prev" aria-label="Previous">←</button>' +
+      '<button type="button" class="lightbox-btn lightbox-next" aria-label="Next">→</button>';
+    document.body.appendChild(d);
+    var img = d.querySelector('img'), cap = d.querySelector('.lightbox-cap'), group = [], i = 0;
+    function show(n) {
+      i = (n + group.length) % group.length;
+      var a = group[i], thumb = a.querySelector('img'), fig = a.closest('figure');
+      var c = fig && fig.querySelector('figcaption .t-' + (document.documentElement.lang === 'ru' ? 'ru' : 'en'));
+      img.src = a.href; img.alt = thumb ? thumb.alt : '';
+      cap.textContent = c ? c.textContent.trim() : '';
+      d.querySelector('.lightbox-prev').hidden = d.querySelector('.lightbox-next').hidden = group.length < 2;
+    }
+    links.forEach(function (a) {
+      a.removeAttribute('target');
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        group = links.filter(function (l) { return l.dataset.lightbox === a.dataset.lightbox; });
+        show(group.indexOf(a));
+        d.showModal();
+      });
+    });
+    d.querySelector('.lightbox-close').addEventListener('click', function () { d.close(); });
+    d.querySelector('.lightbox-prev').addEventListener('click', function () { show(i - 1); });
+    d.querySelector('.lightbox-next').addEventListener('click', function () { show(i + 1); });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') show(i - 1);
+      if (e.key === 'ArrowRight') show(i + 1);
+    });
+    d.addEventListener('click', function (e) { if (e.target === d || e.target.classList.contains('lightbox-stage')) d.close(); });
+    d.addEventListener('close', function () { img.removeAttribute('src'); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); lightbox(); });
 })();

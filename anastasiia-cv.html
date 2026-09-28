@@ -141,11 +141,14 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 .cv-lang button { font: 500 14px var(--f); color: var(--text-dim); background: none; border: 0; padding: 0 2px; cursor: pointer; letter-spacing: 0.02em; }
 .cv-lang button + button::before { content: '/'; margin-right: 4px; color: var(--text-dim); }
 .cv-lang button.is-on { color: var(--text); }
-.cv-lang button:hover { color: var(--accent); }
+/* Hover only where there is a pointer: on touch the tapped language must not stay tinted */
+@media (hover: hover) { .cv-lang button:not(.is-on):hover { color: var(--accent); } }
+.cv-lang button.is-on { cursor: default; }
+.cv-back, .print-btn, .cv-lang { white-space: nowrap; }
 
 @media (pointer: coarse) {
   .contact-block a, .cv-back, .print-btn, .cv-lang button { display: inline-block; padding-block: 12px; margin-block: -12px; }
-  .cv-lang button { padding-inline: 12px; }
+  .cv-lang button { padding-inline: 6px; }
 }
 @media (max-width: 680px) {
   body { padding-inline: 20px; }
@@ -276,10 +279,8 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 .skill-cat { font-weight: 400 !important; }
 }
 /* Small phones: back link, EN/RU and Download PDF stay on one line each instead of wrapping into two */
-@media screen and (max-width: 400px) {
-  .bar-right { gap: 12px; }
-  .cv-back, .print-btn, .cv-lang { white-space: nowrap; }
-  .cv-lang button { padding-inline: 6px; }
+@media screen and (max-width: 480px) {
+  .bar-right { gap: 16px; }
   .pb-word { display: none; }
   html.g4 .summary { font-size: 18px !important; }
 }

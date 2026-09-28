@@ -381,7 +381,7 @@ html.swiss.g4 .ab-portrait { padding: 0; border: 0; }
   html.g4 .hero .sw-foot { display: contents; }
   html.swiss.g4 .hero .sw-name { order: 1; margin: 8px 0 24px; }
   html.g4 .hero .sw-lead { order: 2; grid-column: 1 / -1; margin-bottom: 32px; }
-  html.g4 .hero .sw-meta { order: 3; margin-bottom: 40px; padding-top: 16px; border-top: 1px solid var(--text); }
+  html.g4 .hero .sw-meta { order: 3; margin-bottom: 0; padding-top: 16px; border-top: 1px solid var(--text); }
   html.g4 .hero .sw-label { order: 4; }
   html.g4 .hero .sw-label { margin-bottom: 12px; }
   html.g4 .hero .sw-label + .sw-index,
@@ -393,3 +393,5 @@ html.swiss.g4 .ab-portrait { padding: 0; border: 0; }
 }
 /* On the home page the big name is the wordmark: the nav name steps down to plain text so it isn't said twice */
 html.swiss.g4 .nav .nav-name[href="#"] { font-size: var(--ts-body) !important; font-weight: 600; letter-spacing: -0.01em; }
+/* Phones: the case cards follow right after the hero, so the short index would say the same thing twice */
+@media (max-width: 560px) { html.g4 .hero .sw-label, html.g4 .hero .sw-index { display: none; } }

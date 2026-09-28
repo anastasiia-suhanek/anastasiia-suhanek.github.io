@@ -237,6 +237,26 @@ body {
   box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
 @media (max-width: 640px) { .mails { grid-template-columns: 1fr; row-gap: var(--space-8); } .mail-card { grid-row: auto; display: block; } }
+/* Phones: the letter is ~1.5 screens. Show the opening – pleasantries and the first mark –
+   and fade the rest; one tap unrolls it. Desktop always shows the whole letter */
+.mail-more { display: none; }
+@media (max-width: 640px) {
+  .mail-card.is-collapsed .mail-sheet {
+    position: relative; max-height: 400px; overflow: hidden;
+    border-bottom: 1px solid var(--border); border-radius: 0 0 14px 14px;
+  }
+  .mail-card.is-collapsed .mail-sheet::after {
+    content: ''; position: absolute; left: 1px; right: 1px; bottom: 0; height: 140px; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #FFFFFF 70%);
+    border-radius: 0 0 14px 14px;
+  }
+  .mail-card.is-collapsed .mail-more {
+    display: block; position: relative; z-index: 1; width: 100%; min-height: 48px; margin-top: 4px;
+    padding: 12px 0; border: 0; background: none; font: inherit; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); cursor: pointer; text-align: center;
+  }
+  .mail-card.is-collapsed .mail-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+}
 
 /* ── NEXT CASE ── */
 
@@ -373,6 +393,7 @@ body {
             <p>Regards,<br>Profee Customer Support</p>
           </div>
         </div>
+        <button type="button" class="mail-more" aria-expanded="false"><span class="t-en">Show the whole email ↓</span><span class="t-ru">Показать письмо целиком ↓</span></button>
         <figcaption class="screen-cap">
           <strong class="t-en">Document request</strong>
           <strong class="t-ru">Запрос документов</strong>
@@ -866,5 +887,18 @@ body {
   </section>
 </div>
 <script src="js/case.js"></script>
+<script>
+  (function () {
+    document.querySelectorAll('.mail-card').forEach(function (card) {
+      var b = card.querySelector('.mail-more');
+      if (!b) return;
+      card.classList.add('is-collapsed');
+      b.addEventListener('click', function () {
+        card.classList.remove('is-collapsed');
+        b.setAttribute('aria-expanded', 'true');
+      });
+    });
+  })();
+</script>
 <script src="js/scroll-reveal.js" defer></script>
 <script src="js/kyc-map.js" defer></script>

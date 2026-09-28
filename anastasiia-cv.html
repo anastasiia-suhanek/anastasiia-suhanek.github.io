@@ -355,6 +355,10 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 .role-tag { margin: 0 !important; }
   html.g4 .sidebar { margin-top: var(--s4) !important; }
 }
+/* 320px: wordmark + EN/RU + PDF must fit – later than the spacing system on purpose */
+@media screen and (max-width: 360px) {
+  html.g4 .bar-right, html .bar-right { gap: 12px; }
+}
 </style>
 
 <div class="doc" data-lang="en" lang="en">

@@ -13,8 +13,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>
-  // Hero: metric poster by default; ?hero=live previews the poster with the live product inside
-  if (/[?&]hero=live/.test(location.search)) document.documentElement.classList.add('hero-live');
+  // Hero: metric poster by default; ?hero=<variant> previews an alternative (live, manifest, data, ticker, bento)
+  (function () {
+    var m = location.search.match(/[?&]hero=(live|manifest|data|ticker|bento)\b/);
+    if (m) document.documentElement.classList.add(m[1] === 'live' ? 'hero-live' : 'hv-' + m[1], 'hero-alt');
+  })();
 </script>
 <script src="lang.js"></script>
 <link rel="stylesheet" href="tokens.css">
@@ -299,6 +302,131 @@ html.hero-live .hero-proto:hover { background: #372B87; }
   html.hero-live .hero-proto { min-height: 480px; padding: 28px; }
   .hero-proto-phone { width: 168px; right: 24px; top: 92px; }
   .hero-proto-stat { left: 28px; bottom: 28px; max-width: 52%; }
+}
+
+/* ── Hero preview variants (?hero=manifest|data|ticker|bento). Hidden unless their flag is on ── */
+.hero-manifest-eyebrow, .hero-manifest-title, .hero-manifest-sub,
+.hero-facts, .hero-data, .hero-bento, .hero-ticker { display: none; }
+html.hero-alt .hero-metric { display: none; }
+
+/* 3 · Manifest: a statement as the headline, the name moves to the eyebrow */
+html.swiss.hv-manifest .hero-eyebrow,
+html.swiss.hv-manifest .hero-name,
+html.swiss.hv-manifest .hero-identity > .hero-desc { display: none; }
+html.swiss.hv-manifest .hero-manifest-eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 28px;
+}
+html.swiss.hv-manifest .hero-manifest-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
+html.swiss.hv-manifest .hero-manifest-title {
+  display: block;
+  font-size: clamp(40px, 4.2vw, 64px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 500;
+  color: var(--text); margin-bottom: 28px; text-wrap: balance;
+}
+html.swiss.hv-manifest .hero-manifest-sub {
+  display: block;
+  font-size: clamp(18px, 1.5vw, 21px); line-height: 1.4; color: var(--text);
+  max-width: 34ch; margin-bottom: 36px;
+}
+html.swiss.hv-manifest .hero-inner { grid-template-columns: 1.4fr 1fr; gap: 72px; }
+html.swiss.hv-manifest .hero-facts { display: block; margin: 0; }
+html.swiss .hero-facts > div {
+  display: grid; grid-template-columns: 112px 1fr; gap: 16px;
+  border-top: 1px solid var(--text); padding: 16px 0 24px;
+}
+html.swiss .hero-facts dt { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); padding-top: 4px; }
+html.swiss .hero-facts dd { margin: 0; font-size: 19px; line-height: 1.4; color: var(--text); }
+
+/* 4 · Data: the result drawn as a before/after slope, not stated */
+html.swiss.hv-data .hero-data {
+  display: flex; flex-direction: column;
+  background: #2A1D6E; color: #fff;
+  padding: 40px 44px; min-height: 460px;
+  text-decoration: none; transition: background 0.25s ease;
+}
+html.swiss.hv-data .hero-data:hover { background: #372B87; }
+.hero-data-top { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
+.hero-data-num { font-size: clamp(64px, 5.6vw, 92px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; margin-top: 28px; }
+.hero-data-chart { display: block; width: 100%; height: auto; margin: 8px 0 20px; overflow: visible; font-family: inherit; }
+.hero-data-grid { stroke: rgba(255, 255, 255, 0.2); stroke-width: 1; stroke-dasharray: 2 4; }
+.hero-data-base { stroke: rgba(255, 255, 255, 0.45); stroke-width: 1; }
+.hero-data-line { stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+.hero-data-dot { fill: #fff; stroke: #2A1D6E; stroke-width: 2; }
+.hero-data-val { fill: #fff; font-size: 16px; font-weight: 600; }
+.hero-data-tick { fill: rgba(255, 255, 255, 0.72); font-size: 12px; }
+.hero-data-foot {
+  margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.35); padding-top: 16px;
+  font-size: 18px; line-height: 1.4; font-weight: 500;
+}
+.hero-data-caption { max-width: 30ch; text-wrap: balance; }
+.hero-data:hover .hero-metric-arrow { transform: translateX(4px); }
+
+/* 5 · Ticker: a type-only hero across the full width, results running underneath */
+html.swiss.hv-ticker .hero { flex-direction: column; align-items: stretch; justify-content: center; padding-bottom: 0; border-bottom: 0; }
+html.swiss.hv-ticker .hero-feature { display: none; }
+html.swiss.hv-ticker .hero-inner { grid-template-columns: 1fr; }
+html.swiss.hv-ticker .hero-identity {
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; align-items: end;
+}
+html.swiss.hv-ticker .hero-eyebrow,
+html.swiss.hv-ticker .hero-name { grid-column: 1 / -1; }
+html.swiss.hv-ticker .hero-name { font-size: clamp(56px, 7.8vw, 128px); white-space: nowrap; }
+html.swiss.hv-ticker .hero-name br { display: none; }
+html.swiss.hv-ticker .hero-identity > .hero-desc { grid-column: 1; grid-row: span 2; align-self: start; margin-bottom: 0; }
+html.swiss.hv-ticker .hero-chips { grid-column: 2; }
+html.swiss.hv-ticker .hero-actions { grid-column: 2; }
+html.swiss.hv-ticker .hero-ticker {
+  display: block; overflow: hidden;
+  margin-top: 72px; padding: 22px 0;
+  border-top: 1px solid var(--text); border-bottom: 1px solid var(--text);
+}
+.hero-ticker-track {
+  display: flex; width: max-content; white-space: nowrap;
+  font-size: clamp(22px, 2.2vw, 32px); font-weight: 500; letter-spacing: -0.02em;
+  animation: hero-ticker 48s linear infinite;
+}
+.hero-ticker-track > * { margin-right: 28px; }
+.hero-ticker-track i { font-style: normal; color: var(--accent); }
+.hero-ticker:hover .hero-ticker-track { animation-play-state: paused; }
+@keyframes hero-ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-ticker-track { animation: none; }
+  html.swiss.hv-ticker .hero-ticker { overflow-x: auto; }
+}
+
+/* 6 · Bento: a grid of small proofs */
+html.swiss.hv-bento .hero-bento {
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 224px 112px 112px; gap: 8px;
+}
+.bento-tile {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 22px 24px; overflow: hidden;
+  background: var(--bg-deep); color: var(--text); text-decoration: none;
+}
+.bento-metric { grid-column: 1 / -1; background: #2A1D6E; color: #fff; transition: background 0.25s ease; }
+.bento-metric:hover { background: #372B87; }
+.bento-num { font-size: 88px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+.bento-cap { font-size: 16px; line-height: 1.4; font-weight: 500; max-width: 32ch; }
+.bento-shot { grid-row: 2 / 4; align-items: center; justify-content: flex-start; padding: 20px 20px 0; }
+.bento-shot img { display: block; width: 70%; border-radius: 14px 14px 0 0; box-shadow: 0 0 0 1px var(--border); }
+.bento-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+.bento-value { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
+
+@media (max-width: 900px) {
+  html.swiss.hv-manifest .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  html.swiss.hv-ticker .hero-identity { grid-template-columns: 1fr; }
+  html.swiss.hv-ticker .hero-name { white-space: normal; font-size: clamp(48px, 13vw, 72px); }
+  html.swiss.hv-ticker .hero-chips,
+  html.swiss.hv-ticker .hero-actions,
+  html.swiss.hv-ticker .hero-identity > .hero-desc { grid-column: 1; grid-row: auto; }
+  html.swiss.hv-ticker .hero-identity > .hero-desc { margin-bottom: 24px; }
+  html.swiss.hv-ticker .hero-ticker { margin-top: 40px; }
+  html.swiss.hv-data .hero-data { padding: 28px; min-height: 0; }
+  html.swiss.hv-bento .hero-bento { grid-template-rows: auto 104px 104px; }
+  .bento-num { font-size: 64px; }
+  .bento-metric { gap: 24px; }
 }
 
 /* ── SECTION HEADER ── */
@@ -774,11 +902,23 @@ html.hero-live .hero-proto:hover { background: #372B87; }
   <div class="hero-inner">
 
     <div class="hero-identity">
+      <p class="hero-manifest-eyebrow">
+        <span class="t-en">Anastasiia Sukhanek · Product designer</span>
+        <span class="t-ru">Anastasiia Sukhanek · Продуктовый дизайнер</span>
+      </p>
+      <p class="hero-manifest-title" role="heading" aria-level="1">
+        <span class="t-en">I design the screens where fintech loses people</span>
+        <span class="t-ru">Проектирую экраны, на которых финтех теряет людей</span>
+      </p>
+      <p class="hero-manifest-sub">
+        <span class="t-en">Payments, verification, errors – I redesign them and measure who gets through</span>
+        <span class="t-ru">Оплата, верификация, ошибки – перепроектирую и считаю, сколько людей проходит</span>
+      </p>
       <p class="hero-eyebrow fade-up">
         <span class="t-en">Product Designer</span>
         <span class="t-ru">Продуктовый дизайнер</span>
       </p>
-      <h1 class="hero-name fade-up">Anastasiia<br>Sukhanek</h1>
+      <h1 class="hero-name fade-up">Anastasiia <br>Sukhanek</h1>
       <p class="hero-desc fade-up t-en">I help fintech products get more people through payments, verification and errors – and I measure it</p>
       <p class="hero-desc fade-up t-ru">Помогаю финтех-продуктам проводить больше людей через оплату, верификацию и ошибки – и считаю, сколько получилось</p>
       <div class="hero-chips fade-up">
@@ -852,9 +992,95 @@ html.hero-live .hero-proto:hover { background: #372B87; }
           v.addEventListener('ended', function () { v.currentTime = START; v.play(); });
         })();
       </script>
+
+      <!-- Hero variant 3 (?hero=manifest): quiet column of facts next to a statement headline -->
+      <dl class="hero-facts">
+        <div>
+          <dt><span class="t-en">Now</span><span class="t-ru">Сейчас</span></dt>
+          <dd><span class="t-en">Profee – cross-border payments</span><span class="t-ru">Profee – международные переводы</span></dd>
+        </div>
+        <div>
+          <dt><span class="t-en">Proof</span><span class="t-ru">Результаты</span></dt>
+          <dd><span class="t-en">+1.4 pp verified · ×2 Cards tab reach · 73% act on the status card within a day</span><span class="t-ru">+1,4 п.п. верификаций · ×2 охват вкладки «Карты» · 73% действуют по карточке статуса в течение дня</span></dd>
+        </div>
+        <div>
+          <dt><span class="t-en">Before</span><span class="t-ru">До этого</span></dt>
+          <dd>Beeline · SberSpasibo</dd>
+        </div>
+      </dl>
+
+      <!-- Hero variant 4 (?hero=data): the result drawn, not stated -->
+      <a href="case-profee-cards.html" class="hero-data">
+        <span class="hero-data-top">
+          <span>Profee · <span class="t-en">Cards</span><span class="t-ru">Карты</span></span>
+          <span>2026</span>
+        </span>
+        <span class="hero-data-num">×2</span>
+        <svg class="hero-data-chart" viewBox="0 0 400 200" role="img" aria-labelledby="heroDataTitle">
+          <title id="heroDataTitle">Share of active senders who open the Cards tab in a month: 3.9% in April 2026, 8% in August 2026</title>
+          <line class="hero-data-grid" x1="0" y1="95" x2="400" y2="95"></line>
+          <line class="hero-data-base" x1="0" y1="170" x2="400" y2="170"></line>
+          <line class="hero-data-line" x1="48" y1="140.75" x2="352" y2="110"></line>
+          <circle class="hero-data-dot" cx="48" cy="140.75" r="6"><title>April 2026: 3.9%</title></circle>
+          <circle class="hero-data-dot" cx="352" cy="110" r="6"><title>August 2026: 8%</title></circle>
+          <text class="hero-data-val" x="48" y="124" text-anchor="middle">3.9%</text>
+          <text class="hero-data-val" x="352" y="93" text-anchor="middle">8%</text>
+          <text class="hero-data-tick" x="48" y="192" text-anchor="middle"><tspan class="t-en">April</tspan><tspan class="t-ru">апрель</tspan></text>
+          <text class="hero-data-tick" x="352" y="192" text-anchor="middle"><tspan class="t-en">August</tspan><tspan class="t-ru">август</tspan></text>
+          <text class="hero-data-tick" x="0" y="88" text-anchor="start">10%</text>
+        </svg>
+        <span class="hero-data-foot">
+          <span class="hero-data-caption">
+            <span class="t-en">active senders who open the Cards tab in a month, after the redesign</span>
+            <span class="t-ru">активных отправителей открывают вкладку «Карты» в месяц после редизайна</span>
+          </span>
+          <span class="hero-metric-arrow">→</span>
+        </span>
+      </a>
+
+      <!-- Hero variant 6 (?hero=bento): a grid of small proofs -->
+      <div class="hero-bento">
+        <a href="case-profee-verification.html" class="bento-tile bento-metric">
+          <span class="bento-num">59%</span>
+          <span class="bento-cap"><span class="t-en">of people who see the new verification card click through</span><span class="t-ru">увидевших новую карточку верификации нажимают кнопку</span></span>
+        </a>
+        <a href="case-profee-verification.html" class="bento-tile bento-shot" aria-label="KYC verification case">
+          <img src="images/verif/screen-entry-banner.png" alt="">
+        </a>
+        <div class="bento-tile bento-fact">
+          <span class="bento-label"><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></span>
+          <span class="bento-value">iOS · Android · Web</span>
+        </div>
+        <div class="bento-tile bento-fact">
+          <span class="bento-label"><span class="t-en">Localised into</span><span class="t-ru">Локализация</span></span>
+          <span class="bento-value"><span class="t-en">13+ languages</span><span class="t-ru">13+ языков</span></span>
+        </div>
+      </div>
     </div>
 
   </div>
+
+  <!-- Hero variant 5 (?hero=ticker): results running as a ticker under the name -->
+  <div class="hero-ticker" aria-label="Results">
+    <div class="hero-ticker-track">
+      <span class="t-en">+1.4 pp verified</span><span class="t-ru">+1,4 п.п. верификаций</span><i>·</i>
+      <span class="t-en">59% click through</span><span class="t-ru">59% нажимают</span><i>·</i>
+      <span class="t-en">×2 Cards tab reach</span><span class="t-ru">×2 охват «Карт»</span><i>·</i>
+      <span class="t-en">73% act within a day</span><span class="t-ru">73% действуют в течение дня</span><i>·</i>
+      <span class="t-en">10 entry points in one component</span><span class="t-ru">10 точек входа в одном компоненте</span><i>·</i>
+      <span class="t-en">5 transfer states</span><span class="t-ru">5 статусов перевода</span><i>·</i>
+      <span class="t-en">13+ languages</span><span class="t-ru">13+ языков</span><i>·</i>
+    </div>
+  </div>
+  <script>
+    // A second copy makes the -50% loop seamless; screen readers get the list once
+    (function () {
+      var t = document.querySelector('.hero-ticker-track');
+      if (!t || !document.documentElement.classList.contains('hv-ticker')) return;
+      var copy = t.cloneNode(true);
+      Array.prototype.forEach.call(copy.children, function (c) { c.setAttribute('aria-hidden', 'true'); t.appendChild(c.cloneNode(true)); });
+    })();
+  </script>
 </section>
 
 <!-- ── WORK ── -->

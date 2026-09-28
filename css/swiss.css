@@ -1346,3 +1346,14 @@ html.swiss .slider-controls + .screens-scroll { margin-top: 16px; }
   html.swiss .nav-actions .nav-seg { min-height: 0; }
   html.swiss .nav-name { padding-block: 11px; margin-block: -11px; }
 }
+
+/* Home covers on phones: the screens were 96px wide – big enough to tell apart, too small to read as UI */
+@media (max-width: 580px) {
+  html.swiss .work-cover,
+  html.swiss .work-card--wide .work-cover { height: 232px; }
+  html.swiss .work-cover img,
+  html.swiss .work-card--wide .work-cover img { width: min(124px, 34vw); border-radius: 14px; }
+}
+/* Touch hint under the first strip of screens (case.js): a caption, not body text */
+html.swiss p.screens-hint,
+html.swiss .section p.screens-hint { margin: -16px 0 var(--s5); font-size: var(--t-small); line-height: 1.4; color: var(--text-dim); }

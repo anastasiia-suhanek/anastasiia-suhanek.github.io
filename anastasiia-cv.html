@@ -152,7 +152,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   .print-bar { margin-bottom: 40px; }
   .cv-header { grid-template-columns: 1fr; align-items: start; gap: 20px; }
   .contact-block { align-items: flex-start; }
-  .cv-body { grid-template-columns: 1fr; }
+  .cv-body { grid-template-columns: minmax(0, 1fr); }
   .sidebar { order: 2; padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--rule); }
   .name { font-size: 34px; }
 }
@@ -257,6 +257,10 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 .role-tag { font-size: 15px; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--text); margin-top: 8px; }
   html.g4 .contact-block a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   html.g4 .sec-label { border-bottom: 0; border-top: 1px solid var(--text); padding: 12px 0 0; }
+  /* Long RU words must wrap on a 320px screen, not push the page sideways */
+  html.g4 :is(.skill-items, .bullets li, .summary) { overflow-wrap: break-word; }
+  /* A long company name + dates don't fit one 280px line: dates drop under the name */
+  html.g4 .job-top { flex-wrap: wrap; row-gap: 2px; }
 }
 
 /* Type scale on screen, same six steps as the site: heading 32 · lead 20 · body 16 · caption 13 (print keeps its own sizes) */

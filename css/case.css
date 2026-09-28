@@ -712,3 +712,30 @@
   font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
 }
 .to-top:hover { background: var(--accent); color: #fff; }
+
+/* ━━ Phones: cases read like an app, not a shrunken desktop ━━ */
+/* Every app screen opens full size on tap (case.js); the cursor says so on desktop */
+.screen-item img.is-zoomable { cursor: zoom-in; }
+.screen-item img.is-zoomable:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+html.has-lightbox { overflow: hidden; }
+.lightbox-count { margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 13px; font-variant-numeric: tabular-nums; }
+.lightbox-count:empty { display: none; }
+@media (max-width: 580px) {
+  /* One screen at a readable size, the next one peeking in as the swipe cue */
+  .screen-item { --shot-w: min(240px, 66vw); }
+  /* Viewer: the screen fills the phone, the caption sits under it, arrows at the thumb */
+  .lightbox-stage { padding: calc(56px + env(safe-area-inset-top)) var(--space-4) calc(76px + env(safe-area-inset-bottom)); gap: var(--space-2); }
+  .lightbox-stage img { max-width: 100%; max-height: calc(100dvh - 132px - 5.5em - env(safe-area-inset-top) - env(safe-area-inset-bottom)); border-radius: 14px; }
+  .lightbox-cap { max-width: 34ch; line-height: 1.4; }
+  .lightbox-close { top: calc(var(--space-3) + env(safe-area-inset-top)); right: var(--space-3); }
+  .lightbox-prev, .lightbox-next { bottom: calc(var(--space-4) + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
+  .lightbox-prev { left: calc(50% - 64px); }
+  .lightbox-next { right: calc(50% - 64px); }
+  /* The flow video: phone + caption fit one screen, so the caption isn't a scroll away */
+  .phone-frame:has(video) { width: min(280px, 76vw); border-radius: 44px; }
+  .phone-frame:has(video) video { border-radius: 37px; }
+  .phone-frame:has(video) .phone-island { top: 15px; width: 104px; height: 24px; }
+  /* To the top: a 44px square with the arrow – the worded pill covered the text it floats over */
+  .to-top { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; font-size: 18px; letter-spacing: 0; }
+  .to-top-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}

@@ -778,11 +778,14 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
   margin-bottom: var(--space-1);
 }
 
+.contact-link > div { min-width: 0; }
 .contact-link-value {
   font-size: var(--fs-md);
   font-weight: var(--fw-medium);
   color: var(--text);
+  overflow-wrap: anywhere;
 }
+.contact-arrow { flex-shrink: 0; margin-left: var(--space-3); }
 
 .contact-arrow {
   color: var(--accent);
@@ -832,7 +835,7 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
   .work-card--wide .work-cover img:nth-child(3) { display: none; }
   .about-grid { grid-template-columns: 1fr; }
   .about-aside { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-  .contact-inner { grid-template-columns: 1fr; gap: var(--space-10); }
+  .contact-inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
 }
 
 @media (max-width: 580px) {

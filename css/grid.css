@@ -341,7 +341,7 @@ html.swiss.g4 .ab-sheet button:focus-visible .ab-sheet-cap i { color: var(--acce
 }
 @media (max-width: 900px) { html.swiss.g4 .ab-sheet:not([hidden]) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; } }
 /* The name in the nav is the site's wordmark: the hero's ExtraBold and tight tracking at nav size */
-html.swiss.g4 .nav-name { font-size: 18px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+html.swiss.g4 .nav-name { font-size: 20px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
 html.swiss.g4 .nav-name:hover { color: var(--accent); }
 
 /* ━━ Type scale – six sizes, one role each (final word on size; loaded last) ━━
@@ -353,30 +353,36 @@ html.swiss.g4 .nav-name:hover { color: var(--accent); }
    caption   13  labels, meta, captions, dates
    Weights: 400 text · 600 labels and emphasis · 700/800 display */
 html.swiss.g4 {
-  --ts-title: clamp(40px, 4.6vw, 64px);
-  --ts-heading: clamp(24px, 2.3vw, 32px);
-  --ts-lead: 20px; --ts-body: 16px; --ts-caption: 13px;
+  --ts-title: 64px;   --lh-title: 64px;
+  --ts-heading: 32px; --lh-heading: 36px;
+  --ts-lead: 20px;    --lh-lead: 28px;
+  --ts-body: 16px;    --lh-body: 24px;
+  --ts-caption: 12px; --lh-caption: 16px;
 }
-@media (max-width: 580px) { html.swiss.g4 { --ts-lead: 18px; } }
+/* Every size and line height is a multiple of 4. Steps change at breakpoints instead of scaling with the window */
+@media (max-width: 1200px) { html.swiss.g4 { --ts-title: 48px; --lh-title: 52px; } }
+@media (max-width: 580px)  { html.swiss.g4 { --ts-title: 36px; --lh-title: 40px; --ts-heading: 24px; --lh-heading: 32px; } }
+@media (max-width: 400px)  { html.swiss.g4 { --ts-title: 32px; --lh-title: 36px; } }
+html.swiss.g4 body { font-size: var(--ts-body); line-height: var(--lh-body); }
 
 /* title */
 @media (min-width: 581px) {
-  html.swiss.g4 .container > .hero h1 { font-size: var(--ts-title) !important; }
+  html.swiss.g4 .container > .hero h1 { font-size: var(--ts-title) !important; line-height: var(--lh-title) !important; }
 }
 html.swiss.g4 .ab-title,
-html.swiss.g4 .belief-num { font-size: var(--ts-title) !important; }
+html.swiss.g4 .belief-num { font-size: var(--ts-title) !important; line-height: var(--lh-title) !important; }
 
 /* heading */
-html.swiss.g4 :is(.section h2, .work-title, .next-link, .metric-num, .sw-lead) { font-size: var(--ts-heading) !important; }
+html.swiss.g4 :is(.section h2, .work-title, .next-link, .metric-num, .sw-lead) { font-size: var(--ts-heading) !important; line-height: var(--lh-heading) !important; }
 
 /* lead */
-html.swiss.g4 :is(.hero-desc, .insight, .info-looking, .ab-sub, .contact-link-value, .phone-caption strong, .mm-root-title, .nav-name) { font-size: var(--ts-lead) !important; }
+html.swiss.g4 :is(.hero-desc, .insight, .info-looking, .ab-sub, .contact-link-value, .phone-caption strong, .mm-root-title, .nav-name) { font-size: var(--ts-lead) !important; line-height: var(--lh-lead) !important; }
 
 /* body */
 html.swiss.g4 :is(.section p, .section li, .section dd, .section h3, .decision h3, .decision p, .tradeoff p, .split-text p,
   .info-text p, .work-excerpt, .belief-note, .belief-title, .contact-text p, .scope-title, ol.goals li,
   .case-facts dd, .ab-role, .ab-out, .ab-co, .ab-more, .tags-grid, .ab-ix-cap,
-  .nav-seg, .nav-cta, .sw-meta p, .sw-index a, .sw-label, .contact-btn, .hero-btn-primary, .hero-btn-secondary, .exp-outcomes li, .exp-bullets li) { font-size: var(--ts-body) !important; }
+  .nav-seg, .nav-cta, .sw-meta p, .sw-index a, .sw-label, .contact-btn, .hero-btn-primary, .hero-btn-secondary, .exp-outcomes li, .exp-bullets li) { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
 html.swiss.g4 :is(.decision h3, .belief-title, .scope-title) { font-weight: 600 !important; }
 html.swiss.g4 .ab-co { font-weight: 700 !important; }
 
@@ -386,11 +392,11 @@ html.swiss.g4 :is(.screen-cap, .screen-cap strong, .screen-cap span, figcaption,
   .insight-source, .case-facts dt, .work-meta, .work-company, .work-metric, .hero-eyebrow, .eyebrow-meta, .eyebrow-jump,
   .section-label, .next-label, .tradeoff-label, .contact-link-label, .footer-name, .footer-note,
   .ab-y, .ab-eyebrow, .page-eyebrow, .ab-ix-tag, .ab-sheet-cap, .ab-index-list i, .gallery-cap, .gallery-badge,
-  .nav-breadcrumb, .nav-back, .lang-btn, .sw-index i, .belief-item .belief-num + *, .screens-hint) { font-size: var(--ts-caption) !important; }
-html.swiss.g4 .belief-item .belief-num + * { font-size: var(--ts-body) !important; }
-html.swiss.g4 .contact-text h2 { font-size: var(--ts-heading) !important; }
-html.swiss.g4 .screen-group-head h3 { font-size: var(--ts-lead) !important; font-weight: 600 !important; }
-html.swiss.g4 .screen-group-head p { font-size: var(--ts-body) !important; }
+  .nav-breadcrumb, .nav-back, .lang-btn, .sw-index i, .belief-item .belief-num + *, .screens-hint) { font-size: var(--ts-caption) !important; line-height: var(--lh-caption) !important; }
+html.swiss.g4 .belief-item .belief-num + * { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
+html.swiss.g4 .contact-text h2 { font-size: var(--ts-heading) !important; line-height: var(--lh-heading) !important; }
+html.swiss.g4 .screen-group-head h3 { font-size: var(--ts-lead) !important; line-height: var(--lh-lead) !important; font-weight: 600 !important; }
+html.swiss.g4 .screen-group-head p { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
 /* Weights: 400 text, 600 labels and emphasis, 500 only on controls (buttons, toggles), 700–800 display */
 html.swiss.g4 .section div > p:not([class*="label"]),
 html.swiss.g4 :is(.contact-link-value, .metric-delta, .work-company, .contact-link-label, .ledger-row.header .ledger-cell, .nav-breadcrumb .current) { font-weight: 400 !important; }
@@ -429,8 +435,8 @@ html.g4 .section [id] { scroll-margin-top: 124px; }
   }
   html.swiss.g4 .nav .nav-links .nav-seg {
     display: flex; align-items: center; justify-content: space-between; min-height: 0;
-    padding: 18px 0 !important; margin: 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
-    font-size: var(--ts-heading, 32px) !important; font-weight: 500 !important; letter-spacing: -0.02em; line-height: 1.1;
+    padding: 16px 0 !important; margin: 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
+    font-size: var(--ts-heading, 32px) !important; line-height: var(--lh-heading) !important; font-weight: 500 !important; letter-spacing: -0.02em; line-height: 1.1;
     color: var(--text); text-decoration: none !important; box-shadow: none !important; background: none;
   }
   html.swiss.g4 .nav .nav-links .nav-seg.active { color: var(--accent); }
@@ -439,7 +445,7 @@ html.g4 .section [id] { scroll-margin-top: 124px; }
   html.swiss.g4 .nav .nav-links .nav-seg--cta::after { content: '→'; font-size: 0.8em; color: var(--accent); }
   html.swiss.g4 .nav .nav-sheet-lang { margin-top: auto; padding: 24px 0 0; }
   html.swiss.g4 .nav .nav-sheet-lang .lang-toggle { gap: 0; }
-  html.swiss.g4 .nav .nav-sheet-lang .lang-btn { font-size: var(--ts-body, 16px) !important; padding: 12px 12px 12px 0 !important; margin: 0 !important; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-btn { font-size: var(--ts-body, 16px) !important; line-height: var(--lh-body) !important; padding: 12px 12px 12px 0 !important; margin: 0 !important; }
   html.swiss.g4 .nav .nav-sheet-lang .lang-btn + .lang-btn::before { margin-right: 12px; }
   /* The sheet covers the page, so the dimmed backdrop is no longer needed */
   html.swiss.g4 .nav.is-open::after { content: none; }
@@ -597,3 +603,42 @@ html.swiss.g4 .about-section .section-content .info-looking { margin-block: var(
 html.swiss.g4 .about-section .section-content > :last-child { margin-bottom: 0 !important; }
 /* To-top sits on the page margin */
 html.swiss.g4 .to-top { right: max(var(--gutter), env(safe-area-inset-right)) !important; bottom: calc(var(--gutter) + env(safe-area-inset-bottom)) !important; }
+
+/* ━━ Type on the ÷4 grid ━━
+   title 64/64 (48/52 ≤1200, 36/40 phones, 32/36 ≤400) · heading 32/36 (24/32 phones) · lead 20/28 · body 16/24 · caption 12/16
+   Only the fitted name on the home page and the CV scales with the screen */
+html.swiss.g4 .container > .hero h1 { font-size: var(--ts-title) !important; line-height: var(--lh-title) !important; }
+/* Home: case titles are section headings, results are display numbers 48/48 (40/40 phones) */
+html.swiss.g4 .rb-case { font-size: var(--ts-heading) !important; line-height: var(--lh-heading) !important; }
+html.swiss.g4 .rb-num { font-size: 48px !important; line-height: 48px !important; }
+html.swiss.g4 .rb-pre { font-size: var(--ts-lead) !important; line-height: var(--lh-lead) !important; vertical-align: 0 !important; }
+@media (max-width: 580px) {
+  html.swiss.g4 .rb-num { font-size: 40px !important; line-height: 40px !important; }
+  html.swiss.g4 .rb-pre { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
+}
+html.swiss.g4 :is(.rb-title, .rb-legend, .rb-legend span, .rb-meta, .rb-label, .rb-excerpt + *, .footer-inner, .footer-inner *) { font-size: var(--ts-caption) !important; line-height: var(--lh-caption) !important; }
+html.swiss.g4 .rb-excerpt { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
+/* Labels: one caps style everywhere – 12/16, 600, tracking 0.06em */
+html.swiss.g4 :is(.section-label, .next-label, .tradeoff-label, .mm-branch-label, .rb-title, .rb-legend, .ab-next-label, .eyebrow-meta, .eyebrow-jump, .hero-eyebrow, .case-toc a, .outcomes-hd, .sec-label) { letter-spacing: 0.06em !important; }
+/* Captions: plain weight – the title line in the text colour, the note under it grey */
+html.swiss.g4 :is(.screen-cap strong, figcaption strong, .case-facts dt, .ledger-row.header .ledger-cell) { font-weight: 400 !important; }
+html.swiss.g4 :is(.screen-cap strong, figcaption strong) { color: var(--text) !important; }
+/* Sub-headings: one style, lead size 600 */
+html.swiss.g4 body :is(.section h3, .decision h3, .belief-title, .scope-title, .phone-caption strong, .mm-root-title, .screen-group-head h3) { font-size: var(--ts-lead) !important; line-height: var(--lh-lead) !important; font-weight: 600 !important; }
+/* Display numbers and arrows follow their line */
+html.swiss.g4 .metric-num { line-height: var(--lh-heading) !important; }
+html.swiss.g4 :is(.next-arrow, .ab-next-arrow, .arrow) { font-size: inherit !important; line-height: inherit !important; }
+html.swiss.g4 .contact-arrow { font-size: var(--ts-lead) !important; line-height: var(--lh-lead) !important; }
+html.swiss.g4 .belief-num { line-height: var(--lh-title) !important; }
+/* Inset blocks: a 4px rule + 28px = the 32px inset */
+html.swiss.g4 :is(.insight, .info-looking) { border-left-width: 4px !important; padding: 0 0 0 28px !important; }
+html.swiss.g4 .section .insight-source { margin-left: var(--inset) !important; }
+/* Controls on the grid */
+html.swiss.g4 .to-top { width: 48px !important; height: 48px !important; padding: 0 !important; display: grid; place-items: center; }
+html.swiss.g4 .proto-hint { padding-inline: var(--s2) !important; }
+html.swiss.g4 .lang-toggle { gap: 0 !important; }
+@media (max-width: 900px) { html.swiss.g4 .nav-links .nav-seg { padding-block: 12px !important; } }
+html.swiss.g4 :is(.decision-num, .scope-icon, .mm-findings-head span, .mm-finding span, .proto-hint, .proto-hint span, .mail-more, .mail-more span, .to-top, .to-top span) { font-size: var(--ts-caption) !important; line-height: var(--lh-caption) !important; }
+html.swiss.g4 .to-top > span:not(.to-top-label) { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
+html.swiss.g4 .tag { line-height: var(--lh-body) !important; }
+html.swiss.g4 .ab-next-link { font-size: var(--ts-heading) !important; line-height: var(--lh-heading) !important; }

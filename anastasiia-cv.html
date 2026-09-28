@@ -359,6 +359,24 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 @media screen and (max-width: 360px) {
   html.g4 .bar-right, html .bar-right { gap: 12px; }
 }
+
+/* ━━ Type on screen, the site's ÷4 steps: heading 32/36 (24/32 phones) · lead 20/28 · body 16/24 · caption 12/16 (print keeps its own) ━━ */
+@media screen {
+  html.g4 body { font-size: 16px; line-height: 24px; }
+  html.g4 .job-co { font-size: 32px !important; line-height: 36px !important; }
+  html.g4 .summary { font-size: 20px !important; line-height: 28px !important; }
+  html.g4 :is(.bullets li, .outcomes-list li, .job-title, .contact-block li, .role-tag, .print-btn, .cv-lang button) { font-size: 16px !important; line-height: 24px !important; }
+  html.g4 body :is(.sec-label, .outcomes-hd, .job-dates, .skill-cat, .skill-items, .edu-org, .edu-detail, .lang-row, .badge-now, .lang-level) { font-size: 12px !important; line-height: 16px !important; }
+  html.g4 :is(.sec-label, .outcomes-hd) { letter-spacing: 0.06em !important; }
+  html.g4 .print-bar .cv-back, html .print-bar .cv-back { font-size: 20px !important; line-height: 24px !important; }
+  html.g4 .cv-lang { gap: 0 !important; }
+  html.g4 .cv-lang button { padding: 0 4px !important; }
+  html.g4 .bullets li { padding-left: 16px !important; }
+  html.g4 .outcomes { padding-bottom: 0 !important; }
+  html.g4 .name { line-height: 0.875 !important; }
+}
+@media screen and (max-width: 580px) { html.g4 .job-co { font-size: 24px !important; line-height: 32px !important; } }
+@media screen and (max-width: 480px) { html.g4 .print-bar .cv-back, html .print-bar .cv-back { font-size: 16px !important; line-height: 24px !important; } }
 </style>
 
 <div class="doc" data-lang="en" lang="en">

@@ -642,3 +642,12 @@ html.swiss.g4 :is(.decision-num, .scope-icon, .mm-findings-head span, .mm-findin
 html.swiss.g4 .to-top > span:not(.to-top-label) { font-size: var(--ts-body) !important; line-height: var(--lh-body) !important; }
 html.swiss.g4 .tag { line-height: var(--lh-body) !important; }
 html.swiss.g4 .ab-next-link { font-size: var(--ts-heading) !important; line-height: var(--lh-heading) !important; }
+/* Sub-heading opens a new topic inside a chapter: s3 above, s2 to its text */
+html.swiss.g4 .section > * + h3,
+html.swiss.g4 .section .split-text > * + h3 { margin-top: var(--s3) !important; }
+html.swiss.g4 .section > .section-label + h3, html.swiss.g4 .section > h2 + h3 { margin-top: var(--s2) !important; }
+html.swiss.g4 .section .split-text > h3 { margin-bottom: var(--s2) !important; }
+html.swiss.g4 .section > h2 + h3.t-en + p.t-en + h3.t-ru { margin-top: var(--s2) !important; }
+/* A sub-heading's own content follows at s2, even when it is a group (a list) */
+html.swiss.g4 .section > h3 + :not(h3) { margin-top: var(--s2) !important; }
+html.swiss.g4 .section > h3 + :is(.goals, ol, ul) { margin-top: var(--s2) !important; }

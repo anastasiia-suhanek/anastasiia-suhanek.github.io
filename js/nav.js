@@ -10,7 +10,7 @@
   var links = [
     { href: workHref,       en: 'Cases',          ru: 'Кейсы',     active: isHome },
     { href: 'about.html',   en: 'About',          ru: 'Обо мне',   active: page === 'about.html' },
-    { href: 'anastasiia-cv.html', en: 'CV', ru: 'CV', active: page === 'anastasiia-cv.html' },
+    { href: 'anastasiia-cv.html', en: 'CV', ru: 'Резюме', active: page === 'anastasiia-cv.html' },
   ];
 
   function navLink(l) {

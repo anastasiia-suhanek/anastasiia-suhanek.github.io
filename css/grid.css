@@ -272,3 +272,4 @@ html.swiss.g4 .tags-grid .tag + .tag::before { content: ' · '; color: var(--tex
   html.swiss.g4 .ab-index-stage > .is-on { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { html.swiss.g4 .ab-index-stage > * { transition: none; } }
+@media (pointer: coarse) { html.swiss.g4 .ab-more a { display: inline-block; padding-block: 12px; margin-block: -12px; } }

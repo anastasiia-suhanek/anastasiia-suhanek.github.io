@@ -314,6 +314,8 @@ html.swiss.g4 section.hero { padding-top: 40px; justify-content: flex-start; }
 html.g4 .sw p, html.g4 .sw ol { margin: 0; }
 html.g4 .sw-meta { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
 html.g4 .sw-meta p { font-size: 15px; line-height: 1.35; color: var(--text); }
+html.g4 .sw-meta a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+html.g4 .sw-meta a:hover { color: var(--accent); }
 html.swiss.g4 .hero .sw-name {
   grid-column: 1 / -1; align-self: center;
   margin: 56px 0 64px;
@@ -863,10 +865,10 @@ html.g4-lines .sw::after {
   <!-- Preview (?grid): the hero set on a four-column modular grid -->
   <div class="sw">
     <div class="sw-meta">
-      <p><span class="t-en">Product designer<br>Fintech</span><span class="t-ru">Продуктовый дизайнер<br>Финтех</span></p>
+      <p><span class="t-en">Senior product designer<br>Fintech</span><span class="t-ru">Senior продуктовый дизайнер<br>Финтех</span></p>
       <p><span class="t-en">Payments, verification<br>and errors</span><span class="t-ru">Оплата, верификация<br>и ошибки</span></p>
-      <p><span class="t-en">8+ years in design<br>Open to Senior roles</span><span class="t-ru">8+ лет в дизайне<br>Открыта к позициям Senior</span></p>
-      <p><span class="t-en">Prague · remote<br>worldwide</span><span class="t-ru">Прага · удалённо<br>из любой страны</span></p>
+      <p><span class="t-en">8+ years in design<br>Profee · Beeline · Sber</span><span class="t-ru">8+ лет в дизайне<br>Profee · Билайн · Сбер</span></p>
+      <p><span class="t-en">Open to new roles · remote<br><a href="anastasiia-sukhanek-cv.pdf" download>CV · PDF ↓</a> · <a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram</a></span><span class="t-ru">Открыта к предложениям · удалённо<br><a href="anastasiia-sukhanek-cv-ru.pdf" download>Резюме · PDF ↓</a> · <a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram</a></span></p>
     </div>
     <h1 class="sw-name">Anastasiia<br>Sukhanek</h1>
     <div class="sw-foot">
@@ -895,8 +897,8 @@ html.g4-lines .sw::after {
 
     <div class="hero-identity">
       <p class="hero-eyebrow fade-up">
-        <span class="t-en">Product Designer</span>
-        <span class="t-ru">Продуктовый дизайнер</span>
+        <span class="t-en">Senior product designer · Fintech</span>
+        <span class="t-ru">Senior продуктовый дизайнер · Финтех</span>
       </p>
       <h1 class="hero-name fade-up">Anastasiia <br>Sukhanek</h1>
       <p class="hero-desc fade-up t-en">I help fintech products get more people through payments, verification and errors – and I measure it</p>
@@ -904,8 +906,8 @@ html.g4-lines .sw::after {
       <div class="hero-chips fade-up">
         <span class="hero-chip t-en">8+ years in design</span>
         <span class="hero-chip t-ru">8+ лет в дизайне</span>
-        <span class="hero-chip t-en">Open to Senior roles</span>
-        <span class="hero-chip t-ru">Открыта к позициям Senior</span>
+        <span class="hero-chip t-en">Open to new roles</span>
+        <span class="hero-chip t-ru">Открыта к предложениям</span>
         <span class="hero-chip t-en">Remote, worldwide</span>
         <span class="hero-chip t-ru">Удалённо, из любой страны</span>
       </div>
@@ -914,10 +916,8 @@ html.g4-lines .sw::after {
           <span class="t-en">View work →</span>
           <span class="t-ru">Смотреть кейсы →</span>
         </a>
-        <a class="hero-btn-secondary" href="about.html">
-          <span class="t-en">About me</span>
-          <span class="t-ru">Обо мне</span>
-        </a>
+        <a class="hero-btn-secondary t-en" href="anastasiia-sukhanek-cv.pdf" download>CV · PDF ↓</a>
+        <a class="hero-btn-secondary t-ru" href="anastasiia-sukhanek-cv-ru.pdf" download>Резюме · PDF ↓</a>
       </div>
     </div>
 
@@ -1044,6 +1044,13 @@ html.g4-lines .sw::after {
           </div>
           <span class="contact-arrow">→</span>
         </a>
+        <a class="contact-link" href="https://t.me/suhastasiia" target="_blank" rel="noopener">
+          <div>
+            <p class="contact-link-label">Telegram</p>
+            <p class="contact-link-value">@suhastasiia</p>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
         <a class="contact-link" href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">
           <div>
             <p class="contact-link-label">LinkedIn</p>
@@ -1058,16 +1065,17 @@ html.g4-lines .sw::after {
           </div>
           <span class="contact-arrow">→</span>
         </a>
-        <a class="contact-link" href="anastasiia-cv.html">
+        <a class="contact-link t-en" href="anastasiia-sukhanek-cv.pdf" download>
           <div>
-            <p class="contact-link-label">
-              <span class="t-en">Resume</span>
-              <span class="t-ru">Резюме</span>
-            </p>
-            <p class="contact-link-value">
-              <span class="t-en">View CV</span>
-              <span class="t-ru">Открыть резюме</span>
-            </p>
+            <p class="contact-link-label">CV</p>
+            <p class="contact-link-value">PDF · 2 pages</p>
+          </div>
+          <span class="contact-arrow">↓</span>
+        </a>
+        <a class="contact-link t-ru" href="anastasiia-sukhanek-cv-ru.pdf" download>
+          <div>
+            <p class="contact-link-label">Резюме</p>
+            <p class="contact-link-value">PDF · 2 страницы</p>
           </div>
           <span class="contact-arrow">↓</span>
         </a>

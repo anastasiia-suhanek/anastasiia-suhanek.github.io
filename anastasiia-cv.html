@@ -65,7 +65,7 @@ a { color: inherit; text-decoration: none; }
 .cv-back { font-size: 14px; font-weight: 500; color: var(--text); }
 .cv-back:hover { color: var(--accent); }
 .print-btn {
-  font: 500 14px var(--f); color: var(--text); background: none; border: 0; padding: 0; cursor: pointer;
+  font: 500 14px var(--f); color: var(--text); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none;
 }
 .print-btn::after { content: ' ↓'; color: var(--accent); }
 .print-btn:hover { color: var(--accent); }
@@ -169,6 +169,11 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   .job-title { margin-bottom: 8px; }
   .sec-label { margin-bottom: 10px; padding-bottom: 6px; }
   .skill-items, .edu-org, .edu-detail, .lang-row, .skill-cat { font-size: 8.5pt !important; }
+  /* Russian runs ~12% longer: tighten the rhythm so it fits the same two pages */
+  html[lang="ru"] .job { padding-bottom: 14px; margin-bottom: 14px; }
+  html[lang="ru"] .bullets li, html[lang="ru"] .outcomes-list li { line-height: 1.34; }
+  html[lang="ru"] .bullets { gap: 2px; margin-bottom: 8px; }
+  html[lang="ru"] .main { gap: 20px; }
 }
 </style>
 
@@ -179,7 +184,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
     <a class="cv-back" href="index.html">← Portfolio</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en" class="is-on">EN</button><button type="button" data-set-lang="ru">RU</button></div>
-      <button class="print-btn" onclick="window.print()">Save as PDF</button>
+      <a class="print-btn" href="anastasiia-sukhanek-cv.pdf" download>Download PDF</a>
     </div>
   </div>
 
@@ -315,7 +320,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
           <div class="outcomes">
             <p class="outcomes-hd">Key Outcomes</p>
             <ul class="outcomes-list">
-              <li>KYC: 10 verification entry points in one in-app component → <span class="m">59%</span> of people who see it click through; more new users verified on each platform after rollout, up to <span class="m">+1.4 pp</span></li>
+              <li>KYC: 10 verification entry points in one in-app component → <span class="m">59%</span> of people who see it click through; more new users verified where the card appeared, up to <span class="m">+1.4 pp</span></li>
               <li>Transfer statuses: timeline with inline action cards → <span class="m">~70%</span> tap "Continue transfer" within a day, median <span class="m">9 s</span></li>
               <li>Cards: rebuilt the product area on iOS and Android → share of active senders opening the Cards tab <span class="m">×2</span> in four months</li>
               <li>AI agents for copy → localising a feature, merge-ready branch included: <span class="m">1 day → ~2 hours</span></li>
@@ -400,7 +405,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
     <a class="cv-back" href="index.html">← Портфолио</a>
     <div class="bar-right">
       <div class="cv-lang"><button type="button" data-set-lang="en">EN</button><button type="button" data-set-lang="ru" class="is-on">RU</button></div>
-      <button class="print-btn" onclick="window.print()">Сохранить в PDF</button>
+      <a class="print-btn" href="anastasiia-sukhanek-cv-ru.pdf" download>Скачать PDF</a>
     </div>
   </div>
 
@@ -528,7 +533,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
           <div class="outcomes">
             <p class="outcomes-hd">Ключевые результаты</p>
             <ul class="outcomes-list">
-              <li>KYC: 10 точек входа в верификацию – в одном компоненте в приложении → <span class="m">59%</span> увидевших нажимают; после запуска на каждой платформе верифицировалось больше новичков – до <span class="m">+1,4 п. п.</span></li>
+              <li>KYC: 10 точек входа в верификацию – в одном компоненте в приложении → <span class="m">59%</span> увидевших нажимают; там, где появилась карточка, новички чаще проходили верификацию – до <span class="m">+1,4 п. п.</span></li>
               <li>Статусы переводов: история перевода с карточками действий → <span class="m">~70%</span> нажимают «Продолжить перевод» в течение суток, медиана – <span class="m">9 с</span></li>
               <li>Карты: пересобрала продуктовый раздел на iOS и Android → доля активных отправителей, которые заходят во вкладку «Карты», <span class="m">×2</span> за четыре месяца</li>
               <li>AI-агенты для текстов → локализация фичи вместе с веткой для мерджа: <span class="m">день → ~2 часа</span></li>

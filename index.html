@@ -373,11 +373,19 @@ html.g4-lines .sw::after {
 @media (max-width: 900px) {
   html.g4 .sw { --cols: 2; min-height: 0; }
   html.g4 .sw-meta { row-gap: 16px; }
+  html.g4 .sw-meta p { font-size: 14px; }
   html.swiss.g4 .hero .sw-name { margin: 40px 0 44px; }
   html.g4 .sw-foot { row-gap: 32px; }
   html.g4 .sw-lead { grid-column: 1 / -1; }
   html.g4 .sw-label { grid-column: 1; justify-self: start; text-align: left; align-items: flex-start; }
   html.g4 .sw-index { grid-column: 2; }
+}
+@media (max-width: 480px) {
+  /* Phone: the index takes the full width under its label, names stay on one line */
+  html.g4 .sw-label { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; width: 100%; }
+  html.g4 .sw-index { grid-column: 1 / -1; }
+  html.g4 .sw-index a { padding-bottom: 10px; }
+  html.g4 .sw-label + .sw-index { margin-top: -20px; }
   html.g4-lines .sw::after {
     background: linear-gradient(90deg, rgba(228,53,27,.55) 0 1px, transparent 1px calc(50% - 12px),
       rgba(228,53,27,.55) calc(50% - 12px) calc(50% - 11px), transparent calc(50% - 11px) calc(50% + 12px),

@@ -88,4 +88,6 @@ html.swiss.g4 .next-case > .next-label { grid-column: 1; grid-row: 1 / span 2; }
   html.swiss.g4 .section > .section-label:not(.section-label--sub) { margin-bottom: 20px; }
   html.swiss.g4 .case-facts { grid-template-columns: 1fr; }
   html.swiss.g4 .case-facts > div:nth-child(1) { padding-right: 0; }
+  /* The longest title word («KYC‑верификация:») is 8.3 ems wide: size the title so it never breaks inside a word */
+  html.swiss.g4 .container > .hero h1 { font-size: min(44px, (100vw - 2 * var(--gutter)) / 8.4); max-width: none; }
 }

@@ -416,3 +416,35 @@ html.swiss.g4 .ab-portrait { padding: 0; border: 0; }
 /* Phones: the case cards follow right after the hero, so the short index would say the same thing twice */
 @media (max-width: 560px) { html.g4 .hero .sw-label, html.g4 .hero .sw-index { display: none; } }
 html.g4 .section [id] { scroll-margin-top: 124px; }
+
+/* ━━ Phone menu: a full-screen sheet under the header ━━
+   Large items on the gutter line of the wordmark, hairlines between them, the current page in the accent,
+   «Get in touch →» last, language at the bottom on the same line */
+@media (max-width: 640px) {
+  html.swiss.g4 .nav .nav-links {
+    top: 64px; left: 0; right: 0; bottom: 0; height: auto;
+    display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    padding: 8px var(--gutter-sm, 20px) calc(24px + env(safe-area-inset-bottom));
+    background: var(--bg); border: 0; box-shadow: none; overflow-y: auto;
+  }
+  html.swiss.g4 .nav .nav-links .nav-seg {
+    display: flex; align-items: center; justify-content: space-between; min-height: 0;
+    padding: 18px 0 !important; margin: 0; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
+    font-size: var(--ts-heading, 32px) !important; font-weight: 500 !important; letter-spacing: -0.02em; line-height: 1.1;
+    color: var(--text); text-decoration: none !important; box-shadow: none !important; background: none;
+  }
+  html.swiss.g4 .nav .nav-links .nav-seg.active { color: var(--accent); }
+  html.swiss.g4 .nav .nav-links .nav-seg.active::after { content: '●'; font-size: 10px; color: var(--accent); }
+  html.swiss.g4 .nav .nav-links .nav-seg--cta { color: var(--text); }
+  html.swiss.g4 .nav .nav-links .nav-seg--cta::after { content: '→'; font-size: 0.8em; color: var(--accent); }
+  html.swiss.g4 .nav .nav-sheet-lang { margin-top: auto; padding: 24px 0 0; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-toggle { gap: 0; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-btn { font-size: var(--ts-body, 16px) !important; padding: 12px 8px 12px 0 !important; margin: 0 !important; }
+  html.swiss.g4 .nav .nav-sheet-lang .lang-btn + .lang-btn::before { margin-right: 8px; }
+  /* The sheet covers the page, so the dimmed backdrop is no longer needed */
+  html.swiss.g4 .nav.is-open::after { content: none; }
+}
+
+/* Header language toggle everywhere: the slash sits in the middle of the gap */
+html.swiss.g4 .lang-toggle .lang-btn + .lang-btn { padding-left: 0 !important; }
+html.swiss.g4 .lang-toggle .lang-btn + .lang-btn::before { margin-right: 6px; }

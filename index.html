@@ -245,11 +245,12 @@ html.swiss .hero .hero-actions { grid-column: 2; }
 .rb-wrap { scroll-margin-top: 64px; max-width: var(--max-w); width: 100%; margin: 0 auto; padding-inline: var(--gutter); box-sizing: border-box; }
 html.swiss .hero .rb { margin-top: 72px; border-top: 1px solid var(--text); }
 .rb-head {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px;
   padding: 14px 0 12px; border-bottom: 1px solid var(--rule, var(--border));
 }
 .rb-title, .rb-legend { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
 .rb-legend { display: flex; gap: 16px; color: var(--text-dim); font-weight: 500; }
+.rb-legend > span { white-space: nowrap; }
 .rb-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; background: var(--rb-before); }
 .rb-legend .rb-key-after i { background: var(--accent); }
 .rb { --rb-before: #CFCFCA; --rb-track: #EDEDEA; }
@@ -295,8 +296,9 @@ html.swiss .hero .rb { margin-top: 72px; border-top: 1px solid var(--text); }
 .rb-bar { transition-delay: var(--d, 0s); }
 .rb-bar.is-after { transition-delay: calc(var(--d, 0s) + .15s); }
 @media (prefers-reduced-motion: reduce) { .rb-bar { transition: none; } }
-@media (max-width: 640px) {
-  /* Phone: the case first, then its result – bars across, the number with its label under them */
+@media (max-width: 900px) {
+  /* Tablet and phone: the case first, then its result – bars across, the number with its label under them.
+     Three columns squeezed the titles into 2–3 lines next to an empty number column */
   .rb-row {
     grid-template-columns: auto minmax(0, 1fr);
     grid-template-areas: "meta meta" "case case" "excerpt excerpt" "bars bars" "num label";
@@ -310,6 +312,13 @@ html.swiss .hero .rb { margin-top: 72px; border-top: 1px solid var(--text); }
   .rb-label { align-self: center; margin-top: 4px; }
   .rb-num::after { content: none; }
   .rb-legend { gap: 12px; }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  .rb-case { font-size: 26px; }
+  .rb-excerpt { font-size: 15px; }
+  .rb-num { font-size: 40px; }
+  .rb-label { font-size: 14px; }
+  .rb-bar, .rb-track { height: 10px; }
 }
 
 @media (max-width: 900px) {

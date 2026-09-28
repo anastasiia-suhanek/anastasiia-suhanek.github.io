@@ -135,6 +135,10 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 .cv-lang button.is-on { color: var(--text); }
 .cv-lang button:hover { color: var(--accent); }
 
+@media (pointer: coarse) {
+  .contact-block a, .cv-back, .print-btn, .cv-lang button { display: inline-block; padding-block: 12px; margin-block: -12px; }
+  .cv-lang button { padding-inline: 10px; }
+}
 @media (max-width: 680px) {
   body { padding-inline: 20px; }
   .print-bar { margin-bottom: 40px; }

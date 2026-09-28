@@ -1320,3 +1320,29 @@ html.swiss .clip figcaption { text-align: left; }
 /* Slider arrows belong to their strip: one tight gap, never the 40px between blocks */
 html.swiss .section .slider-controls + .screens-scroll,
 html.swiss .slider-controls + .screens-scroll { margin-top: 16px; }
+
+/* ━━ Phones ━━ */
+/* The longest title word («KYC‑верификация:», non-breaking hyphen) is ~9.2 ems in Inter Text: never let it run off screen */
+@media (max-width: 580px) {
+  html.swiss .container > .hero h1 { font-size: min(40px, (100vw - 2 * var(--gutter)) / 9.4); }
+  /* Two hero buttons side by side get too narrow for their labels: stack them */
+  html.swiss .hero-actions { flex-direction: column; align-items: stretch; }
+  /* A long role line wraps on phones: give it real leading and keep the dash on the first line */
+  html.swiss .hero-eyebrow { line-height: 1.35; align-items: flex-start; }
+  html.swiss .hero-eyebrow::before { margin-top: 0.62em; }
+  html.swiss .hero-actions > a { justify-content: center; text-align: center; white-space: nowrap; }
+}
+/* Touch: small inline links and toggles get a ~44px hit area without changing how they look */
+@media (pointer: coarse) {
+  html.swiss .lang-btn { padding: 12px 8px !important; margin: -12px -4px; }
+  html.swiss .lang-btn:first-child { margin-left: -8px; }
+  html.swiss .nav-sheet-lang { padding-left: 12px; }
+  html.swiss .eyebrow-jump { border-bottom: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  html.swiss .eyebrow-jump,
+  html.swiss .board-figure a,
+  html.swiss figcaption a,
+  html.swiss .screen-cap a { display: inline-block; padding-block: 14px; margin-block: -14px; }
+  html.swiss .nav-links .nav-seg { min-height: 48px; display: flex; align-items: center; }
+  html.swiss .nav-actions .nav-seg { min-height: 0; }
+  html.swiss .nav-name { padding-block: 11px; margin-block: -11px; }
+}

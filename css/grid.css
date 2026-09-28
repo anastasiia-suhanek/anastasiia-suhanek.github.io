@@ -91,3 +91,11 @@ html.swiss.g4 .next-case > .next-label { grid-column: 1; grid-row: 1 / span 2; }
   /* The longest title word («KYC‑верификация:») is 8.3 ems wide: size the title so it never breaks inside a word */
   html.swiss.g4 .container > .hero h1 { font-size: min(44px, (100vw - 2 * var(--gutter)) / 8.4); max-width: none; }
 }
+
+/* Touch targets inside the grid hero and the grid nav on phones */
+@media (pointer: coarse) {
+  html.swiss.g4 .nav-links .nav-seg { padding-block: 14px !important; }
+  html.g4 .sw-meta a,
+  html.g4 .sw-grid-toggle { display: inline-block; padding-block: 13px; margin-block: -13px; }
+  html.g4 .sw-index a { padding-block: 7px; }
+}

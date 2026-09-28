@@ -246,7 +246,7 @@ html.swiss .hero .hero-ticker {
 }
 .hero-ticker-track {
   display: flex; width: max-content; white-space: nowrap;
-  animation: hero-ticker 70s linear infinite;
+  animation: hero-ticker 60s linear infinite;
 }
 .hero-ticker-track .tk {
   display: flex; flex-direction: column; gap: 6px;
@@ -257,6 +257,9 @@ html.swiss .hero .hero-ticker {
   color: var(--text); font-variant-numeric: tabular-nums;
 }
 .hero-ticker-track small { font-size: 14px; line-height: 1.3; color: var(--text-mid); }
+/* Whose result it is: the case name as a small label above the number */
+.hero-ticker-track em { font-style: normal; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+.hero-ticker-track a.tk:hover em { color: var(--accent); }
 .hero-ticker:hover .hero-ticker-track,
 .hero-ticker:focus-within .hero-ticker-track,
 .hero-ticker.is-paused .hero-ticker-track { animation-play-state: paused; }
@@ -877,9 +880,9 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
       <p class="sw-label"><span class="t-en">Index</span><span class="t-ru">Кейсы</span></p>
       <ol class="sw-index">
         <li><a href="case-profee-verification.html"><i>01</i><span class="t-en">KYC verification</span><span class="t-ru">KYC-верификация</span></a></li>
-        <li><a href="case-profee-cards.html"><i>02</i><span class="t-en">Cards</span><span class="t-ru">Карты</span></a></li>
+        <li><a href="case-profee-topup.html"><i>02</i><span class="t-en">Top up in the transfer</span><span class="t-ru">Пополнение в переводе</span></a></li>
         <li><a href="case-profee-statuses.html"><i>03</i><span class="t-en">Transfer statuses</span><span class="t-ru">Статусы переводов</span></a></li>
-        <li><a href="case-profee-topup.html"><i>04</i><span class="t-en">Top up in the transfer</span><span class="t-ru">Пополнение в переводе</span></a></li>
+        <li><a href="case-profee-cards.html"><i>04</i><span class="t-en">Cards</span><span class="t-ru">Карты</span></a></li>
         <li><a href="case-sber-spasibo.html"><i>05</i><span class="t-en">Gamification at Sber</span><span class="t-ru">Геймификация в Сбере</span></a></li>
       </ol>
     </div>
@@ -919,13 +922,11 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
   <!-- Results ticker: each item reads on its own – number, what changed, where -->
   <div class="hero-ticker" aria-label="Results">
     <div class="hero-ticker-track">
-      <a class="tk t-en" href="case-profee-cards.html#results"><b>×2</b><small>senders opening the Cards tab</small></a><a class="tk t-ru" href="case-profee-cards.html#results"><b>×2</b><small>отправителей открывают вкладку «Карты»</small></a>
-      <a class="tk t-en" href="case-profee-verification.html#results"><b>−54%</b><small>verification questions to support per 1,000 new users</small></a><a class="tk t-ru" href="case-profee-verification.html#results"><b>−54%</b><small>обращений о верификации на тысячу новичков</small></a>
-      <a class="tk t-en" href="case-profee-statuses.html#results"><b>~70%</b><small>tap “Continue transfer” within a day</small></a><a class="tk t-ru" href="case-profee-statuses.html#results"><b>~70%</b><small>нажимают «Продолжить перевод» в течение суток</small></a>
-      <a class="tk t-en" href="case-profee-statuses.html#home-block"><b>60–70%</b><small>reach a waiting transfer via the home block</small></a><a class="tk t-ru" href="case-profee-statuses.html#home-block"><b>60–70%</b><small>приходят к ждущему переводу через блок на главной</small></a>
-      <a class="tk t-en" href="case-profee-verification.html#results"><b>59%</b><small>click the new verification card</small></a><a class="tk t-ru" href="case-profee-verification.html#results"><b>59%</b><small>нажимают на новую карточку верификации</small></a>
-      <a class="tk t-en" href="case-profee-verification.html#solution"><b>10</b><small>verification entry points in one component</small></a><a class="tk t-ru" href="case-profee-verification.html#solution"><b>10</b><small>точек входа верификации в одном компоненте</small></a>
-      <a class="tk t-en" href="case-profee-cards.html#copy"><b>13</b><small>languages in the Cards copy</small></a><a class="tk t-ru" href="case-profee-cards.html#copy"><b>13</b><small>языков в текстах раздела «Карты»</small></a>
+      <a class="tk t-en" href="case-profee-verification.html#results"><em>KYC verification</em><b>59%</b><small>click the new verification card</small></a><a class="tk t-ru" href="case-profee-verification.html#results"><em>KYC-верификация</em><b>59%</b><small>нажимают на новую карточку верификации</small></a>
+      <a class="tk t-en" href="case-profee-topup.html#results"><em>Top-up in transfer</em><b>×3.3</b><small>senders top up the wallet with the in-transfer button</small></a><a class="tk t-ru" href="case-profee-topup.html#results"><em>Пополнение в переводе</em><b>×3,3</b><small>отправителей пополняют кошелёк с кнопкой в переводе</small></a>
+      <a class="tk t-en" href="case-profee-statuses.html#results"><em>Transfer statuses</em><b>~70%</b><small>tap “Continue transfer” within a day</small></a><a class="tk t-ru" href="case-profee-statuses.html#results"><em>Статусы переводов</em><b>~70%</b><small>нажимают «Продолжить перевод» в течение суток</small></a>
+      <a class="tk t-en" href="case-profee-cards.html#results"><em>Cards</em><b>×2</b><small>senders opening the Cards tab</small></a><a class="tk t-ru" href="case-profee-cards.html#results"><em>Карты</em><b>×2</b><small>отправителей открывают вкладку «Карты»</small></a>
+      <a class="tk t-en" href="case-sber-spasibo.html#results"><em>Gamification at Sber</em><b>×3</b><small>more often people spend bonuses after the redesign</small></a><a class="tk t-ru" href="case-sber-spasibo.html#results"><em>Геймификация в Сбере</em><b>×3</b><small>чаще тратят бонусы после редизайна</small></a>
     </div>
   </div>
   <script>
@@ -980,19 +981,19 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
         </div>
       </a>
 
-      <a href="case-profee-cards.html" class="work-card work-card--c2">
-        <div class="work-cover" aria-hidden="true"><img src="images/cards/card-issue-entry.png" alt="" loading="lazy"><img src="images/cards/card-details.png" alt="" loading="lazy"></div>
+      <a href="case-profee-topup.html" class="work-card work-card--c2">
+        <div class="work-cover" aria-hidden="true"><img src="images/topup/quick.png" alt="" loading="lazy"><img src="images/topup/loud.png" alt="" loading="lazy"></div>
         <div class="work-body">
           <div class="work-meta">
-            <span class="work-company">Profee · 2025–2026</span>
-            <span class="work-metric"><span class="t-en">×2 tab reach</span><span class="t-ru">×2 охват вкладки</span></span>
+            <span class="work-company">Profee · 2026</span>
+            <span class="work-metric"><span class="t-en">×3 senders top up</span><span class="t-ru">×3 пополняющих</span></span>
           </div>
           <h2 class="work-title">
-            <span class="t-en">Cards: turning a card into a product</span>
-            <span class="t-ru">Карты: как сделать карту продуктом</span>
+            <span class="t-en">Top up without leaving the transfer</span>
+            <span class="t-ru">Пополнить, не выходя из перевода</span>
           </h2>
-          <p class="work-excerpt t-en">The virtual card area, redesigned for iOS and Android. Twice as many senders open the tab – but the card isn’t a reason to keep money in Profee yet</p>
-          <p class="work-excerpt t-ru">Новый раздел виртуальной карты на iOS и Android. Во вкладку стали заходить вдвое чаще, но держать деньги ради карты пока не начали</p>
+          <p class="work-excerpt t-en">One button on the wallet in the payment step, shipped rough to test the idea. Three times as many senders topped up</p>
+          <p class="work-excerpt t-ru">Одна кнопка у кошелька на шаге оплаты, выпущенная черновой версией, чтобы проверить идею. Пополнять кошелёк стали втрое чаще</p>
         </div>
       </a>
 
@@ -1012,19 +1013,19 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
         </div>
       </a>
 
-      <a href="case-profee-topup.html" class="work-card work-card--c2">
-        <div class="work-cover" aria-hidden="true"><img src="images/topup/quick.png" alt="" loading="lazy"><img src="images/topup/loud.png" alt="" loading="lazy"></div>
+      <a href="case-profee-cards.html" class="work-card work-card--c2">
+        <div class="work-cover" aria-hidden="true"><img src="images/cards/card-issue-entry.png" alt="" loading="lazy"><img src="images/cards/card-details.png" alt="" loading="lazy"></div>
         <div class="work-body">
           <div class="work-meta">
-            <span class="work-company">Profee · 2026</span>
-            <span class="work-metric"><span class="t-en">×3 senders top up</span><span class="t-ru">×3 пополняющих</span></span>
+            <span class="work-company">Profee · 2025–2026</span>
+            <span class="work-metric"><span class="t-en">×2 tab reach</span><span class="t-ru">×2 охват вкладки</span></span>
           </div>
           <h2 class="work-title">
-            <span class="t-en">Top up without leaving the transfer</span>
-            <span class="t-ru">Пополнить, не выходя из перевода</span>
+            <span class="t-en">Cards: turning a card into a product</span>
+            <span class="t-ru">Карты: как сделать карту продуктом</span>
           </h2>
-          <p class="work-excerpt t-en">One button on the wallet in the payment step, shipped rough to test the idea. Three times as many senders topped up</p>
-          <p class="work-excerpt t-ru">Одна кнопка у кошелька на шаге оплаты, выпущенная черновой версией, чтобы проверить идею. Пополнять кошелёк стали втрое чаще</p>
+          <p class="work-excerpt t-en">The virtual card area, redesigned for iOS and Android. Twice as many senders open the tab – but the card isn’t a reason to keep money in Profee yet</p>
+          <p class="work-excerpt t-ru">Новый раздел виртуальной карты на iOS и Android. Во вкладку стали заходить вдвое чаще, но держать деньги ради карты пока не начали</p>
         </div>
       </a>
 

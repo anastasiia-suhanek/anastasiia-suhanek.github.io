@@ -50,7 +50,8 @@
       var ru = s.querySelector('.section-label.t-ru');
       var a = document.createElement('a');
       a.href = '#' + s.id;
-      a.innerHTML = '<span class="t-en">' + en.textContent + '</span>' +
+      a.innerHTML = '<i>' + String(i + 1).padStart(2, '0') + '</i>' +
+                    '<span class="t-en">' + en.textContent + '</span>' +
                     '<span class="t-ru">' + (ru ? ru.textContent : en.textContent) + '</span>';
       nav.appendChild(a);
       return a;
@@ -72,7 +73,14 @@
       var y = window.innerHeight * 0.35, current = 0;
       sections.forEach(function (s, i) { if (s.getBoundingClientRect().top < y) current = i; });
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === current); });
+      // In the bar layout the strip scrolls sideways on phones: keep the current chapter in view
+      if (nav.scrollWidth > nav.clientWidth && current !== last) {
+        last = current;
+        var l = links[current];
+        nav.scrollTo({ left: l.offsetLeft - 16, behavior: 'smooth' });
+      }
     }
+    var last = -1;
     window.addEventListener('scroll', update, { passive: true });
     update();
   }

@@ -25,7 +25,29 @@ html.swiss.g4 {
 }
 
 /* ── Case pages ── */
-html.g4 .case-toc { display: none; }
+/* Chapter bar: the case contents as a thin strip under the nav, shown once the cover has scrolled away */
+html.g4 .case-toc {
+  display: flex; flex-direction: row; justify-content: flex-start; position: fixed; z-index: 95; top: 64px; left: 0; right: 0; bottom: auto; width: auto; transform: translateY(-100%);
+  gap: 28px; padding: 0 max(var(--gutter), (100vw - var(--max-w)) / 2 + var(--gutter));
+  height: 44px; align-items: center; overflow-x: auto; scrollbar-width: none;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+}
+html.g4 .case-toc::-webkit-scrollbar { display: none; }
+html.g4 .case-toc.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+html.g4 .case-toc a {
+  display: inline-flex; align-items: baseline; gap: 8px; flex: none; white-space: nowrap; padding: 0;
+  font-size: var(--ts-caption, 13px); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+}
+html.g4 .case-toc a::before { content: none !important; }
+html.g4 .case-toc a i { font-style: normal; font-variant-numeric: tabular-nums; }
+html.g4 .case-toc a:hover { color: var(--text); }
+html.g4 .case-toc a.is-active { color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); align-self: stretch; align-items: center; }
+html.g4 .case-toc a.is-active i { color: var(--accent); }
+html.g4 .section { scroll-margin-top: 124px; }
+@media (max-width: 640px) { html.g4 .case-toc { gap: 22px; padding: 0 20px; } }
+@media (prefers-reduced-motion: reduce) { html.g4 .case-toc { transition: none; } }
 html.g4 .container { max-width: var(--max-w); }
 
 /* Cover: title across the grid, lead in columns 1–3, facts laid out on the columns */

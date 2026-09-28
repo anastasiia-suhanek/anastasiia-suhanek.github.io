@@ -381,21 +381,6 @@ html.g4 .sw-index i { font-style: normal; font-size: 13px; font-weight: 600; col
 html.g4 .sw-index i.sw-dash { color: var(--text-dim); font-weight: 400; }
 html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offset: 3px; }
 
-/* Nav on the same four columns: name, –, links, actions */
-html.swiss.g4 .nav-inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
-html.swiss.g4 .nav-links { grid-column: 3; justify-content: flex-start; gap: 20px; }
-html.swiss.g4 .nav-actions { grid-column: 4; justify-content: space-between; }
-html.swiss.g4 .nav-name,
-html.swiss.g4 .nav-seg,
-html.swiss.g4 .nav-cta { font-size: 15px; font-weight: 400; }
-html.swiss.g4 .nav-name { font-weight: 600; }
-html.swiss.g4 .nav-seg { padding: 0; color: var(--text-mid); }
-html.swiss.g4 .nav-seg.active { box-shadow: none; color: var(--text); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
-html.swiss.g4 .nav-cta { background: none; border: 0; color: var(--text); padding: 0; }
-html.swiss.g4 .nav-cta:hover { background: none; color: var(--accent); }
-html.swiss.g4 .lang-toggle { border: 0; }
-html.swiss.g4 .lang-toggle .lang-btn { padding: 0 4px; color: var(--text-dim); }
-html.swiss.g4 .lang-toggle .lang-btn.lang-active { background: none; color: var(--text); }
 
 /* Grid overlay: the construction lines, like the poster on the right of the reference */
 html.g4-lines .sw::after {
@@ -437,7 +422,6 @@ html.g4-lines .sw::after {
   }
 }
 @media (max-width: 640px) {
-  html.swiss.g4 .nav-inner { display: flex; }
 }
 
 /* ── SECTION HEADER ── */

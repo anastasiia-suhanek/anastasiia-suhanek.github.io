@@ -1,5 +1,7 @@
 (function () {
+  // GitHub Pages also serves /about for about.html: normalise so the current item is always found
   var page = window.location.pathname.split('/').pop() || 'index.html';
+  if (page.indexOf('.') === -1) page += '.html';
   var isHome = page === 'index.html' || page === '';
 
   var workHref    = isHome ? '#work'    : 'index.html#work';

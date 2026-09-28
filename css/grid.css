@@ -498,7 +498,6 @@ html.swiss.g4 .about-section > .section-label { margin-bottom: var(--s2); }
   html.swiss.g4 .about-section > .section-label { margin-bottom: 0; }
 }
 html.swiss.g4 .section-label { gap: var(--s1) !important; }
-html.swiss.g4 .section h2 { margin-bottom: var(--s2) !important; }
 html.swiss.g4 .container > .hero h1 { margin-bottom: var(--s3) !important; }
 html.swiss.g4 :is(.ab-eyebrow, .page-eyebrow) { margin-bottom: var(--s2) !important; }
 html.swiss.g4 :is(.belief-title, .outcomes-hd, .ab-sheet-cap) { margin-bottom: var(--s1) !important; }
@@ -583,11 +582,17 @@ html.swiss.g4 .rb-bars { column-gap: var(--s1) !important; }
 html.swiss.g4 .screen-group-head { padding-top: var(--s2) !important; row-gap: var(--s1) !important; }
 html.swiss.g4 .container > .screen-group-head { margin-top: var(--s3) !important; }
 /* The phone scene is a full-width band under the cover: the next chapter keeps its s4 */
-html.swiss.g4 .phone-scene { margin-bottom: var(--s4) !important; }
+html.swiss.g4 :is(.phone-scene, .video-demo) { margin-bottom: var(--s4) !important; }
 /* Home contact: the black rule runs on the content width like every other section, text and links top-aligned on the grid */
-html.swiss.g4 .section-contact { border-top: 0 !important; padding-top: 0 !important; }
+html.swiss.g4 .section-contact { border-top: 0 !important; padding-top: var(--s4) !important; }
 html.swiss.g4 .contact-inner { border-top: 1px solid var(--text); padding-top: var(--s2); gap: var(--s3) var(--g-gap) !important; align-items: start !important; }
 html.swiss.g4 .contact-text h2 { margin-bottom: var(--s2) !important; }
 html.swiss.g4 .contact-links { margin-top: 0 !important; }
+html.swiss.g4 .contact-link { margin: 0 !important; }
 html.swiss.g4 .contact-link:first-child { padding-top: 0 !important; }
 html.swiss.g4 .split-text .insight { margin-top: var(--s3) !important; }
+html.swiss.g4 .rb li:last-child .rb-row, html.swiss.g4 .rb-row:last-child { border-bottom: 0 !important; padding-bottom: 0 !important; }
+/* About text: paragraphs s2 apart, the "Looking for" call-out s3 around (block flow, margins collapse) */
+html.swiss.g4 .about-section .section-content p { margin-block: 0 var(--s2) !important; }
+html.swiss.g4 .about-section .section-content .info-looking { margin-block: var(--s3) !important; }
+html.swiss.g4 .about-section .section-content > :last-child { margin-bottom: 0 !important; }

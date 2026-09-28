@@ -14,6 +14,10 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>
+  // Preview: ?grid shows the modular-grid hero; nothing is persisted
+  if (/[?&]grid\b/.test(location.search)) document.documentElement.classList.add('g4');
+</script>
 <script src="js/lang.js"></script>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/scroll-reveal.css">
@@ -290,6 +294,100 @@ a.tk:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   html.swiss .hero .hero-identity > .hero-desc { grid-column: 1; grid-row: auto; }
   html.swiss .hero .hero-identity > .hero-desc { margin-bottom: 24px; }
   html.swiss .hero .hero-ticker { margin-top: 40px; }
+}
+
+
+/* ━━ Preview ?grid · the hero on a four-column modular grid ━━
+   Two sizes only: display for the name, 15px for everything else; the lead is the one step between.
+   Everything flush left on column lines; the accent appears once, on the index numbers */
+.sw { display: none; }
+html.g4 .hero .hero-inner { display: none; }
+html.g4 .sw {
+  --cols: 4; --gap: 24px;
+  display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); column-gap: var(--gap);
+  grid-template-rows: auto 1fr auto;
+  width: min(100% - 2 * var(--gutter), var(--max-w) - 2 * var(--gutter)); margin: 0 auto;
+  min-height: calc(100svh - 64px - 150px);
+  position: relative;
+}
+html.swiss.g4 section.hero { padding-top: 40px; justify-content: flex-start; }
+html.g4 .sw p, html.g4 .sw ol { margin: 0; }
+html.g4 .sw-meta { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
+html.g4 .sw-meta p { font-size: 15px; line-height: 1.35; color: var(--text); }
+html.swiss.g4 .hero .sw-name {
+  grid-column: 1 / -1; align-self: center;
+  margin: 56px 0 64px;
+  font-family: var(--f-display); font-weight: 500;
+  font-size: min(244px, (100vw - 2 * var(--gutter)) * 0.2255); line-height: 0.86; letter-spacing: -0.055em;
+  color: var(--text); white-space: nowrap;
+}
+html.g4 .sw-foot { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
+html.g4 .sw-lead {
+  grid-column: 1 / 3;
+  font-size: clamp(22px, 2.1vw, 30px); line-height: 1.2; letter-spacing: -0.02em; color: var(--text);
+  max-width: 22ch;
+}
+html.g4 .sw-label {
+  grid-column: 3; justify-self: end; text-align: right;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+  font-size: 15px; line-height: 1.35; color: var(--text);
+}
+html.g4 .sw-grid-toggle {
+  font: inherit; font-size: 13px; color: var(--text-dim); background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+html.g4 .sw-grid-toggle:hover { color: var(--text); }
+html.g4 .sw-index { grid-column: 4; list-style: none; padding: 0; }
+html.g4 .sw-index a {
+  display: grid; grid-template-columns: 28px 1fr; align-items: baseline;
+  font-size: 15px; line-height: 1.35; color: var(--text); text-decoration: none; padding: 0 0 6px;
+}
+html.g4 .sw-index i { font-style: normal; font-size: 13px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+html.g4 .sw-index i.sw-dash { color: var(--text-dim); font-weight: 400; }
+html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Nav on the same four columns: name, –, links, actions */
+html.swiss.g4 .nav-inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
+html.swiss.g4 .nav-links { grid-column: 3; justify-content: flex-start; gap: 20px; }
+html.swiss.g4 .nav-actions { grid-column: 4; justify-content: space-between; }
+html.swiss.g4 .nav-name,
+html.swiss.g4 .nav-seg,
+html.swiss.g4 .nav-cta { font-size: 15px; font-weight: 400; }
+html.swiss.g4 .nav-name { font-weight: 600; }
+html.swiss.g4 .nav-seg { padding: 0; color: var(--text-mid); }
+html.swiss.g4 .nav-seg.active { box-shadow: none; color: var(--text); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+html.swiss.g4 .nav-cta { background: none; border: 0; color: var(--text); padding: 0; }
+html.swiss.g4 .nav-cta:hover { background: none; color: var(--accent); }
+html.swiss.g4 .lang-toggle { border: 0; }
+html.swiss.g4 .lang-toggle .lang-btn { padding: 0 4px; color: var(--text-dim); }
+html.swiss.g4 .lang-toggle .lang-btn.lang-active { background: none; color: var(--text); }
+
+/* Grid overlay: the construction lines, like the poster on the right of the reference */
+html.g4-lines .sw::after {
+  content: ''; position: absolute; inset: -40px 0 -40px; pointer-events: none;
+  background: repeating-linear-gradient(90deg,
+    rgba(228, 53, 27, 0.55) 0 1px, transparent 1px calc((100% - 3 * var(--gap)) / 4),
+    rgba(228, 53, 27, 0.55) calc((100% - 3 * var(--gap)) / 4) calc((100% - 3 * var(--gap)) / 4 + 1px),
+    transparent calc((100% - 3 * var(--gap)) / 4 + 1px) calc((100% - 3 * var(--gap)) / 4 + var(--gap)));
+  box-shadow: inset -1px 0 0 rgba(228, 53, 27, 0.55);
+}
+
+@media (max-width: 900px) {
+  html.g4 .sw { --cols: 2; min-height: 0; }
+  html.g4 .sw-meta { row-gap: 16px; }
+  html.swiss.g4 .hero .sw-name { margin: 40px 0 44px; }
+  html.g4 .sw-foot { row-gap: 32px; }
+  html.g4 .sw-lead { grid-column: 1 / -1; }
+  html.g4 .sw-label { grid-column: 1; justify-self: start; text-align: left; align-items: flex-start; }
+  html.g4 .sw-index { grid-column: 2; }
+  html.g4-lines .sw::after {
+    background: linear-gradient(90deg, rgba(228,53,27,.55) 0 1px, transparent 1px calc(50% - 12px),
+      rgba(228,53,27,.55) calc(50% - 12px) calc(50% - 11px), transparent calc(50% - 11px) calc(50% + 12px),
+      rgba(228,53,27,.55) calc(50% + 12px) calc(50% + 13px), transparent calc(50% + 13px));
+  }
+}
+@media (max-width: 640px) {
+  html.swiss.g4 .nav-inner { display: flex; }
 }
 
 /* ── SECTION HEADER ── */
@@ -762,6 +860,37 @@ a.tk:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
 <!-- ── HERO ── -->
 <section class="hero">
+  <!-- Preview (?grid): the hero set on a four-column modular grid -->
+  <div class="sw">
+    <div class="sw-meta">
+      <p><span class="t-en">Product designer<br>Fintech</span><span class="t-ru">Продуктовый дизайнер<br>Финтех</span></p>
+      <p><span class="t-en">Payments, verification<br>and errors</span><span class="t-ru">Оплата, верификация<br>и ошибки</span></p>
+      <p><span class="t-en">8+ years in design<br>Open to Senior roles</span><span class="t-ru">8+ лет в дизайне<br>Открыта к позициям Senior</span></p>
+      <p><span class="t-en">Prague · remote<br>worldwide</span><span class="t-ru">Прага · удалённо<br>из любой страны</span></p>
+    </div>
+    <h1 class="sw-name">Anastasiia<br>Sukhanek</h1>
+    <div class="sw-foot">
+      <p class="sw-lead t-en">I help fintech products get more people through payments, verification and errors – and I measure it</p>
+      <p class="sw-lead t-ru">Помогаю финтех-продуктам не терять людей на оплате, верификации и ошибках. И&nbsp;считаю, сколько удалось сохранить</p>
+      <p class="sw-label"><span class="t-en">Index</span><span class="t-ru">Кейсы</span><button type="button" class="sw-grid-toggle" aria-pressed="false"><span class="t-en">Show grid</span><span class="t-ru">Показать сетку</span></button></p>
+      <ol class="sw-index">
+        <li><a href="case-profee-verification.html"><i>01</i><span class="t-en">KYC verification</span><span class="t-ru">KYC-верификация</span></a></li>
+        <li><a href="case-profee-cards.html"><i>02</i><span class="t-en">Cards</span><span class="t-ru">Карты</span></a></li>
+        <li><a href="case-profee-statuses.html"><i>03</i><span class="t-en">Transfer statuses</span><span class="t-ru">Статусы переводов</span></a></li>
+        <li><a href="about.html"><i class="sw-dash">–</i><span class="t-en">About me</span><span class="t-ru">Обо мне</span></a></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var b = document.querySelector('.sw-grid-toggle');
+      if (!b) return;
+      b.addEventListener('click', function () {
+        var on = document.documentElement.classList.toggle('g4-lines');
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    })();
+  </script>
   <div class="hero-inner">
 
     <div class="hero-identity">

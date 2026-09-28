@@ -23,12 +23,14 @@
   var lang = q || saved || ((navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
   if (lang !== 'ru') lang = 'en';
   document.documentElement.lang = lang;
-  // Same modular-grid preview as the site: ?grid on, ?grid=0 off, remembered for the tab
+  // Same modular-grid layout as the site: on by default, ?grid=0 shows the previous layout for this tab
+  var gridOff = false;
   try {
     var g = location.search.match(/[?&]grid(=0)?\b/);
-    if (g) g[1] ? sessionStorage.removeItem('grid') : sessionStorage.setItem('grid', '1');
-    if (sessionStorage.getItem('grid') === '1') document.documentElement.classList.add('g4');
+    if (g) g[1] ? sessionStorage.setItem('grid', '0') : sessionStorage.removeItem('grid');
+    gridOff = sessionStorage.getItem('grid') === '0';
   } catch (e) {}
+  if (!gridOff) document.documentElement.classList.add('g4');
   document.title = lang === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-set-lang]'); if (!b) return;

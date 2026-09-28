@@ -1,13 +1,14 @@
 (function () {
   'use strict';
 
-  // Preview of the modular-grid layout: ?grid turns it on for this tab, ?grid=0 turns it off
+  // Modular-grid layout is the default; ?grid=0 shows the previous layout for this tab, ?grid brings the grid back
   (function () {
-    var q = location.search.match(/[?&]grid(=0)?\b/);
+    var q = location.search.match(/[?&]grid(=0)?\b/), off = false;
     try {
-      if (q) q[1] ? sessionStorage.removeItem('grid') : sessionStorage.setItem('grid', '1');
-      if (sessionStorage.getItem('grid') === '1') document.documentElement.classList.add('g4');
-    } catch (e) { if (q && !q[1]) document.documentElement.classList.add('g4'); }
+      if (q) q[1] ? sessionStorage.setItem('grid', '0') : sessionStorage.removeItem('grid');
+      off = sessionStorage.getItem('grid') === '0';
+    } catch (e) { off = !!(q && q[1]); }
+    if (!off) document.documentElement.classList.add('g4');
   })();
 
   function getSaved() {

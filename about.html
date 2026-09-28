@@ -16,8 +16,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script src="js/lang.js"></script>
 <script>
-  // Preview: ?sheet shows the photos as a contact sheet instead of the index
-  if (/[?&]sheet\b/.test(location.search)) document.documentElement.classList.add('g4-sheet');
+  // Photos as a contact sheet by default; ?index shows them as a captioned index instead
+  if (!/[?&]index\b/.test(location.search)) document.documentElement.classList.add('g4-sheet');
 </script>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/scroll-reveal.css">

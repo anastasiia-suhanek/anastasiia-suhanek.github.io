@@ -1258,3 +1258,46 @@ html.swiss .next-link svg {
   margin-left: 0.08em; vertical-align: -0.12em;
 }
 html.swiss .next-link .next-arrow { font-size: 0.85em; }
+
+/* ━━ Numbering – one logic across the site ━━
+   L1 · chapter  «01 CONTEXT» section labels: number at label size, accent (see .section > .section-label)
+   L2 · item     numbered items inside a chapter or a list – home work index, decisions, scope rows,
+                 principles, goals: a 13px/600 accent tabular number in one gutter (--num-col + --num-gap),
+                 sitting on the first baseline of the item's title
+   L3 · point    unnumbered points: an en dash in --text-dim at text size, hanging; accent stays with numbers */
+html.swiss { --num-col: 40px; --num-gap: 16px; }
+@media (max-width: 580px) { html.swiss { --num-col: 28px; --num-gap: 12px; } }
+
+/* L2 · the number */
+html.swiss .work-card::before,
+html.swiss .decision-num,
+html.swiss .scope-icon,
+html.swiss .belief-num,
+html.swiss ol.goals li::before {
+  font-family: var(--f-sans); font-size: var(--t-small); font-weight: 600; line-height: 1.2;
+  letter-spacing: 0; color: var(--accent); font-variant-numeric: tabular-nums; padding: 0;
+}
+/* L2 · the gutter and the baseline */
+html.swiss .work-card,
+html.swiss .work-card--wide { grid-template-columns: var(--num-col) 1fr 220px; column-gap: var(--num-gap); }
+html.swiss .work-card::before,
+html.swiss .work-card .work-body { align-self: baseline; }
+html.swiss .decision { grid-template-columns: var(--num-col) 1fr; column-gap: var(--num-gap); align-items: baseline; }
+html.swiss .scope-item { grid-template-columns: var(--num-col) 200px 1fr; column-gap: var(--num-gap); align-items: baseline; }
+html.swiss .belief-item { grid-template-columns: var(--num-col) 1fr; column-gap: var(--num-gap); align-items: baseline; }
+html.swiss ol.goals { list-style: none; padding-left: 0; counter-reset: goal; }
+html.swiss ol.goals li {
+  counter-increment: goal; display: grid; grid-template-columns: var(--num-col) 1fr;
+  column-gap: var(--num-gap); align-items: baseline; padding-left: 0;
+}
+html.swiss ol.goals li::before { content: counter(goal, decimal-leading-zero); }
+@media (max-width: 760px) {
+  html.swiss .work-card,
+  html.swiss .work-card--wide { grid-template-columns: var(--num-col) 1fr; column-gap: var(--num-gap); }
+}
+@media (max-width: 700px) {
+  html.swiss .scope-item { grid-template-columns: var(--num-col) 1fr; }
+}
+
+/* L3 · the dash */
+html.swiss .exp-bullets li::before { color: var(--text-dim); font-size: inherit; font-weight: 400; }

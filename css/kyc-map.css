@@ -43,9 +43,9 @@
   grid-column: 1; grid-row: 1 / 4;
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center;
-  padding: var(--space-2) var(--space-4);
-  border: 1.5px solid var(--accent);
-  border-radius: var(--r-pill);
+  /* Nodes are type, not boxes: nothing here is clickable, so nothing may look like a button.
+     The background only masks the connector lines under the text */
+  padding: var(--space-1) var(--space-2) var(--space-1) 0;
   background: var(--bg);
 }
 .mm-root-title { font-family: var(--f-serif); font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: var(--lh-tight); }
@@ -56,14 +56,14 @@
   position: relative; z-index: 1;
   display: inline-flex; align-items: center; gap: var(--space-2);
   justify-self: start;
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-pill);
+  padding: var(--space-1) var(--space-2);
   background: var(--bg);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
   white-space: nowrap;
-  transition: border-color .2s, opacity .2s;
+  transition: color .2s, opacity .2s;
 }
 
 .mm-leaves {
@@ -97,7 +97,7 @@
 .mm[data-active] .mm-leaves:not(.is-active) { opacity: .35; }
 .mm[data-active] .mm-edge:not(.is-active) { opacity: .25; }
 .mm-edge.is-active { stroke: var(--accent); }
-.mm-branch.is-active { border-color: var(--accent); }
+.mm-branch.is-active { color: var(--accent); }
 
 /* ── Findings: what the map revealed → what I designed ── */
 .mm-findings { margin-top: var(--space-6); }
@@ -127,7 +127,8 @@
   .mm { display: block; }
   .mm-lines { display: none; }
   .mm-root { display: inline-flex; flex-direction: row; gap: var(--space-2); align-items: baseline; margin-bottom: var(--space-4); }
-  .mm-branch { display: flex; width: max-content; margin: var(--space-4) 0 var(--space-2) var(--space-4); }
+  .mm-root { padding: 0; }
+  .mm-branch { display: flex; width: max-content; margin: var(--space-6) 0 var(--space-2) var(--space-4); padding: 0; }
   .mm-leaves { margin-left: var(--space-8); padding-left: var(--space-4); border-left: 1px solid var(--mm-line); }
   .mm-leaf { min-height: 28px; align-items: flex-start; padding-block: var(--space-1); }
   .mm-leaf::before { margin-top: 7px; }

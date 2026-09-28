@@ -31,7 +31,7 @@
       '<button class="lang-btn" data-lang="ru" onclick="setLang(\'ru\')">RU</button>' +
     '</div>';
 
-  var cta = '<span class="t-en">Get in touch</span><span class="t-ru">Написать</span>';
+  var cta = '<span class="t-en">Get in touch</span><span class="t-ru">Связаться</span>';
 
   var html =
     '<div class="nav-inner">' +

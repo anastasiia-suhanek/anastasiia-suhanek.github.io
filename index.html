@@ -224,29 +224,37 @@ body {
 html.swiss section.hero { flex-direction: column; align-items: stretch; justify-content: center; padding-bottom: 0; border-bottom: 0; }
 html.swiss .hero .hero-inner { grid-template-columns: 1fr; }
 html.swiss .hero .hero-identity {
-  display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; align-items: end;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; align-items: start;
 }
 html.swiss .hero .hero-eyebrow,
 html.swiss .hero .hero-name { grid-column: 1 / -1; }
 html.swiss .hero .hero-name { font-size: clamp(56px, 7.8vw, 128px); white-space: nowrap; }
 html.swiss .hero .hero-name br { display: none; }
 html.swiss .hero .hero-identity > .hero-desc { grid-column: 1; grid-row: span 2; align-self: start; margin-bottom: 0; }
-html.swiss .hero .hero-chips { grid-column: 2; }
+html.swiss .hero .hero-chips {
+  grid-column: 2; flex-direction: column; align-items: flex-start; gap: 4px;
+  margin: 0 0 28px; padding-top: 5px;
+}
+html.swiss .hero .hero-chips .hero-chip::before { content: none !important; }
 html.swiss .hero .hero-actions { grid-column: 2; }
 html.swiss .hero .hero-ticker {
   display: block; overflow: hidden;
-  margin-top: 72px; padding: 22px 0;
+  margin-top: 72px; padding: 24px 0;
   border-top: 1px solid var(--text); border-bottom: 1px solid var(--text);
 }
 .hero-ticker-track {
   display: flex; width: max-content; white-space: nowrap;
-  font-size: clamp(22px, 2.2vw, 32px); font-weight: 400; letter-spacing: -0.02em;
-  color: var(--text-mid);
-  animation: hero-ticker 90s linear infinite;
+  animation: hero-ticker 70s linear infinite;
 }
-.hero-ticker-track b { font-weight: 600; color: var(--text); }
-.hero-ticker-track > * { margin-right: 28px; }
-.hero-ticker-track i { font-style: normal; color: var(--accent); }
+.hero-ticker-track .tk {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 0 36px; border-left: 1px solid var(--border);
+}
+.hero-ticker-track b {
+  font-size: clamp(28px, 2.6vw, 38px); line-height: 1; font-weight: 500; letter-spacing: -0.03em;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.hero-ticker-track small { font-size: 14px; line-height: 1.3; color: var(--text-mid); }
 .hero-ticker:hover .hero-ticker-track { animation-play-state: paused; }
 @keyframes hero-ticker { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
@@ -769,13 +777,13 @@ html.swiss .hero .hero-ticker {
   <!-- Results ticker: each item reads on its own – number, what changed, where -->
   <div class="hero-ticker" aria-label="Results">
     <div class="hero-ticker-track">
-      <span class="t-en"><b>+1.4 pp</b> more new users verified</span><span class="t-ru"><b>+1,4 п.&nbsp;п.</b> новичков проходят верификацию</span><i>·</i>
-      <span class="t-en"><b>59%</b> click the new verification card</span><span class="t-ru"><b>59%</b> нажимают на новую карточку верификации</span><i>·</i>
-      <span class="t-en"><b>×2</b> senders opening the Cards tab</span><span class="t-ru"><b>×2</b> отправителей открывают вкладку «Карты»</span><i>·</i>
-      <span class="t-en"><b>~70%</b> act on a transfer status within a day</span><span class="t-ru"><b>~70%</b> реагируют на статус перевода в течение суток</span><i>·</i>
-      <span class="t-en"><b>10</b> verification entry points in one component</span><span class="t-ru"><b>10</b> точек входа верификации в одном компоненте</span><i>·</i>
-      <span class="t-en"><b>5</b> transfer states on one timeline</span><span class="t-ru"><b>5</b> статусов перевода в одной ленте</span><i>·</i>
-      <span class="t-en"><b>13+</b> languages shipped</span><span class="t-ru"><b>13+</b> языков интерфейса</span><i>·</i>
+      <span class="tk t-en"><b>+1.4 pp</b><small>more new users verified</small></span><span class="tk t-ru"><b>+1,4 п.&nbsp;п.</b><small>новичков проходят верификацию</small></span>
+      <span class="tk t-en"><b>59%</b><small>click the new verification card</small></span><span class="tk t-ru"><b>59%</b><small>нажимают на новую карточку верификации</small></span>
+      <span class="tk t-en"><b>×2</b><small>senders opening the Cards tab</small></span><span class="tk t-ru"><b>×2</b><small>отправителей открывают вкладку «Карты»</small></span>
+      <span class="tk t-en"><b>73%</b><small>act on a transfer status within a day</small></span><span class="tk t-ru"><b>~70%</b><small>реагируют на статус перевода в течение суток</small></span>
+      <span class="tk t-en"><b>10</b><small>verification entry points in one component</small></span><span class="tk t-ru"><b>10</b><small>точек входа верификации в одном компоненте</small></span>
+      <span class="tk t-en"><b>5</b><small>transfer states on one timeline</small></span><span class="tk t-ru"><b>5</b><small>статусов перевода в одной ленте</small></span>
+      <span class="tk t-en"><b>13+</b><small>languages shipped</small></span><span class="tk t-ru"><b>13+</b><small>языков интерфейса</small></span>
     </div>
   </div>
   <script>

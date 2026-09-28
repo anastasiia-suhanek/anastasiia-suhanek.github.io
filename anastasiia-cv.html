@@ -258,6 +258,15 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
   html.g4 .contact-block a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   html.g4 .sec-label { border-bottom: 0; border-top: 1px solid var(--text); padding: 12px 0 0; }
 }
+
+/* Type scale on screen, same six steps as the site: heading 32 · lead 20 · body 16 · caption 13 (print keeps its own sizes) */
+@media screen {
+  html.g4 .job-co { font-size: clamp(24px, 2.3vw, 32px) !important; }
+  html.g4 .summary { font-size: 20px !important; }
+  html.g4 :is(.bullets li, .outcomes-list li, .job-title, .contact-block li, .role-tag, .print-btn, .cv-back) { font-size: 16px !important; }
+  html.g4 :is(.sec-label, .outcomes-hd, .job-dates, .skill-cat, .skill-items, .edu-org, .edu-detail, .lang-row, .cv-lang button, .badge-now) { font-size: 13px !important; }
+  html.g4 .skill-cat { font-weight: 400 !important; }
+}
 </style>
 
 <div class="doc" data-lang="en" lang="en">

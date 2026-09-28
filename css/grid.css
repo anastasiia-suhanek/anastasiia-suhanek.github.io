@@ -100,7 +100,8 @@ html.swiss.g4 .next-case > .next-label { grid-column: 1; grid-row: 1 / span 2; }
 }
 
 /* ── Nav on the same four columns on every page: name, –, links, actions ── */
-html.swiss.g4 .nav-inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
+/* Only the site nav (name + links); the case nav – back · title · language – keeps its own three-part layout */
+html.swiss.g4 .nav-inner:has(> .nav-links) { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; align-items: center; }
 html.swiss.g4 .nav-links { grid-column: 3; justify-content: flex-start; gap: 20px; }
 html.swiss.g4 .nav-actions { grid-column: 4; justify-content: space-between; }
 html.swiss.g4 .nav-name,
@@ -115,7 +116,7 @@ html.swiss.g4 .lang-toggle { border: 0; }
 html.swiss.g4 .lang-toggle .lang-btn { padding: 0 4px; color: var(--text-dim); }
 html.swiss.g4 .lang-toggle .lang-btn.lang-active { background: none; color: var(--text); }
 @media (max-width: 640px) {
-  html.swiss.g4 .nav-inner { display: flex; }
+  html.swiss.g4 .nav-inner:has(> .nav-links) { display: flex; }
 }
 
 /* ── About on the grid: headline across columns 1–3, portrait in 4;
@@ -320,3 +321,55 @@ html.swiss.g4 .ab-sheet button:focus-visible .ab-sheet-cap i { color: var(--acce
 /* The name in the nav is the site's wordmark: the hero's ExtraBold and tight tracking at nav size */
 html.swiss.g4 .nav-name { font-size: 18px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
 html.swiss.g4 .nav-name:hover { color: var(--accent); }
+
+/* ━━ Type scale – six sizes, one role each (final word on size; loaded last) ━━
+   display   fitted to the grid (home name, CV name) – set elsewhere
+   title     64  page titles: case covers, About
+   heading   32  chapter headings, big numbers, case names, the home lead
+   lead      20  leads, quotes, call-outs, the wordmark
+   body      16  all reading text, lists, navigation, buttons
+   caption   13  labels, meta, captions, dates
+   Weights: 400 text · 600 labels and emphasis · 700/800 display */
+html.swiss.g4 {
+  --ts-title: clamp(40px, 4.6vw, 64px);
+  --ts-heading: clamp(24px, 2.3vw, 32px);
+  --ts-lead: 20px; --ts-body: 16px; --ts-caption: 13px;
+}
+@media (max-width: 580px) { html.swiss.g4 { --ts-lead: 18px; } }
+
+/* title */
+@media (min-width: 581px) {
+  html.swiss.g4 .container > .hero h1 { font-size: var(--ts-title) !important; }
+}
+html.swiss.g4 .ab-title,
+html.swiss.g4 .belief-num { font-size: var(--ts-title) !important; }
+
+/* heading */
+html.swiss.g4 :is(.section h2, .work-title, .next-link, .metric-num, .hero-ticker-track b, .sw-lead) { font-size: var(--ts-heading) !important; }
+
+/* lead */
+html.swiss.g4 :is(.hero-desc, .insight, .info-looking, .ab-sub, .contact-link-value, .phone-caption strong, .mm-root-title, .nav-name) { font-size: var(--ts-lead) !important; }
+
+/* body */
+html.swiss.g4 :is(.section p, .section li, .section dd, .section h3, .decision h3, .decision p, .tradeoff p, .split-text p,
+  .info-text p, .work-excerpt, .belief-note, .belief-title, .contact-text p, .scope-title, ol.goals li,
+  .case-facts dd, .ab-role, .ab-out, .ab-co, .ab-more, .tags-grid, .ab-ix-cap,
+  .nav-seg, .nav-cta, .sw-meta p, .sw-index a, .sw-label, .contact-btn, .hero-btn-primary, .hero-btn-secondary, .exp-outcomes li, .exp-bullets li) { font-size: var(--ts-body) !important; }
+html.swiss.g4 :is(.decision h3, .belief-title, .scope-title) { font-weight: 600 !important; }
+html.swiss.g4 .ab-co { font-weight: 700 !important; }
+
+/* caption */
+html.swiss.g4 :is(.screen-cap, .screen-cap strong, .screen-cap span, figcaption, .clip figcaption, .metric-label, .metric-delta,
+  .ledger-cell, .mm-caption, .mm-leaf-text, .mm-leaf-sub, .mm-finding-fix, .mm-branch-label, .phone-caption span,
+  .insight-source, .case-facts dt, .work-meta, .work-company, .work-metric, .hero-eyebrow, .eyebrow-meta, .eyebrow-jump,
+  .section-label, .next-label, .tradeoff-label, .contact-link-label, .footer-name, .footer-note, .hero-ticker-track small,
+  .ab-y, .ab-eyebrow, .page-eyebrow, .ab-ix-tag, .ab-sheet-cap, .ab-index-list i, .gallery-cap, .gallery-badge,
+  .nav-breadcrumb, .nav-back, .lang-btn, .sw-index i, .belief-item .belief-num + *) { font-size: var(--ts-caption) !important; }
+html.swiss.g4 .belief-item .belief-num + * { font-size: var(--ts-body) !important; }
+html.swiss.g4 .contact-text h2 { font-size: var(--ts-heading) !important; }
+html.swiss.g4 .screen-group-head h3 { font-size: var(--ts-lead) !important; font-weight: 600 !important; }
+html.swiss.g4 .screen-group-head p { font-size: var(--ts-body) !important; }
+/* Weights: 400 text, 600 labels and emphasis, 500 only on controls (buttons, toggles), 700–800 display */
+html.swiss.g4 .section div > p:not([class*="label"]),
+html.swiss.g4 :is(.contact-link-value, .metric-delta, .work-company, .contact-link-label, .ledger-row.header .ledger-cell, .nav-breadcrumb .current) { font-weight: 400 !important; }
+html.swiss.g4 .ab-portrait { padding: 0; border: 0; }

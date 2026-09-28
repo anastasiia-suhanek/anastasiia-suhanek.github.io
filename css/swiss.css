@@ -5,7 +5,7 @@
    No glass, no gradients, no glow, no pills. Linked last on every page.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-@import url('fonts/inter.css');
+@import url('../fonts/inter.css');
 
 /* ── Tokens ── */
 html.swiss {

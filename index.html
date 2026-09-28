@@ -319,6 +319,19 @@ html.swiss.g4 .hero .sw-name {
   font-size: min(252px, (100vw - 2 * var(--gutter)) * 0.2355); line-height: 0.86; letter-spacing: -0.035em;
   color: var(--text); white-space: nowrap;
 }
+/* The name as a window onto the portrait: the lit face shows through the letters, the dark room keeps them dark */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  html.swiss.g4 .hero .sw-name {
+    background-image: url(images/name-face.jpg);
+    background-image: image-set(url(images/name-face.webp) type('image/webp'), url(images/name-face.jpg) type('image/jpeg'));
+    background-size: cover; background-position: 50% 0%; background-repeat: no-repeat;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  html.swiss.g4 .hero .sw-name { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; }
+}
 html.g4 .sw-foot { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
 html.g4 .sw-lead {
   grid-column: 1 / 3;

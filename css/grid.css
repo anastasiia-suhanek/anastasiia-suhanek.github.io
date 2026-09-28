@@ -469,3 +469,125 @@ html.swiss.g4 .next-case,
 html.swiss.g4 .section-contact { border-top: 1px solid var(--text) !important; }
 /* Case cover: the facts row already carries a hairline – no second one under the cover */
 html.swiss.g4 .container > .hero { border-bottom: 0 !important; }
+
+/* ━━ Spacing: four steps, one job each ━━
+   s1  8   inside one item: label ↔ value, image ↔ caption, number ↔ name
+   s2 16   between items of a group: heading ↔ text, rows, list items, rule ↔ what it opens
+   s3 32   between groups inside a section: text ↔ figure, block ↔ block; also the page margin and the column gap
+   s4 96   between sections: content ↔ the next black rule (64 on phones)
+   Mock-ups of UI (mail, mind-map chips, buttons) keep their own inner padding – they depict other products */
+html.swiss.g4 { --s1: 8px; --s2: 16px; --s3: 32px; --s4: 96px; --g-gap: var(--s3); --gutter: var(--s3); --gutter-sm: var(--s2); --inset: var(--s3); }
+@media (max-width: 900px) { html.swiss.g4 { --s4: 64px; } }
+@media (max-width: 580px) { html.swiss.g4 { --gutter: var(--s2); --g-gap: var(--s2); } }
+
+/* Sections: rule → s2 → content … content → s4 → next rule */
+html.swiss.g4 :is(.section, .next-case, .section-contact, .about-section) { padding-block: var(--s2) var(--s4) !important; }
+html.swiss.g4 .container > .hero { padding-bottom: var(--s4) !important; }
+html.swiss.g4 :is(.section, .about-section, .next-case, .sw, .ab-hero, .ab-next, .cv-body, .cv-header, .ab-ledger li, .ledger-row, .rb-row, .mails) { column-gap: var(--g-gap) !important; }
+html.swiss.g4 .nav-inner:has(> .nav-links) { column-gap: var(--g-gap); }
+html.swiss.g4 .ab-hero { margin-bottom: var(--s4) !important; }
+html.swiss.g4 .ab-next { margin-top: var(--s4) !important; padding-top: var(--s2) !important; }
+html.swiss.g4 .footer { padding-block: var(--s3) !important; }
+html.swiss.g4 .kyc-map { padding-block: 0 !important; margin-block: var(--s3) !important; }
+
+/* Labels and headings */
+html.swiss.g4 .section > .section-label:not(.section-label--sub),
+html.swiss.g4 .about-section > .section-label { margin-bottom: var(--s2); }
+@media (min-width: 901px) {
+  html.swiss.g4 .section > .section-label:not(.section-label--sub),
+  html.swiss.g4 .about-section > .section-label { margin-bottom: 0; }
+}
+html.swiss.g4 .section-label { gap: var(--s1) !important; }
+html.swiss.g4 .section h2 { margin-bottom: var(--s2) !important; }
+html.swiss.g4 .container > .hero h1 { margin-bottom: var(--s3) !important; }
+html.swiss.g4 :is(.ab-eyebrow, .page-eyebrow) { margin-bottom: var(--s2) !important; }
+html.swiss.g4 :is(.belief-title, .outcomes-hd, .ab-sheet-cap) { margin-bottom: var(--s1) !important; }
+html.swiss.g4 :is(.case-facts dt, .contact-link-label, .screen-cap strong, .metric-delta) { margin-bottom: var(--s1) !important; }
+html.swiss.g4 .ab-next-label { margin-bottom: var(--s2) !important; }
+
+/* Inside a chapter. The chapter is a grid, and grid margins add up instead of collapsing (16 + 32 = 48),
+   so each child only sets the space above it: s2 after text, s3 around a group */
+html.swiss.g4 .section > * { margin-block: 0 !important; }
+html.swiss.g4 .section > * + * { margin-top: var(--s2) !important; }
+html.swiss.g4 .section > .section-label + * { margin-top: 0 !important; }
+html.swiss.g4 .section > * + :is(.board-figure, .clip, .decisions, .metrics, .scope-grid, .tradeoff, .web-shots, .split, .ledger, .mails, .screens-scroll, .slider-controls, .status-table, .before-grid, .platform-split, .competitors, .kyc-map, .insight, .screen-group-head, .goals),
+html.swiss.g4 .section > :is(.board-figure, .clip, .decisions, .metrics, .scope-grid, .tradeoff, .web-shots, .split, .ledger, .mails, .screens-scroll, .status-table, .before-grid, .platform-split, .competitors, .kyc-map, .insight-source, .goals) + * { margin-top: var(--s3) !important; }
+html.swiss.g4 .section > .slider-controls + .screens-scroll { margin-top: var(--s2) !important; }
+html.swiss.g4 .section > .insight + .insight-source { margin-top: var(--s1) !important; }
+html.swiss.g4 .section > .screens-scroll + .screens-hint { margin-top: var(--s1) !important; }
+@media (max-width: 900px) { html.swiss.g4 .section > .section-label:not(.section-label--sub) + * { margin-top: var(--s2) !important; } }
+html.swiss.g4 :is(.screen-cap, figcaption, .phone-caption, .proto-hint) { margin-top: var(--s1) !important; }
+html.swiss.g4 .phone-caption, html.swiss.g4 .proto-hint { margin-top: var(--s2) !important; }
+html.swiss.g4 .case-facts { margin-top: var(--s3) !important; padding-top: var(--s2) !important; row-gap: var(--s2) !important; }
+html.swiss.g4 .case-facts > div:nth-child(1) { padding-right: var(--s3) !important; }
+@media (max-width: 900px) { html.swiss.g4 .case-facts > div:nth-child(1) { padding-right: 0 !important; } }
+html.swiss.g4 .phone-scene { padding-block: var(--s3) !important; }
+
+/* Rows: s2 above and below the hairline */
+html.swiss.g4 :is(.decision, .ledger-row, .tradeoff, .contact-link, .mm-finding, .ab-ledger li, .metric-tile) { padding-block: var(--s2) !important; }
+html.swiss.g4 .ab-ledger li:first-child { padding-top: 0 !important; }
+html.swiss.g4 .tradeoff { padding-inline: var(--inset) !important; }
+html.swiss.g4 .decision { column-gap: var(--s2) !important; }
+html.swiss.g4 .ledger-row, html.swiss.g4 .ab-ledger li { row-gap: var(--s1) !important; }
+html.swiss.g4 .metrics { padding-top: var(--s2) !important; column-gap: var(--g-gap) !important; }
+html.swiss.g4 .scope-item { row-gap: var(--s1) !important; column-gap: var(--s2) !important; }
+html.swiss.g4 .belief-item { padding-block: 0 !important; }
+html.swiss.g4 .beliefs-list { gap: var(--s3) var(--g-gap) !important; }
+html.swiss.g4 .ab-more { margin-top: var(--s2) !important; }
+html.swiss.g4 .tags-grid { margin-top: var(--s2) !important; }
+html.swiss.g4 .contact-row { margin-top: var(--s3) !important; gap: var(--s1) !important; }
+html.swiss.g4 .contact-links { margin-top: var(--s3) !important; }
+html.swiss.g4 .about-section:has(.gallery-strip) > .section-content,
+html.swiss.g4 .about-section:has(.beliefs-list) > .section-content,
+html.swiss.g4.g4-sheet .about-section:has(.ab-sheet) > .section-content { margin-top: var(--s3) !important; }
+
+/* Image grids: s2 between pictures, s3 between rows that carry captions */
+html.swiss.g4 .web-shots { gap: var(--s3) var(--s2) !important; }
+html.swiss.g4 .ab-sheet:not([hidden]) { gap: var(--s3) var(--s2) !important; }
+@media (max-width: 900px) { html.swiss.g4 .ab-sheet:not([hidden]) { gap: var(--s2) var(--s1) !important; } }
+
+/* KYC map */
+html.swiss.g4 .mm { gap: var(--s3) !important; }
+html.swiss.g4 .mm-leaves { gap: var(--s1) !important; }
+html.swiss.g4 .mm-findings { margin-top: var(--s3) !important; }
+html.swiss.g4 .mm-findings-head { gap: var(--s2) !important; padding-bottom: var(--s2) !important; }
+html.swiss.g4 .mm-finding { gap: var(--s1) var(--s3) !important; }
+html.swiss.g4 .mm-caption { margin-bottom: var(--s3) !important; }
+@media (max-width: 900px) { html.swiss.g4 .mm-branch { margin-top: var(--s2) !important; } }
+
+/* Home: hero and the results board */
+html.swiss.g4 section.hero { padding-top: var(--s3) !important; padding-bottom: 0 !important; }
+html.swiss.g4 .hero .sw-name { margin-block: var(--s3) !important; }
+html.swiss.g4 .hero .rb { margin-top: var(--s4) !important; }
+html.swiss.g4 .rb-head { padding-block: var(--s2) !important; gap: var(--s1) var(--s2) !important; }
+html.swiss.g4 .rb-legend { gap: var(--s2) !important; }
+html.swiss.g4 .rb-row { padding-block: var(--s3) !important; row-gap: var(--s1) !important; }
+html.swiss.g4 .rb-bars { row-gap: var(--s1) !important; }
+html.swiss.g4 .rb-label, html.swiss.g4 .rb-num { margin-top: 0 !important; }
+@media (max-width: 580px) {
+  html.swiss.g4 .rb-row { padding-block: var(--s2) !important; }
+  html.swiss.g4 .rb-bars { margin-top: var(--s1) !important; }
+  html.swiss.g4 .hero .sw-name { margin: 0 0 var(--s2) !important; }
+  html.swiss.g4 .hero .sw-lead { margin-bottom: var(--s3) !important; }
+  html.swiss.g4 .hero .sw-meta { padding-top: var(--s2) !important; }
+  html.swiss.g4 .hero .sw-label { margin-bottom: var(--s1) !important; }
+}
+
+/* About top */
+html.swiss.g4 .about-left { padding-block: var(--s3) var(--s4) !important; }
+html.swiss.g4 .about-section { row-gap: var(--s2) !important; }
+html.swiss.g4 .container > .slider-controls { margin-top: var(--s3) !important; }
+html.swiss.g4 .container > .screens-scroll { margin-bottom: var(--s3) !important; }
+html.swiss.g4 .goals li { column-gap: var(--s2) !important; }
+html.swiss.g4 .rb-bars { column-gap: var(--s1) !important; }
+html.swiss.g4 .screen-group-head { padding-top: var(--s2) !important; row-gap: var(--s1) !important; }
+html.swiss.g4 .container > .screen-group-head { margin-top: var(--s3) !important; }
+/* The phone scene is a full-width band under the cover: the next chapter keeps its s4 */
+html.swiss.g4 .phone-scene { margin-bottom: var(--s4) !important; }
+/* Home contact: the black rule runs on the content width like every other section, text and links top-aligned on the grid */
+html.swiss.g4 .section-contact { border-top: 0 !important; padding-top: 0 !important; }
+html.swiss.g4 .contact-inner { border-top: 1px solid var(--text); padding-top: var(--s2); gap: var(--s3) var(--g-gap) !important; align-items: start !important; }
+html.swiss.g4 .contact-text h2 { margin-bottom: var(--s2) !important; }
+html.swiss.g4 .contact-links { margin-top: 0 !important; }
+html.swiss.g4 .contact-link:first-child { padding-top: 0 !important; }
+html.swiss.g4 .split-text .insight { margin-top: var(--s3) !important; }

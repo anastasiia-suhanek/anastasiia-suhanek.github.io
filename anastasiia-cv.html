@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anastasiia Sukhanek – CV</title>
-<meta name="description" content="CV of Anastasiia Sukhanek, Product Designer (fintech, payments). Prague · Remote, worldwide. Profee, Beeline, SberSpasibo.">
+<meta name="description" content="CV of Anastasiia Sukhanek, Product Designer (fintech, payments). Prague · Remote, worldwide. Profee, Beeline, SberSpasibo." data-ru="Резюме Анастасии Суханек, продуктовый дизайнер (финтех, платежи). Прага · удалённо, из любой страны. Profee, Билайн, СберСпасибо">
 <meta name="author" content="Anastasiia Sukhanek">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Anastasiia Sukhanek – CV">
@@ -32,12 +32,20 @@
   } catch (e) {}
   if (!gridOff) document.documentElement.classList.add('g4');
   document.title = lang === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+  // The description meta comes after this script: switch it once the head is parsed, and on every toggle
+  function desc(l) {
+    var d = document.querySelector('meta[name="description"]'); if (!d || !d.hasAttribute('data-ru')) return;
+    if (!d.hasAttribute('data-en')) d.setAttribute('data-en', d.content);
+    d.content = d.getAttribute(l === 'ru' ? 'data-ru' : 'data-en');
+  }
+  document.addEventListener('DOMContentLoaded', function () { desc(document.documentElement.lang); });
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-set-lang]'); if (!b) return;
     var l = b.getAttribute('data-set-lang');
     try { localStorage.setItem('lang', l); } catch (err) {}
     document.documentElement.lang = l;
     document.title = l === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+    desc(l);
   });
 })();
 </script>
@@ -305,6 +313,48 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 @media screen and (max-width: 360px) {
   html.g4 .print-bar .cv-back, html .print-bar .cv-back { font-size: 16px !important; }
   .bar-right { gap: 12px; }
+}
+
+/* ━━ Spacing on screen: the site's four steps (print keeps its own) ━━
+   s1 8 inside an item · s2 16 between items · s3 32 between groups, page margin, column gap · s4 96 between sections (64 on phones) */
+@media screen {
+  html.g4 { --s1: 8px; --s2: 16px; --s3: 32px; --s4: 96px; }
+  html.g4 body { padding-inline: var(--s3) !important; }
+  html.g4 .doc { padding-bottom: var(--s4) !important; }
+  html.g4 .print-bar, html .print-bar { margin-bottom: var(--s3) !important; }
+  html.g4 .bar-right { gap: var(--s3); }
+  html.g4 .cv-header { margin-bottom: var(--s4) !important; column-gap: var(--s3) !important; }
+  html.g4 .cv-body, html.g4 .contact-block { column-gap: var(--s3) !important; }
+  html.g4 .name { margin-bottom: var(--s2) !important; }
+  html.g4 .role-tag { margin: 0 0 var(--s3) !important; }
+  html.g4 .contact-block { padding-top: var(--s2) !important; row-gap: var(--s1) !important; }
+  html.g4 .main, html.g4 .sidebar { gap: var(--s4) !important; }
+  html.g4 .sec-label { padding: var(--s2) 0 0 !important; margin-bottom: var(--s2) !important; }
+  html.g4 .job { padding-bottom: var(--s3) !important; margin-bottom: var(--s3) !important; }
+  html.g4 .job:last-child { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+  html.g4 .job-top { margin-bottom: 0 !important; column-gap: var(--s2) !important; row-gap: 0 !important; }
+  html.g4 .job-title { margin: var(--s1) 0 var(--s2) !important; }
+  html.g4 .bullets { gap: var(--s1) !important; margin-bottom: var(--s2) !important; }
+  html.g4 .outcomes { padding-top: var(--s2) !important; }
+  html.g4 .outcomes-hd { margin-bottom: var(--s1) !important; }
+  html.g4 .outcomes-list { gap: var(--s1) !important; }
+  html.g4 .skill-row, html.g4 .edu { margin-bottom: var(--s2) !important; }
+  html.g4 .skill-row:last-child, html.g4 .edu:last-child { margin-bottom: 0 !important; }
+  html.g4 .skill-cat { margin-bottom: 0 !important; }
+  html.g4 .lang-row { padding-block: var(--s1) !important; }
+}
+@media screen and (min-width: 681px) { html.g4 .doc { max-width: 1136px !important; } }
+@media screen and (min-width: 1001px) { html.g4 .name { font-size: calc(min(100vw - 2 * var(--s3), 1136px) * var(--name-fit)) !important; } }
+@media screen and (min-width: 681px) and (max-width: 1000px) {
+  html.g4 .sidebar { margin-top: var(--s4) !important; column-gap: var(--s3) !important; }
+}
+@media screen and (max-width: 900px) { html.g4 { --s4: 64px; } }
+@media screen and (max-width: 680px) {
+  html.g4 body { padding-inline: var(--s2) !important; }
+  html.g4 .name { font-size: min(64px, (100vw - 2 * var(--s2)) * 0.2) !important; }
+  html.g4 .cv-header { row-gap: var(--s2) !important; }
+  html.g4 .role-tag { margin: 0 !important; }
+  html.g4 .sidebar { margin-top: var(--s4) !important; }
 }
 </style>
 

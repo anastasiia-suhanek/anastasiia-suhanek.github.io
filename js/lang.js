@@ -26,8 +26,20 @@
     return nav.startsWith('ru') ? 'ru' : 'en';
   }
 
+  // Tab title and search/preview description follow the language too; RU copies sit in data-ru
+  function meta(lang) {
+    var t = document.querySelector('title'), d = document.querySelector('meta[name="description"]');
+    [t, d].forEach(function (el) {
+      if (!el || !el.hasAttribute('data-ru')) return;
+      if (!el.hasAttribute('data-en')) el.setAttribute('data-en', el === t ? document.title : el.content);
+      var v = el.getAttribute(lang === 'ru' ? 'data-ru' : 'data-en');
+      if (el === t) document.title = v; else el.content = v;
+    });
+  }
+
   function apply(lang) {
     document.documentElement.lang = lang;
+    meta(lang);
     save(lang);
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       btn.classList.toggle('lang-active', btn.dataset.lang === lang);

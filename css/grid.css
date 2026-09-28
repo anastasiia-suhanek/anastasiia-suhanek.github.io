@@ -317,3 +317,6 @@ html.swiss.g4 .ab-sheet button:focus-visible .ab-sheet-cap i { color: var(--acce
   html.swiss.g4.g4-sheet .about-section:has(.ab-sheet) > .section-content { grid-column: 1 / -1; margin-top: 32px; }
 }
 @media (max-width: 900px) { html.swiss.g4 .ab-sheet:not([hidden]) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; } }
+/* The name in the nav is the site's wordmark: the hero's ExtraBold and tight tracking at nav size */
+html.swiss.g4 .nav-name { font-size: 18px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+html.swiss.g4 .nav-name:hover { color: var(--accent); }

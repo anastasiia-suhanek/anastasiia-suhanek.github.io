@@ -794,6 +794,8 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
 }
 
 .contact-link:hover .contact-arrow { transform: translateX(4px); }
+/* CV is a download, not a way to reach me: set apart from the contacts */
+.contact-links .contact-link--cv { margin-top: var(--space-8); }
 
 /* ── FOOTER ── */
 .footer {
@@ -1060,17 +1062,17 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
         <p class="t-ru">Ищу роль Senior Product Designer в финтехе, платежах или любом продукте со сложными сценариями – там, где команда смотрит на метрики</p>
       </div>
       <div class="contact-links">
-        <a class="contact-link" href="mailto:anastasiia.suhanek@gmail.com">
-          <div>
-            <p class="contact-link-label">Email</p>
-            <p class="contact-link-value">anastasiia.suhanek@gmail.com</p>
-          </div>
-          <span class="contact-arrow">→</span>
-        </a>
         <a class="contact-link" href="https://t.me/suhastasiia" target="_blank" rel="noopener">
           <div>
             <p class="contact-link-label">Telegram</p>
             <p class="contact-link-value">@suhastasiia</p>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a class="contact-link" href="mailto:anastasiia.suhanek@gmail.com">
+          <div>
+            <p class="contact-link-label">Email</p>
+            <p class="contact-link-value">anastasiia.suhanek@gmail.com</p>
           </div>
           <span class="contact-arrow">→</span>
         </a>
@@ -1081,21 +1083,14 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
           </div>
           <span class="contact-arrow">→</span>
         </a>
-        <a class="contact-link" href="https://www.behance.net/anastasiiasukhanek" target="_blank" rel="noopener">
-          <div>
-            <p class="contact-link-label">Behance</p>
-            <p class="contact-link-value">behance.net/anastasiiasukhanek</p>
-          </div>
-          <span class="contact-arrow">→</span>
-        </a>
-        <a class="contact-link t-en" href="anastasiia-sukhanek-cv.pdf" download>
+        <a class="contact-link contact-link--cv t-en" href="anastasiia-sukhanek-cv.pdf" download>
           <div>
             <p class="contact-link-label">CV</p>
             <p class="contact-link-value">PDF · 2 pages</p>
           </div>
           <span class="contact-arrow">↓</span>
         </a>
-        <a class="contact-link t-ru" href="anastasiia-sukhanek-cv-ru.pdf" download>
+        <a class="contact-link contact-link--cv t-ru" href="anastasiia-sukhanek-cv-ru.pdf" download>
           <div>
             <p class="contact-link-label">Резюме</p>
             <p class="contact-link-value">PDF · 2 страницы</p>

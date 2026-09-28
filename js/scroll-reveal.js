@@ -30,7 +30,7 @@
     '.competitors',
   ].join(', ');
 
-  var SKIP_INSIDE = ['.nav', '.hero', '.gallery-track', '.gallery-item', '.ab-index'];
+  var SKIP_INSIDE = ['.nav', '.hero', '.gallery-track', '.gallery-item', '.ab-index', '.ab-sheet'];
 
   function isSkipped(el) {
     if (SKIP_INSIDE.some(function (sel) { return el.closest(sel); })) return true;

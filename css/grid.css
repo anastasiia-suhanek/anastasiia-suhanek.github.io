@@ -289,3 +289,31 @@ html.swiss.g4 .ab-index-nav {
   color: var(--text); cursor: pointer;
 }
 html.swiss.g4 .ab-index-nav:hover { background: var(--text); color: #fff; }
+
+/* About · contact sheet (?sheet): six frames a row on desktop, three on phones, numbered under each */
+.ab-sheet { display: none; }
+html.swiss.g4 .ab-sheet:not([hidden]) {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px 12px;
+  list-style: none; margin: 0; padding: 0;
+}
+html.swiss.g4 .ab-sheet:not([hidden]) ~ .gallery-strip,
+html.swiss.g4 .ab-sheet:not([hidden]) ~ .ab-index { display: none !important; }
+html.swiss.g4 .ab-sheet button { display: block; width: 100%; padding: 0; border: 0; background: none; font: inherit; text-align: left; cursor: zoom-in; }
+html.swiss.g4 .ab-sheet img,
+html.swiss.g4 .ab-sheet video {
+  display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--bg-deep);
+  transition: opacity .2s ease;
+}
+html.swiss.g4 .ab-sheet button:hover img,
+html.swiss.g4 .ab-sheet button:hover video { opacity: .85; }
+html.swiss.g4 .ab-sheet-cap {
+  display: flex; gap: 8px; align-items: baseline; margin-top: 8px;
+  font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-dim);
+}
+html.swiss.g4 .ab-sheet-cap i { font-style: normal; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+html.swiss.g4 .ab-sheet button:hover .ab-sheet-cap i,
+html.swiss.g4 .ab-sheet button:focus-visible .ab-sheet-cap i { color: var(--accent); }
+@media (min-width: 901px) {
+  html.swiss.g4.g4-sheet .about-section:has(.ab-sheet) > .section-content { grid-column: 1 / -1; margin-top: 32px; }
+}
+@media (max-width: 900px) { html.swiss.g4 .ab-sheet:not([hidden]) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; } }

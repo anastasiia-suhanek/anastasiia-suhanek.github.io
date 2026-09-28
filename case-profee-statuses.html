@@ -66,6 +66,13 @@ body {
 
 /* INSIGHT */
 
+/* BOARD FIGURE (same as Cards case) */
+.board-figure { margin: var(--space-7) 0 var(--space-6); }
+.board-figure a img { display: block; width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); cursor: zoom-in; }
+.board-figure figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug); }
+.board-figure figcaption a { color: var(--text-mid); text-decoration: underline; text-underline-offset: 2px; }
+.board-figure figcaption a:hover { color: var(--accent); }
+
 /* SCREENS SCROLL */
 
 /* SPLIT: text + phone side-by-side */
@@ -174,9 +181,8 @@ body {
         <p class="t-en">When they came back, the screen showed a single line: the current status. No history – what had already happened, where the transfer was stuck, what was coming next. Yet the status screen is opened most often while a transfer is still in progress – 59% of views – exactly when that one line said the least</p>
         <p class="t-ru">А когда он возвращался, на экране была одна-единственная строка – текущий статус. Никакой истории: что уже произошло, где перевод застрял, что будет дальше. При этом чаще всего экран статуса открывают, пока перевод ещё идёт, – 59% просмотров. Как раз тогда одна строка и говорила меньше всего</p>
 
-        <!-- TODO: add the share of support tickets about transfer status once the data is at hand -->
-        <blockquote class="insight t-en">Questions about transfer status came to support regularly – people wrote in to ask what was happening with a transfer the app could have explained itself</blockquote>
-        <blockquote class="insight t-ru">Вопросы о статусе перевода регулярно приходили в поддержку – люди спрашивали то, что приложение могло бы объяснить само</blockquote>
+        <blockquote class="insight t-en">Two problems: people couldn't see what was happening with the transfer, and didn't know when it was waiting for them</blockquote>
+        <blockquote class="insight t-ru">Проблем было две: человек не видел, что происходит с переводом, и не знал, когда перевод ждёт его</blockquote>
       </div>
       <div class="split-video">
         <video autoplay loop muted playsinline preload="metadata" poster="media/statuses-leave-poster.jpg" width="720" height="1080" aria-label="A person confirms a transfer, sees the processing screen and switches to Instagram">
@@ -184,6 +190,40 @@ body {
         </video>
       </div>
     </div>
+  </section>
+
+  <!-- STATUS MAP -->
+  <section class="section" id="status-map">
+    <p class="section-label t-en">Status map</p>
+    <p class="section-label t-ru">Карта статусов</p>
+    <h2>
+      <span class="t-en">Dozens of system codes, a handful of human steps</span>
+      <span class="t-ru">Десятки кодов системы – несколько понятных шагов</span>
+    </h2>
+    <p class="t-en">Before drawing the timeline, I had to work out what it was made of. A transfer has two technical statuses – the debit and the credit – with codes from 1 to 90, plus separate refund statuses. I split the codes into ranges and turned them into steps a person understands: transfer created, checking it's safe, taking the money, the recipient's bank has it, done. Failure, refund and money returned are separate branches</p>
+    <p class="t-ru">Прежде чем рисовать таймлайн, нужно было понять, из чего он состоит. У перевода два технических статуса – списания и зачисления – с кодами от 1 до 90, плюс отдельные статусы возврата. Я разложила коды по диапазонам и свела их в шаги, понятные человеку: перевод создан, проверяем, что он безопасен, списываем деньги, банк получателя их получил, готово. Сбой, возврат и «деньги вернулись» – отдельные ветки</p>
+    <p class="t-en">Six different user actions hide in those codes: answering questions, entering a BLIK code, accepting an agreement (SEPA), passing 3DS, finishing on a partner's site, confirming in a banking app. I made them one pattern – a yellow card at the step where the transfer stopped, with its own title and the same single button. On the board it's still "Confirm payment"; in the final version it became "Continue transfer"</p>
+    <p class="t-ru">В этих кодах прячутся шесть разных действий пользователя: ответить на вопросы, ввести код BLIK, принять соглашение (SEPA), пройти 3DS, завершить оплату на сайте партнёра, подтвердить в банковском приложении. Я свела их в один паттерн – жёлтая карточка на шаге, где перевод остановился, свой заголовок и одна и та же кнопка. На схеме она ещё называется Confirm payment, в финальной версии – «Продолжить перевод»</p>
+
+    <figure class="board-figure">
+      <a href="images/statuses/process-status-map.png" target="_blank" rel="noopener">
+        <img src="images/statuses/process-status-map.png" alt="Working board: status code ranges in the middle, user-facing step labels on the left, six action card variants on the right merged into one Confirm payment button" loading="lazy">
+      </a>
+      <figcaption>
+        <span class="t-en">Working board: code ranges in the middle, the steps a user sees on the left, six action card variants on the right · <a href="images/statuses/process-status-map.png" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span class="t-ru">Рабочая схема: диапазоны кодов в центре, шаги, которые видит человек, слева, шесть вариантов карточки действия справа · <a href="images/statuses/process-status-map.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
+
+    <figure class="board-figure">
+      <a href="images/statuses/process-timeline-scenarios.png" target="_blank" rel="noopener">
+        <img src="images/statuses/process-timeline-scenarios.png" alt="Timeline scenarios: the happy path, an action on the way, failure, an unconfirmed payment, and a rejection with refund" loading="lazy">
+      </a>
+      <figcaption>
+        <span class="t-en">Timeline scenarios: the happy path, an action on the way, failure, an unconfirmed payment, rejection and refund · <a href="images/statuses/process-timeline-scenarios.png" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span class="t-ru">Сценарии таймлайна: успешный путь, действие по дороге, сбой, неподтверждённая оплата, отказ и возврат · <a href="images/statuses/process-timeline-scenarios.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
   </section>
 
   <!-- THE APPROACH -->
@@ -223,8 +263,8 @@ body {
         <div>
           <h3 class="t-en">Action cards in the timeline</h3>
           <h3 class="t-ru">Карточки действий прямо в таймлайне</h3>
-          <p class="t-en">When a transfer needs something from the user mid-flow – a Blik code or answers to compliance questions – a card with a deadline and a "Continue transfer" button appears right in the timeline, at the step where the transfer stopped</p>
-          <p class="t-ru">Если перевод по дороге ждёт чего-то от пользователя – кода Blik или ответов на вопросы комплаенса, – прямо в таймлайне, на том шаге, где перевод остановился, появляется карточка со сроком и кнопкой «Продолжить перевод»</p>
+          <p class="t-en">When a transfer needs something from the user, a card with a deadline and a "Continue transfer" button appears right in the timeline, at the step where the transfer stopped – whatever the action is</p>
+          <p class="t-ru">Если перевод ждёт чего-то от пользователя, прямо в таймлайне, на том шаге, где он остановился, появляется карточка со сроком и кнопкой «Продолжить перевод» – какое бы действие ни требовалось</p>
         </div>
       </div>
     </div>
@@ -290,11 +330,11 @@ body {
     <p class="section-label t-en">Results</p>
     <p class="section-label t-ru">Результаты</p>
     <h2>
-      <span class="t-en">When a transfer needs you, people act</span>
-      <span class="t-ru">Когда перевод ждёт действия, люди не тянут</span>
+      <span class="t-en">People find the card and tap it in seconds</span>
+      <span class="t-ru">Карточку находят и нажимают за секунды</span>
     </h2>
-    <p class="t-en">Rollout started in late January 2026 and reached everyone by April. Data from April to September 2026, for users who opened a transfer waiting for their action. The events appeared together with the new screen, so there is no "before" to compare with:</p>
-    <p class="t-ru">Запуск начался в конце января 2026, к апрелю новая версия была у всех. Данные за апрель–сентябрь 2026 – по тем, кто открыл перевод, ждущий их действия. События появились вместе с новым экраном, поэтому сравнить с «до» не с чем:</p>
+    <p class="t-en">Rollout started in late January 2026 and reached everyone by April. The events appeared together with the new screen, so neither the history nor the card can be compared with "before" – the one real comparison is in the next step. What the data shows is how the card works: April to September 2026, users who opened a transfer waiting for their action:</p>
+    <p class="t-ru">Запуск начался в конце января 2026, к апрелю новая версия была у всех. События появились вместе с новым экраном, поэтому ни историю, ни карточку сравнить с «до» не с чем – единственное настоящее сравнение в следующем шаге. Зато по данным видно, как работает карточка: апрель–сентябрь 2026, те, кто открыл перевод, ждущий их действия:</p>
 
     <div class="metrics">
       <div class="metric-tile">
@@ -367,12 +407,11 @@ body {
       </div>
     </div>
 
-    <!-- TODO: add support-ticket share before/after once PM/support share it -->
     <div class="tradeoff">
       <p class="tradeoff-label t-en">What's next</p>
       <p class="tradeoff-label t-ru">Что дальше</p>
-      <p class="t-en">Now the loss comes after the tap, when the flow goes on to the bank – a 3DS check or a redirect – and that's where the next iteration looks. The share of support tickets about transfer status needs ticket data, and that's the next comparison</p>
-      <p class="t-ru">Теперь людей теряем после нажатия, когда сценарий уходит в банк – на проверку 3DS или редирект. Туда и смотрит следующая итерация. Следующее сравнение – доля обращений в поддержку о статусе перевода, для него нужны данные по тикетам</p>
+      <p class="t-en">Now the loss comes after the tap, when the flow goes on to the bank – a 3DS check or a redirect – and that's where the next iteration looks.</p>
+      <p class="t-ru">Теперь людей теряем после нажатия, когда сценарий уходит в банк – на проверку 3DS или редирект. Туда и смотрит следующая итерация.</p>
     </div>
   </section>
 </div>

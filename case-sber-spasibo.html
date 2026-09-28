@@ -102,6 +102,15 @@ body {
 
 /* NEXT */
 
+/* WEB SHOTS: two browser mockups side by side, rounded like the phone screens */
+.web-shots { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-block: var(--space-7); }
+.web-shots figure { margin: 0; }
+.web-shots img { width: 100%; height: auto; border-radius: var(--r-2xl); border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.08); cursor: zoom-in; }
+.web-shots figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug); }
+html.swiss .section .web-shots { margin-block: var(--s5); }
+html.swiss .web-shots img { box-shadow: none; }
+@media (max-width: 580px) { .web-shots { grid-template-columns: 1fr; } }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .container, .container-wide { padding-inline: var(--gutter-sm); }
@@ -310,25 +319,22 @@ body {
     <p class="t-en">When the app was removed from the stores, the games had to live on the web. Instead of building a personal account there, we kept the core – games, tasks and rewards – and made them work without it. That's what let the web version launch fast</p>
     <p class="t-ru">Когда приложение удалили из сторов, игры должны были переехать в веб. Вместо того чтобы делать там личный кабинет, мы оставили главное – игры, задания и награды – и сделали так, чтобы они работали без него. Благодаря этому веб-версия вышла быстро</p>
 
-    <figure class="board-figure">
-      <a href="images/sber/web-games.png" target="_blank" rel="noopener">
-        <img src="images/sber/web-games.png" alt="Web: the Games page with six games in a grid" loading="lazy">
-      </a>
-      <figcaption>
-        <span class="t-en">Web: every game on one page, same pictures and one-line rules as in the app · <a href="images/sber/web-games.png" target="_blank" rel="noopener">Open full size ↗</a></span>
-        <span class="t-ru">Веб: все игры на одной странице, те же картинки и правила в одну строку, что в приложении · <a href="images/sber/web-games.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
-      </figcaption>
-    </figure>
-
-    <figure class="board-figure">
-      <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">
-        <img src="images/sber/web-game-page.png" alt="Web: SberPrimeCity game page with rules, prizes and a Play button" loading="lazy">
-      </a>
-      <figcaption>
-        <span class="t-en">Web: a game page – rules, prizes and one button to play · <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">Open full size ↗</a></span>
-        <span class="t-ru">Веб: страница игры – правила, призы и одна кнопка, чтобы начать · <a href="images/sber/web-game-page.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
-      </figcaption>
-    </figure>
+    <div class="web-shots">
+      <figure>
+        <a href="images/sber/web-games.png" target="_blank" rel="noopener"><img src="images/sber/web-games.png" alt="Web: the Games page with six games in a grid" loading="lazy"></a>
+        <figcaption>
+          <span class="t-en">Every game on one page – the same pictures and one-line rules as in the app</span>
+          <span class="t-ru">Все игры на одной странице – те же картинки и правила в одну строку, что в приложении</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="images/sber/web-game-page.png" target="_blank" rel="noopener"><img src="images/sber/web-game-page.png" alt="Web: SberPrimeCity game page with rules, prizes and a Play button" loading="lazy"></a>
+        <figcaption>
+          <span class="t-en">A game page – rules, prizes and one button to play</span>
+          <span class="t-ru">Страница игры – правила, призы и одна кнопка, чтобы начать</span>
+        </figcaption>
+      </figure>
+    </div>
 
     <div class="tradeoff">
       <p class="tradeoff-label t-en">Trade-off</p>

@@ -14,7 +14,7 @@ html.g4 { --g-cols: 4; --g-gap: 24px; }
 @font-face {
   font-family: 'Inter Var';
   font-style: normal;
-  font-weight: 300 700;
+  font-weight: 300 900;
   font-display: swap;
   src: url(../fonts/InterVar.woff2) format('woff2');
 }

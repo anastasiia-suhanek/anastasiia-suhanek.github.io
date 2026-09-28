@@ -348,11 +348,6 @@ html.g4 .sw-label {
   display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
   font-size: 15px; line-height: 1.35; color: var(--text);
 }
-html.g4 .sw-grid-toggle {
-  font: inherit; font-size: 13px; color: var(--text-dim); background: none; border: 0; padding: 0; cursor: pointer;
-  text-decoration: underline; text-underline-offset: 3px;
-}
-html.g4 .sw-grid-toggle:hover { color: var(--text); }
 html.g4 .sw-index { grid-column: 4; list-style: none; padding: 0; }
 html.g4 .sw-index a {
   display: grid; grid-template-columns: 28px 1fr; align-items: baseline;
@@ -363,15 +358,6 @@ html.g4 .sw-index i.sw-dash { color: var(--text-dim); font-weight: 400; }
 html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offset: 3px; }
 
 
-/* Grid overlay: the construction lines, like the poster on the right of the reference */
-html.g4-lines .sw::after {
-  content: ''; position: absolute; inset: -40px 0 -40px; pointer-events: none;
-  background: repeating-linear-gradient(90deg,
-    rgba(228, 53, 27, 0.55) 0 1px, transparent 1px calc((100% - 3 * var(--gap)) / 4),
-    rgba(228, 53, 27, 0.55) calc((100% - 3 * var(--gap)) / 4) calc((100% - 3 * var(--gap)) / 4 + 1px),
-    transparent calc((100% - 3 * var(--gap)) / 4 + 1px) calc((100% - 3 * var(--gap)) / 4 + var(--gap)));
-  box-shadow: inset -1px 0 0 rgba(228, 53, 27, 0.55);
-}
 
 /* Facts keep two lines per cell: fewer, wider columns as the screen narrows */
 @media (max-width: 1180px) and (min-width: 901px) {
@@ -396,11 +382,6 @@ html.g4-lines .sw::after {
   html.g4 .sw-index { grid-column: 1 / -1; }
   html.g4 .sw-index a { padding-bottom: 10px; }
   html.g4 .sw-label + .sw-index { margin-top: -20px; }
-  html.g4-lines .sw::after {
-    background: linear-gradient(90deg, rgba(228,53,27,.55) 0 1px, transparent 1px calc(50% - 12px),
-      rgba(228,53,27,.55) calc(50% - 12px) calc(50% - 11px), transparent calc(50% - 11px) calc(50% + 12px),
-      rgba(228,53,27,.55) calc(50% + 12px) calc(50% + 13px), transparent calc(50% + 13px));
-  }
 }
 @media (max-width: 640px) {
 }
@@ -888,7 +869,7 @@ html.g4-lines .sw::after {
     <div class="sw-foot">
       <p class="sw-lead t-en">I design payments, verification and error flows so fewer people drop off – and I&nbsp;measure it</p>
       <p class="sw-lead t-ru">Помогаю финтех-продуктам не терять людей на оплате, верификации и ошибках. И&nbsp;считаю, сколько удалось сохранить</p>
-      <p class="sw-label"><span class="t-en">Index</span><span class="t-ru">Кейсы</span><button type="button" class="sw-grid-toggle" aria-pressed="false"><span class="t-en">Show grid</span><span class="t-ru">Показать сетку</span></button></p>
+      <p class="sw-label"><span class="t-en">Index</span><span class="t-ru">Кейсы</span></p>
       <ol class="sw-index">
         <li><a href="case-profee-verification.html"><i>01</i><span class="t-en">KYC verification</span><span class="t-ru">KYC-верификация</span></a></li>
         <li><a href="case-profee-cards.html"><i>02</i><span class="t-en">Cards</span><span class="t-ru">Карты</span></a></li>
@@ -899,16 +880,6 @@ html.g4-lines .sw::after {
       </ol>
     </div>
   </div>
-  <script>
-    (function () {
-      var b = document.querySelector('.sw-grid-toggle');
-      if (!b) return;
-      b.addEventListener('click', function () {
-        var on = document.documentElement.classList.toggle('g4-lines');
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      });
-    })();
-  </script>
   <div class="hero-inner">
 
     <div class="hero-identity">

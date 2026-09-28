@@ -95,8 +95,7 @@ html.swiss.g4 .next-case > .next-label { grid-column: 1; grid-row: 1 / span 2; }
 /* Touch targets inside the grid hero and the grid nav on phones */
 @media (pointer: coarse) {
   html.swiss.g4 .nav-links .nav-seg { padding-block: 14px !important; }
-  html.g4 .sw-meta a,
-  html.g4 .sw-grid-toggle { display: inline-block; padding-block: 13px; margin-block: -13px; }
+  html.g4 .sw-meta a { display: inline-block; padding-block: 13px; margin-block: -13px; }
   html.g4 .sw-index a { padding-block: 7px; }
 }
 

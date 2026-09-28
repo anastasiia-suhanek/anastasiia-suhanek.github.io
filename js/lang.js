@@ -1,6 +1,15 @@
 (function () {
   'use strict';
 
+  // Preview of the modular-grid layout: ?grid turns it on for this tab, ?grid=0 turns it off
+  (function () {
+    var q = location.search.match(/[?&]grid(=0)?\b/);
+    try {
+      if (q) q[1] ? sessionStorage.removeItem('grid') : sessionStorage.setItem('grid', '1');
+      if (sessionStorage.getItem('grid') === '1') document.documentElement.classList.add('g4');
+    } catch (e) { if (q && !q[1]) document.documentElement.classList.add('g4'); }
+  })();
+
   function getSaved() {
     try { return localStorage.getItem('lang'); } catch (e) { return null; }
   }

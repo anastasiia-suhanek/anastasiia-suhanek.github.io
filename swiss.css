@@ -741,12 +741,20 @@ html.swiss .section { padding-block: 64px; }
 
 /* Emails are quoted documents — keep them at mail-client size, not body-copy size */
 html.swiss .section .mail-body p,
-html.swiss .section .mail-body li { font-size: 13px; line-height: 1.55; margin-bottom: 10px; color: #2B2840; }
+html.swiss .section .mail-body li { font-size: 14px; line-height: 1.55; margin-bottom: 10px; color: #2B2840; }
 html.swiss .section .mail-body ul { margin-bottom: 10px; }
 html.swiss .section .mail-body li { margin-bottom: 0; }
 html.swiss .section .mail-body p strong { color: #1B1830; }
-html.swiss .mail-chrome { font-size: 11px; }
-html.swiss .mail-subject { font-size: 12px; }
+html.swiss .mail-chrome { font-size: 12px; }
+html.swiss .mail-subject { font-size: 13px; }
+/* The caption under the letter speaks at source size – the letter is the object, not the caption */
+html.swiss .section .mails .screen-cap,
+html.swiss .section .mails .screen-cap span,
+html.swiss .section .mails .screen-cap strong {
+  font-size: var(--t-small); line-height: var(--lh-small); letter-spacing: 0;
+}
+html.swiss .section .mails .screen-cap { margin-top: 12px; color: var(--text-dim); font-weight: 400; }
+html.swiss .section .mails .screen-cap strong { display: block; margin-bottom: 2px; color: var(--text); font-weight: 600; }
 
 /* KYC research map: more air in the tree and between the tree and the findings table */
 html.swiss .kyc-map { margin-block: 72px; }

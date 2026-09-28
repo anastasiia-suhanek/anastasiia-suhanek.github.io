@@ -72,6 +72,8 @@
     function update() {
       var y = window.innerHeight * 0.35, current = 0;
       sections.forEach(function (s, i) { if (s.getBoundingClientRect().top < y) current = i; });
+      // A short last chapter never reaches the switch line: at the very bottom it is the current one
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === current); });
       // In the bar layout the strip scrolls sideways on phones: keep the current chapter in view
       if (nav.scrollWidth > nav.clientWidth && current !== last) {

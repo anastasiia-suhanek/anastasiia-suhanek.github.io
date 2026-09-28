@@ -216,20 +216,20 @@ body {
     </h2>
     <p class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up – and a Cards tab inherited from an older version of the app: a carousel of cards, four buttons, an empty history, and nothing that showed which account a card spends from</p>
     <p class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история и ни слова о том, с какого счёта карта тратит деньги</p>
-    <p class="t-en"><strong>The constraint.</strong> Accounts existed in Profee long before this project, and the backend ties them to cards one way: every card gets its own EUR account when it is issued, one account per card. A card can't spend from an account the person already has, and one account can't hold several cards. The design had to make that clear, not hide it</p>
+    <p class="t-en"><strong>How cards work.</strong> Every card comes with its own EUR account – that is where its money lives and what it spends from. The design had to make that link obvious</p>
     <p class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the decision to build the card – it was a competitive gap and a bet: a card that people want to use would turn the wallet from a transit point into a place to keep money</p>
-    <p class="t-ru"><strong>Ограничение.</strong> Счета в Profee появились задолго до этого проекта, и бэкенд связывает их с картами только в одну сторону: при выпуске у каждой карты открывается свой счёт в евро, один счёт на одну карту. Привязать карту к уже открытому счёту нельзя, как и выпустить несколько карт на один счёт. Дизайн должен был сделать это понятным, а не спрятать</p>
+    <p class="t-ru"><strong>Как устроены карты.</strong> У каждой карты свой счёт в евро – на нём лежат её деньги, с него она и тратит. Дизайн должен был сделать эту связь очевидной</p>
     <p class="t-ru">У конкурентов – Wise, Revolut, N26 – карты, виртуальные или пластиковые, были у всех. Пользовательских исследований за решением делать карту не было: только отставание от конкурентов и ставка на то, что удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
 
     <p class="t-en"><strong>What the design had to do</strong></p>
     <p class="t-ru"><strong>Что должен был сделать дизайн</strong></p>
     <ol class="goals t-en">
-      <li>Show which account a card spends from – the constraint, made visible</li>
+      <li>Show which account a card spends from</li>
       <li>Put everything you do with a card on one screen, not a screen per action</li>
       <li>Show what a top-up costs before the person picks how to pay</li>
     </ol>
     <ol class="goals t-ru">
-      <li>Показать, с какого счёта карта списывает деньги: ограничение должно быть на виду</li>
+      <li>Показать, с какого счёта карта списывает деньги</li>
       <li>Собрать всё, что делают с картой, на одном экране, а не по экрану на действие</li>
       <li>Показать, сколько стоит пополнение, до того как человек выберет способ</li>
     </ol>
@@ -721,8 +721,8 @@ window.protoScripts = {
     <div class="tradeoff">
       <p class="tradeoff-label t-en">Honest read</p>
       <p class="tradeoff-label t-ru">Честный вывод</p>
-      <p class="t-en">The hypothesis was "a good card makes people keep money in Profee". The outcome happened – people do keep money in Profee now – but the mechanism was different: they keep it in the wallet, and the card is a feature few of them reach for. Part of the reason is structural: each card opens its own EUR account, separate from the wallet, so money has to be moved to the card before it can be spent. The redesign delivered a product area people use; it hasn't yet made the card the reason to stay</p>
-      <p class="t-ru">Гипотеза была такая: «хорошая карта заставит людей держать деньги в Profee». Деньги в Profee теперь действительно держат, но не из-за карты: их держат в кошельке, а до карты доходят немногие. Отчасти дело в устройстве продукта: у каждой карты свой счёт в евро, отдельный от кошелька, и деньги сначала нужно перевести на карту, а уже потом тратить. Редизайн дал раздел, которым пользуются, но причиной оставаться в Profee карта пока не стала</p>
+      <p class="t-en">The hypothesis was "a good card makes people keep money in Profee". The outcome happened – people do keep money in Profee now – but the mechanism was different: they keep it in the wallet, and the card is a feature few of them reach for. Part of the reason: the card spends from its own account, so money people keep elsewhere in Profee has to be moved there first. The redesign delivered a product area people use; it hasn't yet made the card the reason to stay</p>
+      <p class="t-ru">Гипотеза была такая: «хорошая карта заставит людей держать деньги в Profee». Деньги в Profee теперь действительно держат, но не из-за карты: их держат в кошельке, а до карты доходят немногие. Отчасти дело в том, что карта тратит со своего счёта: деньги, которые лежат на других счетах в Profee, сначала нужно перевести туда. Редизайн дал раздел, которым пользуются, но причиной оставаться в Profee карта пока не стала</p>
     </div>
   </section>
 
@@ -734,10 +734,10 @@ window.protoScripts = {
       <span class="t-en">What I learned, and what's next</span>
       <span class="t-ru">Что я поняла и что дальше</span>
     </h2>
-    <p class="t-en">The constraint mattered more than any screen. One account per card decided the architecture, the direction of the iterations and, in the end, why the card stays apart from the money people keep in Profee. Design could make that constraint visible and easy to live with – it couldn't remove it</p>
-    <p class="t-ru">Ограничение оказалось важнее любого экрана. Правило «один счёт – одна карта» определило структуру, направление итераций и в итоге то, почему карта живёт отдельно от денег, которые люди держат в Profee. Дизайн мог сделать это ограничение видимым и удобным – но убрать его не мог</p>
-    <p class="t-en"><strong>What's next.</strong> So the next step is not a screen but a change in the backend. The wallet grew without the card, so the card has to live inside the wallet: one balance, and a card that spends straight from it. Then every Google Pay or Apple Pay top-up is money the card can already spend, with no transfer in between</p>
-    <p class="t-ru"><strong>Что дальше.</strong> Поэтому следующий шаг – не экран, а изменение в бэкенде. Кошелёк вырос без карты – значит, карта должна жить внутри кошелька: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay – это деньги, которые картой уже можно потратить, без перевода между счетами</p>
+    <p class="t-en">How cards and accounts relate mattered more than any single screen. One account per card shaped the structure and the direction of the iterations, and it explains why the card still stands apart from the money people keep in Profee</p>
+    <p class="t-ru">То, как связаны карты и счета, оказалось важнее любого отдельного экрана. «Один счёт – одна карта» определило структуру и направление итераций, и этим же объясняется, почему карта пока живёт отдельно от денег, которые люди держат в Profee</p>
+    <p class="t-en"><strong>What's next.</strong> The wallet grew without the card, so the card has to move closer to it: one balance, and a card that spends straight from it. Then every Google Pay or Apple Pay top-up is money the card can already spend, with no transfer in between</p>
+    <p class="t-ru"><strong>Что дальше.</strong> Кошелёк вырос без карты – значит, карта должна стать ближе к нему: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay – это деньги, которые картой уже можно потратить, без перевода между счетами</p>
   </section>
 
   <!-- NEXT -->

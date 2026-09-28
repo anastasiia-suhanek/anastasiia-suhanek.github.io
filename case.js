@@ -124,5 +124,23 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); });
+  // Arriving on #results from the home ticker: smooth scroll lets images load on the way and push the
+  // target down, so jump instantly and re-align as images above settle – until the reader scrolls
+  function holdAnchor() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    var until = Date.now() + 4000;
+    function align() { if (Date.now() < until) el.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+    align();
+    Array.prototype.forEach.call(document.images, function (img) {
+      if (!img.complete) img.addEventListener('load', align, { once: true });
+    });
+    window.addEventListener('load', align, { once: true });
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, function () { until = 0; }, { once: true, passive: true });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { readingTime(); jumpToResults(); toc(); sliders(); holdAnchor(); });
 })();

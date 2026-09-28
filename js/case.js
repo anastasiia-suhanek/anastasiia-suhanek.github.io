@@ -191,7 +191,7 @@
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'to-top';
-    b.innerHTML = '<span class="t-en">↑ To the top</span><span class="t-ru">↑ К началу</span>';
+    b.innerHTML = '<span class="t-en">To the top ↑</span><span class="t-ru">К началу ↑</span>';
     b.addEventListener('click', function () {
       var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });

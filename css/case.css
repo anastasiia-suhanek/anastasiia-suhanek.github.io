@@ -706,3 +706,9 @@
 @media (min-width: 901px) { .to-top { right: 24px; bottom: 24px; } }
 @media (pointer: coarse) { .to-top { padding: 13px 16px; } }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+/* Same voice as «Jump to results ↓» – caption caps in the accent; the box stays because it floats over text */
+.to-top {
+  border-color: var(--accent); color: var(--accent);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.to-top:hover { background: var(--accent); color: #fff; }

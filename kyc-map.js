@@ -63,7 +63,7 @@
   root.innerHTML =
     '<p class="section-label section-label--sub">' + L('Research', 'Исследование') + '</p>' +
     '<p class="mm-caption">' + L('Before designing, I mapped the whole KYC system: why we ask people for documents, what exactly we ask for and how it ends. Below are the gaps it revealed and what I designed for each',
-                                 'До проектирования я разобрала всю систему KYC: зачем мы просим документы, какие именно и чем всё заканчивается. Ниже – какие пробелы нашлись и что я сделала с каждым') + '</p>' +
+                                 'До проектирования я разобрала всю систему KYC: зачем мы просим документы, какие именно и чем всё заканчивается. Ниже – какие пробелы нашлись и что я с ними сделала') + '</p>' +
     '<div class="mm">' +
       '<svg class="mm-lines" aria-hidden="true"></svg>' +
       '<div class="mm-root"><span class="mm-root-title">KYC</span><span class="mm-root-sub">' + L('identity check', 'проверка личности') + '</span></div>' +

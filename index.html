@@ -12,13 +12,6 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script>
-  // Hero: metric poster by default; ?hero=<variant> previews an alternative (live, manifest, data, ticker, bento)
-  (function () {
-    var m = location.search.match(/[?&]hero=(live|manifest|data|ticker|bento)\b/);
-    if (m) document.documentElement.classList.add(m[1] === 'live' ? 'hero-live' : 'hv-' + m[1], 'hero-alt');
-  })();
-</script>
 <script src="lang.js"></script>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="scroll-reveal.css">
@@ -227,206 +220,48 @@ body {
 }
 .hero-metric:hover .hero-metric-arrow { transform: translateX(4px); }
 
-/* ── Hero variant B (?hero=live): the metric poster with the live product inside ── */
-.hero-proto { display: none; }
-html.hero-live .hero-metric { display: none; }
-html.hero-live .hero-proto {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  background: #2A1D6E;
-  color: #fff;
-  padding: 40px 44px;
-  min-height: 540px;
-  text-decoration: none;
-  transition: background 0.25s ease;
-}
-html.hero-live .hero-proto:hover { background: #372B87; }
-.hero-proto-top {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-.hero-proto-phone {
-  display: block;
-  position: absolute;
-  top: 104px;
-  right: 44px;
-  width: 196px;
-  padding: 7px;
-  border-radius: 32px;
-  background: #0B0B0B;
-  box-shadow: 0 24px 64px rgba(3, 2, 16, 0.45);
-}
-.hero-proto-phone video { display: block; width: 100%; height: auto; border-radius: 26px; }
-.hero-proto-island {
-  position: absolute;
-  top: 15px; left: 50%;
-  transform: translateX(-50%);
-  width: 58px; height: 15px;
-  border-radius: 8px;
-  background: #000;
-  z-index: 1;
-}
-.hero-proto-stat {
-  position: absolute;
-  left: 44px;
-  bottom: 44px;
-  max-width: 46%;
-}
-.hero-proto-num {
-  display: block;
-  font-size: clamp(72px, 6.4vw, 104px);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: #fff;
-}
-.hero-proto-label {
-  display: block;
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
-  font-size: 16px;
-  line-height: 1.45;
-  font-weight: 500;
-  color: #fff;
-  text-wrap: balance;
-}
-.hero-proto-label .hero-metric-arrow { font-size: 16px; margin-left: 6px; }
-.hero-proto:hover .hero-metric-arrow { transform: translateX(4px); }
-@media (max-width: 900px) {
-  html.hero-live .hero-proto { min-height: 480px; padding: 28px; }
-  .hero-proto-phone { width: 168px; right: 24px; top: 92px; }
-  .hero-proto-stat { left: 28px; bottom: 28px; max-width: 52%; }
-}
-
-/* ── Hero preview variants (?hero=manifest|data|ticker|bento). Hidden unless their flag is on ── */
-.hero-manifest-eyebrow, .hero-manifest-title, .hero-manifest-sub,
-.hero-facts, .hero-data, .hero-bento, .hero-ticker { display: none; }
-html.hero-alt .hero-metric { display: none; }
-
-/* 3 · Manifest: a statement as the headline, the name moves to the eyebrow */
-html.swiss.hv-manifest .hero-eyebrow,
-html.swiss.hv-manifest .hero-name,
-html.swiss.hv-manifest .hero-identity > .hero-desc { display: none; }
-html.swiss.hv-manifest .hero-manifest-eyebrow {
-  display: flex; align-items: center; gap: 14px;
-  font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 28px;
-}
-html.swiss.hv-manifest .hero-manifest-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
-html.swiss.hv-manifest .hero-manifest-title {
-  display: block;
-  font-size: clamp(40px, 4.2vw, 64px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 500;
-  color: var(--text); margin-bottom: 28px; text-wrap: balance;
-}
-html.swiss.hv-manifest .hero-manifest-sub {
-  display: block;
-  font-size: clamp(18px, 1.5vw, 21px); line-height: 1.4; color: var(--text);
-  max-width: 34ch; margin-bottom: 36px;
-}
-html.swiss.hv-manifest .hero-inner { grid-template-columns: 1.4fr 1fr; gap: 72px; }
-html.swiss.hv-manifest .hero-facts { display: block; margin: 0; }
-html.swiss .hero-facts > div {
-  display: grid; grid-template-columns: 112px 1fr; gap: 16px;
-  border-top: 1px solid var(--text); padding: 16px 0 24px;
-}
-html.swiss .hero-facts dt { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); padding-top: 4px; }
-html.swiss .hero-facts dd { margin: 0; font-size: 19px; line-height: 1.4; color: var(--text); }
-
-/* 4 · Data: the result drawn as a before/after slope, not stated */
-html.swiss.hv-data .hero-data {
-  display: flex; flex-direction: column;
-  background: #2A1D6E; color: #fff;
-  padding: 40px 44px; min-height: 460px;
-  text-decoration: none; transition: background 0.25s ease;
-}
-html.swiss.hv-data .hero-data:hover { background: #372B87; }
-.hero-data-top { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
-.hero-data-num { font-size: clamp(64px, 5.6vw, 92px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; margin-top: 28px; }
-.hero-data-chart { display: block; width: 100%; height: auto; margin: 8px 0 20px; overflow: visible; font-family: inherit; }
-.hero-data-grid { stroke: rgba(255, 255, 255, 0.2); stroke-width: 1; stroke-dasharray: 2 4; }
-.hero-data-base { stroke: rgba(255, 255, 255, 0.45); stroke-width: 1; }
-.hero-data-line { stroke: #fff; stroke-width: 2; stroke-linecap: round; }
-.hero-data-dot { fill: #fff; stroke: #2A1D6E; stroke-width: 2; }
-.hero-data-val { fill: #fff; font-size: 16px; font-weight: 600; }
-.hero-data-tick { fill: rgba(255, 255, 255, 0.72); font-size: 12px; }
-.hero-data-foot {
-  margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.35); padding-top: 16px;
-  font-size: 18px; line-height: 1.4; font-weight: 500;
-}
-.hero-data-caption { max-width: 30ch; text-wrap: balance; }
-.hero-data:hover .hero-metric-arrow { transform: translateX(4px); }
-
-/* 5 · Ticker: a type-only hero across the full width, results running underneath */
-html.swiss.hv-ticker .hero { flex-direction: column; align-items: stretch; justify-content: center; padding-bottom: 0; border-bottom: 0; }
-html.swiss.hv-ticker .hero-feature { display: none; }
-html.swiss.hv-ticker .hero-inner { grid-template-columns: 1fr; }
-html.swiss.hv-ticker .hero-identity {
+/* Hero: type-only across the full width, results running underneath as a ticker */
+html.swiss section.hero { flex-direction: column; align-items: stretch; justify-content: center; padding-bottom: 0; border-bottom: 0; }
+html.swiss .hero .hero-inner { grid-template-columns: 1fr; }
+html.swiss .hero .hero-identity {
   display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; align-items: end;
 }
-html.swiss.hv-ticker .hero-eyebrow,
-html.swiss.hv-ticker .hero-name { grid-column: 1 / -1; }
-html.swiss.hv-ticker .hero-name { font-size: clamp(56px, 7.8vw, 128px); white-space: nowrap; }
-html.swiss.hv-ticker .hero-name br { display: none; }
-html.swiss.hv-ticker .hero-identity > .hero-desc { grid-column: 1; grid-row: span 2; align-self: start; margin-bottom: 0; }
-html.swiss.hv-ticker .hero-chips { grid-column: 2; }
-html.swiss.hv-ticker .hero-actions { grid-column: 2; }
-html.swiss.hv-ticker .hero-ticker {
+html.swiss .hero .hero-eyebrow,
+html.swiss .hero .hero-name { grid-column: 1 / -1; }
+html.swiss .hero .hero-name { font-size: clamp(56px, 7.8vw, 128px); white-space: nowrap; }
+html.swiss .hero .hero-name br { display: none; }
+html.swiss .hero .hero-identity > .hero-desc { grid-column: 1; grid-row: span 2; align-self: start; margin-bottom: 0; }
+html.swiss .hero .hero-chips { grid-column: 2; }
+html.swiss .hero .hero-actions { grid-column: 2; }
+html.swiss .hero .hero-ticker {
   display: block; overflow: hidden;
   margin-top: 72px; padding: 22px 0;
   border-top: 1px solid var(--text); border-bottom: 1px solid var(--text);
 }
 .hero-ticker-track {
   display: flex; width: max-content; white-space: nowrap;
-  font-size: clamp(22px, 2.2vw, 32px); font-weight: 500; letter-spacing: -0.02em;
-  animation: hero-ticker 48s linear infinite;
+  font-size: clamp(22px, 2.2vw, 32px); font-weight: 400; letter-spacing: -0.02em;
+  color: var(--text-mid);
+  animation: hero-ticker 90s linear infinite;
 }
+.hero-ticker-track b { font-weight: 600; color: var(--text); }
 .hero-ticker-track > * { margin-right: 28px; }
 .hero-ticker-track i { font-style: normal; color: var(--accent); }
 .hero-ticker:hover .hero-ticker-track { animation-play-state: paused; }
 @keyframes hero-ticker { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .hero-ticker-track { animation: none; }
-  html.swiss.hv-ticker .hero-ticker { overflow-x: auto; }
+  html.swiss .hero .hero-ticker { overflow-x: auto; }
 }
-
-/* 6 · Bento: a grid of small proofs */
-html.swiss.hv-bento .hero-bento {
-  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 224px 112px 112px; gap: 8px;
-}
-.bento-tile {
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 22px 24px; overflow: hidden;
-  background: var(--bg-deep); color: var(--text); text-decoration: none;
-}
-.bento-metric { grid-column: 1 / -1; background: #2A1D6E; color: #fff; transition: background 0.25s ease; }
-.bento-metric:hover { background: #372B87; }
-.bento-num { font-size: 88px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
-.bento-cap { font-size: 16px; line-height: 1.4; font-weight: 500; max-width: 32ch; }
-.bento-shot { grid-row: 2 / 4; align-items: center; justify-content: flex-start; padding: 20px 20px 0; }
-.bento-shot img { display: block; width: 70%; border-radius: 14px 14px 0 0; box-shadow: 0 0 0 1px var(--border); }
-.bento-label { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
-.bento-value { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; }
 
 @media (max-width: 900px) {
-  html.swiss.hv-manifest .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  html.swiss.hv-ticker .hero-identity { grid-template-columns: 1fr; }
-  html.swiss.hv-ticker .hero-name { white-space: normal; font-size: clamp(48px, 13vw, 72px); }
-  html.swiss.hv-ticker .hero-chips,
-  html.swiss.hv-ticker .hero-actions,
-  html.swiss.hv-ticker .hero-identity > .hero-desc { grid-column: 1; grid-row: auto; }
-  html.swiss.hv-ticker .hero-identity > .hero-desc { margin-bottom: 24px; }
-  html.swiss.hv-ticker .hero-ticker { margin-top: 40px; }
-  html.swiss.hv-data .hero-data { padding: 28px; min-height: 0; }
-  html.swiss.hv-bento .hero-bento { grid-template-rows: auto 104px 104px; }
-  .bento-num { font-size: 64px; }
-  .bento-metric { gap: 24px; }
+  html.swiss .hero .hero-identity { grid-template-columns: 1fr; }
+  html.swiss .hero .hero-name { white-space: normal; font-size: clamp(48px, 13vw, 72px); }
+  html.swiss .hero .hero-chips,
+  html.swiss .hero .hero-actions,
+  html.swiss .hero .hero-identity > .hero-desc { grid-column: 1; grid-row: auto; }
+  html.swiss .hero .hero-identity > .hero-desc { margin-bottom: 24px; }
+  html.swiss .hero .hero-ticker { margin-top: 40px; }
 }
 
 /* ── SECTION HEADER ── */
@@ -902,37 +737,25 @@ html.swiss.hv-bento .hero-bento {
   <div class="hero-inner">
 
     <div class="hero-identity">
-      <p class="hero-manifest-eyebrow">
-        <span class="t-en">Anastasiia Sukhanek · Product designer</span>
-        <span class="t-ru">Anastasiia Sukhanek · Продуктовый дизайнер</span>
-      </p>
-      <p class="hero-manifest-title" role="heading" aria-level="1">
-        <span class="t-en">I design the screens where fintech loses people</span>
-        <span class="t-ru">Проектирую экраны, на которых финтех теряет людей</span>
-      </p>
-      <p class="hero-manifest-sub">
-        <span class="t-en">Payments, verification, errors – I redesign them and measure who gets through</span>
-        <span class="t-ru">Оплата, верификация, ошибки – перепроектирую и считаю, сколько людей проходит</span>
-      </p>
       <p class="hero-eyebrow fade-up">
         <span class="t-en">Product Designer</span>
         <span class="t-ru">Продуктовый дизайнер</span>
       </p>
       <h1 class="hero-name fade-up">Anastasiia <br>Sukhanek</h1>
       <p class="hero-desc fade-up t-en">I help fintech products get more people through payments, verification and errors – and I measure it</p>
-      <p class="hero-desc fade-up t-ru">Помогаю финтех-продуктам проводить больше людей через оплату, верификацию и ошибки – и считаю, сколько получилось</p>
+      <p class="hero-desc fade-up t-ru">Помогаю финтех-продуктам не терять людей на оплате, верификации и ошибках. И считаю, сколько удалось сохранить</p>
       <div class="hero-chips fade-up">
         <span class="hero-chip t-en">8+ years in design</span>
         <span class="hero-chip t-ru">8+ лет в дизайне</span>
         <span class="hero-chip t-en">Open to Senior roles</span>
-        <span class="hero-chip t-ru">Ищу позицию Senior</span>
+        <span class="hero-chip t-ru">Открыта к позициям Senior</span>
         <span class="hero-chip t-en">Remote, worldwide</span>
-        <span class="hero-chip t-ru">Удалённо по всему миру</span>
+        <span class="hero-chip t-ru">Удалённо, из любой страны</span>
       </div>
       <div class="hero-actions fade-up">
         <a class="hero-btn-primary" href="#work">
           <span class="t-en">View work →</span>
-          <span class="t-ru">Смотреть работы →</span>
+          <span class="t-ru">Смотреть кейсы →</span>
         </a>
         <a class="hero-btn-secondary" href="about.html">
           <span class="t-en">About me</span>
@@ -941,142 +764,25 @@ html.swiss.hv-bento .hero-bento {
       </div>
     </div>
 
-    <div class="hero-feature">
-      <a href="case-profee-verification.html" class="hero-metric">
-        <div class="hero-metric-top">
-          <span>Profee · <span class="t-en">KYC verification</span><span class="t-ru">Верификация KYC</span></span>
-          <span>2025</span>
-        </div>
-        <div class="hero-metric-num" aria-hidden="true">59%</div>
-        <div class="hero-metric-foot">
-          <p>
-            <span class="t-en">of people who see the new verification card click through – ten entry points in one component</span>
-            <span class="t-ru">увидевших новую карточку верификации нажимают кнопку – десять точек входа в одном компоненте</span>
-          </p>
-          <span class="hero-metric-arrow">→</span>
-        </div>
-      </a>
-
-      <!-- Hero variant B (?hero=live): the same poster with the live product inside -->
-      <a href="case-profee-verification.html" class="hero-proto">
-        <span class="hero-proto-top">
-          <span>Profee · <span class="t-en">KYC verification</span><span class="t-ru">Верификация KYC</span></span>
-          <span>2025</span>
-        </span>
-        <span class="hero-proto-phone">
-          <span class="hero-proto-island"></span>
-          <video autoplay muted playsinline preload="auto" poster="videos/verif-success-poster.jpg" width="390" height="846">
-            <source src="videos/verif-success.mp4" type="video/mp4">
-          </video>
-        </span>
-        <span class="hero-proto-stat">
-          <span class="hero-proto-num">59%</span>
-          <span class="hero-proto-label">
-            <span class="t-en">of people who see the new verification card click through</span>
-            <span class="t-ru">увидевших новую карточку верификации нажимают кнопку</span>
-            <span class="hero-metric-arrow">→</span>
-          </span>
-        </span>
-      </a>
-      <script>
-        // The clip opens with a 2s brand splash – the hero loop skips it (the case page keeps it)
-        (function () {
-          var v = document.querySelector('.hero-proto video');
-          if (!v) return;
-          var START = 2;
-          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            v.removeAttribute('autoplay'); v.pause();
-            return;
-          }
-          v.addEventListener('loadedmetadata', function () { if (v.currentTime < START) v.currentTime = START; });
-          v.addEventListener('ended', function () { v.currentTime = START; v.play(); });
-        })();
-      </script>
-
-      <!-- Hero variant 3 (?hero=manifest): quiet column of facts next to a statement headline -->
-      <dl class="hero-facts">
-        <div>
-          <dt><span class="t-en">Now</span><span class="t-ru">Сейчас</span></dt>
-          <dd><span class="t-en">Profee – cross-border payments</span><span class="t-ru">Profee – международные переводы</span></dd>
-        </div>
-        <div>
-          <dt><span class="t-en">Proof</span><span class="t-ru">Результаты</span></dt>
-          <dd><span class="t-en">+1.4 pp verified · ×2 Cards tab reach · 73% act on the status card within a day</span><span class="t-ru">+1,4 п.п. верификаций · ×2 охват вкладки «Карты» · 73% действуют по карточке статуса в течение дня</span></dd>
-        </div>
-        <div>
-          <dt><span class="t-en">Before</span><span class="t-ru">До этого</span></dt>
-          <dd>Beeline · SberSpasibo</dd>
-        </div>
-      </dl>
-
-      <!-- Hero variant 4 (?hero=data): the result drawn, not stated -->
-      <a href="case-profee-cards.html" class="hero-data">
-        <span class="hero-data-top">
-          <span>Profee · <span class="t-en">Cards</span><span class="t-ru">Карты</span></span>
-          <span>2026</span>
-        </span>
-        <span class="hero-data-num">×2</span>
-        <svg class="hero-data-chart" viewBox="0 0 400 200" role="img" aria-labelledby="heroDataTitle">
-          <title id="heroDataTitle">Share of active senders who open the Cards tab in a month: 3.9% in April 2026, 8% in August 2026</title>
-          <line class="hero-data-grid" x1="0" y1="95" x2="400" y2="95"></line>
-          <line class="hero-data-base" x1="0" y1="170" x2="400" y2="170"></line>
-          <line class="hero-data-line" x1="48" y1="140.75" x2="352" y2="110"></line>
-          <circle class="hero-data-dot" cx="48" cy="140.75" r="6"><title>April 2026: 3.9%</title></circle>
-          <circle class="hero-data-dot" cx="352" cy="110" r="6"><title>August 2026: 8%</title></circle>
-          <text class="hero-data-val" x="48" y="124" text-anchor="middle">3.9%</text>
-          <text class="hero-data-val" x="352" y="93" text-anchor="middle">8%</text>
-          <text class="hero-data-tick" x="48" y="192" text-anchor="middle"><tspan class="t-en">April</tspan><tspan class="t-ru">апрель</tspan></text>
-          <text class="hero-data-tick" x="352" y="192" text-anchor="middle"><tspan class="t-en">August</tspan><tspan class="t-ru">август</tspan></text>
-          <text class="hero-data-tick" x="0" y="88" text-anchor="start">10%</text>
-        </svg>
-        <span class="hero-data-foot">
-          <span class="hero-data-caption">
-            <span class="t-en">active senders who open the Cards tab in a month, after the redesign</span>
-            <span class="t-ru">активных отправителей открывают вкладку «Карты» в месяц после редизайна</span>
-          </span>
-          <span class="hero-metric-arrow">→</span>
-        </span>
-      </a>
-
-      <!-- Hero variant 6 (?hero=bento): a grid of small proofs -->
-      <div class="hero-bento">
-        <a href="case-profee-verification.html" class="bento-tile bento-metric">
-          <span class="bento-num">59%</span>
-          <span class="bento-cap"><span class="t-en">of people who see the new verification card click through</span><span class="t-ru">увидевших новую карточку верификации нажимают кнопку</span></span>
-        </a>
-        <a href="case-profee-verification.html" class="bento-tile bento-shot" aria-label="KYC verification case">
-          <img src="images/verif/screen-entry-banner.png" alt="">
-        </a>
-        <div class="bento-tile bento-fact">
-          <span class="bento-label"><span class="t-en">Platforms</span><span class="t-ru">Платформы</span></span>
-          <span class="bento-value">iOS · Android · Web</span>
-        </div>
-        <div class="bento-tile bento-fact">
-          <span class="bento-label"><span class="t-en">Localised into</span><span class="t-ru">Локализация</span></span>
-          <span class="bento-value"><span class="t-en">13+ languages</span><span class="t-ru">13+ языков</span></span>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- Hero variant 5 (?hero=ticker): results running as a ticker under the name -->
+  <!-- Results ticker: each item reads on its own – number, what changed, where -->
   <div class="hero-ticker" aria-label="Results">
     <div class="hero-ticker-track">
-      <span class="t-en">+1.4 pp verified</span><span class="t-ru">+1,4 п.п. верификаций</span><i>·</i>
-      <span class="t-en">59% click through</span><span class="t-ru">59% нажимают</span><i>·</i>
-      <span class="t-en">×2 Cards tab reach</span><span class="t-ru">×2 охват «Карт»</span><i>·</i>
-      <span class="t-en">73% act within a day</span><span class="t-ru">73% действуют в течение дня</span><i>·</i>
-      <span class="t-en">10 entry points in one component</span><span class="t-ru">10 точек входа в одном компоненте</span><i>·</i>
-      <span class="t-en">5 transfer states</span><span class="t-ru">5 статусов перевода</span><i>·</i>
-      <span class="t-en">13+ languages</span><span class="t-ru">13+ языков</span><i>·</i>
+      <span class="t-en"><b>+1.4 pp</b> more new users verified</span><span class="t-ru"><b>+1,4 п.&nbsp;п.</b> новичков проходят верификацию</span><i>·</i>
+      <span class="t-en"><b>59%</b> click the new verification card</span><span class="t-ru"><b>59%</b> нажимают на новую карточку верификации</span><i>·</i>
+      <span class="t-en"><b>×2</b> senders opening the Cards tab</span><span class="t-ru"><b>×2</b> отправителей открывают вкладку «Карты»</span><i>·</i>
+      <span class="t-en"><b>73%</b> act on a transfer status within a day</span><span class="t-ru"><b>~70%</b> реагируют на статус перевода в течение суток</span><i>·</i>
+      <span class="t-en"><b>10</b> verification entry points in one component</span><span class="t-ru"><b>10</b> точек входа верификации в одном компоненте</span><i>·</i>
+      <span class="t-en"><b>5</b> transfer states on one timeline</span><span class="t-ru"><b>5</b> статусов перевода в одной ленте</span><i>·</i>
+      <span class="t-en"><b>13+</b> languages shipped</span><span class="t-ru"><b>13+</b> языков интерфейса</span><i>·</i>
     </div>
   </div>
   <script>
     // A second copy makes the -50% loop seamless; screen readers get the list once
     (function () {
       var t = document.querySelector('.hero-ticker-track');
-      if (!t || !document.documentElement.classList.contains('hv-ticker')) return;
+      if (!t) return;
       var copy = t.cloneNode(true);
       Array.prototype.forEach.call(copy.children, function (c) { c.setAttribute('aria-hidden', 'true'); t.appendChild(c.cloneNode(true)); });
     })();
@@ -1088,7 +794,7 @@ html.swiss.hv-bento .hero-bento {
   <div class="container">
     <p class="section-eyebrow" style="margin-bottom: var(--space-2);">
       <span class="t-en">Selected Work</span>
-      <span class="t-ru">Избранные работы</span>
+      <span class="t-ru">Кейсы</span>
     </p>
     <div class="work-grid">
 
@@ -1097,14 +803,14 @@ html.swiss.hv-bento .hero-bento {
         <div class="work-body">
           <div class="work-meta">
             <span class="work-company">Profee · 2025</span>
-            <span class="work-metric"><span class="t-en">↑ +1.4 pp verified</span><span class="t-ru">↑ +1,4 п.п. верификаций</span></span>
+            <span class="work-metric"><span class="t-en">↑ +1.4 pp verified</span><span class="t-ru">↑ +1,4 п.&nbsp;п. к верификации</span></span>
           </div>
           <h2 class="work-title">
             <span class="t-en">Making KYC moments clear</span>
-            <span class="t-ru">Верификация KYC без лишнего</span>
+            <span class="t-ru">KYC-верификация без вопросов</span>
           </h2>
           <p class="work-excerpt t-en">10 verification scenarios in one component – on each platform, more new users got verified once the card arrived</p>
-          <p class="work-excerpt t-ru">10 сценариев верификации в одном компоненте – на каждой платформе с появлением карточки новички чаще проходили верификацию</p>
+          <p class="work-excerpt t-ru">10 сценариев верификации в одном компоненте. После запуска карточки новички на каждой платформе стали чаще проходить верификацию</p>
         </div>
       </a>
 
@@ -1117,10 +823,10 @@ html.swiss.hv-bento .hero-bento {
           </div>
           <h2 class="work-title">
             <span class="t-en">Cards – rebuilding a product area</span>
-            <span class="t-ru">Карты – пересборка продуктового раздела</span>
+            <span class="t-ru">Карты: раздел, пересобранный с нуля</span>
           </h2>
           <p class="work-excerpt t-en">Virtual VISA on iOS and Android – issuance, top-up, freeze, reissue and every card state</p>
-          <p class="work-excerpt t-ru">Виртуальная VISA на iOS и Android – выпуск, пополнение, заморозка, перевыпуск и все состояния карты</p>
+          <p class="work-excerpt t-ru">Виртуальная карта VISA на iOS и Android: выпуск, пополнение, заморозка, перевыпуск и все состояния карты</p>
         </div>
       </a>
 
@@ -1133,10 +839,10 @@ html.swiss.hv-bento .hero-bento {
           </div>
           <h2 class="work-title">
             <span class="t-en">Transfer Statuses – making the invisible visible</span>
-            <span class="t-ru">Статусы переводов – делаем невидимое видимым</span>
+            <span class="t-ru">Статусы переводов: где сейчас деньги</span>
           </h2>
           <p class="work-excerpt t-en">Real-time timeline, 5 status states, inline action cards across App + Web</p>
-          <p class="work-excerpt t-ru">Таймлайн в реальном времени, 5 статусов, карточки действий в приложении и вебе</p>
+          <p class="work-excerpt t-ru">История перевода в реальном времени, 5 статусов и карточки действий в приложении и вебе</p>
         </div>
       </a>
 
@@ -1155,7 +861,7 @@ html.swiss.hv-bento .hero-bento {
           <span class="t-ru">Поговорим о вашем продукте</span>
         </h2>
         <p class="t-en">I'm open to Senior Product Designer roles in fintech, payments, or any product with complex flows and a team that measures outcomes</p>
-        <p class="t-ru">Ищу позицию Senior Product Designer в финтехе, платежах или любом продукте со сложными сценариями – там, где команда измеряет результат</p>
+        <p class="t-ru">Рассматриваю позиции Senior Product Designer в финтехе, платежах или любом продукте со сложными сценариями, где команда смотрит на метрики</p>
       </div>
       <div class="contact-links">
         <a class="contact-link" href="mailto:anastasiia.suhanek@gmail.com">

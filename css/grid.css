@@ -367,7 +367,7 @@ html.swiss.g4 .ab-title,
 html.swiss.g4 .belief-num { font-size: var(--ts-title) !important; }
 
 /* heading */
-html.swiss.g4 :is(.section h2, .work-title, .next-link, .metric-num, .hero-ticker-track b, .sw-lead) { font-size: var(--ts-heading) !important; }
+html.swiss.g4 :is(.section h2, .work-title, .next-link, .metric-num, .sw-lead) { font-size: var(--ts-heading) !important; }
 
 /* lead */
 html.swiss.g4 :is(.hero-desc, .insight, .info-looking, .ab-sub, .contact-link-value, .phone-caption strong, .mm-root-title, .nav-name) { font-size: var(--ts-lead) !important; }
@@ -384,7 +384,7 @@ html.swiss.g4 .ab-co { font-weight: 700 !important; }
 html.swiss.g4 :is(.screen-cap, .screen-cap strong, .screen-cap span, figcaption, .clip figcaption, .metric-label, .metric-delta,
   .ledger-cell, .mm-caption, .mm-leaf-text, .mm-leaf-sub, .mm-finding-fix, .mm-branch-label, .phone-caption span,
   .insight-source, .case-facts dt, .work-meta, .work-company, .work-metric, .hero-eyebrow, .eyebrow-meta, .eyebrow-jump,
-  .section-label, .next-label, .tradeoff-label, .contact-link-label, .footer-name, .footer-note, .hero-ticker-track small,
+  .section-label, .next-label, .tradeoff-label, .contact-link-label, .footer-name, .footer-note,
   .ab-y, .ab-eyebrow, .page-eyebrow, .ab-ix-tag, .ab-sheet-cap, .ab-index-list i, .gallery-cap, .gallery-badge,
   .nav-breadcrumb, .nav-back, .lang-btn, .sw-index i, .belief-item .belief-num + *, .screens-hint) { font-size: var(--ts-caption) !important; }
 html.swiss.g4 .belief-item .belief-num + * { font-size: var(--ts-body) !important; }

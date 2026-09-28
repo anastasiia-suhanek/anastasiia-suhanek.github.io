@@ -222,7 +222,7 @@ body {
 }
 .hero-metric:hover .hero-metric-arrow { transform: translateX(4px); }
 
-/* Hero: type-only across the full width, results running underneath as a ticker */
+/* Hero: type-only across the full width, the results board underneath */
 html.swiss section.hero { flex-direction: column; align-items: stretch; justify-content: center; padding-bottom: 0; border-bottom: 0; }
 html.swiss .hero .hero-inner { grid-template-columns: 1fr; }
 html.swiss .hero .hero-identity {
@@ -239,50 +239,69 @@ html.swiss .hero .hero-chips {
 }
 html.swiss .hero .hero-chips .hero-chip::before { content: none !important; }
 html.swiss .hero .hero-actions { grid-column: 2; }
-html.swiss .hero .hero-ticker {
-  display: block; overflow: hidden;
-  margin-top: 72px; padding: 24px 0;
-  border-top: 1px solid var(--text); border-bottom: 1px solid var(--text);
+/* Results board: every case's headline number at once – before → after where there is a before.
+   Rows are links to the case's Results. Bars grow and numbers count up once, when the board scrolls in */
+html.swiss .hero .rb { margin-top: 72px; border-top: 1px solid var(--text); }
+.rb-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 14px 0 12px; border-bottom: 1px solid var(--rule, var(--border));
 }
-.hero-ticker-track {
-  display: flex; width: max-content; white-space: nowrap;
-  animation: hero-ticker 60s linear infinite;
+.rb-title, .rb-legend { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+.rb-legend { display: flex; gap: 16px; color: var(--text-dim); font-weight: 500; }
+.rb-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; background: var(--rb-before); }
+.rb-legend .rb-key-after i { background: var(--accent); }
+.rb { --rb-before: #CFCFCA; --rb-track: #EDEDEA; }
+.rb-list { list-style: none; margin: 0; padding: 0; }
+.rb-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) 150px;
+  grid-template-areas: "case bars num" "label bars num";
+  column-gap: 40px; row-gap: 4px; align-items: center;
+  padding: 20px 0; border-bottom: 1px solid var(--rule, var(--border));
+  color: inherit; text-decoration: none;
 }
-.hero-ticker-track .tk {
-  display: flex; flex-direction: column; gap: 6px;
-  padding: 0 36px; border-left: 1px solid var(--border);
+.rb-case { grid-area: case; align-self: end; font-size: 17px; font-weight: 600; line-height: 1.3; color: var(--text); transition: color .2s; }
+.rb-label { grid-area: label; align-self: start; font-size: 14px; line-height: 1.4; color: var(--text-mid); }
+.rb-bars { grid-area: bars; display: flex; flex-direction: column; gap: 6px; }
+.rb-bar { display: block; height: 12px; width: var(--w); background: var(--rb-before); transform-origin: left; transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+.rb-bar.is-after { background: var(--accent); }
+.rb-track { display: block; height: 12px; background: var(--rb-track); }
+.rb-track .rb-bar { height: 100%; background: var(--accent); }
+.rb-num {
+  grid-area: num; justify-self: end; white-space: nowrap;
+  font-size: clamp(34px, 3.4vw, 48px); font-weight: 500; line-height: 1; letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums; color: var(--text); transition: color .2s;
 }
-.hero-ticker-track b {
-  font-size: clamp(28px, 2.6vw, 38px); line-height: 1; font-weight: 500; letter-spacing: -0.03em;
-  color: var(--text); font-variant-numeric: tabular-nums;
+.rb-num::after {
+  content: '→'; display: inline-block; margin-left: 0.2em; font-size: 0.5em; vertical-align: 0.3em;
+  opacity: 0; transform: translateX(-4px); transition: opacity .2s, transform .2s;
 }
-.hero-ticker-track small { font-size: 14px; line-height: 1.3; color: var(--text-mid); }
-/* Whose result it is: the case name as a small label above the number */
-.hero-ticker-track em { font-style: normal; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-.hero-ticker-track a.tk:hover em { color: var(--accent); }
-.hero-ticker:hover .hero-ticker-track,
-.hero-ticker:focus-within .hero-ticker-track,
-.hero-ticker.is-paused .hero-ticker-track { animation-play-state: paused; }
-a.tk { text-decoration: none; color: inherit; }
-a.tk b { transition: color 0.2s ease; }
-a.tk b::after {
-  content: '→'; display: inline-block;
-  margin-left: 0.3em; font-size: 0.6em; vertical-align: 0.2em;
-  opacity: 0; transform: translateX(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-a.tk:focus-visible b { color: var(--accent); }
-a.tk:focus-visible b::after,
-.hero-ticker.is-paused a.tk b::after { opacity: 1; transform: none; }
 @media (hover: hover) {
-  a.tk:hover b { color: var(--accent); }
-  a.tk:hover b::after { opacity: 1; transform: none; }
+  .rb-row:hover .rb-num, .rb-row:hover .rb-case { color: var(--accent); }
+  .rb-row:hover .rb-num::after { opacity: 1; transform: none; }
 }
-a.tk:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-@keyframes hero-ticker { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  .hero-ticker-track { animation: none; }
-  html.swiss .hero .hero-ticker { overflow-x: auto; }
+.rb-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+/* Before it scrolls in (JS only): empty bars; each row starts a beat after the previous one */
+.rb.is-pending .rb-bar { transform: scaleX(0); }
+.rb-list li:nth-child(2) { --d: .08s; }
+.rb-list li:nth-child(3) { --d: .16s; }
+.rb-list li:nth-child(4) { --d: .24s; }
+.rb-list li:nth-child(5) { --d: .32s; }
+.rb-bar { transition-delay: var(--d, 0s); }
+.rb-bar.is-after { transition-delay: calc(var(--d, 0s) + .15s); }
+@media (prefers-reduced-motion: reduce) { .rb-bar { transition: none; } }
+@media (max-width: 640px) {
+  .rb-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "case num" "label num" "bars bars";
+    column-gap: 16px; row-gap: 4px; padding: 18px 0;
+  }
+  .rb-case { font-size: 16px; }
+  .rb-label { font-size: 13px; }
+  .rb-bars { margin-top: 10px; gap: 4px; }
+  .rb-bar, .rb-track { height: 8px; }
+  .rb-num { font-size: 32px; align-self: start; }
+  .rb-num::after { content: none; }
+  .rb-legend { gap: 12px; }
 }
 
 @media (max-width: 900px) {
@@ -292,7 +311,7 @@ a.tk:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   html.swiss .hero .hero-actions,
   html.swiss .hero .hero-identity > .hero-desc { grid-column: 1; grid-row: auto; }
   html.swiss .hero .hero-identity > .hero-desc { margin-bottom: 24px; }
-  html.swiss .hero .hero-ticker { margin-top: 40px; }
+  html.swiss .hero .rb { margin-top: 40px; }
 }
 
 
@@ -857,7 +876,7 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
 </style>
 <link rel="stylesheet" href="css/glass.css?v=4812ed06">
 <link rel="stylesheet" href="css/swiss.css?v=bf24d07c">
-<link rel="stylesheet" href="css/grid.css?v=f56bbedf">
+<link rel="stylesheet" href="css/grid.css?v=bd0e464f">
 
 <!-- ── NAV ── -->
 <nav class="nav" id="main-nav"></nav>
@@ -919,39 +938,75 @@ html.g4 .sw-index a:hover span { text-decoration: underline; text-underline-offs
 
   </div>
 
-  <!-- Results ticker: each item reads on its own – number, what changed, where -->
-  <div class="hero-ticker" aria-label="Results">
-    <div class="hero-ticker-track">
-      <a class="tk t-en" href="case-profee-verification.html#results"><em>KYC verification</em><b>59%</b><small>click the new verification card</small></a><a class="tk t-ru" href="case-profee-verification.html#results"><em>KYC-верификация</em><b>59%</b><small>нажимают на новую карточку верификации</small></a>
-      <a class="tk t-en" href="case-profee-topup.html#results"><em>Top-up in transfer</em><b>×3.3</b><small>senders top up the wallet with the in-transfer button</small></a><a class="tk t-ru" href="case-profee-topup.html#results"><em>Пополнение в переводе</em><b>×3,3</b><small>отправителей пополняют кошелёк с кнопкой в переводе</small></a>
-      <a class="tk t-en" href="case-profee-statuses.html#results"><em>Transfer statuses</em><b>~70%</b><small>tap “Continue transfer” within a day</small></a><a class="tk t-ru" href="case-profee-statuses.html#results"><em>Статусы переводов</em><b>~70%</b><small>нажимают «Продолжить перевод» в течение суток</small></a>
-      <a class="tk t-en" href="case-profee-cards.html#results"><em>Cards</em><b>×2</b><small>senders opening the Cards tab</small></a><a class="tk t-ru" href="case-profee-cards.html#results"><em>Карты</em><b>×2</b><small>отправителей открывают вкладку «Карты»</small></a>
-      <a class="tk t-en" href="case-sber-spasibo.html#results"><em>Gamification at Sber</em><b>×3</b><small>more often people spend bonuses after the redesign</small></a><a class="tk t-ru" href="case-sber-spasibo.html#results"><em>Геймификация в Сбере</em><b>×3</b><small>чаще тратят бонусы после редизайна</small></a>
+  <!-- Results board: one row per case – what changed, before → after, the number. Rows link to each case's Results -->
+  <div class="rb-wrap">
+    <div class="rb" aria-labelledby="rb-title">
+      <div class="rb-head">
+        <span class="rb-title" id="rb-title"><span class="t-en">Results</span><span class="t-ru">Результаты</span></span>
+        <span class="rb-legend" aria-hidden="true"><span><i></i><span class="t-en">Before</span><span class="t-ru">До</span></span><span class="rb-key-after"><i></i><span class="t-en">After</span><span class="t-ru">После</span></span></span>
+      </div>
+      <ul class="rb-list">
+      <li><a class="rb-row" href="case-profee-verification.html#results">
+        <span class="rb-case"><span class="t-en">KYC verification</span><span class="t-ru">KYC-верификация</span></span>
+        <span class="rb-label"><span class="t-en">click the new verification card</span><span class="t-ru">нажимают на новую карточку верификации</span></span>
+        <span class="rb-bars" aria-hidden="true"><i class="rb-track"><i class="rb-bar" style="--w:59%"></i></i></span>
+        <span class="rb-num"><span class="t-en" data-count>59%</span><span class="t-ru" data-count>59%</span></span>
+      </a></li>
+      <li><a class="rb-row" href="case-profee-topup.html#results">
+        <span class="rb-case"><span class="t-en">Top up in the transfer</span><span class="t-ru">Пополнение в переводе</span></span>
+        <span class="rb-label"><span class="t-en">senders top up the wallet · 2.1% → 6.8% on Android</span><span class="t-ru">отправителей пополняют кошелёк · 2,1% → 6,8% на Android</span></span>
+        <span class="rb-bars" aria-hidden="true"><i class="rb-bar" style="--w:31%"></i><i class="rb-bar is-after" style="--w:100%"></i></span>
+        <span class="rb-num"><span class="t-en" data-count>×3.3</span><span class="t-ru" data-count>×3,3</span></span>
+      </a></li>
+      <li><a class="rb-row" href="case-profee-statuses.html#results">
+        <span class="rb-case"><span class="t-en">Transfer statuses</span><span class="t-ru">Статусы переводов</span></span>
+        <span class="rb-label"><span class="t-en">tap “Continue transfer” within a day</span><span class="t-ru">нажимают «Продолжить перевод» в течение суток</span></span>
+        <span class="rb-bars" aria-hidden="true"><i class="rb-track"><i class="rb-bar" style="--w:70%"></i></i></span>
+        <span class="rb-num"><span class="t-en" data-count>~70%</span><span class="t-ru" data-count>~70%</span></span>
+      </a></li>
+      <li><a class="rb-row" href="case-profee-cards.html#results">
+        <span class="rb-case"><span class="t-en">Cards</span><span class="t-ru">Карты</span></span>
+        <span class="rb-label"><span class="t-en">active senders open the Cards tab · 3.9% → 8%</span><span class="t-ru">активных отправителей открывают «Карты» · 3,9% → 8%</span></span>
+        <span class="rb-bars" aria-hidden="true"><i class="rb-bar" style="--w:49%"></i><i class="rb-bar is-after" style="--w:100%"></i></span>
+        <span class="rb-num"><span class="t-en" data-count>×2</span><span class="t-ru" data-count>×2</span></span>
+      </a></li>
+      <li><a class="rb-row" href="case-sber-spasibo.html#results">
+        <span class="rb-case"><span class="t-en">Gamification at Sber</span><span class="t-ru">Геймификация в Сбере</span></span>
+        <span class="rb-label"><span class="t-en">more often people spend bonuses after the redesign</span><span class="t-ru">чаще тратят бонусы после редизайна</span></span>
+        <span class="rb-bars" aria-hidden="true"><i class="rb-bar" style="--w:33%"></i><i class="rb-bar is-after" style="--w:100%"></i></span>
+        <span class="rb-num"><span class="t-en" data-count>×3</span><span class="t-ru" data-count>×3</span></span>
+      </a></li>
+      </ul>
     </div>
   </div>
   <script>
     (function () {
-      var ticker = document.querySelector('.hero-ticker');
-      var t = ticker && ticker.querySelector('.hero-ticker-track');
-      if (!t) return;
-      // A second copy makes the -50% loop seamless; screen readers and Tab see the list once
-      Array.prototype.slice.call(t.children).forEach(function (c) {
-        var k = c.cloneNode(true);
-        k.setAttribute('aria-hidden', 'true');
-        if (k.tagName === 'A') k.setAttribute('tabindex', '-1');
-        t.appendChild(k);
-      });
-      // Touch has no hover to stop the ribbon: the first tap pauses it, the second follows the link
-      var touch = window.matchMedia('(hover: none)');
-      var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-      ticker.addEventListener('click', function (e) {
-        if (!touch.matches || still.matches || ticker.classList.contains('is-paused')) return;
-        if (e.target.closest('a')) e.preventDefault();
-        ticker.classList.add('is-paused');
-      });
-      document.addEventListener('click', function (e) {
-        if (!ticker.contains(e.target)) ticker.classList.remove('is-paused');
-      });
+      var rb = document.querySelector('.rb');
+      if (!rb || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Numbers count up from zero in their own format: prefix (× ~ + −), decimals, comma or dot, suffix
+      var nums = Array.prototype.map.call(rb.querySelectorAll('[data-count]'), function (el) {
+        var m = el.textContent.match(/^([^0-9]*)([0-9]+)(?:([.,])([0-9]+))?(.*)$/);
+        return m && { el: el, pre: m[1], val: parseFloat(m[2] + '.' + (m[4] || '0')), sep: m[3] || '', dec: (m[4] || '').length, post: m[5], text: el.textContent };
+      }).filter(Boolean);
+      function paint(t) {
+        nums.forEach(function (n) {
+          var v = (n.val * t).toFixed(n.dec);
+          n.el.textContent = t >= 1 ? n.text : n.pre + (n.sep ? v.replace('.', n.sep) : v) + n.post;
+        });
+      }
+      rb.classList.add('is-pending');
+      paint(0);
+      new IntersectionObserver(function (entries, io) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        rb.classList.remove('is-pending');
+        var t0 = performance.now();
+        (function step(now) {
+          var t = Math.min(1, (now - t0) / 1100);
+          paint(1 - Math.pow(1 - t, 3));
+          if (t < 1) requestAnimationFrame(step);
+        })(t0);
+      }, { threshold: 0.35 }).observe(rb);
     })();
   </script>
 </section>

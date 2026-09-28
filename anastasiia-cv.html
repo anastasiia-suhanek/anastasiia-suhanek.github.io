@@ -316,7 +316,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 }
 
 /* ━━ Spacing on screen: the site's four steps (print keeps its own) ━━
-   s1 8 inside an item · s2 16 between items · s3 32 between groups, page margin, column gap · s4 96 between sections (64 on phones) */
+   s1 8 inside an item · s2 16 between items · s3 32 between groups, page margin, column gap · s4 96 between sections; page margin 24 on phones */
 @media screen {
   html.g4 { --s1: 8px; --s2: 16px; --s3: 32px; --s4: 96px; }
   html.g4 body { padding-inline: var(--s3) !important; }
@@ -348,10 +348,9 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 @media screen and (min-width: 681px) and (max-width: 1000px) {
   html.g4 .sidebar { margin-top: var(--s4) !important; column-gap: var(--s3) !important; }
 }
-@media screen and (max-width: 900px) { html.g4 { --s4: 64px; } }
 @media screen and (max-width: 680px) {
-  html.g4 body { padding-inline: var(--s2) !important; }
-  html.g4 .name { font-size: min(64px, (100vw - 2 * var(--s2)) * 0.2) !important; }
+  html.g4 body { padding-inline: 24px !important; }
+  html.g4 .name { font-size: min(64px, (100vw - 48px) * 0.2) !important; }
   html.g4 .cv-header { row-gap: var(--s2) !important; }
   html.g4 .role-tag { margin: 0 !important; }
   html.g4 .sidebar { margin-top: var(--s4) !important; }
@@ -468,7 +467,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
       <!-- Profile -->
       <section>
         <p class="sec-label">Profile</p>
-        <p class="summary">Fintech and conversion-critical UX across eight-plus years in design – remittance at Profee, telecom loyalty at Beeline, gamification at Sberbank. Key outcomes: error handling redesign improved CR by <span class="m">10%</span>, first-payment conversion lifted by <span class="m">6%</span> from a pre-transfer hint for new users, abandonment rate reduced by <span class="m">10%</span> across Russian-speaking flows. I work end-to-end: from discovery and research through A/B testing, design systems, and localisation at scale</p>
+        <p class="summary">Fintech and conversion-critical UX across eight years in design – remittance at Profee, telecom loyalty at Beeline, gamification at Sberbank. Key outcomes: error handling redesign improved CR by <span class="m">10%</span>, first-payment conversion lifted by <span class="m">6%</span> from a pre-transfer hint for new users, abandonment rate reduced by <span class="m">10%</span> across Russian-speaking flows. I work end-to-end: from discovery and research through A/B testing, design systems, and localisation at scale</p>
       </section>
 
       <!-- Experience -->
@@ -599,7 +598,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
       <li><a href="mailto:anastasiia.suhanek@gmail.com">anastasiia.suhanek@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://anastasiia-suhanek.github.io">Портфолио</a></li>
-      <li>Прага, Чехия · открыта к удалёнке</li>
+      <li>Прага, Чехия · открыта к удалённой работе</li>
     </ul>
   </header>
 
@@ -682,7 +681,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 
       <section>
         <p class="sec-label">Профиль</p>
-        <p class="summary">Больше восьми лет в дизайне: финтех и интерфейсы, от которых зависит конверсия. Переводы в Profee, лояльность в Билайне, геймификация в Сбере. Результаты: редизайн обработки ошибок – конверсия <span class="m">+10%</span>, подсказка для новичков перед переводом – <span class="m">+6%</span> к первому платежу, отказы в русскоязычных сценариях – <span class="m">−10%</span>. Веду задачи целиком: от исследования до A/B-тестов, дизайн-системы и локализации на 13+ языков</p>
+        <p class="summary">Восемь лет в дизайне: финтех и интерфейсы, от которых зависит конверсия. Переводы в Profee, лояльность в Билайне, геймификация в Сбере. Результаты: редизайн обработки ошибок – конверсия <span class="m">+10%</span>, подсказка для новичков перед переводом – <span class="m">+6%</span> к первому платежу, отказы в русскоязычных сценариях – <span class="m">−10%</span>. Веду задачи целиком: от исследования до A/B-тестов, дизайн-системы и локализации на 13+ языков</p>
       </section>
 
       <section>

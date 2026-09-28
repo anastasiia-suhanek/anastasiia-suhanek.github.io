@@ -46,7 +46,7 @@ html.g4 .case-toc a:hover { color: var(--text); }
 html.g4 .case-toc a.is-active { color: var(--text); box-shadow: inset 0 -2px 0 var(--accent); align-self: stretch; align-items: center; }
 html.g4 .case-toc a.is-active i { color: var(--accent); }
 html.g4 .section { scroll-margin-top: 124px; }
-@media (max-width: 640px) { html.g4 .case-toc { gap: 22px; padding: 0 20px; } }
+@media (max-width: 640px) { html.g4 .case-toc { gap: var(--s3, 24px); padding: 0 var(--gutter); } }
 @media (prefers-reduced-motion: reduce) { html.g4 .case-toc { transition: none; } }
 html.g4 .container { max-width: var(--max-w); }
 
@@ -474,11 +474,11 @@ html.swiss.g4 .container > .hero { border-bottom: 0 !important; }
    s1  8   inside one item: label ↔ value, image ↔ caption, number ↔ name
    s2 16   between items of a group: heading ↔ text, rows, list items, rule ↔ what it opens
    s3 32   between groups inside a section: text ↔ figure, block ↔ block; also the page margin and the column gap
-   s4 96   between sections: content ↔ the next black rule (64 on phones)
+   s4 96   between sections: content ↔ the next black rule, phones included
    Mock-ups of UI (mail, mind-map chips, buttons) keep their own inner padding – they depict other products */
 html.swiss.g4 { --s1: 8px; --s2: 16px; --s3: 32px; --s4: 96px; --g-gap: var(--s3); --gutter: var(--s3); --gutter-sm: var(--s2); --inset: var(--s3); }
-@media (max-width: 900px) { html.swiss.g4 { --s4: 64px; } }
-@media (max-width: 580px) { html.swiss.g4 { --gutter: var(--s2); --g-gap: var(--s2); } }
+/* Phones keep the same four steps; only the page margin sits between s2 and s3 (24) – 16 felt cramped on a 390px screen */
+@media (max-width: 580px) { html.swiss.g4 { --gutter: 24px; --gutter-sm: 24px; --g-gap: var(--s2); } }
 
 /* Sections: rule → s2 → content … content → s4 → next rule */
 html.swiss.g4 :is(.section, .next-case, .section-contact, .about-section) { padding-block: var(--s2) var(--s4) !important; }
@@ -564,9 +564,8 @@ html.swiss.g4 .rb-row { padding-block: var(--s3) !important; row-gap: var(--s1) 
 html.swiss.g4 .rb-bars { row-gap: var(--s1) !important; }
 html.swiss.g4 .rb-label, html.swiss.g4 .rb-num { margin-top: 0 !important; }
 @media (max-width: 580px) {
-  html.swiss.g4 .rb-row { padding-block: var(--s2) !important; }
   html.swiss.g4 .rb-bars { margin-top: var(--s1) !important; }
-  html.swiss.g4 .hero .sw-name { margin: 0 0 var(--s2) !important; }
+  html.swiss.g4 .hero .sw-name { margin: 0 0 var(--s3) !important; }
   html.swiss.g4 .hero .sw-lead { margin-bottom: var(--s3) !important; }
   html.swiss.g4 .hero .sw-meta { padding-top: var(--s2) !important; }
   html.swiss.g4 .hero .sw-label { margin-bottom: var(--s1) !important; }
@@ -596,3 +595,5 @@ html.swiss.g4 .rb li:last-child .rb-row, html.swiss.g4 .rb-row:last-child { bord
 html.swiss.g4 .about-section .section-content p { margin-block: 0 var(--s2) !important; }
 html.swiss.g4 .about-section .section-content .info-looking { margin-block: var(--s3) !important; }
 html.swiss.g4 .about-section .section-content > :last-child { margin-bottom: 0 !important; }
+/* To-top sits on the page margin */
+html.swiss.g4 .to-top { right: max(var(--gutter), env(safe-area-inset-right)) !important; bottom: calc(var(--gutter) + env(safe-area-inset-bottom)) !important; }

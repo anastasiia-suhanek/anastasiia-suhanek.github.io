@@ -382,8 +382,10 @@ html.g4 .sw-foot { grid-column: 1 / -1; display: grid; grid-template-columns: su
 html.g4 .sw-lead {
   grid-column: 1 / 3;
   font-size: clamp(22px, 2.1vw, 30px); line-height: 1.2; letter-spacing: -0.02em; color: var(--text);
-  max-width: 22ch; text-wrap: pretty;
+  max-width: 26ch; text-wrap: balance;
 }
+/* A light lead against the heavy name reads as its caption, not a second headline */
+html.swiss.g4 .hero .sw-lead { font-weight: 300; }
 
 
 
@@ -894,7 +896,7 @@ html.g4 .sw-lead {
     <h1 class="sw-name">Anastasiia<br>Sukhanek</h1>
     <div class="sw-foot">
       <p lang="en" class="sw-lead t-en">I design payments, verification and error flows so fewer people drop off – and I&nbsp;measure it</p>
-      <p lang="ru" class="sw-lead t-ru">Помогаю финтех-продуктам не терять людей на оплате, верификации и ошибках. И&nbsp;считаю, сколько удалось сохранить</p>
+      <p lang="ru" class="sw-lead t-ru">Помогаю <span style="white-space:nowrap">финтех-продуктам</span> не терять людей на оплате, верификации и ошибках. И&nbsp;считаю, сколько удалось сохранить</p>
     </div>
   </div>
   <div class="hero-inner">

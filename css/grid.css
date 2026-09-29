@@ -655,5 +655,6 @@ html.swiss.g4 .section > h3 + :is(.goals, ol, ul) { margin-top: var(--s2) !impor
    The CV link closes the list s3 below it and adds nothing to the section's s4 */
 html.swiss.g4 .ab-ledger li { padding-block: var(--s3) !important; }
 html.swiss.g4 .ab-ledger li:first-child { padding-top: 0 !important; }
-html.swiss.g4 .ab-ledger li:last-child { padding-bottom: 0 !important; }
+/* The list is closed by a hairline, so the CV link below reads as its own line, not a fifth row */
+html.swiss.g4 .ab-ledger li:last-child { padding-bottom: var(--s3) !important; border-bottom: 1px solid var(--border) !important; }
 html.swiss.g4 .about-section .section-content .ab-more { margin: var(--s3) 0 0 !important; }

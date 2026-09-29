@@ -270,6 +270,14 @@ body {
     .hero h1 { font-size: var(--fs-2xl); }
     }
 
+/* Design system component with its Figma properties: breaks out of the text column, click to open full size */
+.board-figure { margin: var(--space-7) 0 var(--space-6); }
+.board-figure a img { display: block; width: 100%; height: auto; border-radius: var(--r-lg); border: 1px solid var(--border); cursor: zoom-in; }
+.board-figure figcaption { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-dim); line-height: var(--lh-snug); }
+.board-figure figcaption a { color: var(--text-mid); text-decoration: underline; text-underline-offset: 2px; }
+.board-figure figcaption a:hover { color: var(--accent); }
+/* A component screenshot is proof, not the hero visual: it keeps to the text column */
+@media (min-width: 901px) { html.swiss.g4 .section > .board-figure.board-figure--text { grid-column: 2 / -1; } }
 </style>
 <link rel="stylesheet" href="css/glass.css?v=4812ed06">
 <link rel="stylesheet" href="css/theme-profee.css?v=575b22b4">
@@ -443,6 +451,16 @@ body {
     </h2>
     <p lang="en" class="t-en">One entry point component in three forms – a card on the main screen, a bottom sheet mid-flow and a status banner. Each has an illustration, a clear status message and one primary action. It became part of our new design system, so app and web use the same component. Three decisions shaped it:</p>
     <p lang="ru" class="t-ru">Один компонент точки входа в трёх формах: карточка на главном экране, шторка во время перевода и баннер статуса. В каждой – иллюстрация, понятный статус и одна главная кнопка. Компонент вошёл в новую дизайн-систему, поэтому в приложении и вебе он один и тот же. За компонентом стоят три решения:</p>
+
+    <figure class="board-figure board-figure--text">
+      <a href="images/ds/figma-bottom-sheet.png" target="_blank" rel="noopener">
+        <img style="aspect-ratio: auto 1454 / 1042;" src="images/ds/figma-bottom-sheet.png" alt="Bottom sheet component in Figma with its properties panel: type Message, toggles for illustration, subtitle, close button and buttons, illustration picked by name, primary, secondary and ghost buttons" loading="lazy">
+      </a>
+      <figcaption>
+        <span lang="en" class="t-en">The bottom sheet in our new design system: each verification scenario is the same component with its own illustration, text and buttons switched on · <a href="images/ds/figma-bottom-sheet.png" target="_blank" rel="noopener">Open full size ↗</a></span>
+        <span lang="ru" class="t-ru">Шторка в новой дизайн-системе: каждый сценарий верификации – тот же компонент, в котором включены своя иллюстрация, текст и кнопки · <a href="images/ds/figma-bottom-sheet.png" target="_blank" rel="noopener">Открыть целиком ↗</a></span>
+      </figcaption>
+    </figure>
 
     <div class="decisions">
       <div class="decision">

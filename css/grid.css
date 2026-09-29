@@ -651,3 +651,9 @@ html.swiss.g4 .section > h2 + h3.t-en + p.t-en + h3.t-ru { margin-top: var(--s2)
 /* A sub-heading's own content follows at s2, even when it is a group (a list) */
 html.swiss.g4 .section > h3 + :not(h3) { margin-top: var(--s2) !important; }
 html.swiss.g4 .section > h3 + :is(.goals, ol, ul) { margin-top: var(--s2) !important; }
+/* About experience: each company is a group of lines – s3 above and below its hairline, like the case rows on the home page.
+   The CV link closes the list s3 below it and adds nothing to the section's s4 */
+html.swiss.g4 .ab-ledger li { padding-block: var(--s3) !important; }
+html.swiss.g4 .ab-ledger li:first-child { padding-top: 0 !important; }
+html.swiss.g4 .ab-ledger li:last-child { padding-bottom: 0 !important; }
+html.swiss.g4 .about-section .section-content .ab-more { margin: var(--s3) 0 0 !important; }

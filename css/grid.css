@@ -662,7 +662,7 @@ html.swiss.g4 .about-section .section-content .ab-more { margin: var(--s3) 0 0 !
 /* About · contact sheet as a mosaic: frames of three sizes on the column grid – one column, two columns wide,
    two by two. Rows are one portrait frame tall (3:4 plus its caption), so every tile fills its cell and the
    edges line up. Sizes go by position and pack without holes: 6 columns on desktop, 4 on tablets,
-   3 on phones, where the wide frames turn single and the cats take the fourth big tile */
+   3 on phones, where the wide frames turn single and the big ones alternate sides – right, left, right, left */
 html.swiss.g4.g4-sheet .about-section:has(.ab-sheet) > .section-content { container-type: inline-size; }
 html.swiss.g4 .ab-sheet:not([hidden]) {
   --cols: 6; --cg: var(--s2); --cap: 32px;
@@ -679,5 +679,6 @@ html.swiss.g4 .ab-sheet > li:is(:nth-child(2), :nth-child(8), :nth-child(11), :n
 @media (max-width: 900px) { html.swiss.g4 .ab-sheet:not([hidden]) { --cols: 4; --cg: var(--s1); } }
 @media (max-width: 580px) {
   html.swiss.g4 .ab-sheet:not([hidden]) { --cols: 3; }
-  html.swiss.g4 .ab-sheet > li:is(:nth-child(1), :nth-child(3), :nth-child(16), :nth-child(18)) { grid-column: auto; grid-row: auto; }
+  html.swiss.g4 .ab-sheet > li:nth-child(n) { grid-column: auto; grid-row: auto; }
+  html.swiss.g4 .ab-sheet > li:is(:nth-child(2), :nth-child(4), :nth-child(11), :nth-child(16)) { grid-column: span 2; grid-row: span 2; }
 }

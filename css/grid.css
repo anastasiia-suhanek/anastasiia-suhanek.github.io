@@ -682,3 +682,7 @@ html.swiss.g4 .ab-sheet > li:is(:nth-child(2), :nth-child(8), :nth-child(11), :n
   html.swiss.g4 .ab-sheet > li:nth-child(n) { grid-column: auto; grid-row: auto; }
   html.swiss.g4 .ab-sheet > li:is(:nth-child(2), :nth-child(4), :nth-child(11), :nth-child(16)) { grid-column: span 2; grid-row: span 2; }
 }
+/* About ends like a case: s4 under the last link, not the section's s4 plus the column's */
+html.swiss.g4 .about-left > .about-section:last-child { padding-bottom: 0 !important; }
+html.swiss.g4 .ab-next-link { display: block; width: fit-content; }
+@media (min-width: 901px) { html.swiss.g4 body .ab-next .ab-next-label { margin-bottom: 0 !important; line-height: var(--lh-caption) !important; } }

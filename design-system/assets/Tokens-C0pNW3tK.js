@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{i as n,r}from"./react-DITjJg24.js";import{a as i,o as a}from"./blocks-DxSo9pOn.js";import{n as o,t as s}from"./tokens-BE9SZHcF.js";function c(e){let t={h1:`h1`,h2:`h2`,p:`p`,strong:`strong`,...n(),...e.components};return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(i,{title:`Foundations/Tokens`}),`
+`,`
+`,(0,u.jsx)(t.h1,{id:`tokens`,children:`Tokens`}),`
+`,(0,u.jsxs)(t.p,{children:[`Two layers. `,(0,u.jsx)(t.strong,{children:`Components only use semantic tokens`}),`; semantic tokens point at primitives`]}),`
+`,(0,u.jsx)(t.h2,{id:`semantic`,children:`Semantic`}),`
+`,Object.entries(o.semantic).map(([e,t])=>(0,u.jsx)(d,{name:e,value:`→ `+t.replace(/[{}]/g,``),cssVar:`--`+e.replace(/\//g,`-`)},e)),`
+`,(0,u.jsx)(t.h2,{id:`colour-primitives`,children:`Colour primitives`}),`
+`,Object.entries(o.primitives.color).map(([e,t])=>(0,u.jsx)(d,{name:`color/`+e,value:t,cssVar:`--color-`+e},e)),`
+`,(0,u.jsx)(t.h2,{id:`spacing-and-radius`,children:`Spacing and radius`}),`
+`,(0,u.jsx)(t.p,{children:`Every padding, gap and radius sits on a 4 px grid`}),`
+`,(0,u.jsx)(`div`,{style:{display:`flex`,gap:16,alignItems:`flex-end`,flexWrap:`wrap`},children:Object.entries(o.primitives.spacing).map(([e,t])=>(0,u.jsxs)(`div`,{style:{textAlign:`center`},children:[(0,u.jsx)(`div`,{style:{width:t,height:t,background:`var(--button-primary-bg)`,borderRadius:2,margin:`0 auto 8px`}}),(0,u.jsx)(`code`,{children:e})]},e))})]})}function l(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,u.jsx)(t,{...e,children:(0,u.jsx)(c,{...e})}):c(e)}var u,d;function f(){return(f=e((()=>{u=t(),r(),a(),s(),d=({name:e,value:t,cssVar:n})=>(0,u.jsxs)(`div`,{style:{display:`flex`,alignItems:`center`,gap:12,padding:`8px 0`,borderBottom:`1px solid var(--border-subtle)`},children:[(0,u.jsx)(`div`,{style:{width:40,height:40,borderRadius:8,background:`var(${n})`,border:`1px solid var(--border-subtle)`,flex:`none`}}),(0,u.jsx)(`code`,{style:{minWidth:240},children:e}),(0,u.jsx)(`span`,{style:{color:`var(--text-secondary)`},children:t})]})})))()}f();export{d as Swatch,l as default};

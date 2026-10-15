@@ -1,0 +1,1507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Components Manifest</title>
+  <style>
+      :root {
+          --bg: #0b0c10;
+          --panel: #121318;
+          --muted: #9aa0a6;
+          --fg: #e8eaed;
+          --ok: #22c55e;
+          --info: #1e88e5;
+          --err: #c62828;
+          --ok-bg: #0c1a13;
+          --info-bg: #0c1624;
+          --err-bg: #1a0e0e;
+          --chip: #1f2330;
+          --border: #2b2f3a;
+          --link: #8ab4f8;
+          --active-ring: 1px; /* 1px active ring for pills and toggles */
+      }
+
+      * {
+          box-sizing: border-box;
+      }
+
+      html,
+      body {
+          margin: 0;
+          background: var(--bg);
+          color: var(--fg);
+          font: 14px/1.5 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Ubuntu,
+          Cantarell,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans';
+      }
+
+      .wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 16px 20px;
+      }
+
+      header {
+          position: sticky;
+          top: 0;
+          backdrop-filter: blur(6px);
+          background: color-mix(in srgb, var(--bg) 84%, transparent);
+          border-bottom: 1px solid var(--border);
+          z-index: 10;
+      }
+
+      h1 {
+          font-size: 20px;
+          margin: 0 0 6px;
+      }
+
+      .summary {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+
+      /* Top filter pills */
+      .filter-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          background: var(--panel);
+          text-decoration: none;
+          cursor: pointer;
+          user-select: none;
+          color: var(--fg);
+      }
+
+      .filter-pill.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: color-mix(in srgb, var(--ok) 18%, #000);
+      }
+
+      .filter-pill.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+      }
+
+      .filter-pill.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+      }
+
+      .filter-pill.all {
+          color: #d7dbe0;
+          border-color: var(--border);
+          background: var(--panel);
+      }
+
+      .filter-pill[aria-disabled='true'] {
+          cursor: default;
+          text-decoration: none;
+      }
+
+      .filter-pill:focus,
+      .filter-pill:active {
+          outline: none;
+          box-shadow: none;
+      }
+
+      /* Selected top pill ring via :target */
+      #filter-all:target ~ header .filter-pill[data-k='all'],
+      #filter-errors:target ~ header .filter-pill[data-k='errors'],
+      #filter-infos:target ~ header .filter-pill[data-k='infos'],
+      #filter-story-errors:target ~ header .filter-pill[data-k='story-errors'],
+      #filter-story-warnings:target ~ header .filter-pill[data-k='story-warnings'],
+      #filter-no-api:target ~ header .filter-pill[data-k='no-api'],
+      #filter-doc-errors:target ~ header .filter-pill[data-k='docs'],
+      #filter-docs:target ~ header .filter-pill[data-k='docs'] {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Hidden targets for filtering */
+      #filter-all,
+      #filter-errors,
+      #filter-infos,
+      #filter-story-errors,
+      #filter-story-warnings,
+      #filter-no-api,
+      #filter-doc-errors,
+      #filter-docs {
+          display: none;
+      }
+
+      main {
+          padding: 36px 0 40px;
+      }
+
+      .grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 18px;
+      }
+
+      /* one card per row */
+
+      .card {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          /* Keep a deep-linked card clear of the sticky header when scrolled into view */
+          scroll-margin-top: 110px;
+      }
+
+      /* Highlight the card deep-linked via components.html#<manifest-id> */
+      .card:target {
+          box-shadow: 0 0 0 2px var(--info);
+          border-color: var(--info);
+      }
+
+      .head {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+      }
+
+      .title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+      }
+
+      .title h2 {
+          font-size: 16px;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .meta {
+          font-size: 12px;
+          color: var(--muted);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
+
+      .kv {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+      }
+
+      .chip {
+          font-size: 12px;
+          padding: 4px 8px;
+          border-radius: 999px;
+          background: var(--chip);
+          border: 1px solid var(--border);
+      }
+
+      .hint {
+          color: var(--muted);
+          font-size: 12px;
+      }
+
+      .badges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      /* Per-card badges: labels become toggles when clickable */
+      .badge {
+          font-size: 12px;
+          padding: 3px 8px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: var(--chip);
+          color: #d7dbe0;
+      }
+
+      .badge.ok {
+          color: #b9f6ca;
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+      }
+
+      .badge.info {
+          color: #b3d9ff;
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+      }
+
+      .badge.err {
+          color: #ff9aa0;
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .snippet-warning {
+          margin-top: 8px;
+          padding: 8px 10px;
+          border-radius: 8px;
+          border: 1px solid color-mix(in srgb, var(--info) 45%, var(--border));
+          background: var(--info-bg);
+          color: #b3d9ff;
+          font-size: 12px;
+      }
+
+      .as-toggle {
+          cursor: pointer;
+      }
+
+      /* 1px ring on active toggle */
+      .tg-err:checked + label.as-toggle,
+      .tg-info:checked + label.as-toggle,
+      .tg-stories:checked + label.as-toggle,
+      .tg-docs:checked + label.as-toggle,
+      .tg-subcomponents:checked + label.as-toggle,
+      .tg-content:checked + label.as-toggle,
+      .tg-props:checked + label.as-toggle {
+          box-shadow: 0 0 0 var(--active-ring) currentColor;
+          border-color: currentColor;
+      }
+
+      /* Panels: hidden by default, shown when respective toggle checked */
+      .panels {
+          display: grid;
+          gap: 10px;
+      }
+
+      .panel {
+          display: none;
+      }
+
+      .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+
+      .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-subcomponents:checked ~ .panels .panel-subcomponents {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+          gap: 8px;
+      }
+
+      .tg-props:checked ~ .panels .panel-props {
+          display: grid;
+      }
+
+      /* Colored notes for API error + info */
+      .note {
+          padding: 12px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+      }
+
+      .note.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+          background: var(--err-bg);
+          color: #ffd1d4;
+      }
+
+      .note.info {
+          border-color: color-mix(in srgb, var(--info) 55%, var(--border));
+          background: var(--info-bg);
+          color: #d6e8ff;
+      }
+
+      .note.ok {
+          border-color: color-mix(in srgb, var(--ok) 55%, var(--border));
+          background: var(--ok-bg);
+          color: var(--fg);
+      }
+
+      .note-title {
+          font-weight: 600;
+          margin-bottom: 6px;
+      }
+
+      .note-body {
+          white-space: normal;
+      }
+
+      /* Story error cards */
+      .ex {
+          padding: 10px;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          background: #0f131b;
+      }
+
+      .ex.err {
+          border-color: color-mix(in srgb, var(--err) 55%, var(--border));
+      }
+
+      .row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+
+      .status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-block;
+      }
+
+      .dot-ok {
+          background: var(--ok);
+      }
+
+      .dot-err {
+          background: var(--err);
+      }
+
+      .ex-name {
+          font-weight: 600;
+      }
+
+      /* Error groups (visible in errors filter) */
+      .error-groups {
+          display: none;
+          margin-bottom: 16px;
+      }
+
+      .group {
+          border: 1px solid var(--border);
+          background: var(--panel);
+          border-radius: 14px;
+          overflow: hidden;
+      }
+
+      .group + .group {
+          margin-top: 12px;
+      }
+
+      .group-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 14px;
+          cursor: pointer;
+          border-bottom: 1px solid var(--border);
+      }
+
+      .group-header:hover {
+          background: #141722;
+      }
+
+      .group-title {
+          font-weight: 600;
+          flex: 1;
+      }
+
+      .group-count {
+          font-size: 12px;
+          color: var(--muted);
+      }
+
+      .group-cards {
+          display: none;
+          padding: 12px;
+      }
+
+      .group .card {
+          margin: 12px 0;
+      }
+
+      .group .card:first-child {
+          margin-top: 0;
+      }
+
+      .group .card:last-child {
+          margin-bottom: 0;
+      }
+
+      /* caret rotation */
+      .group-tg:checked + label .caret {
+          transform: rotate(90deg);
+      }
+
+      .caret {
+          transition: transform 0.15s ease;
+      }
+
+      /* toggle body */
+      .group-tg:checked ~ .group-cards {
+          display: block;
+      }
+
+      /* CSS-only filtering of cards via top pills */
+      #filter-errors:target ~ main .card:not(.has-error):not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-infos:target ~ main .card:not(.has-info) {
+          display: none;
+      }
+
+      #filter-story-errors:target ~ main .card:not(.has-story-error) {
+          display: none;
+      }
+
+      #filter-story-warnings:target ~ main .card:not(.has-story-warning) {
+          display: none;
+      }
+
+      #filter-no-api:target ~ main .card:not(.missing-api) {
+          display: none;
+      }
+
+      #filter-doc-errors:target ~ main .card:not(.has-doc-error) {
+          display: none;
+      }
+
+      #filter-docs:target ~ main .card:has(> .tg-docs),
+      #filter-docs:target ~ main .card.is-doc {
+          display: block;
+      }
+
+      #filter-docs:target ~ main .card:not(:has(> .tg-docs)):not(.is-doc) {
+          display: none;
+      }
+
+      #filter-all:target ~ main .card {
+          display: block;
+      }
+
+      /* In errors view, hide standalone component-error cards in the regular grid (they will appear in groups) */
+      #filter-errors:target ~ main .grid .card.has-error {
+          display: none;
+      }
+
+      /* Show grouped section only in errors view */
+      #filter-errors:target ~ main .error-groups {
+          display: block;
+      }
+
+      /* Section titles */
+      .section-title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--muted);
+          margin: 24px 0 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--border);
+      }
+      .section-title:first-child {
+          margin-top: 0;
+      }
+
+      /* When a toggle is checked, show the corresponding panel */
+      .card > .tg-err:checked ~ .panels .panel-err {
+          display: grid;
+      }
+      
+      .card > .tg-info:checked ~ .panels .panel-info {
+          display: grid;
+      }
+      
+      .card > .tg-stories:checked ~ .panels .panel-stories {
+          display: grid;
+      }
+
+      .card > .tg-docs:checked ~ .panels .panel-docs {
+          display: grid;
+      }
+
+      .card > .tg-subcomponents:checked ~ .panels .panel-subcomponents {
+          display: grid;
+      }
+
+      .card > .tg-content:checked ~ .panels .panel-content {
+          display: grid;
+      }
+
+      /* Add vertical spacing around panels only when any panel is visible */
+      .card > .tg-err:checked ~ .panels,
+      .card > .tg-info:checked ~ .panels,
+      .card > .tg-stories:checked ~ .panels,
+      .card > .tg-docs:checked ~ .panels,
+      .card > .tg-subcomponents:checked ~ .panels,
+      .card > .tg-content:checked ~ .panels,
+      .card > .tg-props:checked ~ .panels {
+          margin: 10px 0;
+      }
+
+      /* Optional: a subtle 1px ring on the active badge, using :has() if available */
+      @supports selector(.card:has(.tg-err:checked)) {
+          .card:has(.tg-err:checked) label[for$='-err'],
+          .card:has(.tg-info:checked) label[for$='-info'],
+          .card:has(.tg-stories:checked) label[for$='-stories'],
+          .card:has(.tg-docs:checked) label[for$='-docs'],
+          .card:has(.tg-subcomponents:checked) label[for$='-subcomponents'],
+          .card:has(.tg-content:checked) label[for$='-content'],
+          .card:has(.tg-props:checked) label[for$='-props'] {
+              box-shadow: 0 0 0 1px currentColor;
+              border-color: currentColor;
+          }
+      }
+
+      /* Wrap long lines in code blocks at ~120 characters */
+      pre, code {
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      pre {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          overflow-x: auto; /* fallback for extremely long tokens */
+          margin: 8px 0 0;
+      }
+      pre > code {
+          display: block;
+          white-space: inherit;
+          overflow-wrap: inherit;
+          word-break: inherit;
+          inline-size: min(100%, 120ch);
+      }
+
+      /* MDX content container for docs */
+      .mdx-content {
+          background: #0f131b;
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 12px;
+          max-height: 400px;
+          overflow-y: auto;
+          margin-top: 8px;
+      }
+  </style>
+</head>
+<body>
+<!-- Hidden targets for the top-level filters -->
+<span id="filter-all"></span>
+<span id="filter-errors"></span>
+<span id="filter-infos"></span>
+<span id="filter-story-errors"></span>
+<span id="filter-story-warnings"></span>
+<span id="filter-no-api"></span>
+<span id="filter-doc-errors"></span>
+<span id="filter-docs"></span>
+<header>
+  <div class="wrap">
+    <h1>Manifest Debugger</h1>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">4 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/4 info</a><span class="filter-pill ok" aria-disabled="true">21 stories ok</span><a class="filter-pill ok" data-k="docs" href="#filter-docs">3 docs ok</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="note info" style="margin-bottom: 16px;">
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.1s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <pre><code>typescript: {
+  reactDocgen: 'react-docgen-typescript',
+}</code></pre>
+            Note: <code>react-docgen-typescript</code> can be slower. If performance is acceptable for your project, it generally produces better results.
+            <a href="https://storybook.js.org/docs/api/main-config/main-config-typescript#reactdocgen" target="_blank">Learn more</a>
+          </div>
+    <h2 class="section-title">Components</h2>
+    <div class="grid" role="list">
+      
+<article
+  id="components-bottom-sheet"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="BottomSheet">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> BottomSheet</h2>
+      <div class="badges">
+        <label for="c-0-components-bottom-sheet-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-0-components-bottom-sheet-stories" class="badge ok as-toggle">5 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/BottomSheet.stories.tsx">components-bottom-sheet · ./src/components/BottomSheet.stories.tsx</div>
+    
+    <div class="hint">A message or a decision that keeps the user on the current screen:
+a limit reached, an error with one next step, a reminder that can wait</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-0-components-bottom-sheet-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-0-components-bottom-sheet-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/BottomSheet.tsx::BottomSheet</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>actions?: ButtonGroupProps
+
+/**
+ * Shows the close button. Turn off when the user must choose an action
+ */
+closable?: boolean = true
+
+/**
+ * Message type only
+ */
+illustration?: IllustrationName | null = &#39;cat&#39;
+
+onClose?: () =&gt; void
+
+/**
+ * Custom content under the text
+ */
+slot?: ReactNode
+
+subtitle?: string
+
+title: string
+
+/**
+ * Message – with an illustration, centred; Functional – text and actions only
+ */
+type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { BottomSheet } from 'design-system';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Message</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Message = () =&gt; &lt;BottomSheet
+    type=&quot;message&quot;
+    title=&quot;Today’s limit reached&quot;
+    subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
+    illustration=&quot;cat&quot;
+    closable
+    actions={{ primary: &#39;Verify now&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Two Actions</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TwoActions = () =&gt; &lt;BottomSheet
+    type=&quot;message&quot;
+    title=&quot;Today’s limit reached&quot;
+    subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
+    illustration=&quot;cat&quot;
+    closable
+    actions={{ primary: &#39;Verify now&#39;, secondary: &#39;Change amount&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Not Closable</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const NotClosable = () =&gt; &lt;BottomSheet
+    type=&quot;message&quot;
+    title=&quot;Let’s update your docs&quot;
+    subtitle=&quot;Your documents have expired. Update them to keep sending money&quot;
+    illustration=&quot;money&quot;
+    closable={false}
+    actions={{ primary: &#39;Open bot&#39;, ghost: &#39;All clear&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Functional</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Functional = () =&gt; &lt;BottomSheet
+    type=&quot;functional&quot;
+    title=&quot;Check your email&quot;
+    subtitle=&quot;We sent a request for extra documents. Reply to it to keep sending&quot;
+    illustration=&quot;cat&quot;
+    closable
+    actions={{ primary: &#39;Open email&#39;, secondary: &#39;Not now&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Loading</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Loading = () =&gt; &lt;BottomSheet
+    type=&quot;message&quot;
+    title=&quot;Today’s limit reached&quot;
+    subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
+    illustration=&quot;cat&quot;
+    closable
+    actions={{ primary: &#39;Verify now&#39;, primaryLoading: true }} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="components-button"
+  class="card 
+  no-error
+  has-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="Button">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Button</h2>
+      <div class="badges">
+        <label for="c-1-components-button-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-1-components-button-info" class="badge info as-toggle">1 info</label>
+        <label for="c-1-components-button-stories" class="badge ok as-toggle">7 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/Button.stories.tsx">components-button · ./src/components/Button.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="c-1-components-button-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-1-components-button-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-1-components-button-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">7 prop types</span>
+            </div>
+            <pre><code>Component: src/components/Button.tsx::Button</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>className?: any = &#39;&#39;
+
+/**
+ * Stretch to the container width (Primary and Secondary in sheets and full screens)
+ */
+fullWidth?: boolean = false
+
+/**
+ * Icon after the label
+ */
+icon?: keyof typeof paths
+
+/**
+ * Spinner replaces the label, the width stays the same
+ */
+loading?: boolean = false
+
+/**
+ * Shows the pressed look without pressing – for documentation
+ */
+pressed?: boolean = false
+
+type?: &#39;button&#39; | &#39;submit&#39; | &#39;reset&#39; = &#39;button&#39;
+
+/**
+ * Primary – the one main action of a screen; Secondary – an alternative next to it; Ghost – low emphasis
+ */
+variant?: &#39;primary&#39; | &#39;secondary&#39; | &#39;ghost&#39; = &#39;primary&#39;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button } from 'design-system';
+import { Fragment } from 'react';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Primary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Primary = () =&gt; &lt;Button variant=&quot;primary&quot;&gt;Continue&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Secondary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Secondary = () =&gt; &lt;Button variant=&quot;secondary&quot;&gt;Change amount&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Ghost</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Ghost = () =&gt; &lt;Button variant=&quot;ghost&quot;&gt;Learn more&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Icon</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithIcon = () =&gt; &lt;Button variant=&quot;primary&quot; icon=&quot;arrow-forward&quot;&gt;Continue&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Loading</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Loading = () =&gt; &lt;Button variant=&quot;primary&quot; loading&gt;Continue&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Disabled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Disabled = () =&gt; &lt;Button variant=&quot;primary&quot; disabled&gt;Continue&lt;/Button&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Matrix</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              <div class="hint">Every type in every state – the same matrix as in Figma</div>
+              <pre><code>const Matrix = () =&gt; (
+  &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(4, 220px)&#39;, gap: 24, alignItems: &#39;center&#39; }}&gt;
+    {([&#39;primary&#39;, &#39;secondary&#39;, &#39;ghost&#39;] as const).map((v) =&gt; (
+      &lt;Fragment key={v}&gt;
+        &lt;Button variant={v} fullWidth&gt;Default&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth pressed&gt;Pressed&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth disabled&gt;Disabled&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth loading&gt;Loading&lt;/Button&gt;
+      &lt;/Fragment&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="components-full-screen-message"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="FullscreenMessage">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> FullscreenMessage</h2>
+      <div class="badges">
+        <label for="c-2-components-full-screen-message-props" class="badge ok as-toggle">8 prop types</label>
+        
+        <label for="c-2-components-full-screen-message-stories" class="badge ok as-toggle">3 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/FullscreenMessage.stories.tsx">components-full-screen-message · ./src/components/FullscreenMessage.stories.tsx</div>
+    
+    <div class="hint">A result or a requirement the user must see before going on:
+success, a blocking check, an empty state with an action</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-2-components-full-screen-message-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-2-components-full-screen-message-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">8 prop types</span>
+            </div>
+            <pre><code>Component: src/components/FullscreenMessage.tsx::FullscreenMessage</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>actions?: ButtonGroupProps
+
+bullets?: string[]
+
+/**
+ * Shows the top bar with a back button
+ */
+header?: boolean = true
+
+/**
+ * Pass null to hide the illustration
+ */
+illustration?: IllustrationName | null = &#39;money&#39;
+
+onBack?: () =&gt; void
+
+slot?: ReactNode
+
+subtitle?: string
+
+title: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { FullscreenMessage } from 'design-system';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Success</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Success = () =&gt; &lt;FullscreenMessage
+    title=&quot;Money is on its way&quot;
+    subtitle=&quot;We’ll let you know when it arrives. Usually it takes a few minutes&quot;
+    illustration=&quot;money&quot;
+    header
+    actions={{ primary: &#39;Done&#39;, secondary: &#39;Share receipt&#39; }} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">With Bullets</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithBullets = () =&gt; &lt;FullscreenMessage
+    title=&quot;Before you send&quot;
+    subtitle=&quot;Have these ready – it takes about 3 minutes&quot;
+    illustration=&quot;cat&quot;
+    header
+    actions={{ primary: &#39;Start&#39; }}
+    bullets={[&#39;Passport or ID card&#39;, &#39;Proof of address&#39;, &#39;A good light for the photo&#39;]} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">No Header No Illustration</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const NoHeaderNoIllustration = () =&gt; &lt;FullscreenMessage
+    title=&quot;Something went wrong&quot;
+    subtitle=&quot;We couldn’t check your documents. Try again in a few minutes&quot;
+    illustration={null}
+    header={false}
+    actions={{ primary: &#39;Try again&#39; }} /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+<article
+  id="components-list-item"
+  class="card 
+  no-error
+  no-info
+  no-story-error
+  no-story-warning
+  
+  no-doc-error"
+  role="listitem"
+  aria-label="ListItem">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> ListItem</h2>
+      <div class="badges">
+        <label for="c-3-components-list-item-props" class="badge ok as-toggle">9 prop types</label>
+        
+        <label for="c-3-components-list-item-stories" class="badge ok as-toggle">6 stories</label>
+        
+        
+      </div>
+    </div>
+    <div class="meta" title="./src/components/ListItem.stories.tsx">components-list-item · ./src/components/ListItem.stories.tsx</div>
+    
+    <div class="hint">A row for settings, profile, accounts and countries</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-3-components-list-item-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  
+  <input id="c-3-components-list-item-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src/components/ListItem.tsx::ListItem</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Top when the left text wraps to two lines
+ */
+alignment?: &#39;center&#39; | &#39;top&#39; = &#39;center&#39;
+
+/**
+ * Tight for dense lists
+ */
+density?: &#39;normal&#39; | &#39;tight&#39; = &#39;normal&#39;
+
+/**
+ * Chevron that shows the row opens something. Makes the row a button
+ */
+follower?: boolean = false
+
+/**
+ * Leading element: a country flag, an icon, or nothing
+ */
+lead?: &#39;flag&#39; | { icon: IconName } | null = &#39;flag&#39;
+
+onClick?: () =&gt; void
+
+subheading?: string
+
+title: string
+
+value?: string
+
+valueSubheading?: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { ListItem } from 'design-system';</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;ListItem
+    title=&quot;Czech koruna&quot;
+    subheading=&quot;Main account&quot;
+    value=&quot;1 200 CZK&quot;
+    valueSubheading=&quot;Available&quot;
+    lead=&quot;flag&quot;
+    follower /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Icon Lead</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const IconLead = () =&gt; &lt;ListItem
+    title=&quot;Top up&quot;
+    subheading=&quot;From a card or a bank account&quot;
+    value={undefined}
+    valueSubheading=&quot;Available&quot;
+    lead={{ icon: &#39;add&#39; }}
+    follower /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Title Only</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TitleOnly = () =&gt; &lt;ListItem
+    title=&quot;Language&quot;
+    subheading={undefined}
+    value={undefined}
+    valueSubheading=&quot;Available&quot;
+    lead={null}
+    follower /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Static</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Static = () =&gt; &lt;ListItem
+    title=&quot;Czech koruna&quot;
+    subheading=&quot;Main account&quot;
+    value=&quot;1 200 CZK&quot;
+    valueSubheading=&quot;Available&quot;
+    lead=&quot;flag&quot;
+    follower={false} /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Tight</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Tight = () =&gt; &lt;ListItem
+    title=&quot;Czech koruna&quot;
+    subheading=&quot;Main account&quot;
+    value=&quot;1 200 CZK&quot;
+    valueSubheading=&quot;Available&quot;
+    lead=&quot;flag&quot;
+    follower
+    density=&quot;tight&quot; /&gt;;</code></pre>
+              
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Top Alignment</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TopAlignment = () =&gt; &lt;ListItem
+    title=&quot;Send to a bank account in another country&quot;
+    subheading=&quot;Usually arrives the same day&quot;
+    value=&quot;1 200 CZK&quot;
+    valueSubheading=&quot;Available&quot;
+    lead=&quot;flag&quot;
+    follower
+    alignment=&quot;top&quot; /&gt;;</code></pre>
+              
+            </div>
+        </div>
+    
+    
+  </div>
+</article>
+    </div>
+    
+    <h2 class="section-title">Unattached Docs</h2>
+    <div class="grid" role="list">
+      
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Introduction</h2>
+      <div class="badges">
+        
+        <label for="doc-0-introduction-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/Introduction.mdx">introduction--docs · ./src/Introduction.mdx</div>
+    <div># Design system sample Components I built in the design system of a fintech app for intern...</div>
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-0-introduction-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+
+&lt;Meta title=&quot;Introduction&quot; /&gt;
+
+# Design system sample
+
+Components I built in the design system of a fintech app for international money transfers – iOS, Android and web.
+**Anonymised under NDA:** the brand colour, names and copy are replaced; the structure, properties and tokens follow production
+
+Designed in Figma, then rebuilt here in React and TypeScript with Claude Code – the same names and states in both, so design and code speak one language
+
+## How it’s built
+
+- **Tokens in two layers.** Primitives hold raw values; components use only semantic tokens (`button/primary/bg`, `text/secondary`), so a brand or a theme changes in one place. `tokens.json` is the source of truth, `npm run tokens` generates the CSS variables
+- **Components** – Button, Bottom sheet, Full screen message, List item. Every prop maps to a component property in Figma
+- **Accessibility** is checked on every story with axe (the Accessibility tab): semantic buttons and dialogs, focus rings, labels for icon-only buttons, reduced motion
+- **Readable by AI agents** – the Storybook MCP addon exposes components and their docs to coding agents
+
+## Links
+
+- [Figma sample](https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG/Anastasiia-Sukhanek-%E2%80%94-Design-System-Sample)
+- [Portfolio](https://anastasiia-suhanek.github.io)
+- Anastasiia Sukhanek, product designer
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Tokens</h2>
+      <div class="badges">
+        
+        <label for="doc-1-foundations-tokens-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/tokens/Tokens.mdx">foundations-tokens--docs · ./src/tokens/Tokens.mdx</div>
+    <div>export const Swatch = () =&gt; ( ); # Tokens Two layers. **Components only use semantic token...</div>
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-1-foundations-tokens-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import tokens from &#39;./tokens.json&#39;;
+
+&lt;Meta title=&quot;Foundations/Tokens&quot; /&gt;
+
+export const Swatch = ({ name, value, cssVar }) =&gt; (
+  &lt;div style={{ display: &#39;flex&#39;, alignItems: &#39;center&#39;, gap: 12, padding: &#39;8px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
+    &lt;div style={{ width: 40, height: 40, borderRadius: 8, background: `var(${cssVar})`, border: &#39;1px solid var(--border-subtle)&#39;, flex: &#39;none&#39; }} /&gt;
+    &lt;code style={{ minWidth: 240 }}&gt;{name}&lt;/code&gt;
+    &lt;span style={{ color: &#39;var(--text-secondary)&#39; }}&gt;{value}&lt;/span&gt;
+  &lt;/div&gt;
+);
+
+# Tokens
+
+Two layers. **Components only use semantic tokens**; semantic tokens point at primitives
+
+## Semantic
+
+{Object.entries(tokens.semantic).map(([k, v]) =&gt; &lt;Swatch key={k} name={k} value={&#39;→ &#39; + v.replace(/[{}]/g, &#39;&#39;)} cssVar={&#39;--&#39; + k.replace(/\//g, &#39;-&#39;)} /&gt;)}
+
+## Colour primitives
+
+{Object.entries(tokens.primitives.color).map(([k, v]) =&gt; &lt;Swatch key={k} name={&#39;color/&#39; + k} value={v} cssVar={&#39;--color-&#39; + k} /&gt;)}
+
+## Spacing and radius
+
+Every padding, gap and radius sits on a 4 px grid
+
+&lt;div style={{ display: &#39;flex&#39;, gap: 16, alignItems: &#39;flex-end&#39;, flexWrap: &#39;wrap&#39; }}&gt;
+  {Object.entries(tokens.primitives.spacing).map(([k, v]) =&gt; (
+    &lt;div key={k} style={{ textAlign: &#39;center&#39; }}&gt;
+      &lt;div style={{ width: v, height: v, background: &#39;var(--button-primary-bg)&#39;, borderRadius: 2, margin: &#39;0 auto 8px&#39; }} /&gt;
+      &lt;code&gt;{k}&lt;/code&gt;
+    &lt;/div&gt;
+  ))}
+&lt;/div&gt;
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card is-doc no-doc-error"
+  role="listitem"
+  aria-label="Docs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Foundations/Typography</h2>
+      <div class="badges">
+        
+        <label for="doc-2-foundations-typography-docs-content" class="badge ok as-toggle">view content</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/tokens/Typography.mdx">foundations-typography--docs · ./src/tokens/Typography.mdx</div>
+    <div># Typography Inter. Each style is a set of tokens – weight, size, line height, letter spac...</div>
+  </div>
+
+  <!-- Hidden toggles must be siblings BEFORE .panels -->
+  
+  <input id="doc-2-foundations-typography-docs-content" class="tg tg-content" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+        <div class="panel panel-content">
+          <div class="mdx-content">
+            <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import tokens from &#39;./tokens.json&#39;;
+
+&lt;Meta title=&quot;Foundations/Typography&quot; /&gt;
+
+# Typography
+
+Inter. Each style is a set of tokens – weight, size, line height, letter spacing – and a `.text-*` class
+
+{Object.entries(tokens.typography).map(([k, s]) =&gt; (
+  &lt;div key={k} style={{ display: &#39;flex&#39;, alignItems: &#39;baseline&#39;, gap: 24, padding: &#39;16px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
+    &lt;code style={{ minWidth: 120 }}&gt;{k}&lt;/code&gt;
+    &lt;span style={{ color: &#39;var(--text-secondary)&#39;, minWidth: 140 }}&gt;{s.weight} · {s.size} / {s.lineHeight}&lt;/span&gt;
+    &lt;span className={&#39;text-&#39; + k.replace(&#39;/&#39;, &#39;-&#39;)}&gt;Send money in a few taps&lt;/span&gt;
+  &lt;/div&gt;
+))}
+</code></pre>
+          </div>
+        </div>
+  </div>
+</article>
+    </div>
+    
+  </div>
+</main>
+</body>
+</html>  

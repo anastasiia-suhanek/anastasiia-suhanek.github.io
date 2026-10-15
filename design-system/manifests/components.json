@@ -1,0 +1,674 @@
+{
+  "v": 0,
+  "components": {
+    "components-bottom-sheet": {
+      "id": "components-bottom-sheet",
+      "name": "BottomSheet",
+      "path": "./src/components/BottomSheet.stories.tsx",
+      "jsDocTags": {},
+      "description": "A message or a decision that keeps the user on the current screen:\na limit reached, an error with one next step, a reminder that can wait",
+      "reactDocgen": {
+        "description": "A message or a decision that keeps the user on the current screen:\na limit reached, an error with one next step, a reminder that can wait",
+        "methods": [],
+        "displayName": "BottomSheet",
+        "definedInFile": "/Users/user/Desktop/Claude/design-system/src/components/BottomSheet.tsx",
+        "actualName": "BottomSheet",
+        "exportName": "BottomSheet",
+        "props": {
+          "type": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'message' | 'functional'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'message'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'functional'"
+                }
+              ]
+            },
+            "description": "Message – with an illustration, centred; Functional – text and actions only",
+            "defaultValue": {
+              "value": "'message'",
+              "computed": false
+            }
+          },
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "subtitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "illustration": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "IllustrationName | null",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "keyof typeof sources",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "cat"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "money"
+                    }
+                  ]
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            },
+            "description": "Message type only",
+            "defaultValue": {
+              "value": "'cat'",
+              "computed": false
+            }
+          },
+          "closable": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Shows the close button. Turn off when the user must choose an action",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "onClose": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "slot": {
+            "required": false,
+            "tsType": {
+              "name": "ReactNode"
+            },
+            "description": "Custom content under the text"
+          },
+          "actions": {
+            "required": false,
+            "tsType": {
+              "name": "ButtonGroupProps"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "components-bottom-sheet--message",
+          "name": "Message",
+          "snippet": "const Message = () => <BottomSheet\n    type=\"message\"\n    title=\"Today’s limit reached\"\n    subtitle=\"Verify your identity to send more today. It takes about 3 minutes\"\n    illustration=\"cat\"\n    closable\n    actions={{ primary: 'Verify now' }} />;"
+        },
+        {
+          "id": "components-bottom-sheet--two-actions",
+          "name": "Two Actions",
+          "snippet": "const TwoActions = () => <BottomSheet\n    type=\"message\"\n    title=\"Today’s limit reached\"\n    subtitle=\"Verify your identity to send more today. It takes about 3 minutes\"\n    illustration=\"cat\"\n    closable\n    actions={{ primary: 'Verify now', secondary: 'Change amount' }} />;"
+        },
+        {
+          "id": "components-bottom-sheet--not-closable",
+          "name": "Not Closable",
+          "snippet": "const NotClosable = () => <BottomSheet\n    type=\"message\"\n    title=\"Let’s update your docs\"\n    subtitle=\"Your documents have expired. Update them to keep sending money\"\n    illustration=\"money\"\n    closable={false}\n    actions={{ primary: 'Open bot', ghost: 'All clear' }} />;"
+        },
+        {
+          "id": "components-bottom-sheet--functional",
+          "name": "Functional",
+          "snippet": "const Functional = () => <BottomSheet\n    type=\"functional\"\n    title=\"Check your email\"\n    subtitle=\"We sent a request for extra documents. Reply to it to keep sending\"\n    illustration=\"cat\"\n    closable\n    actions={{ primary: 'Open email', secondary: 'Not now' }} />;"
+        },
+        {
+          "id": "components-bottom-sheet--loading",
+          "name": "Loading",
+          "snippet": "const Loading = () => <BottomSheet\n    type=\"message\"\n    title=\"Today’s limit reached\"\n    subtitle=\"Verify your identity to send more today. It takes about 3 minutes\"\n    illustration=\"cat\"\n    closable\n    actions={{ primary: 'Verify now', primaryLoading: true }} />;"
+        }
+      ],
+      "import": "import { BottomSheet } from 'design-system';"
+    },
+    "components-button": {
+      "id": "components-button",
+      "name": "Button",
+      "path": "./src/components/Button.stories.tsx",
+      "jsDocTags": {},
+      "reactDocgen": {
+        "description": "",
+        "methods": [],
+        "displayName": "Button",
+        "definedInFile": "/Users/user/Desktop/Claude/design-system/src/components/Button.tsx",
+        "actualName": "Button",
+        "exportName": "Button",
+        "props": {
+          "variant": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'primary' | 'secondary' | 'ghost'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'primary'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'secondary'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'ghost'"
+                }
+              ]
+            },
+            "description": "Primary – the one main action of a screen; Secondary – an alternative next to it; Ghost – low emphasis",
+            "defaultValue": {
+              "value": "'primary'",
+              "computed": false
+            }
+          },
+          "loading": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Spinner replaces the label, the width stays the same",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "icon": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "keyof typeof paths",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'arrow-forward'"
+                },
+                {
+                  "name": "literal",
+                  "value": "add"
+                },
+                {
+                  "name": "literal",
+                  "value": "'chevron-right'"
+                },
+                {
+                  "name": "literal",
+                  "value": "close"
+                }
+              ]
+            },
+            "description": "Icon after the label"
+          },
+          "fullWidth": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Stretch to the container width (Primary and Secondary in sheets and full screens)",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "pressed": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Shows the pressed look without pressing – for documentation",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "type": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'button' | 'submit' | 'reset'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'button'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'submit'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'reset'"
+                }
+              ]
+            },
+            "description": "",
+            "defaultValue": {
+              "value": "'button'",
+              "computed": false
+            }
+          },
+          "className": {
+            "defaultValue": {
+              "value": "''",
+              "computed": false
+            },
+            "required": false
+          }
+        },
+        "composes": [
+          "Omit"
+        ]
+      },
+      "stories": [
+        {
+          "id": "components-button--primary",
+          "name": "Primary",
+          "snippet": "const Primary = () => <Button variant=\"primary\">Continue</Button>;"
+        },
+        {
+          "id": "components-button--secondary",
+          "name": "Secondary",
+          "snippet": "const Secondary = () => <Button variant=\"secondary\">Change amount</Button>;"
+        },
+        {
+          "id": "components-button--ghost",
+          "name": "Ghost",
+          "snippet": "const Ghost = () => <Button variant=\"ghost\">Learn more</Button>;"
+        },
+        {
+          "id": "components-button--with-icon",
+          "name": "With Icon",
+          "snippet": "const WithIcon = () => <Button variant=\"primary\" icon=\"arrow-forward\">Continue</Button>;"
+        },
+        {
+          "id": "components-button--loading",
+          "name": "Loading",
+          "snippet": "const Loading = () => <Button variant=\"primary\" loading>Continue</Button>;"
+        },
+        {
+          "id": "components-button--disabled",
+          "name": "Disabled",
+          "snippet": "const Disabled = () => <Button variant=\"primary\" disabled>Continue</Button>;"
+        },
+        {
+          "id": "components-button--matrix",
+          "name": "Matrix",
+          "snippet": "const Matrix = () => (\n  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 220px)', gap: 24, alignItems: 'center' }}>\n    {(['primary', 'secondary', 'ghost'] as const).map((v) => (\n      <Fragment key={v}>\n        <Button variant={v} fullWidth>Default</Button>\n        <Button variant={v} fullWidth pressed>Pressed</Button>\n        <Button variant={v} fullWidth disabled>Disabled</Button>\n        <Button variant={v} fullWidth loading>Loading</Button>\n      </Fragment>\n    ))}\n  </div>\n);",
+          "description": "Every type in every state – the same matrix as in Figma"
+        }
+      ],
+      "import": "import { Button } from 'design-system';\nimport { Fragment } from 'react';"
+    },
+    "components-full-screen-message": {
+      "id": "components-full-screen-message",
+      "name": "FullscreenMessage",
+      "path": "./src/components/FullscreenMessage.stories.tsx",
+      "jsDocTags": {},
+      "description": "A result or a requirement the user must see before going on:\nsuccess, a blocking check, an empty state with an action",
+      "reactDocgen": {
+        "description": "A result or a requirement the user must see before going on:\nsuccess, a blocking check, an empty state with an action",
+        "methods": [],
+        "displayName": "FullscreenMessage",
+        "definedInFile": "/Users/user/Desktop/Claude/design-system/src/components/FullscreenMessage.tsx",
+        "actualName": "FullscreenMessage",
+        "exportName": "FullscreenMessage",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "subtitle": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "illustration": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "IllustrationName | null",
+              "elements": [
+                {
+                  "name": "union",
+                  "raw": "keyof typeof sources",
+                  "elements": [
+                    {
+                      "name": "literal",
+                      "value": "cat"
+                    },
+                    {
+                      "name": "literal",
+                      "value": "money"
+                    }
+                  ]
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            },
+            "description": "Pass null to hide the illustration",
+            "defaultValue": {
+              "value": "'money'",
+              "computed": false
+            }
+          },
+          "header": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Shows the top bar with a back button",
+            "defaultValue": {
+              "value": "true",
+              "computed": false
+            }
+          },
+          "onBack": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "bullets": {
+            "required": false,
+            "tsType": {
+              "name": "Array",
+              "elements": [
+                {
+                  "name": "string"
+                }
+              ],
+              "raw": "string[]"
+            },
+            "description": ""
+          },
+          "slot": {
+            "required": false,
+            "tsType": {
+              "name": "ReactNode"
+            },
+            "description": ""
+          },
+          "actions": {
+            "required": false,
+            "tsType": {
+              "name": "ButtonGroupProps"
+            },
+            "description": ""
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "components-full-screen-message--success",
+          "name": "Success",
+          "snippet": "const Success = () => <FullscreenMessage\n    title=\"Money is on its way\"\n    subtitle=\"We’ll let you know when it arrives. Usually it takes a few minutes\"\n    illustration=\"money\"\n    header\n    actions={{ primary: 'Done', secondary: 'Share receipt' }} />;"
+        },
+        {
+          "id": "components-full-screen-message--with-bullets",
+          "name": "With Bullets",
+          "snippet": "const WithBullets = () => <FullscreenMessage\n    title=\"Before you send\"\n    subtitle=\"Have these ready – it takes about 3 minutes\"\n    illustration=\"cat\"\n    header\n    actions={{ primary: 'Start' }}\n    bullets={['Passport or ID card', 'Proof of address', 'A good light for the photo']} />;"
+        },
+        {
+          "id": "components-full-screen-message--no-header-no-illustration",
+          "name": "No Header No Illustration",
+          "snippet": "const NoHeaderNoIllustration = () => <FullscreenMessage\n    title=\"Something went wrong\"\n    subtitle=\"We couldn’t check your documents. Try again in a few minutes\"\n    illustration={null}\n    header={false}\n    actions={{ primary: 'Try again' }} />;"
+        }
+      ],
+      "import": "import { FullscreenMessage } from 'design-system';"
+    },
+    "components-list-item": {
+      "id": "components-list-item",
+      "name": "ListItem",
+      "path": "./src/components/ListItem.stories.tsx",
+      "jsDocTags": {},
+      "description": "A row for settings, profile, accounts and countries",
+      "reactDocgen": {
+        "description": "A row for settings, profile, accounts and countries",
+        "methods": [],
+        "displayName": "ListItem",
+        "definedInFile": "/Users/user/Desktop/Claude/design-system/src/components/ListItem.tsx",
+        "actualName": "ListItem",
+        "exportName": "ListItem",
+        "props": {
+          "title": {
+            "required": true,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "subheading": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "lead": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'flag' | { icon: IconName } | null",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'flag'"
+                },
+                {
+                  "name": "signature",
+                  "type": "object",
+                  "raw": "{ icon: IconName }",
+                  "signature": {
+                    "properties": [
+                      {
+                        "key": "icon",
+                        "value": {
+                          "name": "union",
+                          "raw": "keyof typeof paths",
+                          "elements": [
+                            {
+                              "name": "literal",
+                              "value": "'arrow-forward'"
+                            },
+                            {
+                              "name": "literal",
+                              "value": "add"
+                            },
+                            {
+                              "name": "literal",
+                              "value": "'chevron-right'"
+                            },
+                            {
+                              "name": "literal",
+                              "value": "close"
+                            }
+                          ],
+                          "required": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            },
+            "description": "Leading element: a country flag, an icon, or nothing",
+            "defaultValue": {
+              "value": "'flag'",
+              "computed": false
+            }
+          },
+          "value": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "valueSubheading": {
+            "required": false,
+            "tsType": {
+              "name": "string"
+            },
+            "description": ""
+          },
+          "follower": {
+            "required": false,
+            "tsType": {
+              "name": "boolean"
+            },
+            "description": "Chevron that shows the row opens something. Makes the row a button",
+            "defaultValue": {
+              "value": "false",
+              "computed": false
+            }
+          },
+          "onClick": {
+            "required": false,
+            "tsType": {
+              "name": "signature",
+              "type": "function",
+              "raw": "() => void",
+              "signature": {
+                "arguments": [],
+                "return": {
+                  "name": "void"
+                }
+              }
+            },
+            "description": ""
+          },
+          "density": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'normal' | 'tight'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'normal'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'tight'"
+                }
+              ]
+            },
+            "description": "Tight for dense lists",
+            "defaultValue": {
+              "value": "'normal'",
+              "computed": false
+            }
+          },
+          "alignment": {
+            "required": false,
+            "tsType": {
+              "name": "union",
+              "raw": "'center' | 'top'",
+              "elements": [
+                {
+                  "name": "literal",
+                  "value": "'center'"
+                },
+                {
+                  "name": "literal",
+                  "value": "'top'"
+                }
+              ]
+            },
+            "description": "Top when the left text wraps to two lines",
+            "defaultValue": {
+              "value": "'center'",
+              "computed": false
+            }
+          }
+        }
+      },
+      "stories": [
+        {
+          "id": "components-list-item--default",
+          "name": "Default",
+          "snippet": "const Default = () => <ListItem\n    title=\"Czech koruna\"\n    subheading=\"Main account\"\n    value=\"1 200 CZK\"\n    valueSubheading=\"Available\"\n    lead=\"flag\"\n    follower />;"
+        },
+        {
+          "id": "components-list-item--icon-lead",
+          "name": "Icon Lead",
+          "snippet": "const IconLead = () => <ListItem\n    title=\"Top up\"\n    subheading=\"From a card or a bank account\"\n    value={undefined}\n    valueSubheading=\"Available\"\n    lead={{ icon: 'add' }}\n    follower />;"
+        },
+        {
+          "id": "components-list-item--title-only",
+          "name": "Title Only",
+          "snippet": "const TitleOnly = () => <ListItem\n    title=\"Language\"\n    subheading={undefined}\n    value={undefined}\n    valueSubheading=\"Available\"\n    lead={null}\n    follower />;"
+        },
+        {
+          "id": "components-list-item--static",
+          "name": "Static",
+          "snippet": "const Static = () => <ListItem\n    title=\"Czech koruna\"\n    subheading=\"Main account\"\n    value=\"1 200 CZK\"\n    valueSubheading=\"Available\"\n    lead=\"flag\"\n    follower={false} />;"
+        },
+        {
+          "id": "components-list-item--tight",
+          "name": "Tight",
+          "snippet": "const Tight = () => <ListItem\n    title=\"Czech koruna\"\n    subheading=\"Main account\"\n    value=\"1 200 CZK\"\n    valueSubheading=\"Available\"\n    lead=\"flag\"\n    follower\n    density=\"tight\" />;"
+        },
+        {
+          "id": "components-list-item--top-alignment",
+          "name": "Top Alignment",
+          "snippet": "const TopAlignment = () => <ListItem\n    title=\"Send to a bank account in another country\"\n    subheading=\"Usually arrives the same day\"\n    value=\"1 200 CZK\"\n    valueSubheading=\"Available\"\n    lead=\"flag\"\n    follower\n    alignment=\"top\" />;"
+        }
+      ],
+      "import": "import { ListItem } from 'design-system';"
+    }
+  },
+  "meta": {
+    "docgen": "react-docgen",
+    "durationMs": 113
+  }
+}

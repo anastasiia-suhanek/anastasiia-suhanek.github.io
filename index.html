@@ -979,7 +979,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
           <span class="rb-label"><span lang="en" class="t-en">faster to localise a feature · 1 day&nbsp;→&nbsp;~2 hours</span><span lang="ru" class="t-ru">быстрее локализация фичи · день&nbsp;→&nbsp;~2 часа</span></span>
           <span class="rb-num"><span lang="en" class="t-en" data-count>×4</span><span lang="ru" class="t-ru" data-count>×4</span></span>
         </a></li>
-        <li><a class="rb-row" href="design-system/">
+        <li><a class="rb-row" href="design-system/" data-href-ru="design-system/?globals=locale:ru">
           <span class="rb-meta"><span lang="en" class="t-en">Design system · 2026</span><span lang="ru" class="t-ru">Дизайн-система · 2026</span></span>
           <h2 class="rb-case"><span lang="en" class="t-en">Design system in code</span><span lang="ru" class="t-ru">Дизайн-система в коде</span></h2>
           <span class="rb-excerpt"><span lang="en" class="t-en">Figma components rebuilt in React and Storybook with Claude Code. The tests caught a contrast bug Figma didn’t show</span><span lang="ru" class="t-ru">Компоненты из Figma пересобраны на React и Storybook с Claude Code. Тесты поймали ошибку контраста, которую Figma не показывала</span></span>
@@ -999,6 +999,18 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
     </div>
   </div>
   <script>
+    // Rows with data-href-ru open the Russian version when the site is in Russian
+    (function () {
+      function sync() {
+        var ru = document.documentElement.lang === 'ru';
+        document.querySelectorAll('[data-href-ru]').forEach(function (a) {
+          if (!a.dataset.hrefEn) a.dataset.hrefEn = a.getAttribute('href');
+          a.setAttribute('href', ru ? a.dataset.hrefRu : a.dataset.hrefEn);
+        });
+      }
+      sync();
+      new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    })();
     (function () {
       var rb = document.querySelector('.rb');
       if (!rb || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

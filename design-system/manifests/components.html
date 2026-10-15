@@ -651,7 +651,7 @@
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> BottomSheet</h2>
       <div class="badges">
-        <label for="c-0-components-bottom-sheet-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-0-components-bottom-sheet-props" class="badge ok as-toggle">9 prop types</label>
         
         <label for="c-0-components-bottom-sheet-stories" class="badge ok as-toggle">5 stories</label>
         
@@ -681,7 +681,7 @@ a limit reached, an error with one next step, a reminder that can wait</div>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
             <pre><code>Component: src/components/BottomSheet.tsx::BottomSheet</code></pre>
             <pre><code>Props:</code></pre>
@@ -691,6 +691,11 @@ a limit reached, an error with one next step, a reminder that can wait</div>
  * Shows the close button. Turn off when the user must choose an action
  */
 closable?: boolean = true
+
+/**
+ * Accessible name of the close button – translate with the rest of the copy
+ */
+closeLabel?: string = &#39;Close&#39;
 
 /**
  * Message type only
@@ -740,7 +745,8 @@ type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
     subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
     illustration=&quot;cat&quot;
     closable
-    actions={{ primary: &#39;Verify now&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Verify now&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { closeLabel: &#39;Закрыть&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -756,7 +762,8 @@ type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
     subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
     illustration=&quot;cat&quot;
     closable
-    actions={{ primary: &#39;Verify now&#39;, secondary: &#39;Change amount&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Verify now&#39;, secondary: &#39;Change amount&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { closeLabel: &#39;Закрыть&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -772,7 +779,8 @@ type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
     subtitle=&quot;Your documents have expired. Update them to keep sending money&quot;
     illustration=&quot;money&quot;
     closable={false}
-    actions={{ primary: &#39;Open bot&#39;, ghost: &#39;All clear&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Open bot&#39;, ghost: &#39;All clear&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { closeLabel: &#39;Закрыть&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -788,7 +796,8 @@ type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
     subtitle=&quot;We sent a request for extra documents. Reply to it to keep sending&quot;
     illustration=&quot;cat&quot;
     closable
-    actions={{ primary: &#39;Open email&#39;, secondary: &#39;Not now&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Open email&#39;, secondary: &#39;Not now&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { closeLabel: &#39;Закрыть&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -804,7 +813,8 @@ type?: &#39;message&#39; | &#39;functional&#39; = &#39;message&#39;</code></pre>
     subtitle=&quot;Verify your identity to send more today. It takes about 3 minutes&quot;
     illustration=&quot;cat&quot;
     closable
-    actions={{ primary: &#39;Verify now&#39;, primaryLoading: true }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Verify now&#39;, primaryLoading: true }}
+    {...(globals.locale === &#39;ru&#39; ? { closeLabel: &#39;Закрыть&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
         </div>
@@ -918,7 +928,7 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const Primary = () =&gt; &lt;Button variant=&quot;primary&quot;&gt;Continue&lt;/Button&gt;;</code></pre>
+              <pre><code>const Primary = () =&gt; &lt;Button variant=&quot;primary&quot; {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Continue&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -928,7 +938,7 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const Secondary = () =&gt; &lt;Button variant=&quot;secondary&quot;&gt;Change amount&lt;/Button&gt;;</code></pre>
+              <pre><code>const Secondary = () =&gt; &lt;Button variant=&quot;secondary&quot; {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Change amount&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -938,7 +948,7 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const Ghost = () =&gt; &lt;Button variant=&quot;ghost&quot;&gt;Learn more&lt;/Button&gt;;</code></pre>
+              <pre><code>const Ghost = () =&gt; &lt;Button variant=&quot;ghost&quot; {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Learn more&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -948,7 +958,10 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const WithIcon = () =&gt; &lt;Button variant=&quot;primary&quot; icon=&quot;arrow-forward&quot;&gt;Continue&lt;/Button&gt;;</code></pre>
+              <pre><code>const WithIcon = () =&gt; &lt;Button
+    variant=&quot;primary&quot;
+    icon=&quot;arrow-forward&quot;
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Continue&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -958,7 +971,10 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const Loading = () =&gt; &lt;Button variant=&quot;primary&quot; loading&gt;Continue&lt;/Button&gt;;</code></pre>
+              <pre><code>const Loading = () =&gt; &lt;Button
+    variant=&quot;primary&quot;
+    loading
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Continue&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -968,7 +984,10 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               
-              <pre><code>const Disabled = () =&gt; &lt;Button variant=&quot;primary&quot; disabled&gt;Continue&lt;/Button&gt;;</code></pre>
+              <pre><code>const Disabled = () =&gt; &lt;Button
+    variant=&quot;primary&quot;
+    disabled
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})}&gt;Continue&lt;/Button&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -978,18 +997,22 @@ import { Fragment } from 'react';</code></pre>
               </div>
               
               <div class="hint">Every type in every state – the same matrix as in Figma</div>
-              <pre><code>const Matrix = () =&gt; (
+              <pre><code>const Matrix = (_, { globals }) =&gt; {
+  const ru = globals.locale === &#39;ru&#39;;
+  const l = ru ? [&#39;Обычная&#39;, &#39;Нажата&#39;, &#39;Неактивна&#39;, &#39;Загрузка&#39;] : [&#39;Default&#39;, &#39;Pressed&#39;, &#39;Disabled&#39;, &#39;Loading&#39;];
+  return (
   &lt;div style={{ display: &#39;grid&#39;, gridTemplateColumns: &#39;repeat(4, 220px)&#39;, gap: 24, alignItems: &#39;center&#39; }}&gt;
     {([&#39;primary&#39;, &#39;secondary&#39;, &#39;ghost&#39;] as const).map((v) =&gt; (
       &lt;Fragment key={v}&gt;
-        &lt;Button variant={v} fullWidth&gt;Default&lt;/Button&gt;
-        &lt;Button variant={v} fullWidth pressed&gt;Pressed&lt;/Button&gt;
-        &lt;Button variant={v} fullWidth disabled&gt;Disabled&lt;/Button&gt;
-        &lt;Button variant={v} fullWidth loading&gt;Loading&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth&gt;{l[0]}&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth pressed&gt;{l[1]}&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth disabled&gt;{l[2]}&lt;/Button&gt;
+        &lt;Button variant={v} fullWidth loading&gt;{l[3]}&lt;/Button&gt;
       &lt;/Fragment&gt;
     ))}
   &lt;/div&gt;
-);</code></pre>
+  );
+};</code></pre>
               
             </div>
         </div>
@@ -1012,7 +1035,7 @@ import { Fragment } from 'react';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FullscreenMessage</h2>
       <div class="badges">
-        <label for="c-2-components-full-screen-message-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-2-components-full-screen-message-props" class="badge ok as-toggle">9 prop types</label>
         
         <label for="c-2-components-full-screen-message-stories" class="badge ok as-toggle">3 stories</label>
         
@@ -1042,11 +1065,16 @@ success, a blocking check, an empty state with an action</div>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
             <pre><code>Component: src/components/FullscreenMessage.tsx::FullscreenMessage</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>actions?: ButtonGroupProps
+
+/**
+ * Accessible name of the back button
+ */
+backLabel?: string = &#39;Back&#39;
 
 bullets?: string[]
 
@@ -1094,7 +1122,8 @@ title: string</code></pre>
     subtitle=&quot;We’ll let you know when it arrives. Usually it takes a few minutes&quot;
     illustration=&quot;money&quot;
     header
-    actions={{ primary: &#39;Done&#39;, secondary: &#39;Share receipt&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Done&#39;, secondary: &#39;Share receipt&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { backLabel: &#39;Назад&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1110,7 +1139,8 @@ title: string</code></pre>
     illustration=&quot;cat&quot;
     header
     actions={{ primary: &#39;Start&#39; }}
-    bullets={[&#39;Passport or ID card&#39;, &#39;Proof of address&#39;, &#39;A good light for the photo&#39;]} /&gt;;</code></pre>
+    bullets={[&#39;Passport or ID card&#39;, &#39;Proof of address&#39;, &#39;A good light for the photo&#39;]}
+    {...(globals.locale === &#39;ru&#39; ? { backLabel: &#39;Назад&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1125,7 +1155,8 @@ title: string</code></pre>
     subtitle=&quot;We couldn’t check your documents. Try again in a few minutes&quot;
     illustration={null}
     header={false}
-    actions={{ primary: &#39;Try again&#39; }} /&gt;;</code></pre>
+    actions={{ primary: &#39;Try again&#39; }}
+    {...(globals.locale === &#39;ru&#39; ? { backLabel: &#39;Назад&#39;, ...parameters.ru } : {})} /&gt;;</code></pre>
               
             </div>
         </div>
@@ -1238,7 +1269,8 @@ valueSubheading?: string</code></pre>
     value=&quot;1 200 CZK&quot;
     valueSubheading=&quot;Available&quot;
     lead=&quot;flag&quot;
-    follower /&gt;;</code></pre>
+    follower
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1254,7 +1286,8 @@ valueSubheading?: string</code></pre>
     value={undefined}
     valueSubheading=&quot;Available&quot;
     lead={{ icon: &#39;add&#39; }}
-    follower /&gt;;</code></pre>
+    follower
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1270,7 +1303,8 @@ valueSubheading?: string</code></pre>
     value={undefined}
     valueSubheading=&quot;Available&quot;
     lead={null}
-    follower /&gt;;</code></pre>
+    follower
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1286,7 +1320,8 @@ valueSubheading?: string</code></pre>
     value=&quot;1 200 CZK&quot;
     valueSubheading=&quot;Available&quot;
     lead=&quot;flag&quot;
-    follower={false} /&gt;;</code></pre>
+    follower={false}
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1303,7 +1338,8 @@ valueSubheading?: string</code></pre>
     valueSubheading=&quot;Available&quot;
     lead=&quot;flag&quot;
     follower
-    density=&quot;tight&quot; /&gt;;</code></pre>
+    density=&quot;tight&quot;
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
             <div class="note ok">
@@ -1320,7 +1356,8 @@ valueSubheading?: string</code></pre>
     valueSubheading=&quot;Available&quot;
     lead=&quot;flag&quot;
     follower
-    alignment=&quot;top&quot; /&gt;;</code></pre>
+    alignment=&quot;top&quot;
+    {...(globals.locale === &#39;ru&#39; ? parameters.ru : {})} /&gt;;</code></pre>
               
             </div>
         </div>
@@ -1346,7 +1383,7 @@ valueSubheading?: string</code></pre>
       </div>
     </div>
     <div class="meta" title="./src/Introduction.mdx">introduction--docs · ./src/Introduction.mdx</div>
-    <div># Design system sample Components I built in the design system of a fintech app for intern...</div>
+    <div>export const LinkCard = () =&gt; ( → ); # ## ##</div>
   </div>
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
@@ -1359,24 +1396,9 @@ valueSubheading?: string</code></pre>
         <div class="panel panel-content">
           <div class="mdx-content">
             <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
+import { T } from &#39;./docs/i18n&#39;;
 
 &lt;Meta title=&quot;Introduction&quot; /&gt;
-
-# Design system sample
-
-Components I built in the design system of a fintech app for international money transfers – iOS, Android and web.
-**Anonymised under NDA:** the brand colour, names and copy are replaced; the structure, properties and tokens follow production
-
-Designed in Figma, then rebuilt here in React and TypeScript with Claude Code – the same names and states in both, so design and code speak one language
-
-## How it’s built
-
-- **Tokens in two layers.** Primitives hold raw values; components use only semantic tokens (`button/primary/bg`, `text/secondary`), so a brand or a theme changes in one place. `tokens.json` is the source of truth, `npm run tokens` generates the CSS variables
-- **Components** – Button, Bottom sheet, Full screen message, List item. Every prop maps to a component property in Figma
-- **Accessibility** is checked on every story with axe (the Accessibility tab): semantic buttons and dialogs, focus rings, labels for icon-only buttons, reduced motion
-- **Readable by AI agents** – the Storybook MCP addon exposes components and their docs to coding agents
-
-## Links
 
 export const LinkCard = ({ href, title, note }) =&gt; (
   &lt;a href={href} style={{ display: &#39;flex&#39;, flexDirection: &#39;column&#39;, gap: 4, padding: 16, border: &#39;1px solid #E1E1DE&#39;, color: &#39;#0B0B0B&#39;, textDecoration: &#39;none&#39;, flex: &#39;1 1 200px&#39; }}&gt;
@@ -1385,13 +1407,47 @@ export const LinkCard = ({ href, title, note }) =&gt; (
   &lt;/a&gt;
 );
 
+# &lt;T en=&quot;Design system sample&quot; ru=&quot;Образец дизайн-системы&quot; /&gt;
+
+&lt;T
+  en={&lt;&gt;
+    &lt;p&gt;Components I built in the design system of a fintech app for international money transfers – iOS, Android and web. &lt;strong&gt;Anonymised under NDA:&lt;/strong&gt; the brand colour, names and copy are replaced; the structure, properties and tokens follow production&lt;/p&gt;
+    &lt;p&gt;Designed in Figma, then rebuilt here in React and TypeScript with Claude Code – the same names and states in both, so design and code speak one language. Switch the &lt;strong&gt;Language&lt;/strong&gt; toolbar above to see every component in Russian&lt;/p&gt;
+  &lt;/&gt;}
+  ru={&lt;&gt;
+    &lt;p&gt;Компоненты, которые я собрала в дизайн-системе финтех-приложения для международных переводов – iOS, Android и веб. &lt;strong&gt;Обезличено из-за NDA:&lt;/strong&gt; фирменный цвет, названия и тексты заменены; структура, свойства и токены – как в продакшене&lt;/p&gt;
+    &lt;p&gt;Спроектировано в Figma, затем пересобрано здесь на React и TypeScript с Claude Code – одни и те же названия и состояния, чтобы дизайн и код говорили на одном языке. Переключатель &lt;strong&gt;Language&lt;/strong&gt; в верхней панели показывает все компоненты на русском&lt;/p&gt;
+  &lt;/&gt;}
+/&gt;
+
+## &lt;T en=&quot;How it’s built&quot; ru=&quot;Как устроено&quot; /&gt;
+
+&lt;T
+  en={&lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Tokens in two layers.&lt;/strong&gt; Primitives hold raw values; components use only semantic tokens (&lt;code&gt;button/primary/bg&lt;/code&gt;, &lt;code&gt;text/secondary&lt;/code&gt;), so a brand or a theme changes in one place. &lt;code&gt;tokens.json&lt;/code&gt; is the source of truth, &lt;code&gt;npm run tokens&lt;/code&gt; generates the CSS variables&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Components&lt;/strong&gt; – Button, Bottom sheet, Full screen message, List item. Every prop maps to a component property in Figma&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Accessibility&lt;/strong&gt; is tested on every story with axe – a violation fails the build. The first run caught what Figma didn’t show: secondary button text at 3.98:1 contrast (now 5.3:1) and loading buttons losing their name&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Localisation&lt;/strong&gt; – the same components in English and Russian, including labels screen readers hear&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Readable by AI agents&lt;/strong&gt; – the Storybook MCP addon exposes components and their docs to coding agents&lt;/li&gt;
+  &lt;/ul&gt;}
+  ru={&lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Токены в два слоя.&lt;/strong&gt; Примитивы хранят значения; компоненты используют только семантические токены (&lt;code&gt;button/primary/bg&lt;/code&gt;, &lt;code&gt;text/secondary&lt;/code&gt;), поэтому бренд или тема меняются в одном месте. &lt;code&gt;tokens.json&lt;/code&gt; – источник правды, &lt;code&gt;npm run tokens&lt;/code&gt; собирает CSS-переменные&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Компоненты&lt;/strong&gt; – Button, Bottom sheet, Full screen message, List item. Каждое свойство соответствует свойству компонента в Figma&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Доступность&lt;/strong&gt; проверяется на каждой истории через axe – нарушение роняет сборку. Первый же прогон нашёл то, чего не видно в Figma: контраст текста вторичной кнопки 3,98:1 (теперь 5,3:1) и потерю названия у кнопки при загрузке&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Локализация&lt;/strong&gt; – те же компоненты на английском и русском, включая подписи для скринридеров&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Понятно ИИ-агентам&lt;/strong&gt; – аддон Storybook MCP открывает компоненты и документацию агентам, которые пишут код&lt;/li&gt;
+  &lt;/ul&gt;}
+/&gt;
+
+## &lt;T en=&quot;Links&quot; ru=&quot;Ссылки&quot; /&gt;
+
 &lt;div style={{ display: &#39;flex&#39;, gap: 12, flexWrap: &#39;wrap&#39;, margin: &#39;16px 0 40px&#39; }}&gt;
-  &lt;LinkCard href=&quot;https://anastasiia-suhanek.github.io&quot; title=&quot;Portfolio&quot; note=&quot;Case studies with metrics&quot; /&gt;
-  &lt;LinkCard href=&quot;https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG/Anastasiia-Sukhanek-%E2%80%94-Design-System-Sample&quot; title=&quot;Figma&quot; note=&quot;The same components, variants and tokens&quot; /&gt;
-  &lt;LinkCard href=&quot;https://github.com/anastasiia-suhanek/design-system&quot; title=&quot;GitHub&quot; note=&quot;Source code, tokens and tests&quot; /&gt;
+  &lt;LinkCard href=&quot;https://anastasiia-suhanek.github.io&quot; title={&lt;T en=&quot;Portfolio&quot; ru=&quot;Портфолио&quot; /&gt;} note={&lt;T en=&quot;Case studies with metrics&quot; ru=&quot;Кейсы с метриками&quot; /&gt;} /&gt;
+  &lt;LinkCard href=&quot;https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG/Anastasiia-Sukhanek-%E2%80%94-Design-System-Sample&quot; title=&quot;Figma&quot; note={&lt;T en=&quot;The same components, variants and tokens&quot; ru=&quot;Те же компоненты, варианты и токены&quot; /&gt;} /&gt;
+  &lt;LinkCard href=&quot;https://github.com/anastasiia-suhanek/design-system&quot; title=&quot;GitHub&quot; note={&lt;T en=&quot;Source code, tokens and tests&quot; ru=&quot;Код, токены и тесты&quot; /&gt;} /&gt;
 &lt;/div&gt;
 
-&lt;p style={{ color: &#39;#767676&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;Anastasiia Sukhanek, product designer · Prague&lt;/p&gt;
+&lt;p style={{ color: &#39;#767676&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;&lt;T en=&quot;Anastasiia Sukhanek, product designer · Prague&quot; ru=&quot;Анастасия Суханек, продуктовый дизайнер · Прага&quot; /&gt;&lt;/p&gt;
 </code></pre>
           </div>
         </div>
@@ -1410,7 +1466,7 @@ export const LinkCard = ({ href, title, note }) =&gt; (
       </div>
     </div>
     <div class="meta" title="./src/tokens/Tokens.mdx">foundations-tokens--docs · ./src/tokens/Tokens.mdx</div>
-    <div>export const Swatch = () =&gt; ( ); # Tokens Two layers. **Components only use semantic token...</div>
+    <div>export const Swatch = () =&gt; ( ); # ## ## ##</div>
   </div>
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
@@ -1424,32 +1480,33 @@ export const LinkCard = ({ href, title, note }) =&gt; (
           <div class="mdx-content">
             <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
 import tokens from &#39;./tokens.json&#39;;
+import { T } from &#39;../docs/i18n&#39;;
 
 &lt;Meta title=&quot;Foundations/Tokens&quot; /&gt;
 
 export const Swatch = ({ name, value, cssVar }) =&gt; (
-  &lt;div style={{ display: &#39;flex&#39;, alignItems: &#39;center&#39;, gap: 12, padding: &#39;8px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
+  &lt;div style={{ display: &#39;flex&#39;, alignItems: &#39;center&#39;, flexWrap: &#39;wrap&#39;, gap: 12, padding: &#39;8px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
     &lt;div style={{ width: 40, height: 40, borderRadius: 0, background: `var(${cssVar})`, border: &#39;1px solid var(--border-subtle)&#39;, flex: &#39;none&#39; }} /&gt;
     &lt;span style={{ minWidth: 240, fontFamily: &#39;ui-monospace, Menlo, monospace&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;{name}&lt;/span&gt;
     &lt;span style={{ color: &#39;var(--text-secondary)&#39; }}&gt;{value}&lt;/span&gt;
   &lt;/div&gt;
 );
 
-# Tokens
+# &lt;T en=&quot;Tokens&quot; ru=&quot;Токены&quot; /&gt;
 
-Two layers. **Components only use semantic tokens**; semantic tokens point at primitives
+&lt;T en={&lt;p&gt;Two layers. &lt;strong&gt;Components only use semantic tokens&lt;/strong&gt;; semantic tokens point at primitives&lt;/p&gt;} ru={&lt;p&gt;Два слоя. &lt;strong&gt;Компоненты используют только семантические токены&lt;/strong&gt;, а те ссылаются на примитивы&lt;/p&gt;} /&gt;
 
-## Semantic
+## &lt;T en=&quot;Semantic&quot; ru=&quot;Семантические&quot; /&gt;
 
 {Object.entries(tokens.semantic).map(([k, v]) =&gt; &lt;Swatch key={k} name={k} value={&#39;→ &#39; + v.replace(/[{}]/g, &#39;&#39;)} cssVar={&#39;--&#39; + k.replace(/\//g, &#39;-&#39;)} /&gt;)}
 
-## Colour primitives
+## &lt;T en=&quot;Colour primitives&quot; ru=&quot;Цветовые примитивы&quot; /&gt;
 
 {Object.entries(tokens.primitives.color).map(([k, v]) =&gt; &lt;Swatch key={k} name={&#39;color/&#39; + k} value={v} cssVar={&#39;--color-&#39; + k} /&gt;)}
 
-## Spacing and radius
+## &lt;T en=&quot;Spacing and radius&quot; ru=&quot;Отступы и радиусы&quot; /&gt;
 
-Every padding, gap and radius sits on a 4 px grid
+&lt;T en={&lt;p&gt;Every padding, gap and radius sits on a 4 px grid&lt;/p&gt;} ru={&lt;p&gt;Все отступы и радиусы лежат на сетке 4 px&lt;/p&gt;} /&gt;
 
 &lt;div style={{ display: &#39;flex&#39;, gap: 16, alignItems: &#39;flex-end&#39;, flexWrap: &#39;wrap&#39; }}&gt;
   {Object.entries(tokens.primitives.spacing).map(([k, v]) =&gt; (
@@ -1477,7 +1534,7 @@ Every padding, gap and radius sits on a 4 px grid
       </div>
     </div>
     <div class="meta" title="./src/tokens/Typography.mdx">foundations-typography--docs · ./src/tokens/Typography.mdx</div>
-    <div># Typography Inter. Each style is a set of tokens – weight, size, line height, letter spac...</div>
+    <div>#</div>
   </div>
 
   <!-- Hidden toggles must be siblings BEFORE .panels -->
@@ -1491,18 +1548,19 @@ Every padding, gap and radius sits on a 4 px grid
           <div class="mdx-content">
             <pre><code>import { Meta } from &#39;@storybook/addon-docs/blocks&#39;;
 import tokens from &#39;./tokens.json&#39;;
+import { T } from &#39;../docs/i18n&#39;;
 
 &lt;Meta title=&quot;Foundations/Typography&quot; /&gt;
 
-# Typography
+# &lt;T en=&quot;Typography&quot; ru=&quot;Типографика&quot; /&gt;
 
-Inter. Each style is a set of tokens – weight, size, line height, letter spacing – and a `.text-*` class
+&lt;T en={&lt;p&gt;Inter. Each style is a set of tokens – weight, size, line height, letter spacing – and a &lt;code&gt;.text-*&lt;/code&gt; class&lt;/p&gt;} ru={&lt;p&gt;Inter. Каждый стиль – набор токенов: начертание, кегль, интерлиньяж, трекинг – и класс &lt;code&gt;.text-*&lt;/code&gt;&lt;/p&gt;} /&gt;
 
 {Object.entries(tokens.typography).map(([k, s]) =&gt; (
-  &lt;div key={k} style={{ display: &#39;flex&#39;, alignItems: &#39;baseline&#39;, gap: 24, padding: &#39;16px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
+  &lt;div key={k} style={{ display: &#39;flex&#39;, alignItems: &#39;baseline&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: &#39;16px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
     &lt;span style={{ minWidth: 120, fontFamily: &#39;ui-monospace, Menlo, monospace&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;{k}&lt;/span&gt;
     &lt;span style={{ color: &#39;var(--text-secondary)&#39;, minWidth: 140 }}&gt;{s.weight} · {s.size} / {s.lineHeight}&lt;/span&gt;
-    &lt;span className={&#39;text-&#39; + k.replace(&#39;/&#39;, &#39;-&#39;)}&gt;Send money in a few taps&lt;/span&gt;
+    &lt;span className={&#39;text-&#39; + k.replace(&#39;/&#39;, &#39;-&#39;)}&gt;&lt;T en=&quot;Send money in a few taps&quot; ru=&quot;Переводите деньги в пару касаний&quot; /&gt;&lt;/span&gt;
   &lt;/div&gt;
 ))}
 </code></pre>

@@ -1,4 +1,4 @@
-import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{i as n,r}from"./react-DITjJg24.js";import{a as i,o as a}from"./blocks-DxSo9pOn.js";import{n as o,t as s}from"./tokens-BE9SZHcF.js";function c(e){let t={h1:`h1`,h2:`h2`,p:`p`,strong:`strong`,...n(),...e.components};return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(i,{title:`Foundations/Tokens`}),`
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{i as n,r}from"./react-DITjJg24.js";import{a as i,o as a}from"./blocks-BHMVNb04.js";import{n as o,t as s}from"./tokens-BE9SZHcF.js";function c(e){let t={h1:`h1`,h2:`h2`,p:`p`,strong:`strong`,...n(),...e.components};return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(i,{title:`Foundations/Tokens`}),`
 `,`
 `,(0,u.jsx)(t.h1,{id:`tokens`,children:`Tokens`}),`
 `,(0,u.jsxs)(t.p,{children:[`Two layers. `,(0,u.jsx)(t.strong,{children:`Components only use semantic tokens`}),`; semantic tokens point at primitives`]}),`

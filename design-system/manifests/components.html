@@ -1380,18 +1380,18 @@ Designed in Figma, then rebuilt here in React and TypeScript with Claude Code �
 
 export const LinkCard = ({ href, title, note }) =&gt; (
   &lt;a href={href} style={{ display: &#39;flex&#39;, flexDirection: &#39;column&#39;, gap: 4, padding: 16, border: &#39;1px solid #E1E1DE&#39;, color: &#39;#0B0B0B&#39;, textDecoration: &#39;none&#39;, flex: &#39;1 1 200px&#39; }}&gt;
-    &lt;span style={{ fontWeight: 600, fontSize: 16 }}&gt;{title} &lt;span style={{ color: &#39;#5046E5&#39; }}&gt;→&lt;/span&gt;&lt;/span&gt;
-    &lt;span style={{ color: &#39;#767676&#39;, fontSize: 14 }}&gt;{note}&lt;/span&gt;
+    &lt;span style={{ fontWeight: 500, fontSize: 16, lineHeight: &#39;24px&#39; }}&gt;{title} &lt;span style={{ color: &#39;#5046E5&#39; }}&gt;→&lt;/span&gt;&lt;/span&gt;
+    &lt;span style={{ color: &#39;#767676&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;{note}&lt;/span&gt;
   &lt;/a&gt;
 );
 
-&lt;div style={{ display: &#39;flex&#39;, gap: 12, flexWrap: &#39;wrap&#39;, margin: &#39;16px 0 32px&#39; }}&gt;
+&lt;div style={{ display: &#39;flex&#39;, gap: 12, flexWrap: &#39;wrap&#39;, margin: &#39;16px 0 40px&#39; }}&gt;
   &lt;LinkCard href=&quot;https://anastasiia-suhanek.github.io&quot; title=&quot;Portfolio&quot; note=&quot;Case studies with metrics&quot; /&gt;
   &lt;LinkCard href=&quot;https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG/Anastasiia-Sukhanek-%E2%80%94-Design-System-Sample&quot; title=&quot;Figma&quot; note=&quot;The same components, variants and tokens&quot; /&gt;
   &lt;LinkCard href=&quot;https://github.com/anastasiia-suhanek/design-system&quot; title=&quot;GitHub&quot; note=&quot;Source code, tokens and tests&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p style={{ color: &#39;#767676&#39;, fontSize: 14 }}&gt;Anastasiia Sukhanek, product designer · Prague&lt;/p&gt;
+&lt;p style={{ color: &#39;#767676&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;Anastasiia Sukhanek, product designer · Prague&lt;/p&gt;
 </code></pre>
           </div>
         </div>
@@ -1429,8 +1429,8 @@ import tokens from &#39;./tokens.json&#39;;
 
 export const Swatch = ({ name, value, cssVar }) =&gt; (
   &lt;div style={{ display: &#39;flex&#39;, alignItems: &#39;center&#39;, gap: 12, padding: &#39;8px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
-    &lt;div style={{ width: 40, height: 40, borderRadius: 8, background: `var(${cssVar})`, border: &#39;1px solid var(--border-subtle)&#39;, flex: &#39;none&#39; }} /&gt;
-    &lt;code style={{ minWidth: 240 }}&gt;{name}&lt;/code&gt;
+    &lt;div style={{ width: 40, height: 40, borderRadius: 0, background: `var(${cssVar})`, border: &#39;1px solid var(--border-subtle)&#39;, flex: &#39;none&#39; }} /&gt;
+    &lt;span style={{ minWidth: 240, fontFamily: &#39;ui-monospace, Menlo, monospace&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;{name}&lt;/span&gt;
     &lt;span style={{ color: &#39;var(--text-secondary)&#39; }}&gt;{value}&lt;/span&gt;
   &lt;/div&gt;
 );
@@ -1500,7 +1500,7 @@ Inter. Each style is a set of tokens – weight, size, line height, letter spaci
 
 {Object.entries(tokens.typography).map(([k, s]) =&gt; (
   &lt;div key={k} style={{ display: &#39;flex&#39;, alignItems: &#39;baseline&#39;, gap: 24, padding: &#39;16px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;
-    &lt;code style={{ minWidth: 120 }}&gt;{k}&lt;/code&gt;
+    &lt;span style={{ minWidth: 120, fontFamily: &#39;ui-monospace, Menlo, monospace&#39;, fontSize: 12, lineHeight: &#39;16px&#39; }}&gt;{k}&lt;/span&gt;
     &lt;span style={{ color: &#39;var(--text-secondary)&#39;, minWidth: 140 }}&gt;{s.weight} · {s.size} / {s.lineHeight}&lt;/span&gt;
     &lt;span className={&#39;text-&#39; + k.replace(&#39;/&#39;, &#39;-&#39;)}&gt;Send money in a few taps&lt;/span&gt;
   &lt;/div&gt;

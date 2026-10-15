@@ -59,8 +59,24 @@
     <link href="./sb-addons/storybook-5/manager-bundle.js" rel="modulepreload" />
       <link rel="stylesheet" href="https://anastasiia-suhanek.github.io/fonts/inter.css">
 <style>
-  /* Swiss: square corners and a sharper brand line in the sidebar */
-  .sidebar-header a, .sidebar-header span { font-weight: 600 !important; letter-spacing: -0.01em; }
+  /* Swiss, like the portfolio: white, thin rules, black type, no filled pills */
+  .sidebar-container { border-right: 1px solid #E1E1DE; }
+  .sidebar-header { padding-bottom: 8px; }
+  .sidebar-item[data-selected="true"],
+  .sidebar-item[data-selected="true"]:hover,
+  .sidebar-item[data-selected="true"]:focus {
+    background: transparent !important;
+    color: #0B0B0B !important;
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 #5046E5;
+    border-radius: 0 !important;
+  }
+  .sidebar-item[data-selected="true"] * { color: #0B0B0B !important; }
+  .sidebar-item { border-radius: 0 !important; }
+  .sidebar-item:hover { background: #F5F5F3 !important; }
+  .sidebar-item svg { color: #767676 !important; }
+  .sidebar-subheading, .sidebar-subheading button { color: #767676 !important; letter-spacing: 0.08em; }
+  #storybook-explorer-searchfield, input[type="search"] { border-radius: 0 !important; }
 </style>
 
 <script>window.__CHROMATIC_STORYBOOK_ID__ = "a5e97945df1afe44b9bbf2fc9bad0cd8b3e6dffc83c662697461407f4dd03aa0";</script> 

@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-P2Rk__4L.js";e();

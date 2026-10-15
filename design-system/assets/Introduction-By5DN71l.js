@@ -1,4 +1,4 @@
-import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{i as n,r}from"./react-DITjJg24.js";import{a as i,o as a}from"./blocks-BHMVNb04.js";function o(e){let t={a:`a`,code:`code`,h1:`h1`,h2:`h2`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...n(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{title:`Introduction`}),`
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{i as n,r}from"./react-DITjJg24.js";import{a as i,o as a}from"./blocks-Ddqm_Tbl.js";function o(e){let t={a:`a`,code:`code`,h1:`h1`,h2:`h2`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...n(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{title:`Introduction`}),`
 `,(0,c.jsx)(t.h1,{id:`design-system-sample`,children:`Design system sample`}),`
 `,(0,c.jsxs)(t.p,{children:[`Components I built in the design system of a fintech app for international money transfers – iOS, Android and web.
 `,(0,c.jsx)(t.strong,{children:`Anonymised under NDA:`}),` the brand colour, names and copy are replaced; the structure, properties and tokens follow production`]}),`
@@ -12,6 +12,7 @@ import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-M
 `]}),`
 `,(0,c.jsx)(t.h2,{id:`links`,children:`Links`}),`
 `,(0,c.jsxs)(t.ul,{children:[`
+`,(0,c.jsx)(t.li,{children:(0,c.jsx)(t.a,{href:`https://github.com/anastasiia-suhanek/design-system`,rel:`nofollow`,children:`Source on GitHub`})}),`
 `,(0,c.jsx)(t.li,{children:(0,c.jsx)(t.a,{href:`https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG/Anastasiia-Sukhanek-%E2%80%94-Design-System-Sample`,rel:`nofollow`,children:`Figma sample`})}),`
 `,(0,c.jsx)(t.li,{children:(0,c.jsx)(t.a,{href:`https://anastasiia-suhanek.github.io`,rel:`nofollow`,children:`Portfolio`})}),`
 `,(0,c.jsx)(t.li,{children:`Anastasiia Sukhanek, product designer`}),`

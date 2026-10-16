@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-ru="Анастасия Суханек – продуктовый дизайнер, дизайн-системы">Anastasiia Sukhanek – Product Designer, Design Systems</title>
+<meta name="description" content="Product designer who builds design systems: two-layer tokens in Figma Variables, components whose properties match code, accessibility checked in code. Prague or remote" data-ru="Продуктовый дизайнер, который строит дизайн-системы: двухслойные токены в Figma Variables, компоненты со свойствами как в коде, доступность с проверкой в коде. Прага или удалённо">
+<meta name="author" content="Anastasiia Sukhanek">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anastasiia Sukhanek – Design Systems">
+<meta property="og:description" content="Two-layer tokens, components whose properties match code, accessibility checked in code">
+<meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image-swiss.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script src="../js/lang.js?v=a36bd0c1"></script>
+<link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
+<style>
+/* Systems facet: a spec sheet. Blueprint grid, redlines, token names in mono. Every size is a multiple of 4, weights 400/500/600 */
+:root {
+  --bg: #FFFFFF; --bg-alt: #F4F4F2; --rule: #E1E1DE; --grid: #EEF2FB;
+  --text: #0B0B0B; --muted: #6B6B68; --accent: #1A5AD4; --accent-600: #2F6FEB; --accent-100: #E8F0FE; --red: #E4351B;
+  --sans: 'Inter', system-ui, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --gutter: 16px; --max: 1024px;
+}
+@media (min-width: 720px) { :root { --gutter: 40px; } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html[lang="en"] .t-ru { display: none !important; }
+html[lang="ru"] .t-en { display: none !important; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+code, .mono { font-family: var(--mono); font-size: 12px; line-height: 16px; }
+
+/* Top bar */
+.top { border-bottom: 1px solid var(--rule); background: var(--bg); }
+.top .wrap { display: flex; align-items: center; gap: 24px; height: 56px; font-size: 12px; line-height: 16px; }
+.top-home { font-weight: 600; }
+.facets { display: flex; gap: 16px; margin-left: auto; }
+.facets a { color: var(--muted); padding-block: 4px; border-bottom: 2px solid transparent; }
+.facets a:hover { color: var(--text); }
+.facets a[aria-current] { color: var(--text); font-weight: 500; border-color: var(--accent); }
+.lang { display: flex; gap: 4px; }
+.lang-btn { background: none; border: 0; color: var(--muted); font: 500 12px/16px var(--sans); cursor: pointer; padding: 4px; }
+.lang-btn.lang-active, .lang-btn:hover { color: var(--text); }
+@media (max-width: 599px) { .top-home { display: none; } .facets { margin-left: 0; } .lang { margin-left: auto; } }
+
+/* Hero on a blueprint grid: 8 px cells, a stronger line every 32 */
+.hero {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(#F6F8FD 1px, transparent 1px), linear-gradient(90deg, #F6F8FD 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 8px 8px, 8px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding-block: 96px; }
+.eyebrow { display: inline-block; font: 500 12px/16px var(--mono); color: var(--accent); background: var(--accent-100); padding: 4px 8px; margin-bottom: 24px; }
+h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; }
+.lead { font-size: 20px; line-height: 28px; color: var(--muted); margin-top: 24px; max-width: 520px; }
+.lead strong { color: var(--text); font-weight: 500; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 32px; font-size: 12px; line-height: 16px; color: var(--muted); }
+.meta b { color: var(--text); font-weight: 500; }
+@media (max-width: 799px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
+@media (max-width: 599px) { h1 { font-size: 48px; line-height: 52px; } .lead { font-size: 16px; line-height: 24px; } }
+
+/* Anatomy: a button with redlines and the tokens behind it */
+.anatomy { background: var(--bg); border: 1px solid var(--rule); padding: 48px 32px 32px; position: relative; }
+.anatomy-label { position: absolute; top: 12px; left: 16px; font: 400 12px/16px var(--mono); color: var(--muted); }
+.spec-btn-wrap { position: relative; display: flex; justify-content: center; padding: 28px 0 36px; }
+.spec-btn { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 56px; padding: 0 24px; border-radius: 16px;
+  background: var(--accent-600); color: #fff; font: 600 16px/20px var(--sans); outline: 1px dashed var(--red); outline-offset: 0; }
+.spec-btn svg { width: 20px; height: 20px; }
+.rl { position: absolute; font: 500 12px/16px var(--mono); color: var(--red); }
+.rl--pad { left: 0; top: 50%; width: 24px; transform: translateY(-50%); border-top: 1px solid var(--red); text-align: center; }
+.rl--pad span { position: absolute; top: -20px; left: 0; width: 100%; }
+.rl--h { right: -32px; top: 0; height: 56px; border-left: 1px solid var(--red); padding-left: 4px; display: flex; align-items: center; }
+.rl--r { left: -4px; top: -24px; }
+.tok { list-style: none; border-top: 1px solid var(--rule); }
+.tok li { display: flex; justify-content: space-between; gap: 12px; padding-block: 8px; border-bottom: 1px solid var(--rule); font: 400 12px/16px var(--mono); }
+.tok li span:last-child { color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.sw { width: 12px; height: 12px; display: inline-block; border: 1px solid rgba(0,0,0,.08); }
+
+/* Sections */
+section { padding-block: 80px; border-bottom: 1px solid var(--rule); }
+.sec-head { display: grid; grid-template-columns: 200px 1fr; gap: 24px; margin-bottom: 40px; }
+.sec-n { font: 400 12px/36px var(--mono); color: var(--muted); }
+h2 { font-size: 32px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em; }
+@media (max-width: 719px) { section { padding-block: 56px; } .sec-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 32px; } .sec-n { line-height: 16px; } h2 { font-size: 24px; line-height: 32px; } }
+
+/* Work */
+.cases { display: grid; gap: 48px; }
+.case { display: grid; grid-template-columns: 200px 1fr; gap: 24px; }
+.case-side { font-size: 12px; line-height: 16px; color: var(--muted); display: grid; gap: 8px; align-content: start; }
+.case-side b { font-size: 48px; line-height: 52px; font-weight: 600; letter-spacing: -0.03em; color: var(--accent); }
+.case h3 { font-size: 20px; line-height: 28px; font-weight: 600; }
+.case p { color: var(--muted); margin-top: 8px; max-width: 640px; }
+.case p em { font-style: normal; color: var(--text); }
+.case-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 12px; line-height: 16px; font-weight: 500; }
+.case-links a { color: var(--accent); border-bottom: 1px solid var(--accent-100); }
+.case-links a:hover { border-color: var(--accent); }
+.case figure { margin-top: 24px; border: 1px solid var(--rule); background: var(--bg-alt); }
+.case figcaption { padding: 12px 16px; font-size: 12px; line-height: 16px; color: var(--muted); border-top: 1px solid var(--rule); background: var(--bg); }
+@media (max-width: 719px) { .case { grid-template-columns: 1fr; gap: 12px; } .case-side b { font-size: 36px; line-height: 40px; } }
+
+/* Principles */
+.rules { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--text); }
+.rules li { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--rule); }
+.rules li:nth-child(odd) { border-right: 1px solid var(--rule); }
+.rules li:nth-child(even) { padding-left: 24px; padding-right: 0; }
+.rules code { color: var(--accent); }
+.rules h3 { font-size: 16px; line-height: 24px; font-weight: 600; margin-top: 8px; }
+.rules p { color: var(--muted); margin-top: 4px; }
+@media (max-width: 719px) { .rules { grid-template-columns: 1fr; } .rules li, .rules li:nth-child(even) { padding: 20px 0; border-right: 0; } }
+
+/* Type scale and toolkit */
+.scale { border-top: 1px solid var(--rule); }
+.scale div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--rule); overflow: hidden; white-space: nowrap; }
+.scale code { color: var(--muted); }
+.scale .d { font-size: 64px; line-height: 64px; }
+@media (max-width: 599px) { .scale div { grid-template-columns: 72px 1fr; } .scale .d { font-size: 40px; line-height: 44px; } }
+.kit { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+.kit span { font-size: 12px; line-height: 16px; padding: 8px 12px; background: var(--bg-alt); }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.contact p { color: var(--muted); margin-top: 16px; max-width: 440px; }
+.c-links { list-style: none; border-top: 1px solid var(--text); }
+.c-links a { display: flex; justify-content: space-between; gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--rule); }
+.c-links a:hover span:last-child { color: var(--accent); }
+.c-links span:first-child { font-size: 12px; color: var(--muted); }
+@media (max-width: 719px) { .contact { grid-template-columns: 1fr; } .c-links a { flex-direction: column; gap: 0; } }
+footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--muted); }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="top-home" href="../">Anastasiia Sukhanek</a>
+    <nav class="facets" aria-label="Portfolio facets">
+      <a href="../"><span lang="en" class="t-en">Product</span><span lang="ru" class="t-ru">Продукт</span></a>
+      <a href="./" aria-current="page"><span lang="en" class="t-en">Systems</span><span lang="ru" class="t-ru">Системы</span></a>
+      <a href="../engineer/"><span lang="en" class="t-en">Engineering</span><span lang="ru" class="t-ru">Инженерия</span></a>
+    </nav>
+    <div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span lang="en" class="t-en">product designer / design systems</span><span lang="ru" class="t-ru">продуктовый дизайнер / дизайн-системы</span></p>
+        <h1>Anastasiia<br>Sukhanek</h1>
+        <p lang="en" class="lead t-en">I build design systems that hold up in production: <strong>two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
+        <p lang="ru" class="lead t-ru">Строю дизайн-системы, которые выдерживают продакшн: <strong>двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
+        <div class="meta">
+          <span><b>8</b> <span lang="en" class="t-en">years in design</span><span lang="ru" class="t-ru">лет в дизайне</span></span>
+          <span><b>Profee · <span lang="en" class="t-en">Beeline · Sber</span><span lang="ru" class="t-ru">Билайн · Сбер</span></b></span>
+          <span lang="en" class="t-en">Prague · remote</span><span lang="ru" class="t-ru">Прага · удалённо</span>
+        </div>
+      </div>
+
+      <figure class="anatomy" aria-label="Button anatomy with tokens">
+        <span class="anatomy-label">Button / Primary</span>
+        <div class="spec-btn-wrap">
+          <span class="spec-btn">
+            <span class="rl rl--r">r 16</span>
+            <span class="rl rl--pad"><span>24</span></span>
+            <span lang="en" class="t-en">Continue</span><span lang="ru" class="t-ru">Продолжить</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span class="rl rl--h">56</span>
+          </span>
+        </div>
+        <ul class="tok">
+          <li><span>button/primary/bg</span><span><i class="sw" style="background:#2F6FEB"></i>accent-600</span></li>
+          <li><span>button/primary/bg-pressed</span><span><i class="sw" style="background:#1A5AD4"></i>accent-700</span></li>
+          <li><span>button/primary/text</span><span><i class="sw" style="background:#FFFFFF"></i>neutral-0</span></li>
+          <li><span>focus/ring</span><span><i class="sw" style="background:#2F6FEB"></i>accent-600</span></li>
+        </ul>
+      </figure>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-n">01 — <span lang="en" class="t-en">Work</span><span lang="ru" class="t-ru">Работы</span></span><h2><span lang="en" class="t-en">Systems I’ve built and work on</span><span lang="ru" class="t-ru">Системы, которые я строю</span></h2></div>
+      <div class="cases">
+        <article class="case">
+          <div class="case-side"><span>Profee · 2025 – <span lang="en" class="t-en">now</span><span lang="ru" class="t-ru">сейчас</span></span><span>iOS · Android · Web</span></div>
+          <div>
+            <h3><span lang="en" class="t-en">A new design system for a money transfer app</span><span lang="ru" class="t-ru">Новая дизайн-система приложения для денежных переводов</span></h3>
+            <p lang="en" class="t-en">In progress since summer 2025. With the design lead and front-end developers I build components and tokens in Figma Variables, and earlier worked with the UX writers on the copy rules that live inside components. <em>The verification entry point I designed is one of its components, shared by app and web</em></p>
+            <p lang="ru" class="t-ru">Строится с лета 2025. Вместе с лидом дизайна и фронтенд-разработчиками завожу компоненты и токены в Figma Variables, раньше вместе с UX-редакторами задавали правила текстов внутри компонентов. <em>Точка входа в верификацию, которую я придумала, – один из её компонентов, общий для приложения и веба</em></p>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-side"><b>10</b><span lang="en" class="t-en">verification scenarios, one component</span><span lang="ru" class="t-ru">сценариев верификации, один компонент</span></div>
+          <div>
+            <h3><span lang="en" class="t-en">One component instead of ten screens</span><span lang="ru" class="t-ru">Один компонент вместо десяти экранов</span></h3>
+            <p lang="en" class="t-en">KYC had ten scenarios, each asking for something different. I designed one entry point in three forms – a card, a bottom sheet and a status banner – and built it into the system with the design lead. <em>Each scenario switches on its own illustration, text and buttons. Verification questions to support halved: −54%</em></p>
+            <p lang="ru" class="t-ru">В KYC было десять сценариев, и в каждом от человека нужно что-то своё. Я придумала одну точку входа в трёх формах – карточка, шторка и баннер статуса – и вместе с лидом завела её в систему. <em>Каждый сценарий включает свою иллюстрацию, текст и кнопки. Вопросов про верификацию в поддержку стало вдвое меньше: −54%</em></p>
+            <div class="case-links"><a href="../case-profee-verification.html"><span lang="en" class="t-en">Read the KYC case →</span><span lang="ru" class="t-ru">Кейс про KYC →</span></a></div>
+            <figure>
+              <img style="aspect-ratio: auto 1454 / 1042;" src="../images/ds/figma-bottom-sheet.png" alt="Bottom sheet component in Figma with its properties: type, illustration, subtitle, buttons" loading="lazy">
+              <figcaption lang="en" class="t-en">The bottom sheet in Figma: one component, properties switch the parts on</figcaption>
+              <figcaption lang="ru" class="t-ru">Шторка в Figma: один компонент, части включаются свойствами</figcaption>
+            </figure>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-side"><b>21/21</b><span lang="en" class="t-en">stories pass automated accessibility checks</span><span lang="ru" class="t-ru">stories проходят автопроверку доступности</span></div>
+          <div>
+            <h3><span lang="en" class="t-en">The same components, checked in code</span><span lang="ru" class="t-ru">Те же компоненты с проверкой в коде</span></h3>
+            <p lang="en" class="t-en">An anonymised sample of the system rebuilt in React and Storybook. Tokens live in one JSON, props mirror the Figma properties one to one. <em>The tests caught secondary button text at 3.98:1 – it looked fine in Figma. A darker token fixed it: 5.3:1</em></p>
+            <p lang="ru" class="t-ru">Обезличенная часть системы, пересобранная на React и Storybook. Токены лежат в одном JSON, пропсы один в один повторяют свойства в Figma. <em>Тесты поймали текст вторичной кнопки с контрастом 3,98:1 – в Figma он выглядел нормально. Исправила более тёмным токеном: 5,3:1</em></p>
+            <div class="case-links"><a href="../design-system/" data-href-ru="../design-system/?globals=locale:ru">Storybook ↗</a><a href="https://www.figma.com/design/d8WTz9z1dh04l7Nm8dcRvG" target="_blank" rel="noopener">Figma ↗</a><a href="https://github.com/anastasiia-suhanek/design-system" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case-side"><b>×4</b><span lang="en" class="t-en">faster to localise a feature</span><span lang="ru" class="t-ru">быстрее локализация фичи</span></div>
+          <div>
+            <h3><span lang="en" class="t-en">Copy as part of the system</span><span lang="ru" class="t-ru">Тексты как часть системы</span></h3>
+            <p lang="en" class="t-en">With the design lead we built Claude agents that write to our editorial rules and translate every string into 13 languages. <em>Localising a feature went from a day to about two hours</em>, and strings go straight into the iOS and Android code</p>
+            <p lang="ru" class="t-ru">С лидом дизайна собрали агентов на Claude, которые пишут по нашей редполитике и переводят каждую строку на 13 языков. <em>Локализация фичи сократилась с дня до примерно двух часов</em>, а строки уходят сразу в код iOS и Android</p>
+            <div class="case-links"><a href="../case-profee-cards.html#ai"><span lang="en" class="t-en">Read in the Cards case →</span><span lang="ru" class="t-ru">Подробнее в кейсе про карты →</span></a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-n">02 — <span lang="en" class="t-en">Principles</span><span lang="ru" class="t-ru">Принципы</span></span><h2><span lang="en" class="t-en">How I build a system</span><span lang="ru" class="t-ru">Как я строю систему</span></h2></div>
+      <ul class="rules">
+        <li><code>primitives → semantic</code><h3><span lang="en" class="t-en">Components never see raw values</span><span lang="ru" class="t-ru">Компоненты не видят сырых значений</span></h3><p lang="en" class="t-en">Only semantic tokens. A partner brand or dark mode is a new mode, not a redraw</p><p lang="ru" class="t-ru">Только семантические токены. Бренд партнёра или тёмная тема – новый режим, а не перерисовка</p></li>
+        <li><code>property = prop</code><h3><span lang="en" class="t-en">Figma speaks the code’s language</span><span lang="ru" class="t-ru">Figma говорит на языке кода</span></h3><p lang="en" class="t-en">A toggle in Figma is a prop in React with the same name, so handoff has nothing to translate</p><p lang="ru" class="t-ru">Переключатель в Figma – это проп в React с тем же именем, поэтому при передаче нечего переводить</p></li>
+        <li><code>1 × n</code><h3><span lang="en" class="t-en">Fewer components, more cases</span><span lang="ru" class="t-ru">Меньше компонентов, больше сценариев</span></h3><p lang="en" class="t-en">Ten verification scenarios run on one bottom sheet. New scenario, no new component</p><p lang="ru" class="t-ru">Десять сценариев верификации работают на одной шторке. Новый сценарий – без нового компонента</p></li>
+        <li><code>axe</code><h3><span lang="en" class="t-en">Test what the eye misses</span><span lang="ru" class="t-ru">Проверять то, что пропускает глаз</span></h3><p lang="en" class="t-en">Contrast and accessible names are checked on every story, not in a review once a quarter</p><p lang="ru" class="t-ru">Контраст и доступные имена проверяются на каждой story, а не на ревью раз в квартал</p></li>
+        <li><code>4 px</code><h3><span lang="en" class="t-en">One grid for everything</span><span lang="ru" class="t-ru">Одна сетка для всего</span></h3><p lang="en" class="t-en">Spacing, type and component sizes are multiples of 4. This site follows it too</p><p lang="ru" class="t-ru">Отступы, шрифты и размеры компонентов кратны 4. Этот сайт тоже</p></li>
+        <li><code>13 langs</code><h3><span lang="en" class="t-en">Copy is part of the component</span><span lang="ru" class="t-ru">Текст – часть компонента</span></h3><p lang="en" class="t-en">Rules for length, tone and states live with the component, and the longest language decides the layout</p><p lang="ru" class="t-ru">Правила длины, тона и состояний живут вместе с компонентом, а вёрстку задаёт самый длинный язык</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-n">03 — <span lang="en" class="t-en">Toolkit</span><span lang="ru" class="t-ru">Инструменты</span></span><h2><span lang="en" class="t-en">This site’s own type scale</span><span lang="ru" class="t-ru">Шрифтовая шкала этого сайта</span></h2></div>
+      <div class="scale" aria-label="Type scale">
+        <div><code>64 / 64</code><span class="d" style="font-weight:600;letter-spacing:-0.03em">Aa Display</span></div>
+        <div><code>32 / 36</code><span style="font-size:32px;line-height:36px;font-weight:600;letter-spacing:-0.02em">Aa Heading</span></div>
+        <div><code>20 / 28</code><span style="font-size:20px;line-height:28px;font-weight:600">Aa Title</span></div>
+        <div><code>16 / 24</code><span>Aa Body</span></div>
+        <div><code>12 / 16</code><span style="font-size:12px;line-height:16px">Aa Caption</span></div>
+      </div>
+      <div class="kit">
+        <span>Figma Variables</span><span><span lang="en" class="t-en">Modes</span><span lang="ru" class="t-ru">Режимы</span></span><span><span lang="en" class="t-en">Component properties</span><span lang="ru" class="t-ru">Свойства компонентов</span></span><span>Auto layout</span><span>Tokens JSON → CSS</span><span>React</span><span>Storybook</span><span>axe</span><span>Figma MCP</span><span>Claude Code</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2><span lang="en" class="t-en">Need someone who keeps the system and the product in sync?</span><span lang="ru" class="t-ru">Нужен человек, который держит систему и продукт в одном ритме?</span></h2>
+        <p lang="en" class="t-en">Looking for a Senior Product Designer role with design system ownership, or a design systems role</p>
+        <p lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера с ответственностью за дизайн-систему или роль в команде дизайн-системы</p>
+      </div>
+      <ul class="c-links">
+        <li><a href="https://t.me/suhastasiia" target="_blank" rel="noopener"><span>Telegram</span><span>@suhastasiia ↗</span></a></li>
+        <li><a href="mailto:anastasiia.suhanek@gmail.com"><span>Email</span><span>anastasiia.suhanek@gmail.com</span></a></li>
+        <li><a href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener"><span>LinkedIn</span><span>in/anastasiiasukhanek ↗</span></a></li>
+        <li lang="en" class="t-en"><a href="../anastasiia-sukhanek-cv.pdf" download><span>CV</span><span>PDF · 2 pages ↓</span></a></li>
+        <li lang="ru" class="t-ru"><a href="../anastasiia-sukhanek-cv-ru.pdf" download><span>Резюме</span><span>PDF · 2 страницы ↓</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Anastasiia Sukhanek · <span lang="en" class="t-en">Prague</span><span lang="ru" class="t-ru">Прага</span> · 2026 · <a href="../">← <span lang="en" class="t-en">Main portfolio</span><span lang="ru" class="t-ru">Основное портфолио</span></a></div></footer>
+
+<script>
+// Links with data-href-ru open the Russian version when the page is in Russian
+(function () {
+  function sync() {
+    var ru = document.documentElement.lang === 'ru';
+    document.querySelectorAll('[data-href-ru]').forEach(function (a) {
+      if (!a.dataset.hrefEn) a.dataset.hrefEn = a.getAttribute('href');
+      a.setAttribute('href', ru ? a.dataset.hrefRu : a.dataset.hrefEn);
+    });
+  }
+  sync();
+  new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>

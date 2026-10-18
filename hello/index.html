@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-ru="Анастасия Суханек – привет">Anastasiia Sukhanek – Hello</title>
+<title data-ru="Анастасия Суханек – Senior продуктовый дизайнер">Anastasiia Sukhanek – Senior Product Designer</title>
 <meta name="description" content="Product designer in Prague. I design the moment people almost leave – payments, verification, errors – and count what changes" data-ru="Продуктовый дизайнер в Праге. Проектирую момент, когда человек почти ушёл – оплата, верификация, ошибки – и считаю, что изменилось">
 <meta name="author" content="Anastasiia Sukhanek">
 <meta name="theme-color" content="#07061A">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Anastasiia Sukhanek – Hello">
+<meta property="og:title" content="Anastasiia Sukhanek – Senior Product Designer">
 <meta property="og:description" content="I design the moment people almost leave">
 <meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image-swiss.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script>
+// Language before anything else: if lang.js fails to load, the page still shows one language, not both
+(function () { var l; try { l = localStorage.getItem('lang'); } catch (e) {} if (l !== 'en' && l !== 'ru') l = /^ru/i.test(navigator.language || '') ? 'ru' : 'en'; document.documentElement.lang = l; })();
+</script>
 <script src="../js/lang.js?v=a36bd0c1"></script>
 <link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
 <style>
@@ -131,6 +135,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.01em; margin-top: 32px; max-width: 480px; }
 .p-case { display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; font-size: 16px; line-height: 24px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 4px; transition: color .2s, border-color .2s; }
 .p-case:hover { color: var(--text); border-color: var(--text); }
+.p-ba { font-size: 16px; line-height: 24px; color: var(--c1); margin-top: 8px; font-variant-numeric: tabular-nums; }
 .p-meta { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); margin-bottom: 16px; }
 .stage { perspective: 1200px; display: flex; justify-content: center; }
 .num, .p-label, .p-meta, .p-case { will-change: transform; }
@@ -142,13 +147,19 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; letter-spacing: .08em; text-align: center; padding: 8px 0; border-radius: 8px; background: #F2F1FA; color: #767676; transition: background .3s, color .3s; }
 .langs .codes i.on { background: #0B0B0B; color: var(--lime); }
 .langs b { display: block; padding: 16px 32px; border-radius: 16px; background: #5046E5; color: #fff; font-weight: 600; font-size: 20px; line-height: 24px; min-width: 200px; text-align: center; transition: opacity .3s; }
+.tests { display: flex; flex-direction: column; justify-content: center; gap: 8px; width: 100%; height: 100%; padding: 24px 16px; border-radius: 36px; background: #0E0C1E; font: 400 12px/16px ui-monospace, 'SF Mono', Menlo, monospace; color: #CFC9E8; overflow: hidden; }
+.tests span { color: var(--lime); }
+.tests small { font: inherit; color: #8A86A3; }
+.tests b { font-weight: 500; color: #fff; margin-top: 8px; }
+.tests .was { color: var(--lime); }
 .langs small { font: 500 12px/16px var(--sans); letter-spacing: .16em; color: #767676; text-transform: uppercase; }
-@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 160px; line-height: 148px; } .phone { width: min(220px, calc(62svh * 360 / 780)); border-radius: 36px; } .phone img, .phone .langs { border-radius: 28px; } }
+@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 160px; line-height: 148px; } .phone { width: min(220px, calc(62svh * 360 / 780)); border-radius: 36px; } .phone img, .phone .langs, .phone .tests { border-radius: 28px; } .tests { padding: 16px 12px; gap: 4px; } }
 @media (max-width: 719px) {
   .panel { grid-template-columns: 1fr; gap: 24px; align-content: center; }
   .panel { justify-content: stretch; padding-top: 48px; }
   .num { font-size: 104px; line-height: 96px; } .p-label { font-size: 20px; line-height: 28px; margin-top: 12px; } .p-case { margin-top: 16px; }
   .stage { order: -1; } .phone { width: min(160px, calc(36svh * 360 / 780)); border-radius: 28px; padding: 6px; } .phone img, .phone .langs { border-radius: 24px; }
+  .tests { padding: 12px 8px; gap: 2px; font-size: 8px; line-height: 12px; border-radius: 24px; }
   .langs { gap: 8px; } .langs b { min-width: 120px; font-size: 16px; padding: 12px 16px; } .langs .codes { width: 128px; gap: 4px; } .langs .codes i { padding: 4px 0; border-radius: 4px; font-size: 8px; } .langs small { font-size: 8px; }
 }
 
@@ -204,7 +215,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .portrait-wrap { position: absolute; top: 50%; right: max(var(--gutter), calc((100vw - 1280px) / 2)); width: min(640px, 80svh); aspect-ratio: 1; margin-top: calc(min(640px, 80svh) / -2); }
 .portrait-copy h2 { font-size: 96px; line-height: 88px; letter-spacing: -0.05em; font-weight: 400; }
 .portrait-copy h2 em { font-size: 104px; }
-.portrait-copy p { max-width: 320px; color: var(--text); font-size: 20px; line-height: 28px; }
+.portrait-copy p { max-width: 400px; color: var(--text); font-size: 20px; line-height: 28px; }
 @media (max-width: 899px) and (orientation: portrait) { .portrait-wrap { width: min(72vw, 360px); right: 50%; margin-right: calc(min(72vw, 360px) / -2); top: 18svh; margin-top: 0; } .portrait-copy { top: auto; bottom: 48px; transform: none; right: var(--gutter); max-width: none; gap: 16px; } }
 @media (max-width: 719px) { .portrait-copy h2 { font-size: 56px; line-height: 56px; } .portrait-copy h2 em { font-size: 64px; } .portrait-copy p { font-size: 16px; line-height: 24px; } }
 
@@ -212,7 +223,8 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .contact { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--gutter) 64px; max-width: 1360px; margin: 0 auto; }
 .big { font-size: 160px; line-height: 144px; letter-spacing: -0.06em; font-weight: 300; }
 .big em { font-size: 176px; color: var(--lime); }
-.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 64px; }
+.seek { margin-top: 40px; font-size: 20px; line-height: 28px; color: var(--muted); max-width: 720px; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 32px; border-radius: 999px; border: 1px solid var(--line); font-size: 20px; line-height: 24px; background: rgba(255, 255, 255, .04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background .3s, color .3s, border-color .3s; will-change: transform; }
 .btn:hover { background: var(--text); color: var(--ink); border-color: var(--text); }
 .btn--main { background: var(--lime); color: var(--ink); border-color: var(--lime); font-weight: 500; }
@@ -221,7 +233,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .also a { color: var(--text); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
 .also a:hover { text-decoration-color: var(--lime); color: var(--lime); }
 @media (max-width: 1023px) { .big { font-size: 112px; line-height: 104px; } .big em { font-size: 120px; } }
-@media (max-width: 599px) { .big { font-size: 64px; line-height: 64px; } .big em { font-size: 72px; } .btn { height: 56px; padding: 0 24px; font-size: 16px; } .btns { margin-top: 40px; } }
+@media (max-width: 599px) { .seek { font-size: 16px; line-height: 24px; margin-top: 24px; } .big { font-size: 64px; line-height: 64px; } .big em { font-size: 72px; } .btn { height: 56px; padding: 0 24px; font-size: 16px; } .btns { margin-top: 40px; } }
 footer { padding: 24px var(--gutter); display: flex; justify-content: space-between; gap: 16px; font-size: 12px; line-height: 16px; color: var(--muted); border-top: 1px solid var(--line); }
 
 /* Words rise from under a mask */
@@ -280,7 +292,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 
 <main id="top">
   <section class="hero">
-    <p class="kicker"><i></i><span lang="en" class="t-en"><b>Product designer</b> · <b>Prague</b> · <b>open to new roles</b></span><span lang="ru" class="t-ru"><b>Продуктовый дизайнер</b> · <b>Прага</b> · <b>открыта к предложениям</b></span></p>
+    <p class="kicker"><i></i><span lang="en" class="t-en"><b>Senior product designer</b> · <b>Fintech</b> · <b>Prague</b></span><span lang="ru" class="t-ru"><b>Senior продуктовый дизайнер</b> · <b>Финтех</b> · <b>Прага</b></span></p>
     <h1 class="name" aria-label="Anastasiia Sukhanek"><span class="line">Anastasiia</span><span class="line">Sukhanek</span></h1>
     <div class="hero-foot">
       <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
@@ -293,39 +305,49 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     <p lang="ru" class="t-ru">Восемь лет в дизайне. Оплата, верификация, ошибки – <em>экраны, на которых люди бросают начатое.</em> Нахожу, почему человек остановился, переделываю шаг и потом считаю, сколько людей дошли до конца</p>
   </section>
 
-  <section class="reel" style="--n: 6" aria-label="Results">
+  <section class="reel" style="--n: 7" aria-label="Results">
     <div class="reel-pin">
-      <div class="reel-head"><span lang="en" class="t-en">Results</span><span lang="ru" class="t-ru">Результаты</span><span class="reel-count">01 / 06</span></div>
+      <div class="reel-head"><span lang="en" class="t-en">Results</span><span lang="ru" class="t-ru">Результаты</span><span class="reel-count">01 / 07</span></div>
       <div class="track">
         <article class="panel" style="--c1: #D2FF5C; --c2: #8B6CFF">
-          <div><p class="p-meta">Profee · 2025</p><p class="num">−54%</p>
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025</span></p><p class="num">−54%</p>
             <p lang="en" class="p-label t-en">verification questions to support, after KYC moved from email into the app</p><p lang="ru" class="p-label t-ru">вопросов про верификацию в поддержку после того, как KYC переехал из письма в приложение</p>
             <a class="p-case" href="../case-profee-verification.html"><span lang="en" class="t-en">KYC verification case</span><span lang="ru" class="t-ru">Кейс про KYC</span> →</a></div>
           <a class="stage" href="../case-profee-verification.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/verif/screen-entry-new.png" alt="Verification bottom sheet in the Profee app" loading="lazy"></div></a>
         </article>
         <article class="panel" style="--c1: #F08ACB; --c2: #5B8CFF">
-          <div><p class="p-meta">Profee · 2026</p><p class="num">×3.3</p>
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2026</span></p><p class="num">×3.3</p><p class="p-ba"><span lang="en" class="t-en">2.1% → 6.7% of senders</span><span lang="ru" class="t-ru">2,1% → 6,7% отправителей</span></p>
             <p lang="en" class="p-label t-en">more senders top up the wallet on Android – one button right where they pay</p><p lang="ru" class="p-label t-ru">больше отправителей пополняют кошелёк на Android – одна кнопка прямо там, где они платят</p>
             <a class="p-case" href="../case-profee-topup.html"><span lang="en" class="t-en">Top up case</span><span lang="ru" class="t-ru">Кейс про пополнение</span> →</a></div>
           <a class="stage" href="../case-profee-topup.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/topup/quick.png" alt="Payment method screen with a Top up button next to the wallet" loading="lazy"></div></a>
         </article>
         <article class="panel" style="--c1: #5B8CFF; --c2: #F08ACB">
-          <div><p class="p-meta">Profee · 2025–2026</p><p class="num">~70%</p>
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">~70%</p>
             <p lang="en" class="p-label t-en">tap “Continue transfer” within a day, once the status says what is going on</p><p lang="ru" class="p-label t-ru">нажимают «Продолжить перевод» в течение суток, когда статус объясняет, что происходит</p>
             <a class="p-case" href="../case-profee-statuses.html"><span lang="en" class="t-en">Transfer statuses case</span><span lang="ru" class="t-ru">Кейс про статусы</span> →</a></div>
           <a class="stage" href="../case-profee-statuses.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="Transfer in progress screen with the reason for the delay" loading="lazy"></div></a>
         </article>
         <article class="panel" style="--c1: #B9A6FF; --c2: #D2FF5C">
-          <div><p class="p-meta">Profee · 2025–2026</p><p class="num">×2</p>
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">×2</p><p class="p-ba"><span lang="en" class="t-en">3.9% → 8% of active senders</span><span lang="ru" class="t-ru">3,9% → 8% активных отправителей</span></p>
             <p lang="en" class="p-label t-en">active senders open the Cards tab after the redesign</p><p lang="ru" class="p-label t-ru">активных отправителей открывают «Карты» после редизайна</p>
             <a class="p-case" href="../case-profee-cards.html"><span lang="en" class="t-en">Cards case</span><span lang="ru" class="t-ru">Кейс про карты</span> →</a></div>
           <a class="stage" href="../case-profee-cards.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/cards/flow/02.jpg" alt="Card created screen in the Profee app" loading="lazy"></div></a>
         </article>
         <article class="panel" style="--c1: #D2FF5C; --c2: #F08ACB">
-          <div><p class="p-meta"><span lang="en" class="t-en">With the design lead</span><span lang="ru" class="t-ru">Вместе с лидом дизайна</span></p><p class="num">×4</p>
+          <div><p class="p-meta"><span lang="en" class="t-en">With the design lead</span><span lang="ru" class="t-ru">Вместе с лидом дизайна</span></p><p class="num">×4</p><p class="p-ba"><span lang="en" class="t-en">1 day → ~2 hours</span><span lang="ru" class="t-ru">1 день → ~2 часа</span></p>
             <p lang="en" class="p-label t-en">faster to localise a feature: AI agents write the copy and ship 13 languages as a branch</p><p lang="ru" class="p-label t-ru">быстрее локализация фичи: AI-агенты пишут тексты и отдают 13 языков веткой в репозиторий</p>
             <a class="p-case" href="../case-profee-cards.html#ai"><span lang="en" class="t-en">How the agents work</span><span lang="ru" class="t-ru">Как работают агенты</span> →</a></div>
           <a class="stage" href="../case-profee-cards.html#ai" tabindex="-1" aria-hidden="true"><div class="phone"><div class="langs" aria-hidden="true"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></a>
+        </article>
+        <article class="panel" style="--c1: #D2FF5C; --c2: #5B8CFF">
+          <div><p class="p-meta"><span lang="en" class="t-en">Design system · 2026</span><span lang="ru" class="t-ru">Дизайн-система · 2026</span></p><p class="num">21/21</p>
+            <p lang="en" class="p-label t-en">stories pass automated accessibility checks – the tests caught a contrast bug Figma didn’t show</p><p lang="ru" class="p-label t-ru">stories проходят автопроверку доступности – тесты поймали ошибку контраста, которую Figma не показывала</p>
+            <a class="p-case" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru"><span lang="en" class="t-en">Open the Storybook</span><span lang="ru" class="t-ru">Открыть Storybook</span> →</a></div>
+          <a class="stage" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru" tabindex="-1" aria-hidden="true"><div class="phone"><div class="tests">
+            <small>$ npx vitest --run</small>
+            <span>✓ Button / Primary</span><span>✓ Button / Secondary</span><span>✓ Button / Ghost</span><span>✓ Button / Loading</span><span>✓ Bottom sheet</span><span>✓ Full screen message</span><span>✓ List item</span>
+            <small>…</small><b>21 passed · 0 a11y violations</b><small class="was">secondary text 3.98:1 → 5.3:1</small>
+          </div></div></a>
         </article>
         <article class="panel" style="--c1: #F08ACB; --c2: #D2FF5C">
           <div><p class="p-meta">SberSpasibo · 2022–2023</p><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
@@ -348,7 +370,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   </section>
 
   <section class="path">
-    <p class="sec-kicker rv"><span lang="en" class="t-en">The path</span><span lang="ru" class="t-ru">Путь</span></p>
+    <p class="sec-kicker rv"><span lang="en" class="t-en">Recent years</span><span lang="ru" class="t-ru">Последние годы</span></p>
     <h2 class="rise"><span lang="en" class="t-en">From bonus games to money <em>that has to arrive</em></span><span lang="ru" class="t-ru">От бонусных игр к деньгам, <em>которые должны дойти</em></span></h2>
     <ol class="stops">
       <li class="stop"><time>2022 – 2023</time><h3><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h3><p lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme</p><p lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера</p></li>
@@ -368,8 +390,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
       </div>
       <div class="portrait-copy rise">
         <h2><span lang="en" class="t-en">Hi,<br>I’m <em>Nastya</em></span><span lang="ru" class="t-ru">Привет,<br>я <em>Настя</em></span></h2>
-        <p lang="en" class="t-en">I live in Prague, work remote and love the moment a confusing screen turns obvious</p>
-        <p lang="ru" class="t-ru">Живу в Праге, работаю удалённо и люблю момент, когда запутанный экран становится очевидным</p>
+        <p lang="en" class="t-en">I live in Prague with two cats – Texas, a very busy Abyssinian, and Alaska, a white one. I work remotely and love the moment a confusing screen turns obvious</p>
+        <p lang="ru" class="t-ru">Живу в Праге с котом Техасом – очень деятельным абиссинцем – и белой кошкой Аляской. Работаю удалённо и люблю момент, когда запутанный экран становится очевидным</p>
       </div>
     </div>
   </section>
@@ -377,6 +399,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   <section class="contact" id="contact">
     <p class="sec-kicker rv"><span lang="en" class="t-en">Contact</span><span lang="ru" class="t-ru">Контакты</span></p>
     <h2 class="big rise"><span lang="en" class="t-en">Let’s make something <em>people finish</em></span><span lang="ru" class="t-ru">Сделаем то, что <em>доводят до конца</em></span></h2>
+    <p class="seek rv"><span lang="en" class="t-en">Looking for a Senior product designer role · remote or in Prague · Czech permanent residence, no visa sponsorship needed</span><span lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера · удалённо или в Праге · ПМЖ в Чехии, спонсорство визы не нужно</span></p>
     <div class="btns rv">
       <a class="btn btn--main magnet" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
       <a class="btn magnet" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
@@ -391,7 +414,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   </section>
 </main>
 
-<footer><span>Anastasiia Sukhanek · 2026</span><span lang="en" class="t-en">Made with Claude Code, WebGL and too much coffee</span><span lang="ru" class="t-ru">Сделано с Claude Code, WebGL и большим количеством кофе</span></footer>
+<footer><span>Anastasiia Sukhanek · 2026</span><span lang="en" class="t-en">Made with Claude Code, WebGL and two cats nearby</span><span lang="ru" class="t-ru">Сделано с Claude Code, WebGL и двумя котами рядом</span></footer>
 
 <script>
 (function () {
@@ -533,6 +556,15 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     });
     addEventListener('pageshow', function () { root.classList.remove('is-leaving'); });
   }
+
+  /* ── Links with a Russian version of their target ── */
+  function syncHrefs() {
+    document.querySelectorAll('[data-href-ru]').forEach(function (a) {
+      if (!a.dataset.hrefEn) a.dataset.hrefEn = a.getAttribute('href');
+      a.setAttribute('href', isRu() ? a.dataset.hrefRu : a.dataset.hrefEn);
+    });
+  }
+  syncHrefs(); new MutationObserver(syncHrefs).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
   /* ── Reveal on scroll ── */
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });

@@ -118,6 +118,10 @@ h2 { font-size: 32px; line-height: 36px; font-weight: 600; letter-spacing: -0.02
 @media (max-width: 719px) { .contact { grid-template-columns: 1fr; } .c-links a { flex-direction: column; gap: 0; } }
 footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/16px var(--mono); color: var(--muted); }
 /* The other facets: same block as on the home page, under the hero */
+.hero-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 24px; align-items: end; }
+.hero-main { grid-column: 1 / 4; }
+.hero-row .also { grid-column: 4; margin-top: 0; }
+@media (max-width: 719px) { .hero-row { grid-template-columns: 1fr; } .hero-main, .hero-row .also { grid-column: 1; } .hero-row .also { margin-top: 32px; } }
 .also { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 32px; font-size: 16px; line-height: 24px; color: var(--muted); }
 .also a { color: var(--text); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .also a:hover { color: var(--accent); }
@@ -134,17 +138,20 @@ footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/
   <div class="hero wrap">
     <p class="eyebrow">// <span lang="en" class="t-en">design engineer · AI-native product designer</span><span lang="ru" class="t-ru">дизайн-инженер · AI-native продуктовый дизайнер</span></p>
     <h1>Anastasiia<br>Sukhanek</h1>
-    <p lang="en" class="lead t-en">I design in Figma and carry it into code: <strong>tokens, React components, Storybook with accessibility tests</strong> and AI agents that write and translate the copy</p>
-    <p lang="ru" class="lead t-ru">Проектирую в Figma и довожу до кода: <strong>токены, React-компоненты, Storybook с тестами доступности</strong> и AI-агенты, которые пишут и переводят тексты</p>
-    <div class="chips">
-      <span lang="en" class="chip chip--on t-en">● open to design engineer roles</span><span lang="ru" class="chip chip--on t-ru">● открыта к ролям дизайн-инженера</span>
-      <span lang="en" class="chip t-en">8 years in design</span><span lang="ru" class="chip t-ru">8 лет в дизайне</span>
-      <span lang="en" class="chip t-en">Prague · remote</span><span lang="ru" class="chip t-ru">Прага · удалённо</span>
+    <div class="hero-row">
+      <div class="hero-main">
+      <p lang="en" class="lead t-en">I design in Figma and carry it into code: <strong>tokens, React components, Storybook with accessibility tests</strong> and AI agents that write and translate the copy</p>
+      <p lang="ru" class="lead t-ru">Проектирую в Figma и довожу до кода: <strong>токены, React-компоненты, Storybook с тестами доступности</strong> и AI-агенты, которые пишут и переводят тексты</p>
+      <div class="chips">
+        <span lang="en" class="chip chip--on t-en">● open to design engineer roles</span><span lang="ru" class="chip chip--on t-ru">● открыта к ролям дизайн-инженера</span>
+        <span lang="en" class="chip t-en">8 years in design</span><span lang="ru" class="chip t-ru">8 лет в дизайне</span>
+        <span lang="en" class="chip t-en">Prague · remote</span><span lang="ru" class="chip t-ru">Прага · удалённо</span>
+      </div>
+      </div>
+      <p class="also"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
+        <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
+        <a href="../systems/"><span lang="en" class="t-en">Design systems →</span><span lang="ru" class="t-ru">Дизайн-системы →</span></a></p>
     </div>
-
-    <p class="also"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
-      <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
-      <a href="../systems/"><span lang="en" class="t-en">Design systems →</span><span lang="ru" class="t-ru">Дизайн-системы →</span></a></p>
     <div class="term" aria-label="Terminal">
       <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i></div>
 <pre><span class="p">~/design-system $</span> npm run tokens

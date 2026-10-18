@@ -215,6 +215,8 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .portrait-wrap { position: absolute; top: 50%; right: max(var(--gutter), calc((100vw - 1280px) / 2)); width: min(640px, 80svh); aspect-ratio: 1; margin-top: calc(min(640px, 80svh) / -2); }
 .portrait-copy h2 { font-size: 96px; line-height: 88px; letter-spacing: -0.05em; font-weight: 400; }
 .portrait-copy h2 em { font-size: 104px; }
+.portrait-copy .say { margin-top: -16px; font-size: 20px; line-height: 28px; color: var(--muted); }
+.portrait-copy .say em { font-size: 24px; color: var(--lime); }
 .portrait-copy p { max-width: 400px; color: var(--text); font-size: 20px; line-height: 28px; }
 @media (max-width: 899px) and (orientation: portrait) { .portrait-wrap { width: min(72vw, 360px); right: 50%; margin-right: calc(min(72vw, 360px) / -2); top: 18svh; margin-top: 0; } .portrait-copy { top: auto; bottom: 48px; transform: none; right: var(--gutter); max-width: none; gap: 16px; } }
 @media (max-width: 719px) { .portrait-copy h2 { font-size: 56px; line-height: 56px; } .portrait-copy h2 em { font-size: 64px; } .portrait-copy p { font-size: 16px; line-height: 24px; } }
@@ -390,6 +392,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
       </div>
       <div class="portrait-copy rise">
         <h2><span lang="en" class="t-en">Hi,<br>I’m <em>Nastya</em></span><span lang="ru" class="t-ru">Привет,<br>я <em>Настя</em></span></h2>
+        <p lang="en" class="say t-en">Sukhanek – say <em>su-KHA-nek</em></p>
+        <p lang="ru" class="say t-ru">Суха́нек – ударение <em>на «а»</em></p>
         <p lang="en" class="t-en">I live in Prague with two cats – Texas, a very busy Abyssinian, and Alaska, a white one. I work remotely and love the moment a confusing screen turns obvious</p>
         <p lang="ru" class="t-ru">Живу в Праге с котом Техасом – очень деятельным абиссинцем – и белой кошкой Аляской. Работаю удалённо и люблю момент, когда запутанный экран становится очевидным</p>
       </div>

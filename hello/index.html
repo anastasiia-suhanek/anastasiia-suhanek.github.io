@@ -486,7 +486,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     });
 
     // Path
-    var pr = path.getBoundingClientRect(), pp = clamp((innerHeight * .8 - pr.top) / (pr.height + innerHeight * .3), 0, 1);
+    // The line fills while the timeline travels from the bottom of the screen to its upper half
+    var pr = path.getBoundingClientRect(), pp = clamp((innerHeight * .9 - pr.top) / (innerHeight * .45), 0, 1);
     path.style.setProperty('--p', reduce ? 1 : pp);
     stops.forEach(function (s, i) { s.classList.toggle('on', reduce || pp > .05 + i * .2); });
 

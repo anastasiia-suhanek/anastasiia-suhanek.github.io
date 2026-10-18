@@ -80,6 +80,8 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 16px var(--lime); animation: pulse 2s infinite; }
 @keyframes pulse { 50% { opacity: .3; } }
 .is-ready .kicker { opacity: 1; transform: none; }
+.kicker b { font-weight: inherit; white-space: nowrap; }
+.kicker i { flex: none; }
 .name { font-weight: 300; font-size: 176px; line-height: 160px; letter-spacing: -0.05em; }
 @media (min-width: 1400px) { .name { font-size: 216px; line-height: 196px; } }
 .name .line { display: block; overflow: hidden; padding-bottom: 12px; margin-bottom: -12px; white-space: nowrap; }
@@ -87,7 +89,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .is-ready .name .ch { transform: none; }
 .name .line:nth-child(2) { padding-left: 1.2em; }
 .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 48px; }
-.tag { font-size: 32px; line-height: 40px; letter-spacing: -0.02em; max-width: 640px; opacity: 0; transform: translateY(24px); transition: opacity 1s 1s, transform 1.2s 1s var(--ease); }
+.tag { font-size: 32px; line-height: 40px; letter-spacing: -0.02em; max-width: 640px; text-wrap: balance; opacity: 0; transform: translateY(24px); transition: opacity 1s 1s, transform 1.2s 1s var(--ease); }
 .tag em { font-size: 40px; color: var(--lime); }
 @keyframes flow { to { background-position: 300% 0; } }
 .is-ready .tag, .is-ready .cue { opacity: 1; transform: none; }
@@ -96,7 +98,13 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 @media (max-width: 1199px) { .name { font-size: 112px; line-height: 104px; } .name .line:nth-child(2) { padding-left: .8em; } }
 @media (max-width: 767px) { .name { font-size: 80px; line-height: 76px; } .tag { font-size: 24px; line-height: 32px; } .tag em { font-size: 32px; } .cue { display: none; } }
-@media (max-width: 479px) { .name { font-size: 64px; line-height: 64px; } .name .line:nth-child(2) { padding-left: .6em; } .hero { padding-bottom: 40px; } }
+@media (max-width: 767px) and (orientation: portrait) {
+  .hero { justify-content: center; padding-top: 96px; padding-bottom: 120px; }
+  .cue { display: flex; position: absolute; left: 0; right: 0; bottom: 24px; } .cue i { height: 40px; }
+  .hero-foot { margin-top: 32px; }
+}
+@media (max-width: 479px) { .name { font-size: 72px; line-height: 72px; } .name .line:nth-child(2) { padding-left: .6em; } .kicker { letter-spacing: .1em; } }
+@media (max-width: 419px) { .name { font-size: 64px; line-height: 64px; } }
 @media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } .name .line:nth-child(2) { padding-left: .4em; } }
 
 /* Manifesto: words light up as you scroll */
@@ -271,7 +279,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 
 <main id="top">
   <section class="hero">
-    <p class="kicker"><i></i><span lang="en" class="t-en">Product designer · Prague · open to new roles</span><span lang="ru" class="t-ru">Продуктовый дизайнер · Прага · открыта к предложениям</span></p>
+    <p class="kicker"><i></i><span lang="en" class="t-en"><b>Product designer</b> · <b>Prague</b> · <b>open to new roles</b></span><span lang="ru" class="t-ru"><b>Продуктовый дизайнер</b> · <b>Прага</b> · <b>открыта к предложениям</b></span></p>
     <h1 class="name" aria-label="Anastasiia Sukhanek"><span class="line">Anastasiia</span><span class="line">Sukhanek</span></h1>
     <div class="hero-foot">
       <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
@@ -403,8 +411,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   if (gl) {
     var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
     var fs = [
-      'precision mediump float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform float k;',
-      'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+      '#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\nuniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform float k;',
+      'float h(vec2 p){p=fract(p*vec2(.1031,.1030));p+=dot(p,p.yx+33.33);return fract((p.x+p.y)*p.x);}',
       'float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}',
       'float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}',
       'void main(){vec2 uv=gl_FragCoord.xy/r;float ar=r.x/r.y;vec2 p=vec2(uv.x*ar,uv.y);vec2 mm=vec2(m.x*ar,m.y);',

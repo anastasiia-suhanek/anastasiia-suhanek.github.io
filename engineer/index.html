@@ -60,7 +60,7 @@ h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03
 .term pre { padding: 20px 16px; overflow-x: auto; font: inherit; white-space: pre; }
 .term .p { color: var(--accent); }
 .term .ok { color: var(--ok); }
-.term .c { color: #6E6E6A; }
+.term .c { color: #8A8A86; }
 
 /* Sections */
 section { padding-block: 80px; border-top: 1px solid var(--rule); }
@@ -154,7 +154,7 @@ footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/
     </div>
     <div class="term" aria-label="Terminal">
       <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-<pre><span class="p">~/design-system $</span> npm run tokens
+<pre tabindex="0" aria-label="Terminal output"><span class="p">~/design-system $</span> npm run tokens
 <span class="ok">✓</span> tokens.json → tokens.css   <span class="c"># primitives → semantic</span>
 <span class="p">~/design-system $</span> npx vitest --run
 <span class="ok">✓</span> 21/21 stories pass axe     <span class="c"># caught 3.98:1 contrast → fixed to 5.3:1</span>

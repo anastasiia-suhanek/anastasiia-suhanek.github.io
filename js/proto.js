@@ -34,6 +34,7 @@
     this.dim = el('div', 'proto-dim', root);
     this.chromeTop = el('img', 'proto-screen proto-chrome', root);   // incoming status bar, fixed
     this.chromeBot = el('img', 'proto-screen proto-chrome', root);   // incoming tab bar, fixed
+    this.chromeTop.alt = this.chromeBot.alt = '';
     this.press = el('div', 'proto-press', root);
     this.tapEl = el('div', 'proto-tap', root);
     this.covers = [el('div', 'proto-cover', root), el('div', 'proto-cover', root)];

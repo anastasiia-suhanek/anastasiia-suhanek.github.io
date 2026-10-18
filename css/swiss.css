@@ -501,6 +501,7 @@ html.swiss .clip video { border-color: var(--border); }
 /* Hero sits on the grid, not in the middle of the viewport */
 html.swiss .hero-inner { align-items: end; }
 html.swiss body > .hero,
+html.swiss main > section.hero,
 html.swiss section.hero:not(:has(h1)) { min-height: 0; padding-block: var(--space-20) var(--space-16); }
 
 /* Status badges were tuned for a dark page — solid light tints on white */

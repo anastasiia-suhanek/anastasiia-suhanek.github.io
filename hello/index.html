@@ -21,7 +21,7 @@
 @font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cormorant-italic-cyrillic.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
 @font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cormorant-italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 :root {
-  --ink: #07061A; --text: #F4F1FF; --muted: #A9A3C4; --line: rgba(244, 241, 255, .16);
+  --ink: #07061A; --text: #F4F1FF; --muted: #CFC9E8; --line: rgba(244, 241, 255, .16);
   --violet: #8B6CFF; --orchid: #F08ACB; --blue: #5B8CFF; --lime: #D2FF5C;
   --sans: 'Inter', system-ui, sans-serif; --serif: 'Cormorant', Georgia, serif;
   --gutter: 16px;
@@ -56,10 +56,14 @@ main, header, footer { position: relative; z-index: 2; }
 @media (hover: none) { .cursor { display: none; } }
 
 /* Header */
-header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; height: 64px; padding-inline: var(--gutter); z-index: 20; mix-blend-mode: difference; }
-.mark { font-weight: 600; font-size: 16px; letter-spacing: -0.02em; }
-.mark em { font-size: 20px; }
+header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; height: 64px; padding-inline: var(--gutter); z-index: 20;
+  background: linear-gradient(rgba(7, 6, 26, .5), transparent); }
+.mark { font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; }
+.head-r { display: flex; align-items: center; gap: 24px; }
+.talk { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; background: var(--lime); color: var(--ink); }
+.talk:hover { background: var(--text); }
 .lang { display: flex; gap: 4px; }
+@media (max-width: 479px) { .talk { display: none; } }
 .lang-btn { background: none; border: 0; color: #fff; opacity: .5; font: 500 12px/16px var(--sans); letter-spacing: .08em; cursor: pointer; padding: 8px 4px; }
 .lang-btn.lang-active, .lang-btn:hover { opacity: 1; }
 
@@ -76,7 +80,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .name .line:nth-child(2) { padding-left: 1.2em; }
 .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 48px; }
 .tag { font-size: 32px; line-height: 40px; letter-spacing: -0.02em; max-width: 640px; opacity: 0; transform: translateY(24px); transition: opacity 1s .6s, transform 1s .6s cubic-bezier(.16, 1, .3, 1); }
-.tag em { font-size: 40px; background: linear-gradient(90deg, var(--lime), var(--orchid), var(--violet), var(--lime)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 6s linear infinite; padding-right: 4px; }
+.tag em { font-size: 40px; color: var(--lime); }
 @keyframes flow { to { background-position: 300% 0; } }
 .is-ready .tag { opacity: 1; transform: none; }
 .cue { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
@@ -103,11 +107,11 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .reel-bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 40px; height: 1px; background: var(--line); }
 .reel-bar i { position: absolute; inset: 0; background: var(--text); transform-origin: left; transform: scaleX(var(--p, 0)); }
 .track { display: flex; gap: 0; will-change: transform; }
-.panel { flex: 0 0 100vw; display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 40px; padding-inline: max(var(--gutter), calc((100vw - 1280px) / 2)); }
-.num { font-weight: 600; font-size: 240px; line-height: 220px; letter-spacing: -0.06em; white-space: nowrap;
-  background: linear-gradient(120deg, var(--text) 20%, var(--c1) 50%, var(--c2) 80%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 8s linear infinite; }
-.num small { font-size: .3em; letter-spacing: -0.02em; margin-right: 8px; }
-.p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.01em; margin-top: 24px; max-width: 480px; }
+.panel { flex: 0 0 100vw; display: grid; grid-template-columns: minmax(0, 640px) auto; justify-content: center; align-items: center; column-gap: 120px; padding-inline: var(--gutter); }
+.num { font-weight: 300; font-size: 256px; line-height: 224px; letter-spacing: -0.07em; white-space: nowrap; margin-left: -0.04em;
+  background: linear-gradient(100deg, var(--text) 35%, var(--c1) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.num small { font-size: .25em; letter-spacing: -0.02em; margin-right: 12px; font-weight: 400; }
+.p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.01em; margin-top: 32px; max-width: 480px; }
 .p-case { display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; font-size: 16px; line-height: 24px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 4px; transition: color .2s, border-color .2s; }
 .p-case:hover { color: var(--text); border-color: var(--text); }
 .p-meta { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); margin-bottom: 16px; }
@@ -116,14 +120,18 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
   transform-style: preserve-3d; will-change: transform; }
 .phone img, .phone .langs { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 36px; background: #fff; }
 .langs { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; background: #fff; color: #0B0B0B; font-weight: 600; font-size: 28px; line-height: 32px; overflow: hidden; }
+.langs .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 200px; margin-top: 8px; }
+.langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; letter-spacing: .08em; text-align: center; padding: 8px 0; border-radius: 8px; background: #F2F1FA; color: #767676; transition: background .3s, color .3s; }
+.langs .codes i.on { background: #0B0B0B; color: var(--lime); }
 .langs b { display: block; padding: 16px 32px; border-radius: 16px; background: #5046E5; color: #fff; font-weight: 600; font-size: 20px; line-height: 24px; min-width: 200px; text-align: center; transition: opacity .3s; }
 .langs small { font: 500 12px/16px var(--sans); letter-spacing: .16em; color: #767676; text-transform: uppercase; }
-@media (max-width: 1023px) { .num { font-size: 160px; line-height: 152px; } .phone { width: 220px; border-radius: 36px; } .phone img, .phone .langs { border-radius: 28px; } }
+@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 160px; line-height: 148px; } .phone { width: 220px; border-radius: 36px; } .phone img, .phone .langs { border-radius: 28px; } }
 @media (max-width: 719px) {
   .panel { grid-template-columns: 1fr; gap: 24px; align-content: center; }
-  .num { font-size: 96px; line-height: 96px; } .p-label { font-size: 20px; line-height: 28px; margin-top: 12px; } .p-case { margin-top: 16px; }
+  .panel { justify-content: stretch; }
+  .num { font-size: 104px; line-height: 96px; } .p-label { font-size: 20px; line-height: 28px; margin-top: 12px; } .p-case { margin-top: 16px; }
   .stage { order: -1; } .phone { width: 160px; border-radius: 28px; padding: 6px; } .phone img, .phone .langs { border-radius: 24px; }
-  .langs { font-size: 20px; } .langs b { min-width: 120px; font-size: 16px; padding: 12px 16px; }
+  .langs { gap: 8px; } .langs b { min-width: 120px; font-size: 16px; padding: 12px 16px; } .langs .codes { width: 128px; gap: 4px; } .langs .codes i { padding: 4px 0; border-radius: 4px; font-size: 8px; } .langs small { font-size: 8px; }
 }
 
 /* Marquee: two rows in opposite directions, they lean with scroll speed */
@@ -132,7 +140,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .row + .row { animation-direction: reverse; margin-top: 16px; }
 .row span { font-size: 96px; line-height: 112px; letter-spacing: -0.04em; font-weight: 300; padding-right: 48px; white-space: nowrap; }
 .row span:nth-child(3n+2) { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--lime); }
-.row span:nth-child(3n) { -webkit-text-stroke: 1px var(--text); color: transparent; }
+.row span:nth-child(3n) { color: rgba(244, 241, 255, .48); }
 .skew { transform: skewX(var(--skew, 0deg)); transition: transform .4s cubic-bezier(.16, 1, .3, 1); }
 @keyframes slide { to { transform: translateX(-50%); } }
 @media (max-width: 719px) { .marquee { padding-block: 72px; } .row span { font-size: 48px; line-height: 56px; padding-right: 24px; } }
@@ -141,7 +149,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .path { padding: 120px var(--gutter); max-width: 1280px; margin: 0 auto; }
 .sec-kicker { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
 .path h2 { font-size: 64px; line-height: 64px; letter-spacing: -0.04em; font-weight: 400; max-width: 880px; }
-.path h2 em { font-size: 72px; color: var(--orchid); }
+.path h2 em { font-size: 72px; color: var(--lime); }
 .stops { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 96px; padding-top: 48px; list-style: none; }
 .stops::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--line); }
 .stops::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; margin-top: -1px; background: linear-gradient(90deg, var(--violet), var(--orchid), var(--lime)); transform-origin: left; transform: scaleX(var(--p, 0)); }
@@ -152,7 +160,8 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .stop time { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .stop h3 { font-size: 32px; line-height: 36px; letter-spacing: -0.03em; font-weight: 500; margin-top: 12px; }
 .stop p { color: var(--muted); margin-top: 8px; }
-.stop--next h3 { font-family: var(--serif); font-style: italic; font-size: 40px; }
+.stop--next h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 44px; color: var(--lime); }
+.stop--next.on::before { animation: pulse 1.6s infinite; }
 @media (max-width: 899px) {
   .path h2 { font-size: 40px; line-height: 44px; } .path h2 em { font-size: 48px; }
   .stops { grid-template-columns: 1fr; gap: 40px; margin-top: 64px; padding: 0 0 0 32px; }
@@ -164,19 +173,20 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 /* Portrait: a circle opens onto Prague */
 .portrait { position: relative; height: 240svh; }
 .portrait-pin { position: sticky; top: 0; height: 100svh; display: grid; place-items: center; overflow: hidden; }
-.portrait-img { position: absolute; inset: 0; clip-path: circle(var(--r, 8%) at 50% 50%); will-change: clip-path; }
-.portrait-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(var(--s, 1.3)); }
-.portrait-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(7, 6, 26, .85)); }
-.portrait-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 64px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; opacity: var(--o, 0); }
+.portrait-img { position: absolute; top: 50%; right: max(var(--gutter), calc((100vw - 1280px) / 2)); width: min(640px, 80svh); aspect-ratio: 1; margin-top: calc(min(640px, 80svh) / -2);
+  clip-path: circle(var(--r, 8%) at 50% 50%); will-change: clip-path; }
+.portrait-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transform: scale(var(--s, 1.3)); }
+.portrait-copy { position: absolute; left: max(var(--gutter), calc((100vw - 1280px) / 2)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 32px; max-width: 520px; opacity: var(--o, 0); }
 .portrait-copy h2 { font-size: 96px; line-height: 88px; letter-spacing: -0.05em; font-weight: 400; }
 .portrait-copy h2 em { font-size: 104px; }
 .portrait-copy p { max-width: 320px; color: var(--text); font-size: 20px; line-height: 28px; }
-@media (max-width: 719px) { .portrait-copy { flex-direction: column; align-items: flex-start; bottom: 40px; } .portrait-copy h2 { font-size: 56px; line-height: 56px; } .portrait-copy h2 em { font-size: 64px; } .portrait-copy p { font-size: 16px; line-height: 24px; } }
+@media (max-width: 899px) { .portrait-img { width: min(80vw, 400px); right: 50%; margin-right: calc(min(80vw, 400px) / -2); top: 16svh; margin-top: 0; } .portrait-copy { top: auto; bottom: 48px; transform: none; right: var(--gutter); max-width: none; gap: 16px; } }
+@media (max-width: 719px) { .portrait-copy h2 { font-size: 56px; line-height: 56px; } .portrait-copy h2 em { font-size: 64px; } .portrait-copy p { font-size: 16px; line-height: 24px; } }
 
 /* Contact */
 .contact { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--gutter) 64px; max-width: 1360px; margin: 0 auto; }
 .big { font-size: 160px; line-height: 144px; letter-spacing: -0.06em; font-weight: 300; }
-.big em { font-size: 176px; background: linear-gradient(90deg, var(--violet), var(--orchid), var(--lime), var(--violet)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: flow 6s linear infinite; padding-right: 8px; }
+.big em { font-size: 176px; color: var(--lime); }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 64px; }
 .btn { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 32px; border-radius: 999px; border: 1px solid var(--line); font-size: 20px; line-height: 24px; background: rgba(255, 255, 255, .04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background .3s, color .3s, border-color .3s; will-change: transform; }
 .btn:hover { background: var(--text); color: var(--ink); border-color: var(--text); }
@@ -205,8 +215,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 <div class="cursor" aria-hidden="true"></div>
 
 <header>
-  <a class="mark" href="#top">A<em>s</em></a>
-  <div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div>
+  <a class="mark" href="#top">Anastasiia Sukhanek</a>
+  <div class="head-r"><a class="talk" href="#contact"><span lang="en" class="t-en">Let’s talk</span><span lang="ru" class="t-ru">Поговорим</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
 </header>
 
 <main id="top">
@@ -246,7 +256,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
             <a class="p-case" href="../case-profee-statuses.html"><span lang="en" class="t-en">Transfer statuses case</span><span lang="ru" class="t-ru">Кейс про статусы</span> →</a></div>
           <div class="stage"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="Transfer in progress screen with the reason for the delay" loading="lazy"></div></div>
         </article>
-        <article class="panel" style="--c1: #8B6CFF; --c2: #D2FF5C">
+        <article class="panel" style="--c1: #B9A6FF; --c2: #D2FF5C">
           <div><p class="p-meta">Profee · 2025–2026</p><p class="num">×2</p>
             <p lang="en" class="p-label t-en">active senders open the Cards tab after the redesign</p><p lang="ru" class="p-label t-ru">активных отправителей открывают «Карты» после редизайна</p>
             <a class="p-case" href="../case-profee-cards.html"><span lang="en" class="t-en">Cards case</span><span lang="ru" class="t-ru">Кейс про карты</span> →</a></div>
@@ -256,7 +266,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
           <div><p class="p-meta"><span lang="en" class="t-en">With the design lead</span><span lang="ru" class="t-ru">Вместе с лидом дизайна</span></p><p class="num">×4</p>
             <p lang="en" class="p-label t-en">faster to localise a feature: AI agents write the copy and ship 13 languages as a branch</p><p lang="ru" class="p-label t-ru">быстрее локализация фичи: AI-агенты пишут тексты и отдают 13 языков веткой в репозиторий</p>
             <a class="p-case" href="../case-profee-cards.html#ai"><span lang="en" class="t-en">How the agents work</span><span lang="ru" class="t-ru">Как работают агенты</span> →</a></div>
-          <div class="stage"><div class="phone"><div class="langs" aria-hidden="true"><small>Button / Primary</small><b id="langWord">Top up</b><small id="langCode">EN</small></div></div></div>
+          <div class="stage"><div class="phone"><div class="langs" aria-hidden="true"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></div>
         </article>
         <article class="panel" style="--c1: #F08ACB; --c2: #D2FF5C">
           <div><p class="p-meta">SberSpasibo · 2022–2023</p><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
@@ -406,10 +416,11 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 
   /* ── Language cycling inside the agents phone ── */
   var langs = [['EN', 'Top up'], ['RU', 'Пополнить'], ['PL', 'Doładuj'], ['DE', 'Aufladen'], ['ES', 'Recargar'], ['FR', 'Recharger'], ['IT', 'Ricarica'], ['PT', 'Carregar'], ['TR', 'Yükle'], ['UK', 'Поповнити'], ['RO', 'Reîncarcă'], ['CS', 'Dobít'], ['LT', 'Papildyti']];
-  var lw = document.getElementById('langWord'), lc = document.getElementById('langCode'), li = 0;
+  var lw = document.getElementById('langWord'), lcs = document.getElementById('langCodes'), li = 0;
+  var codes = langs.map(function (l, i) { var c = document.createElement('i'); c.textContent = l[0]; if (!i) c.className = 'on'; lcs.appendChild(c); return c; });
   if (!reduce) setInterval(function () {
-    li = (li + 1) % langs.length; lw.style.opacity = 0;
-    setTimeout(function () { lc.textContent = langs[li][0]; lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
+    codes[li].className = ''; li = (li + 1) % langs.length; codes[li].className = 'on'; lw.style.opacity = 0;
+    setTimeout(function () { lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
   }, 1400);
 
   /* ── Cursor + magnetic buttons ── */
@@ -477,11 +488,11 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     // Path
     var pr = path.getBoundingClientRect(), pp = clamp((innerHeight * .8 - pr.top) / (pr.height + innerHeight * .3), 0, 1);
     path.style.setProperty('--p', reduce ? 1 : pp);
-    stops.forEach(function (s, i) { s.classList.toggle('on', reduce || pp > (i + .3) / stops.length); });
+    stops.forEach(function (s, i) { s.classList.toggle('on', reduce || pp > .05 + i * .2); });
 
     // Portrait
     var ptp = prog(portrait);
-    pimg.style.setProperty('--r', reduce ? '75%' : (8 + ptp * 80) + '%');
+    pimg.style.setProperty('--r', reduce ? '50%' : (6 + clamp(ptp * 1.4, 0, 1) * 44) + '%');
     pimg.style.setProperty('--s', reduce ? 1 : (1.3 - ptp * .3));
     pcopy.style.setProperty('--o', reduce ? 1 : clamp((ptp - .45) * 3, 0, 1));
 
@@ -498,7 +509,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     // Name weight: letters near the cursor get heavier
     if (fine && !reduce && scrollY < innerHeight) for (var i = 0; i < chars.length; i++) {
       var r = chars[i].getBoundingClientRect(), dx = mouse.px - (r.left + r.width / 2), dy = mouse.py - (r.top + r.height / 2);
-      var w = 300 + 300 * Math.exp(-(dx * dx + dy * dy) / 40000);
+      var w = 300 + 240 * Math.exp(-(dx * dx + dy * dy) / 120000);
       chars[i].style.setProperty('--w', w.toFixed(0));
     }
     scenes();

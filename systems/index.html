@@ -51,14 +51,20 @@ code, .mono { font-family: var(--mono); font-size: 12px; line-height: 16px; }
   background-size: 32px 32px, 32px 32px, 8px 8px, 8px 8px;
   border-bottom: 1px solid var(--rule);
 }
-.hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding-block: 96px; }
+.hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; column-gap: 48px; row-gap: 40px; align-items: center; padding-block: 96px; }
+.hero .meta { grid-column: 1; margin-top: 0; align-self: start; padding-top: 4px; }
+.hero .also { grid-column: 2; margin-top: 0; align-self: start; }
 .eyebrow { display: inline-block; font: 500 12px/16px var(--mono); color: var(--accent); background: var(--accent-100); padding: 4px 8px; margin-bottom: 24px; }
 h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; }
 .lead { font-size: 20px; line-height: 28px; color: var(--muted); margin-top: 24px; max-width: 520px; }
 .lead strong { color: var(--text); font-weight: 500; }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 32px; font-size: 12px; line-height: 16px; color: var(--muted); }
 .meta b { color: var(--text); font-weight: 500; }
-@media (max-width: 799px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
+@media (max-width: 799px) {
+  .hero .wrap { grid-template-columns: 1fr; row-gap: 32px; padding-block: 64px; }
+  .hero .meta, .hero .also { grid-column: 1; }
+  .hero .anatomy { order: 3; }
+}
 @media (max-width: 599px) { h1 { font-size: 48px; line-height: 52px; } .lead { font-size: 16px; line-height: 24px; } }
 
 /* Anatomy: a button with redlines and the tokens behind it */
@@ -152,14 +158,8 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
         <h1>Anastasiia<br>Sukhanek</h1>
         <p lang="en" class="lead t-en">I build design systems that hold up in production: <strong>two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
         <p lang="ru" class="lead t-ru">Строю дизайн-системы, которые выдерживают продакшн: <strong>двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
-        <div class="meta">
-          <span><b>8</b> <span lang="en" class="t-en">years in design</span><span lang="ru" class="t-ru">лет в дизайне</span></span>
-          <span><b>Profee · <span lang="en" class="t-en">Beeline · Sber</span><span lang="ru" class="t-ru">Билайн · Сбер</span></b></span>
-          <span lang="en" class="t-en">Prague · remote</span><span lang="ru" class="t-ru">Прага · удалённо</span>
-        </div>
       </div>
 
-      <div class="hero-side">
       <figure class="anatomy" aria-label="Button anatomy with tokens">
         <span class="anatomy-label">Button / Primary</span>
         <div class="spec-btn-wrap">
@@ -178,10 +178,14 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
           <li><span>focus/ring</span><span><i class="sw" style="background:#2F6FEB"></i>accent-600</span></li>
         </ul>
       </figure>
+      <div class="meta">
+        <span><b>8</b> <span lang="en" class="t-en">years in design</span><span lang="ru" class="t-ru">лет в дизайне</span></span>
+        <span><b>Profee · <span lang="en" class="t-en">Beeline · Sber</span><span lang="ru" class="t-ru">Билайн · Сбер</span></b></span>
+        <span lang="en" class="t-en">Prague · remote</span><span lang="ru" class="t-ru">Прага · удалённо</span>
+      </div>
       <p class="also"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
         <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
         <a href="../engineer/"><span lang="en" class="t-en">Design engineer →</span><span lang="ru" class="t-ru">Дизайн-инженер →</span></a></p>
-      </div>
     </div>
   </div>
 

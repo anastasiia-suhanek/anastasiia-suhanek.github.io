@@ -159,6 +159,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .row span { font-size: 96px; line-height: 112px; letter-spacing: -0.04em; font-weight: 300; padding-right: 48px; white-space: nowrap; }
 .row span:nth-child(3n+2) { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--lime); }
 .row span:nth-child(3n) { color: rgba(244, 241, 255, .48); }
+.row i { font-style: inherit; }
 .skew { transform: skewX(var(--skew, 0deg)); }
 @keyframes slide { to { transform: translateX(-50%); } }
 @media (max-width: 719px) { .marquee { padding-block: 72px; } .row span { font-size: 48px; line-height: 56px; padding-right: 24px; } }
@@ -199,7 +200,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .portrait-copy p { opacity: 0; transform: translateY(16px); transition: opacity .8s .4s, transform .8s .4s var(--ease); }
 .portrait-copy.on p { opacity: 1; transform: none; }
 .ring { position: absolute; inset: -14%; width: 128%; height: 128%; pointer-events: none; opacity: var(--o, 0); transform: rotate(var(--rot, 0deg)); }
-.ring text { font: 500 7px var(--sans); letter-spacing: .32em; text-transform: uppercase; fill: var(--text); }
+.ring text { font: 500 7px var(--sans); letter-spacing: .2em; text-transform: uppercase; fill: var(--text); }
 .portrait-wrap { position: absolute; top: 50%; right: max(var(--gutter), calc((100vw - 1280px) / 2)); width: min(640px, 80svh); aspect-ratio: 1; margin-top: calc(min(640px, 80svh) / -2); }
 .portrait-copy h2 { font-size: 96px; line-height: 88px; letter-spacing: -0.05em; font-weight: 400; }
 .portrait-copy h2 em { font-size: 104px; }
@@ -224,7 +225,7 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 footer { padding: 24px var(--gutter); display: flex; justify-content: space-between; gap: 16px; font-size: 12px; line-height: 16px; color: var(--muted); border-top: 1px solid var(--line); }
 
 /* Words rise from under a mask */
-.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .1em .14em 0; margin: 0 -.1em -.14em 0; }
+.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .1em .24em 0; margin: 0 -.1em -.24em 0; }
 .wi { display: inline-block; transform: translateY(115%) rotate(6deg); transform-origin: 0 100%; transition: transform 1.2s var(--ease); }
 .rise.on .wi { transform: none; }
 
@@ -339,8 +340,8 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 
   <section class="marquee" aria-label="Skills">
     <div class="skew">
-      <div class="row" aria-hidden="true"><span>Figma Variables</span><span>tokens</span><span>JTBD</span><span>A/B tests</span><span>Amplitude</span><span>UX writing</span><span>Figma Variables</span><span>tokens</span><span>JTBD</span><span>A/B tests</span><span>Amplitude</span><span>UX writing</span></div>
-      <div class="row" aria-hidden="true"><span>React</span><span>Storybook</span><span>Claude Code</span><span>design systems</span><span>13 languages</span><span>prototypes</span><span>React</span><span>Storybook</span><span>Claude Code</span><span>design systems</span><span>13 languages</span><span>prototypes</span></div>
+      <div class="row" aria-hidden="true"><span>Figma Variables</span><span><i lang="en" class="t-en">tokens</i><i lang="ru" class="t-ru">токены</i></span><span>JTBD</span><span><i lang="en" class="t-en">A/B tests</i><i lang="ru" class="t-ru">A/B-тесты</i></span><span>Amplitude</span><span><i lang="en" class="t-en">UX writing</i><i lang="ru" class="t-ru">UX-тексты</i></span><span>Figma Variables</span><span><i lang="en" class="t-en">tokens</i><i lang="ru" class="t-ru">токены</i></span><span>JTBD</span><span><i lang="en" class="t-en">A/B tests</i><i lang="ru" class="t-ru">A/B-тесты</i></span><span>Amplitude</span><span><i lang="en" class="t-en">UX writing</i><i lang="ru" class="t-ru">UX-тексты</i></span></div>
+      <div class="row" aria-hidden="true"><span>React</span><span>Storybook</span><span>Claude Code</span><span><i lang="en" class="t-en">design systems</i><i lang="ru" class="t-ru">дизайн-системы</i></span><span><i lang="en" class="t-en">13 languages</i><i lang="ru" class="t-ru">13 языков</i></span><span><i lang="en" class="t-en">prototypes</i><i lang="ru" class="t-ru">прототипы</i></span><span>React</span><span>Storybook</span><span>Claude Code</span><span><i lang="en" class="t-en">design systems</i><i lang="ru" class="t-ru">дизайн-системы</i></span><span><i lang="en" class="t-en">13 languages</i><i lang="ru" class="t-ru">13 языков</i></span><span><i lang="en" class="t-en">prototypes</i><i lang="ru" class="t-ru">прототипы</i></span></div>
     </div>
     <p lang="en" class="t-en" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Figma Variables, tokens, JTBD, A/B tests, Amplitude, UX writing, React, Storybook, Claude Code, design systems, 13 languages, prototypes</p>
     <p lang="ru" class="t-ru" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Figma Variables, токены, JTBD, A/B-тесты, Amplitude, UX-тексты, React, Storybook, Claude Code, дизайн-системы, 13 языков, прототипы</p>
@@ -362,11 +363,11 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
       <div class="portrait-wrap">
         <div class="portrait-img"><img style="aspect-ratio: auto 1110 / 1298;" src="../images/about/photo-about-prague.jpg" alt="Anastasiia on a street in Prague with a yellow tram behind" loading="lazy"></div>
         <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ringPath" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0"/></defs>
-          <text lang="en" class="t-en"><textPath href="#ringPath">Open to new roles · Prague · Remote worldwide · Open to new roles · Prague · Remote worldwide ·</textPath></text>
-          <text lang="ru" class="t-ru"><textPath href="#ringPath">Открыта к предложениям · Прага · Удалённо · Открыта к предложениям · Прага · Удалённо ·</textPath></text></svg>
+          <text lang="en" class="t-en"><textPath href="#ringPath" textLength="536" lengthAdjust="spacing">Open to new roles · Prague · Remote worldwide · Open to new roles · Prague · Remote worldwide · </textPath></text>
+          <text lang="ru" class="t-ru"><textPath href="#ringPath" textLength="536" lengthAdjust="spacing">Открыта к предложениям · Прага · Удалённо · Открыта к предложениям · Прага · Удалённо · </textPath></text></svg>
       </div>
       <div class="portrait-copy rise">
-        <h2><span lang="en" class="t-en">Hi, I’m <em>Nastya</em></span><span lang="ru" class="t-ru">Привет, я <em>Настя</em></span></h2>
+        <h2><span lang="en" class="t-en">Hi,<br>I’m <em>Nastya</em></span><span lang="ru" class="t-ru">Привет,<br>я <em>Настя</em></span></h2>
         <p lang="en" class="t-en">I live in Prague, work remote and love the moment a confusing screen turns obvious</p>
         <p lang="ru" class="t-ru">Живу в Праге, работаю удалённо и люблю момент, когда запутанный экран становится очевидным</p>
       </div>
@@ -548,7 +549,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   var counters = parts.map(function (pt) {
     var nodes = Array.prototype.filter.call(pt.num.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
     var node = nodes[nodes.length - 1], m = node && node.textContent.match(/^([^0-9]*)([0-9]+)(?:\.([0-9]+))?(.*)$/);
-    return m && { node: node, pre: m[1], val: parseFloat(m[2] + '.' + (m[3] || '0')), dec: (m[3] || '').length, post: m[4], text: node.textContent, t0: 0 };
+    return m && { node: node, pre: m[1], val: parseFloat(m[2] + '.' + (m[3] || '0')), dec: (m[3] || '').length, post: m[4], t0: 0 };
   });
   var active = -1;
   var path = document.querySelector('.stops'), stops = document.querySelectorAll('.stop');
@@ -566,6 +567,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     tops.half = rows[0].scrollWidth / 2;
   }
   measure(); addEventListener('resize', measure); addEventListener('load', measure);
+  new MutationObserver(function () { measure(); rx[0] = 0; rx[1] = -tops.half; }).observe(root, { attributes: true, attributeFilter: ['lang'] });
   rx[1] = -tops.half;
 
   function scenes(now, dt) {
@@ -598,9 +600,11 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
       if (c && !reduce && now - c.t0 > 2500) c.t0 = now;
     }
     counters.forEach(function (c) {
-      if (!c || !c.t0) return;
-      var t = expoOut(clamp((now - c.t0) / 1100, 0, 1));
-      c.node.textContent = t >= 1 ? c.text : c.pre + (c.val * t).toFixed(c.dec) + c.post;
+      if (!c) return;
+      var t = c.t0 ? expoOut(clamp((now - c.t0) / 1100, 0, 1)) : 1;
+      var v = (t >= 1 ? c.val : c.val * t).toFixed(c.dec);
+      var txt = c.pre + (isRu() ? v.replace('.', ',') : v) + c.post;
+      if (c.node.textContent !== txt) c.node.textContent = txt;
     });
     if (!reduce) panels.forEach(function (pn, i) {
       var r = pn.getBoundingClientRect(), d = clamp(((r.left + r.width / 2) - innerWidth / 2) / innerWidth, -1, 1), ad = Math.abs(d);

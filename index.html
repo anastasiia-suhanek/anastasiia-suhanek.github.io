@@ -344,6 +344,7 @@ html.g4 .sw {
   /* The name fills the grid width: --fit is the name's size-to-width ratio for its weight (measured) */
   --G: min(100vw - 2 * var(--gutter), var(--max-w) - 2 * var(--gutter));
   --nw: 800; --fit: 0.2222;
+  /* «Анастасия» is wider than «Anastasiia» in this face: its own ratio keeps the name at the grid width */
   display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); column-gap: var(--gap);
   grid-template-rows: auto 1fr auto;
   width: min(100% - 2 * var(--gutter), var(--max-w) - 2 * var(--gutter)); margin: 0 auto;
@@ -352,6 +353,7 @@ html.g4 .sw {
 }
 html.swiss.g4 section.hero { padding-top: 40px; justify-content: flex-start; }
 html.g4 .sw p, html.g4 .sw ol { margin: 0; }
+html.g4[lang="ru"] .sw { --fit: 0.2068; }
 html.g4 .sw-meta { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
 html.g4 .sw-meta p { font-size: 15px; line-height: 1.35; color: var(--text); }
 html.g4 .sw-meta a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -886,7 +888,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
 
 <!-- ── NAV ── -->
 <nav class="nav" id="main-nav"></nav>
-<script src="js/nav.js?v=93ad2614"></script>
+<script src="js/nav.js?v=62f377fd"></script>
 <main>
 
 <!-- ── HERO ── -->
@@ -899,7 +901,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
       <p><span lang="en" class="t-en">8 years in design<br>Profee · Beeline · Sber</span><span lang="ru" class="t-ru">8 лет в дизайне<br>Profee · Билайн · Сбер</span></p>
       <p><span lang="en" class="t-en">Open to new roles · remote<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span><span lang="ru" class="t-ru">Открыта к работе · удалённо<br><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram @suhastasiia</a></span></p>
     </div>
-    <h1 class="sw-name">Anastasiia<br>Sukhanek</h1>
+    <h1 class="sw-name"><span lang="en" class="t-en">Anastasiia<br>Sukhanek</span><span lang="ru" class="t-ru">Анастасия<br>Суха́нек</span></h1>
     <div class="sw-foot">
       <p lang="en" class="sw-lead t-en">AI-native designer here: from research to&nbsp;a&nbsp;merge-ready branch</p>
       <p lang="ru" class="sw-lead t-ru">На&nbsp;связи AI-дизайнер: от&nbsp;ресёрча до&nbsp;ветки в&nbsp;репозитории</p>
@@ -1113,7 +1115,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
 <!-- ── FOOTER ── -->
 <footer class="footer">
   <div class="footer-inner">
-    <span class="footer-name">Anastasiia Sukhanek</span>
+    <span class="footer-name"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></span>
     <span class="footer-note">
       <span lang="en" class="t-en">Senior Product Designer · Prague · 2026</span>
       <span lang="ru" class="t-ru">Senior продуктовый дизайнер · Прага · 2026</span>

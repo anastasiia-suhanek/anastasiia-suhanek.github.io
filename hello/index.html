@@ -88,10 +88,11 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .kicker i { flex: none; }
 .name { font-weight: 300; font-size: 176px; line-height: 160px; letter-spacing: -0.05em; }
 @media (min-width: 1400px) { .name { font-size: 216px; line-height: 196px; } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .name .line { display: block; overflow: hidden; padding-bottom: 12px; margin-bottom: -12px; white-space: nowrap; }
 .name .ch { display: inline-block; transform: translateY(110%) rotate(8deg); transform-origin: 0 100%; font-variation-settings: 'wght' var(--w, 300); transition: transform 1.4s var(--ease); will-change: transform; }
 .is-ready .name .ch { transform: none; }
-.name .line:nth-child(2) { padding-left: 1.2em; }
+.name .line:last-child { padding-left: 1.2em; }
 .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 48px; }
 .tag { font-size: 32px; line-height: 40px; letter-spacing: -0.02em; max-width: 640px; text-wrap: balance; opacity: 0; transform: translateY(24px); transition: opacity 1s 1s, transform 1.2s 1s var(--ease); }
 .tag em { font-size: 40px; color: var(--lime); }
@@ -100,16 +101,16 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .cue { opacity: 0; transition: opacity 1s 1.6s; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .cue i { width: 1px; height: 64px; background: linear-gradient(var(--text), transparent); transform-origin: top; animation: cue 2s cubic-bezier(.65, 0, .35, 1) infinite; }
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-@media (max-width: 1199px) { .name { font-size: 112px; line-height: 104px; } .name .line:nth-child(2) { padding-left: .8em; } }
+@media (max-width: 1199px) { .name { font-size: 112px; line-height: 104px; } .name .line:last-child { padding-left: .8em; } }
 @media (max-width: 767px) { .name { font-size: 80px; line-height: 76px; } .tag { font-size: 24px; line-height: 32px; } .tag em { font-size: 32px; } .cue { display: none; } }
 @media (max-width: 767px) and (orientation: portrait) {
   .hero { justify-content: center; padding-top: 96px; padding-bottom: 120px; }
   .cue { display: flex; position: absolute; left: 0; right: 0; bottom: 24px; } .cue i { height: 40px; }
   .hero-foot { margin-top: 32px; }
 }
-@media (max-width: 479px) { .name { font-size: 72px; line-height: 72px; } .name .line:nth-child(2) { padding-left: .6em; } .kicker { letter-spacing: .1em; } }
+@media (max-width: 479px) { .name { font-size: 72px; line-height: 72px; } .name .line:last-child { padding-left: .6em; } .kicker { letter-spacing: .1em; } }
 @media (max-width: 419px) { .name { font-size: 64px; line-height: 64px; } }
-@media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } .name .line:nth-child(2) { padding-left: .4em; } }
+@media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } .name .line:last-child { padding-left: .4em; } }
 
 /* Manifesto: words light up as you scroll */
 .manifesto { padding: 160px var(--gutter); max-width: 1280px; margin: 0 auto; }
@@ -262,7 +263,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 /* Phones on their side: short and wide */
 @media (max-height: 520px) and (orientation: landscape) {
   .hero { padding-top: 80px; padding-bottom: 24px; }
-  .name { font-size: 72px; line-height: 68px; } .name .line:nth-child(2) { padding-left: .8em; }
+  .name { font-size: 72px; line-height: 68px; } .name .line:last-child { padding-left: .8em; }
   .kicker { margin-bottom: 12px; } .hero-foot { margin-top: 16px; } .tag { font-size: 20px; line-height: 28px; } .tag em { font-size: 24px; } .cue { display: none; }
   .manifesto { padding-block: 72px; } .manifesto p { font-size: 28px; line-height: 36px; } .manifesto em { font-size: 32px; }
   .reel-head { top: 64px; } .reel-bar { bottom: 16px; }
@@ -288,14 +289,14 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
 <div class="curtain" aria-hidden="true"></div>
 
 <header>
-  <a class="mark" href="#top">Anastasiia Sukhanek</a>
+  <a class="mark" href="#top"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></a>
   <div class="head-r"><a class="talk" href="#contact"><span lang="en" class="t-en">Let’s talk</span><span lang="ru" class="t-ru">Поговорим</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
 </header>
 
 <main id="top">
   <section class="hero">
     <p class="kicker"><i></i><span lang="en" class="t-en"><b>Senior product designer</b> · <b>Fintech</b> · <b>Prague</b></span><span lang="ru" class="t-ru"><b>Senior продуктовый дизайнер</b> · <b>Финтех</b> · <b>Прага</b></span></p>
-    <h1 class="name" aria-label="Anastasiia Sukhanek"><span class="line">Anastasiia</span><span class="line">Sukhanek</span></h1>
+    <h1 class="name"><span lang="en" class="t-en"><span class="sr">Anastasiia Sukhanek</span><span class="line">Anastasiia</span><span class="line">Sukhanek</span></span><span lang="ru" class="t-ru"><span class="sr">Анастасия Суха́нек</span><span class="line">Анастасия</span><span class="line">Суха́нек</span></span></h1>
     <div class="hero-foot">
       <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
       <span class="cue" aria-hidden="true"><span lang="en" class="t-en">Scroll</span><span lang="ru" class="t-ru">Листайте</span><i></i></span>
@@ -418,7 +419,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   </section>
 </main>
 
-<footer><span>Anastasiia Sukhanek · 2026</span><span lang="en" class="t-en">Made with Claude Code, WebGL and two cats nearby</span><span lang="ru" class="t-ru">Сделано с Claude Code, WebGL и двумя котами рядом</span></footer>
+<footer><span><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span> · 2026</span><span lang="en" class="t-en">Made with Claude Code, WebGL and two cats nearby</span><span lang="ru" class="t-ru">Сделано с Claude Code, WebGL и двумя котами рядом</span></footer>
 
 <script>
 (function () {
@@ -481,9 +482,9 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   var chars = [];
   document.querySelectorAll('.name .line').forEach(function (line, li) {
     var t = line.textContent; line.textContent = ''; line.setAttribute('aria-hidden', 'true');
-    t.split('').forEach(function (c, i) {
+    (t.match(/\P{M}\p{M}*/gu) || []).forEach(function (c, i) {
       var s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
-      s.style.transitionDelay = (.15 + li * .14 + i * .04) + 's';
+      s.style.transitionDelay = (.15 + (li % 2) * .14 + i * .04) + 's';
       line.appendChild(s); chars.push(s);
     });
   });

@@ -384,6 +384,10 @@ html.g4 .sw-lead {
   font-size: clamp(22px, 2.1vw, 30px); line-height: 1.2; letter-spacing: -0.02em; color: var(--text);
   max-width: 26ch; text-wrap: balance;
 }
+/* The other facets of the portfolio (/systems/, /engineer/): the fourth column, under the Telegram link */
+html.g4 .sw-facets { grid-column: 4; align-self: end; display: flex; flex-direction: column; gap: 4px; font-size: 16px; line-height: 24px; color: var(--text-mid); }
+html.g4 .sw-facets a { color: var(--text); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+html.g4 .sw-facets a:hover { color: var(--accent); }
 /* A light lead against the heavy name reads as its caption, not a second headline */
 html.swiss.g4 .hero .sw-lead { font-weight: 300; }
 
@@ -403,6 +407,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
   html.swiss.g4 .hero .sw-name { margin: 40px 0 44px; }
   html.g4 .sw-foot { row-gap: 32px; }
   html.g4 .sw-lead { grid-column: 1 / -1; }
+  html.g4 .sw-facets { grid-column: 1 / -1; }
     }
 @media (max-width: 480px) {
       }
@@ -877,7 +882,7 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
 </style>
 <link rel="stylesheet" href="css/glass.css?v=4812ed06">
 <link rel="stylesheet" href="css/swiss.css?v=bf24d07c">
-<link rel="stylesheet" href="css/grid.css?v=6b88b199">
+<link rel="stylesheet" href="css/grid.css?v=02c6a87c">
 
 <!-- ── NAV ── -->
 <nav class="nav" id="main-nav"></nav>
@@ -897,6 +902,9 @@ html.swiss.g4 .hero .sw-lead { font-weight: 300; }
     <div class="sw-foot">
       <p lang="en" class="sw-lead t-en">AI-native designer here: from research to&nbsp;a&nbsp;merge-ready branch</p>
       <p lang="ru" class="sw-lead t-ru">На&nbsp;связи AI-дизайнер: от&nbsp;ресёрча до&nbsp;ветки в&nbsp;репозитории</p>
+      <p class="sw-facets"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
+        <a href="systems/"><span lang="en" class="t-en">Design systems →</span><span lang="ru" class="t-ru">Дизайн-системы →</span></a>
+        <a href="engineer/"><span lang="en" class="t-en">Design engineer →</span><span lang="ru" class="t-ru">Дизайн-инженер →</span></a></p>
     </div>
   </div>
   <div class="hero-inner">

@@ -55,7 +55,7 @@ code, .mono { font-family: var(--mono); font-size: 12px; line-height: 16px; }
 .hero .meta { grid-column: 1; margin-top: 0; align-self: start; padding-top: 4px; }
 .hero .also { grid-column: 2; margin-top: 0; align-self: start; }
 .eyebrow { display: inline-block; font: 500 12px/16px var(--mono); color: var(--accent); background: var(--accent-100); padding: 4px 8px; margin-bottom: 24px; }
-h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; }
+h1 { font-size: 56px; line-height: 60px; font-weight: 600; letter-spacing: -0.03em; text-wrap: balance; }
 .lead { font-size: 20px; line-height: 28px; color: var(--muted); margin-top: 24px; max-width: 520px; }
 .lead strong { color: var(--text); font-weight: 500; }
 .meta { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 32px; font-size: 12px; line-height: 16px; color: var(--muted); }
@@ -65,7 +65,7 @@ h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03
   .hero .meta, .hero .also { grid-column: 1; }
   .hero .anatomy { order: 3; }
 }
-@media (max-width: 599px) { h1 { font-size: 48px; line-height: 52px; } .lead { font-size: 16px; line-height: 24px; } }
+@media (max-width: 599px) { h1 { font-size: 40px; line-height: 44px; } .lead { font-size: 16px; line-height: 24px; } }
 
 /* Anatomy: a button with redlines and the tokens behind it */
 .anatomy { background: var(--bg); border: 1px solid var(--rule); padding: 48px 32px 32px; position: relative; }
@@ -154,10 +154,10 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
   <div class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow"><span lang="en" class="t-en">product designer / design systems</span><span lang="ru" class="t-ru">продуктовый дизайнер / дизайн-системы</span></p>
-        <h1><span lang="en" class="t-en">Anastasiia<br>Sukhanek</span><span lang="ru" class="t-ru">Анастасия<br>Суха́нек</span></h1>
-        <p lang="en" class="lead t-en">I build design systems that hold up in production: <strong>two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
-        <p lang="ru" class="lead t-ru">Строю дизайн-системы, которые выдерживают продакшн: <strong>двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
+        <p class="eyebrow"><span lang="en" class="t-en">Anastasiia Sukhanek / design systems</span><span lang="ru" class="t-ru">Анастасия Суха́нек / дизайн-системы</span></p>
+        <h1><span lang="en" class="t-en">Design systems that hold up in production</span><span lang="ru" class="t-ru">Дизайн‑системы, которые выдерживают продакшн</span></h1>
+        <p lang="en" class="lead t-en"><strong>Two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
+        <p lang="ru" class="lead t-ru"><strong>Двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
       </div>
 
       <figure class="anatomy" aria-label="Button anatomy with tokens">

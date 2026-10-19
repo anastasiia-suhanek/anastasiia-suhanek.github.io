@@ -45,13 +45,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* Hero */
 .hero { padding-block: 96px 80px; }
 .eyebrow { font: 400 12px/16px var(--mono); color: var(--accent); margin-bottom: 24px; }
-h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; }
+h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; max-width: 800px; text-wrap: balance; }
 .lead { font-size: 20px; line-height: 28px; color: var(--muted); max-width: 640px; margin-top: 24px; }
 .lead strong { color: var(--text); font-weight: 500; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
 .chip { font: 400 12px/16px var(--mono); border: 1px solid var(--rule); padding: 8px 12px; color: var(--muted); }
 .chip--on { color: var(--ok); border-color: #1F4D32; }
-@media (max-width: 599px) { .hero { padding-block: 64px 56px; } h1 { font-size: 48px; line-height: 52px; } .lead { font-size: 16px; line-height: 24px; } }
+@media (max-width: 599px) { .hero { padding-block: 64px 56px; } h1 { font-size: 40px; line-height: 44px; } .lead { font-size: 16px; line-height: 24px; } }
 
 /* Terminal */
 .term { margin-top: 56px; background: var(--bg-raised); border: 1px solid var(--rule); font: 400 12px/20px var(--mono); }
@@ -136,12 +136,12 @@ footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/
 
 <main>
   <div class="hero wrap">
-    <p class="eyebrow">// <span lang="en" class="t-en">design engineer · AI-native product designer</span><span lang="ru" class="t-ru">дизайн-инженер · AI-native продуктовый дизайнер</span></p>
-    <h1><span lang="en" class="t-en">Anastasiia<br>Sukhanek</span><span lang="ru" class="t-ru">Анастасия<br>Суха́нек</span></h1>
+    <p class="eyebrow">// <span lang="en" class="t-en">Anastasiia Sukhanek · design engineer</span><span lang="ru" class="t-ru">Анастасия Суха́нек · дизайн-инженер</span></p>
+    <h1><span lang="en" class="t-en">I design in Figma and ship it in code</span><span lang="ru" class="t-ru">Проектирую в Figma и довожу до кода</span></h1>
     <div class="hero-row">
       <div class="hero-main">
-      <p lang="en" class="lead t-en">I design in Figma and carry it into code: <strong>tokens, React components, Storybook with accessibility tests</strong> and AI agents that write and translate the copy</p>
-      <p lang="ru" class="lead t-ru">Проектирую в Figma и довожу до кода: <strong>токены, React-компоненты, Storybook с тестами доступности</strong> и AI-агенты, которые пишут и переводят тексты</p>
+      <p lang="en" class="lead t-en"><strong>Tokens, React components, Storybook with accessibility tests</strong> and AI agents that write and translate the copy</p>
+      <p lang="ru" class="lead t-ru"><strong>Токены, React-компоненты, Storybook с тестами доступности</strong> и AI-агенты, которые пишут и переводят тексты</p>
       <div class="chips">
         <span lang="en" class="chip chip--on t-en">● open to design engineer roles</span><span lang="ru" class="chip chip--on t-ru">● открыта к ролям дизайн-инженера</span>
         <span lang="en" class="chip t-en">8 years in design</span><span lang="ru" class="chip t-ru">8 лет в дизайне</span>

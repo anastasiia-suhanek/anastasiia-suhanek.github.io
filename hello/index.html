@@ -51,6 +51,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 500; letter-spa
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 1s steps(4) infinite; }
 @keyframes grain { 25% { transform: translate(-4%, 4%); } 50% { transform: translate(4%, -8%); } 75% { transform: translate(-8%, -4%); } }
+#flow { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 main, header, footer { position: relative; z-index: 2; }
 
 /* Cursor: a dot that inverts what it passes over, grows on links */
@@ -98,6 +99,14 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .tag em { font-size: 40px; color: var(--lime); }
 @keyframes flow { to { background-position: 300% 0; } }
 .is-ready .tag, .is-ready .cue { opacity: 1; transform: none; }
+.hint { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 20px; max-width: 560px; font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); opacity: 0; transition: opacity 1s 2.2s; }
+.hint i { flex: none; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--muted); }
+.is-ready .hint { opacity: 1; }
+.hint .touch { display: none; }
+@media (hover: none) { .hint .fine { display: none; } .hint .touch { display: inline; } }
+.hint .cnt { display: none; font-weight: 500; color: var(--lime); font-variant-numeric: tabular-nums; }
+.has-saved .hint .cnt { display: inline; }
+.has-saved .hint i { background: var(--lime); border-color: var(--lime); box-shadow: 0 0 12px var(--lime); }
 .cue { opacity: 0; transition: opacity 1s 1.6s; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .cue i { width: 1px; height: 64px; background: linear-gradient(var(--text), transparent); transform-origin: top; animation: cue 2s cubic-bezier(.65, 0, .35, 1) infinite; }
 @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -227,6 +236,8 @@ header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items:
 .big { font-size: 160px; line-height: 144px; letter-spacing: -0.06em; font-weight: 300; }
 .big em { font-size: 176px; color: var(--lime); }
 .seek { margin-top: 40px; font-size: 20px; line-height: 28px; color: var(--muted); max-width: 720px; }
+.payoff { display: none; margin-top: 16px; font-size: 20px; line-height: 28px; color: var(--lime); }
+.has-saved .payoff { display: block; }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 32px; border-radius: 999px; border: 1px solid var(--line); font-size: 20px; line-height: 24px; background: rgba(255, 255, 255, .04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background .3s, color .3s, border-color .3s; will-change: transform; }
 .btn:hover { background: var(--text); color: var(--ink); border-color: var(--text); }
@@ -279,11 +290,13 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .name .ch, .tag, .rv, .stop, .wi, .kicker, .cue, header, .portrait-copy p { transform: none !important; opacity: 1 !important; }
   .curtain { display: none; }
+  .hint { display: none; }
   .manifesto .w { opacity: 1; }
 }
 </style>
 
 <canvas id="aurora" aria-hidden="true"></canvas>
+<canvas id="flow" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
 <div class="curtain" aria-hidden="true"></div>
@@ -298,7 +311,10 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     <p class="kicker"><i></i><span lang="en" class="t-en"><b>Senior product designer</b> · <b>Fintech</b> · <b>Prague</b></span><span lang="ru" class="t-ru"><b>Senior продуктовый дизайнер</b> · <b>Финтех</b> · <b>Прага</b></span></p>
     <h1 class="name"><span lang="en" class="t-en"><span class="sr">Anastasiia Sukhanek</span><span class="line">Anastasiia</span><span class="line">Sukhanek</span></span><span lang="ru" class="t-ru"><span class="sr">Анастасия Суха́нек</span><span class="line">Анастасия</span><span class="line">Суха́нек</span></span></h1>
     <div class="hero-foot">
-      <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
+      <div>
+        <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
+        <p class="hint" aria-hidden="true"><i></i><span lang="en" class="t-en"><span class="fine">Each dot is a person. Catch the ones leaving with your cursor</span><span class="touch">Each dot is a person. Catch the ones leaving with your finger</span></span><span lang="ru" class="t-ru"><span class="fine">Каждая точка – человек. Поймайте курсором тех, кто уходит</span><span class="touch">Каждая точка – человек. Поймайте пальцем тех, кто уходит</span></span><b class="cnt"><span lang="en" class="t-en">brought back</span><span lang="ru" class="t-ru">вернули</span> <span data-saved>0</span></b></p>
+      </div>
       <span class="cue" aria-hidden="true"><span lang="en" class="t-en">Scroll</span><span lang="ru" class="t-ru">Листайте</span><i></i></span>
     </div>
   </section>
@@ -405,6 +421,7 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
     <p class="sec-kicker rv"><span lang="en" class="t-en">Contact</span><span lang="ru" class="t-ru">Контакты</span></p>
     <h2 class="big rise"><span lang="en" class="t-en">Let’s make something <em>people finish</em></span><span lang="ru" class="t-ru">Сделаем то, что <em>доводят до конца</em></span></h2>
     <p class="seek rv"><span lang="en" class="t-en">Looking for a Senior product designer role · remote or in Prague · Czech permanent residence, no visa sponsorship needed</span><span lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера · удалённо или в Праге · ПМЖ в Чехии, спонсорство визы не нужно</span></p>
+    <p class="payoff" aria-live="polite"></p>
     <div class="btns rv">
       <a class="btn btn--main magnet" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
       <a class="btn magnet" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
@@ -718,6 +735,207 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   }
   requestAnimationFrame(frame);
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('is-ready'); }); });
+})();
+</script>
+<script>
+/* People flow: every particle is a person going through a flow. Some drift away and fade – the drop-off.
+   The cursor (a finger on phones) pulls them back; returned ones flash lime and are counted.
+   With every case fewer drift away, on the timeline the stream narrows into its line, around the portrait it
+   orbits, and at the contact it all arrives at the Telegram button */
+(function () {
+  'use strict';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var cv = document.getElementById('flow'), ctx = cv.getContext('2d');
+  if (!ctx) return;
+  var W = 0, H = 0, DPR = 1, P = [], N = 0, arriving = 0, arrivingX = 0, orbitNow = 0;
+  var pointer = { x: -9999, y: -9999, on: false, t: 0 };
+  var saved = 0, savedEls = document.querySelectorAll('[data-saved]'), payoff = document.querySelector('.payoff');
+  var LIME = '#D2FF5C';
+
+  function gauss() { var u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.max(-2.2, Math.min(2.2, Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v))); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function smooth(a, b, x) { var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function spawn(p, anywhere) {
+    p.x = anywhere ? Math.random() * W : (arriving > .5 ? Math.random() * arrivingX * .7 : -Math.random() * W * .2 - 10);
+    p.o = gauss();                       // lane: distance from the centre of the stream
+    p.v = (1.1 + Math.random() * 1.3) * (W / 1440 * .6 + .4);
+    p.a = Math.random() * Math.PI * 2;   // orbit angle around the portrait
+    p.y = H * .6 + p.o * H * .07;
+    p.s = 0;                             // 0 flow · 1 drifting away · 2 coming back
+    p.al = anywhere ? 1 : 0;             // alpha: new ones fade in
+    p.lime = 0; p.dy = 0; p.px = p.x; p.py = p.y; p.hx = p.v; p.hy = 0;
+  }
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    var n = Math.round(clamp(W * H / 520, 500, 2600));
+    while (P.length < n) { var p = {}; spawn(p, true); P.push(p); }
+    P.length = n; N = n;
+  }
+  resize(); addEventListener('resize', resize);
+
+  // Pointer: mouse, pen and touch (touch also while the page scrolls)
+  addEventListener('pointermove', function (e) { pointer.x = e.clientX; pointer.y = e.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
+  addEventListener('pointerleave', function () { pointer.on = false; });
+  document.addEventListener('mouseleave', function () { pointer.on = false; });
+  addEventListener('touchstart', function (e) { var t = e.touches[0]; pointer.x = t.clientX; pointer.y = t.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
+  addEventListener('touchmove', function (e) { var t = e.touches[0]; pointer.x = t.clientX; pointer.y = t.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
+  addEventListener('touchend', function () { setTimeout(function () { pointer.on = false; }, 300); }, { passive: true });
+
+  // Scene state, read from the page every frame
+  var hero = document.querySelector('.hero'), manifesto = document.querySelector('.manifesto'), reel = document.querySelector('.reel');
+  var stops = document.querySelector('.stops'), portrait = document.querySelector('.portrait'), wrap = document.querySelector('.portrait-wrap');
+  var contact = document.querySelector('.contact'), target = document.querySelector('.btn--main');
+  var count = document.querySelector('.reel-count');
+  function vis(el) { var r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, H) - Math.max(r.top, 0)) / Math.min(H, r.height), 0, 1); }
+
+  function scene() {
+    var s = {};
+    var heroV = vis(hero), manV = vis(manifesto), reelV = vis(reel);
+    var slide = count ? parseInt(count.textContent, 10) - 1 : 0, slides = count ? parseInt(count.textContent.split('/')[1], 10) : 7;
+    // Drop-off per second per person: high on the first screen, shrinking with every case, none at the finish
+    var reelDrop = .012 * (1 - slide / (slides - 1) * .85);
+    s.drop = heroV * .016 + manV * (1 - heroV) * .01 + reelV * reelDrop;
+    s.alpha = clamp(heroV * .8 + manV * .3 + reelV * .3 + .2, 0, .8);
+    s.cy = lerp(H * (W < 720 ? .72 : .62), H * .92, smooth(.3, .8, reelV) * (1 - heroV));
+    s.w = H * .06;
+    // Timeline (desktop): the stream narrows into the line of the timeline
+    s.line = 0;
+    if (W >= 900) {
+      var sr = stops.getBoundingClientRect();
+      s.lineY = sr.top; s.line = smooth(H * .95, H * .55, sr.top) * smooth(-H * .1, H * .25, sr.top + sr.height);
+      s.lineX0 = sr.left; s.lineX1 = sr.right;
+      s.alpha = Math.max(s.alpha, .75 * s.line);
+    }
+    // Portrait: orbit around the disc
+    var pr = portrait.getBoundingClientRect(), pp = clamp(-pr.top / (pr.height - H), 0, 1);
+    s.orbit = pr.top < H && pr.bottom > 0 ? smooth(.25, .6, pp) * (1 - smooth(.97, 1, pp)) : 0;
+    if (s.orbit) { var wr = wrap.getBoundingClientRect(); s.ox = wr.left + wr.width / 2; s.oy = wr.top + wr.height / 2; s.or = wr.width / 2 * 1.42; s.alpha = Math.max(s.alpha, .85 * s.orbit); }
+    // Contact: everyone arrives at the button
+    var cr = contact.getBoundingClientRect();
+    s.arrive = smooth(H * .9, H * .2, cr.top);
+    var tr = target.getBoundingClientRect(); s.tx = tr.left + tr.width / 2; s.ty = tr.top + tr.height / 2;
+    if (s.arrive > .01) { s.drop *= 1 - s.arrive; s.alpha = Math.max(s.alpha, s.arrive * .9); }
+    arriving = s.arrive; arrivingX = s.tx; orbitNow = s.orbit > .8 ? 1 : 0;
+    return s;
+  }
+
+  function step(dt, t, S, interact) {
+    var R = W < 720 ? 90 : 130, R2 = R * R;
+    for (var i = 0; i < N; i++) {
+      var p = P[i];
+      p.px = p.x; p.py = p.y;
+      // Lane target: a gently waving stream
+      var ty = S.cy + Math.sin(p.x / W * 3.6 + t * .35) * H * .05 + Math.sin(p.x / W * 9 - t * .6) * H * .012 + p.o * S.w;
+      if (S.line > 0) ty = lerp(ty, S.lineY + p.o * 2, S.line * smooth(S.lineX0 - 240, S.lineX0, p.x) * (1 - smooth(S.lineX1, S.lineX1 + 240, p.x)));
+      if (S.arrive > 0) {
+        var f = smooth(0, S.tx, p.x);
+        ty = lerp(ty, S.ty + p.o * S.w * (1 - f) * .6, S.arrive * f);
+      }
+      if (p.s === 0) {
+        p.x += p.v * dt * (1 + S.arrive * 1.5);
+        p.y += (ty - p.y) * .06 * dt;
+        p.al = Math.min(1, p.al + .02 * dt);
+        if (Math.random() < S.drop / 60 * dt && p.x > 0 && p.x < W) { p.s = 1; p.dy = (p.o >= 0 ? 1 : -1) * (.3 + Math.random() * .7); }
+      } else if (p.s === 1) {
+        // Drifting away: slows down, leaves the stream, fades
+        p.x += p.v * dt * .45; p.y += p.dy * dt; p.dy *= 1 + .01 * dt;
+        p.al -= .007 * dt;
+        if (p.al <= 0) spawn(p, false);
+      } else {
+        // Coming back: steered into the lane, bright
+        p.x += p.v * dt * 1.3; p.y += (ty - p.y) * .12 * dt;
+        p.al = Math.min(1, p.al + .06 * dt);
+        if (Math.abs(ty - p.y) < 3) p.s = 0;
+      }
+      if (p.lime > 0) p.lime -= dt / 90;
+      // The cursor catches people who are leaving
+      if (interact && p.s === 1) {
+        var dx = p.x - pointer.x, dy = p.y - pointer.y;
+        if (dx * dx + dy * dy < R2) { p.s = 2; p.lime = 1; saved++; }
+      }
+      // Orbit around the portrait overrides the stream
+      if (S.orbit > 0) {
+        p.a += (.004 + p.v * .0015) * dt;
+        var r = S.or + p.o * 16, ox = S.ox + Math.cos(p.a) * r, oy = S.oy + Math.sin(p.a) * r;
+        p.x = lerp(p.x, ox, S.orbit * .06 * dt); p.y = lerp(p.y, oy, S.orbit * .06 * dt);
+      }
+      var mx = p.x - p.px, my = p.y - p.py;
+      if (mx * mx + my * my < 3600) { p.hx += (mx - p.hx) * .15; p.hy += (my - p.hy) * .15; }
+      // Arrived at the button, or left the screen: start again from the left
+      if (S.arrive > .5 && p.x > S.tx - 6 && Math.abs(p.y - S.ty) < 40) spawn(p, false);
+      else if (p.x > W + 20 && S.orbit < .5) spawn(p, false);
+    }
+  }
+
+  var buckets = [[], [], [], [], []], limes = [];
+  // A short trail behind the particle along its last move, at least a dot, at most 24 px
+  function trail(q, k) {
+    var dx = q.hx, dy = q.hy, d = Math.sqrt(dx * dx + dy * dy);
+    if (d < .01) { dx = 1; dy = 0; d = 1; }
+    // Length from forward travel only: while the stream regroups, people show as dots, not scratches
+    var len = Math.min(12, Math.max(1.5, Math.abs(dx) * k * (q.s === 3 ? 0 : 1) + (orbitNow ? d * k * .8 : 0)));
+    ctx.moveTo(q.x, q.y); ctx.lineTo(q.x - dx / d * len, q.y - dy / d * len);
+  }
+  function draw(S) {
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    for (var b = 0; b < 5; b++) buckets[b].length = 0; limes.length = 0;
+    for (var i = 0; i < N; i++) {
+      var p = P[i];
+      if (p.al <= .02 || p.y < -20 || p.y > H + 20) continue;
+      if (p.lime > 0) limes.push(p); else buckets[Math.min(4, Math.floor(p.al * 5))].push(p);
+    }
+    ctx.lineCap = 'round'; ctx.lineWidth = 1.6;
+    for (b = 0; b < 5; b++) {
+      if (!buckets[b].length) continue;
+      ctx.strokeStyle = 'rgba(244,241,255,' + ((b + 1) / 5 * .55 * S.alpha).toFixed(3) + ')';
+      ctx.beginPath();
+      for (var k = 0; k < buckets[b].length; k++) { var q = buckets[b][k], L = q.s === 1 ? 1.2 : 3; trail(q, L); }
+      ctx.stroke();
+    }
+    if (limes.length) {
+      ctx.strokeStyle = LIME; ctx.lineWidth = 2.4; ctx.shadowColor = LIME; ctx.shadowBlur = 8;
+      ctx.beginPath();
+      for (k = 0; k < limes.length; k++) { var m = limes[k]; trail(m, 7); }
+      ctx.globalAlpha = Math.max(.5, S.alpha); ctx.stroke(); ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+    }
+  }
+
+  function showSaved() {
+    savedEls.forEach(function (el) { el.textContent = saved; });
+    root.classList.toggle('has-saved', saved > 0);
+    if (payoff) {
+      var ru = root.lang === 'ru';
+      payoff.textContent = ru
+        ? 'По дороге сюда вы вернули в поток: ' + saved + '. Этим я и занимаюсь'
+        : 'You brought ' + saved + (saved === 1 ? ' person' : ' people') + ' back on the way here. That’s my job';
+    }
+  }
+
+  if (reduce) {
+    // A still picture of the stream: settle it once, draw, redraw on resize
+    var still = function () { var S = scene(); S.drop = .004; P.forEach(function (q) { spawn(q, true); }); for (var j = 0; j < 90; j++) step(1, j / 60, S, false); draw(S); };
+    still(); addEventListener('resize', still);
+    return;
+  }
+  var last = performance.now(), t0 = last, lastSaved = 0;
+  (function frame(now) {
+    var dt = Math.min((now - last) / 16.67, 3); last = now;
+    var S = scene();
+    // Fade in with the intro
+    S.alpha *= smooth(600, 2200, now - t0);
+    step(dt, (now - t0) / 1000, S, pointer.on && now - pointer.t < 350);
+    draw(S);
+    if (saved !== lastSaved) { lastSaved = saved; showSaved(); }
+    requestAnimationFrame(frame);
+  })(last);
+  new MutationObserver(showSaved).observe(root, { attributes: true, attributeFilter: ['lang'] });
 })();
 </script>
 <script src="../js/copy-email.js?v=9eb5e608" defer></script>

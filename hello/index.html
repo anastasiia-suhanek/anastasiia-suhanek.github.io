@@ -184,6 +184,15 @@ header b { font-weight: 500; color: var(--text); }
 .print figcaption { font: 400 12px/16px var(--mono); color: #5E574C; padding: 8px 2px 12px; }
 @media (max-width: 599px) { .prints { gap: 16px 12px; } .print { width: calc(50% - 6px); padding: 6px 6px 0; } .print--wide { width: 100%; max-width: 320px; } .print:nth-child(n) { margin-top: 0; } .print:nth-child(even) { margin-top: 16px; } }
 
+
+/* Earlier stops: quieter, smaller, they lead into the last stop */
+.route-head--mid { margin-top: 96px; padding-top: 12px; border-top: 1px solid var(--line); }
+.stop--past .stop-name { font-size: 48px; line-height: 52px; }
+.stop--past { padding-block: 64px 24px; }
+.stop--past .num { font-size: 104px; line-height: 96px; }
+.stop--past .phone { width: 160px; }
+@media (max-width: 767px) { .stop--past .stop-name { font-size: 36px; line-height: 40px; } .stop--past .num { font-size: 72px; line-height: 68px; } }
+
 /* Last stop */
 .terminus { padding-bottom: 96px; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
 .terminus::before { width: 24px; height: 24px; left: calc(var(--rail) - 11px); background: var(--bg); border-width: 4px; }
@@ -254,36 +263,15 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
 
   <section class="route" aria-label="Route">
     <div class="rail" aria-hidden="true"><div class="rail-lit"></div></div>
-    <p class="route-head"><b><span lang="en" class="t-en">route 2022 → your team</span><span lang="ru" class="t-ru">маршрут 2022 → ваша команда</span></b><span><span lang="en" class="t-en">8 years in design · payments, verification, errors</span><span lang="ru" class="t-ru">8 лет в дизайне · оплата, верификация, ошибки</span></span></p>
+    <p class="route-head"><b><span lang="en" class="t-en">route · you board at the current stop</span><span lang="ru" class="t-ru">маршрут · посадка на текущей остановке</span></b><span><span lang="en" class="t-en">8 years in design · payments, verification, errors</span><span lang="ru" class="t-ru">8 лет в дизайне · оплата, верификация, ошибки</span></span></p>
 
-    <article class="stop stop--major">
-      <p class="stop-when">2022 – 2023</p>
-      <p class="stop-label rv"><span lang="en" class="t-en">stop 1</span><span lang="ru" class="t-ru">остановка 1</span></p>
-      <h2 class="stop-name rv"><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h2>
-      <p class="stop-note rv"><span lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme – in the app, then on the web</span><span lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера – в приложении, потом в вебе</span></p>
-      <div class="case rv">
-        <div><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
-          <div class="bars"><i style="--w: .33"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">bonus redemption, before → after the redesign</span><span lang="ru" class="t-ru">траты бонусов до → после редизайна</span></div>
-          <p lang="en" class="p-label t-en">more bonus redemption after the games redesign</p><p lang="ru" class="p-label t-ru">чаще тратят бонусы после редизайна игр</p>
-          <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
-        <a href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
-      </div>
-      <div class="prints rv"><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_9_2026-09-18_10-37-56.jpg" alt="Selfie with colleagues from Sber at the office" loading="lazy"><figcaption><span lang="en" class="t-en">Masha, Ksyusha and me</span><span lang="ru" class="t-ru">Маша, Ксюша и я</span></figcaption></figure><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_22_2026-09-18_10-37-56.jpg" alt="Instax photo of three friends at a colleague's birthday party" loading="lazy"><figcaption><span lang="en" class="t-en">Masha’s birthday</span><span lang="ru" class="t-ru">день рождения Маши</span></figcaption></figure></div>
-    </article>
 
-    <article class="stop stop--major">
-      <p class="stop-when">2023 – 2025</p>
-      <p class="stop-label rv"><span lang="en" class="t-en">stop 2</span><span lang="ru" class="t-ru">остановка 2</span></p>
-      <h2 class="stop-name rv"><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h2>
-      <p class="stop-note rv"><span lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</span><span lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</span></p>
-      <div class="prints rv"><figure class="print print--wide"><img style="aspect-ratio: auto 1280 / 960;" src="../images/about/photo_17_2026-09-18_10-37-56.jpg" alt="Selfie with former Beeline colleagues at a long table in a restaurant" loading="lazy"><figcaption><span lang="en" class="t-en">after-work hangout</span><span lang="ru" class="t-ru">посиделки после работы</span></figcaption></figure></div>
-    </article>
 
     <article class="stop stop--major">
       <p class="stop-when">2025 – <span lang="en" class="t-en">now</span><span lang="ru" class="t-ru">сейчас</span></p>
-      <p class="stop-label rv"><span lang="en" class="t-en">stop 3</span><span lang="ru" class="t-ru">остановка 3</span></p>
+      <p class="stop-label rv"><span lang="en" class="t-en">current stop</span><span lang="ru" class="t-ru">текущая остановка</span></p>
       <h2 class="stop-name rv">Profee</h2>
-      <p class="stop-note rv"><span lang="en" class="t-en">Money transfers on iOS, Android and the web. The longest stretch of the route so far – six stops in a row</span><span lang="ru" class="t-ru">Денежные переводы на iOS, Android и в вебе. Самый длинный участок маршрута – шесть остановок подряд</span></p>
+      <p class="stop-note rv"><span lang="en" class="t-en">Money transfers on iOS, Android and the web: payments, verification, errors. Six stops in a row</span><span lang="ru" class="t-ru">Денежные переводы на iOS, Android и в вебе: оплата, верификация, ошибки. Шесть остановок подряд</span></p>
       <div class="prints rv"><figure class="print print--wide"><img style="aspect-ratio: auto 1280 / 960;" src="../images/about/photo-profee-ux-editor.jpg" alt="Selfie with a UX writer colleague from Profee in a bar" loading="lazy"><figcaption><span lang="en" class="t-en">with my favourite UX writer</span><span lang="ru" class="t-ru">с любимым UX-редактором</span></figcaption></figure></div>
     </article>
 
@@ -387,6 +375,28 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       </div>
     </article>
 
+    <p class="route-head route-head--mid"><b><span lang="en" class="t-en">earlier on the route</span><span lang="ru" class="t-ru">раньше на маршруте</span></b><span><span lang="en" class="t-en">a telecom and a bank’s loyalty programme</span><span lang="ru" class="t-ru">телеком и программа лояльности банка</span></span></p>
+    <article class="stop stop--major stop--past">
+      <p class="stop-when">2023 – 2025</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">earlier</span><span lang="ru" class="t-ru">раньше</span></p>
+      <h2 class="stop-name rv"><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h2>
+      <p class="stop-note rv"><span lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</span><span lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</span></p>
+      <div class="prints rv"><figure class="print print--wide"><img style="aspect-ratio: auto 1280 / 960;" src="../images/about/photo_17_2026-09-18_10-37-56.jpg" alt="Selfie with former Beeline colleagues at a long table in a restaurant" loading="lazy"><figcaption><span lang="en" class="t-en">after-work hangout</span><span lang="ru" class="t-ru">посиделки после работы</span></figcaption></figure></div>
+    </article>
+    <article class="stop stop--major stop--past">
+      <p class="stop-when">2022 – 2023</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">earlier</span><span lang="ru" class="t-ru">раньше</span></p>
+      <h2 class="stop-name rv"><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h2>
+      <p class="stop-note rv"><span lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme – in the app, then on the web</span><span lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера – в приложении, потом в вебе</span></p>
+      <div class="case rv">
+        <div><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
+          <div class="bars"><i style="--w: .33"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">bonus redemption, before → after the redesign</span><span lang="ru" class="t-ru">траты бонусов до → после редизайна</span></div>
+          <p lang="en" class="p-label t-en">more bonus redemption after the games redesign</p><p lang="ru" class="p-label t-ru">чаще тратят бонусы после редизайна игр</p>
+          <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
+        <a href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
+      </div>
+      <div class="prints rv"><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_9_2026-09-18_10-37-56.jpg" alt="Selfie with colleagues from Sber at the office" loading="lazy"><figcaption><span lang="en" class="t-en">Masha, Ksyusha and me</span><span lang="ru" class="t-ru">Маша, Ксюша и я</span></figcaption></figure><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_22_2026-09-18_10-37-56.jpg" alt="Instax photo of three friends at a colleague's birthday party" loading="lazy"><figcaption><span lang="en" class="t-en">Masha’s birthday</span><span lang="ru" class="t-ru">день рождения Маши</span></figcaption></figure></div>
+    </article>
     <article class="stop terminus" id="terminus">
       <p class="stop-when"><span lang="en" class="t-en">next</span><span lang="ru" class="t-ru">дальше</span></p>
       <p class="stop-label rv"><span lang="en" class="t-en">last stop</span><span lang="ru" class="t-ru">конечная</span></p>

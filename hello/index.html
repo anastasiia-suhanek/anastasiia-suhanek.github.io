@@ -2,12 +2,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-ru="Анастасия Суханек – Senior продуктовый дизайнер">Anastasiia Sukhanek – Senior Product Designer</title>
-<meta name="description" content="Product designer in Prague. I design the moment people almost leave – payments, verification, errors – and count what changes" data-ru="Продуктовый дизайнер в Праге. Проектирую момент, когда человек почти ушёл – оплата, верификация, ошибки – и считаю, что изменилось">
+<meta name="description" content="Product designer in Prague. I design the moment people almost leave – payments, verification, errors – and count who made it to the end" data-ru="Продуктовый дизайнер в Праге. Проектирую момент, когда человек почти ушёл – оплата, верификация, ошибки – и считаю, кто дошёл до конца">
 <meta name="author" content="Anastasiia Sukhanek">
-<meta name="theme-color" content="#07061A">
+<meta name="theme-color" content="#F3F0E8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Anastasiia Sukhanek – Senior Product Designer">
-<meta property="og:description" content="I design the moment people almost leave">
+<meta property="og:description" content="I design the moment people almost leave – and count who made it to the end">
 <meta property="og:image" content="https://anastasiia-suhanek.github.io/og-image-swiss.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
@@ -20,414 +20,354 @@
 <script src="../js/lang.js?v=a36bd0c1"></script>
 <link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
 <style>
-/* Hello: the showpiece facet. Living WebGL aurora that changes colour and speed with the scroll, a choreographed intro,
-   smoothed scroll scenes, a results reel that pauses on each slide, words that rise from masks, a page-exit curtain. Sizes are multiples of 4; motion is off with prefers-reduced-motion */
-@font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cormorant-italic-cyrillic.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
-@font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500; font-display: swap; src: url(../fonts/cormorant-italic-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Showreel in the language of product analytics: warm paper, ink, one signal colour, mono labels.
+   The first screen is a live funnel where every dot is a person; the cursor catches the ones falling out.
+   Sizes are multiples of 4, weights 400/500/600, motion is off with prefers-reduced-motion */
 :root {
-  --ink: #07061A; --text: #F4F1FF; --muted: #CFC9E8; --line: rgba(244, 241, 255, .16);
-  --violet: #8B6CFF; --orchid: #F08ACB; --blue: #5B8CFF; --lime: #D2FF5C;
-  --sans: 'Inter', system-ui, sans-serif; --serif: 'Cormorant', Georgia, serif;
-  --gutter: 16px;
+  --paper: #F3F0E8; --paper-2: #EBE7DD; --ink: #111110; --muted: #6E6A60; --grid: #DEDAD0; --signal: #FF4F1F; --signal-ink: #D63A0E; --signal-small: #A82D08; /* small text needs a darker orange for 4.5:1 on paper */
+  --sans: 'Inter', system-ui, sans-serif; --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --ease: cubic-bezier(.16, 1, .3, 1); --ease-io: cubic-bezier(.65, 0, .35, 1);
-  color-scheme: dark;
+  --gutter: 16px; --max: 1360px;
 }
 @media (min-width: 720px) { :root { --gutter: 40px; } }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html[lang="en"] .t-ru { display: none !important; }
 html[lang="ru"] .t-en { display: none !important; }
-html { background: var(--ink); }
-body { background: var(--ink); color: var(--text); font: 400 16px/24px var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+html { background: var(--paper); }
+body { background: var(--paper); color: var(--ink); font: 400 16px/24px var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
-em { font-family: var(--serif); font-style: italic; font-weight: 500; letter-spacing: 0; }
-::selection { background: var(--lime); color: var(--ink); }
-:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
-
-/* Background layers */
-#aurora { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block;
-  background: radial-gradient(60% 50% at 30% 30%, #4A2FB8 0%, transparent 70%), radial-gradient(50% 50% at 80% 70%, #7A2F6A 0%, transparent 70%), var(--ink); }
-.grain { position: fixed; inset: -50%; z-index: 1; pointer-events: none; opacity: .08; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain 1s steps(4) infinite; }
-@keyframes grain { 25% { transform: translate(-4%, 4%); } 50% { transform: translate(4%, -8%); } 75% { transform: translate(-8%, -4%); } }
-#flow { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-main, header, footer { position: relative; z-index: 2; }
-
-/* Cursor: a dot that inverts what it passes over, grows on links */
-.cursor { position: fixed; left: 0; top: 0; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #fff;
-  mix-blend-mode: difference; pointer-events: none; z-index: 50; transition: width .25s, height .25s, margin .25s; opacity: 0; }
-.cursor.is-on { opacity: 1; }
-.cursor.is-big { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
-.cursor::after { content: attr(data-label); position: absolute; inset: 0; display: grid; place-items: center; font: 500 12px/16px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); opacity: 0; transition: opacity .2s; }
-.cursor.is-label { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--lime); mix-blend-mode: normal; }
-.cursor.is-label::after { opacity: 1; }
-@media (hover: none) { .cursor { display: none; } }
+::selection { background: var(--signal); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+/* Paper: a faint grain so the page isn't flat digital beige */
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .38 0 0 0 0 .33 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+main, header, footer { position: relative; z-index: 1; }
 
 /* Header */
-header { position: fixed; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; height: 64px; padding-inline: var(--gutter); z-index: 20;
-  background: linear-gradient(rgba(7, 6, 26, .5), transparent);
-  opacity: 0; transform: translateY(-16px); transition: opacity .8s 1.1s, transform .8s 1.1s var(--ease); }
-.is-ready header { opacity: 1; transform: none; }
-.is-ready header.is-hidden { transform: translateY(-100%); transition: transform .5s var(--ease); }
-.mark { font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; }
-.head-r { display: flex; align-items: center; gap: 24px; }
-.talk { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: 8px 16px; border-radius: 999px; background: var(--lime); color: var(--ink); }
-.talk:hover { background: var(--text); }
-.lang { display: flex; gap: 4px; }
-@media (max-width: 479px) { .talk { display: none; } }
-.lang-btn { background: none; border: 0; color: #fff; opacity: .5; font: 500 12px/16px var(--sans); letter-spacing: .08em; cursor: pointer; padding: 8px 4px; }
-.lang-btn.lang-active, .lang-btn:hover { opacity: 1; }
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding-inline: var(--gutter);
+  background: rgba(243, 240, 232, .88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid);
+  font: 400 12px/16px var(--mono); opacity: 0; transition: opacity .8s .9s, transform .5s var(--ease); }
+.is-ready header { opacity: 1; }
+.is-ready header.is-hidden { transform: translateY(-100%); }
+header b { font-weight: 500; }
+.head-r { display: flex; align-items: center; gap: 16px; }
+.lang { display: flex; }
+.talk { padding: 8px 12px; background: var(--ink); color: var(--paper); }
+.talk:hover { background: var(--signal-ink); }
+.lang-btn { background: none; border: 0; font: inherit; color: var(--muted); cursor: pointer; padding: 8px 4px; }
+.lang-btn.lang-active, .lang-btn:hover { color: var(--ink); }
+@media (max-width: 599px) { header .role, .talk { display: none; } }
 
 /* Hero */
-.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 120px var(--gutter) 48px; position: relative; }
-.kicker { opacity: 0; transform: translateY(12px); transition: opacity .8s .3s, transform .8s .3s var(--ease); font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
-.kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 16px var(--lime); animation: pulse 2s infinite; }
-@keyframes pulse { 50% { opacity: .3; } }
-.is-ready .kicker { opacity: 1; transform: none; }
-.kicker b { font-weight: inherit; white-space: nowrap; }
-.kicker i { flex: none; }
-.name { font-weight: 300; font-size: 176px; line-height: 160px; letter-spacing: -0.05em; }
-@media (min-width: 1400px) { .name { font-size: 216px; line-height: 196px; } }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.name .line { display: block; overflow: hidden; padding-bottom: 12px; margin-bottom: -12px; white-space: nowrap; }
-.name .ch { display: inline-block; transform: translateY(110%) rotate(8deg); transform-origin: 0 100%; font-variation-settings: 'wght' var(--w, 300); transition: transform 1.4s var(--ease); will-change: transform; }
+.hero { min-height: 100svh; display: grid; grid-template-rows: auto 1fr; gap: 24px; padding: 88px var(--gutter) 24px; max-width: var(--max); margin: 0 auto; }
+.head { display: grid; grid-template-columns: 1fr auto; gap: 24px 48px; align-items: end; }
+.kicker { font: 400 12px/16px var(--mono); color: var(--muted); margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 4px 16px; opacity: 0; transition: opacity .8s .3s; }
+.kicker b { font-weight: 400; white-space: nowrap; }
+.live { color: var(--signal-small); }
+.live::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); margin-right: 8px; animation: pulse 2s infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+.is-ready .kicker { opacity: 1; }
+.name { font-weight: 500; font-size: 152px; line-height: 136px; letter-spacing: -0.06em; }
+.name .line { display: block; overflow: hidden; padding-bottom: 8px; margin-bottom: -8px; white-space: nowrap; }
+.name .ch { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
 .is-ready .name .ch { transform: none; }
-.name .line:last-child { padding-left: 1.2em; }
-.hero-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 48px; }
-.tag { font-size: 32px; line-height: 40px; letter-spacing: -0.02em; max-width: 640px; text-wrap: balance; opacity: 0; transform: translateY(24px); transition: opacity 1s 1s, transform 1.2s 1s var(--ease); }
-.tag em { font-size: 40px; color: var(--lime); }
-@keyframes flow { to { background-position: 300% 0; } }
-.is-ready .tag, .is-ready .cue { opacity: 1; transform: none; }
-.hint { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 20px; max-width: 560px; font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); opacity: 0; transition: opacity 1s 2.2s; }
-.hint i { flex: none; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--muted); }
-.is-ready .hint { opacity: 1; }
-.hint .touch { display: none; }
-@media (hover: none) { .hint .fine { display: none; } .hint .touch { display: inline; } }
-.hint .cnt { display: none; font-weight: 500; color: var(--lime); font-variant-numeric: tabular-nums; }
-.has-saved .hint .cnt { display: inline; }
-.has-saved .hint i { background: var(--lime); border-color: var(--lime); box-shadow: 0 0 12px var(--lime); }
-.cue { opacity: 0; transition: opacity 1s 1.6s; display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.cue i { width: 1px; height: 64px; background: linear-gradient(var(--text), transparent); transform-origin: top; animation: cue 2s cubic-bezier(.65, 0, .35, 1) infinite; }
-@keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-@media (max-width: 1199px) { .name { font-size: 112px; line-height: 104px; } .name .line:last-child { padding-left: .8em; } }
-@media (max-width: 767px) { .name { font-size: 80px; line-height: 76px; } .tag { font-size: 24px; line-height: 32px; } .tag em { font-size: 32px; } .cue { display: none; } }
-@media (max-width: 767px) and (orientation: portrait) {
-  .hero { justify-content: center; padding-top: 96px; padding-bottom: 120px; }
-  .cue { display: flex; position: absolute; left: 0; right: 0; bottom: 24px; } .cue i { height: 40px; }
-  .hero-foot { margin-top: 32px; }
-}
-@media (max-width: 479px) { .name { font-size: 72px; line-height: 72px; } .name .line:last-child { padding-left: .6em; } .kicker { letter-spacing: .1em; } }
-@media (max-width: 419px) { .name { font-size: 64px; line-height: 64px; } }
-@media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } .name .line:last-child { padding-left: .4em; } }
+.tag { font-size: 24px; line-height: 32px; letter-spacing: -0.02em; max-width: 400px; text-wrap: balance; opacity: 0; transform: translateY(16px); transition: opacity 1s .9s, transform 1s .9s var(--ease); }
+.tag mark, .manifesto mark, .path h2 mark, .profile h2 mark, .big mark { background: none; color: var(--signal-ink); }
+.is-ready .tag { opacity: 1; transform: none; }
+@media (max-width: 1199px) { .name { font-size: 112px; line-height: 104px; } }
+@media (max-width: 899px) { .head { grid-template-columns: 1fr; } .tag { max-width: 560px; } }
+@media (max-width: 767px) { .name { font-size: 80px; line-height: 76px; } .tag { font-size: 20px; line-height: 28px; } .tag mark { color: var(--signal-small); } }
+@media (max-width: 479px) { .name { font-size: 64px; line-height: 64px; } }
+@media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } }
 
-/* Manifesto: words light up as you scroll */
-.manifesto { padding: 160px var(--gutter); max-width: 1280px; margin: 0 auto; }
-.manifesto p { font-size: 56px; line-height: 64px; letter-spacing: -0.03em; font-weight: 400; }
-.manifesto em { font-size: 64px; }
-.manifesto .w { opacity: .14; }
-.manifesto em .w { transition: color .4s; }
-.manifesto em .w.on { color: var(--lime); }
-@media (max-width: 1023px) { .manifesto p { font-size: 40px; line-height: 48px; } .manifesto em { font-size: 48px; } }
-@media (max-width: 599px) { .manifesto { padding-block: 96px; } .manifesto p { font-size: 28px; line-height: 36px; } .manifesto em { font-size: 32px; } }
+/* The funnel */
+.chart { position: relative; min-height: 340px; border-top: 1px solid var(--ink); opacity: 0; transition: opacity 1.2s 1.1s; }
+.is-ready .chart { opacity: 1; }
+.chart canvas { position: absolute; left: 0; right: 0; bottom: 0; top: 40px; width: 100%; height: calc(100% - 40px); }
+.chart-bar { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font: 400 12px/16px var(--mono); color: var(--muted); }
+.chart-bar b { font-weight: 500; color: var(--signal-small); font-variant-numeric: tabular-nums; }
+.chart-bar .touch { display: none; }
+@media (hover: none) { .chart-bar .fine { display: none; } .chart-bar .touch { display: inline; } }
+@media (max-width: 599px) { .chart { min-height: 300px; } .chart-bar { flex-direction: column; gap: 4px; } .chart canvas { top: 56px; height: calc(100% - 56px); } }
 
-/* Reel: pinned, scrolls sideways. Phones turn towards you as they reach the centre */
-.reel { position: relative; height: calc(var(--n) * 100svh); }
-.reel-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
-.reel-head { position: absolute; top: 88px; left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.reel-bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 40px; height: 1px; background: var(--line); }
-.reel-bar i { position: absolute; inset: 0; background: var(--text); transform-origin: left; transform: scaleX(var(--p, 0)); }
-.track { display: flex; gap: 0; will-change: transform; }
-.panel { flex: 0 0 100vw; display: grid; grid-template-columns: minmax(0, 640px) auto; justify-content: center; align-items: center; column-gap: 120px; padding-inline: var(--gutter); }
-.num { font-weight: 300; font-size: 256px; line-height: 224px; letter-spacing: -0.07em; white-space: nowrap; margin-left: -0.04em;
-  background: linear-gradient(100deg, var(--text) 35%, var(--c1) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.num small { font-size: .25em; letter-spacing: -0.02em; margin-right: 12px; font-weight: 400; }
-.p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.01em; margin-top: 32px; max-width: 480px; }
-.p-case { display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; font-size: 16px; line-height: 24px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 4px; transition: color .2s, border-color .2s; }
-.p-case:hover { color: var(--text); border-color: var(--text); }
-.p-ba { font-size: 16px; line-height: 24px; color: var(--c1); margin-top: 8px; font-variant-numeric: tabular-nums; }
-.p-meta { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--c1); margin-bottom: 16px; }
+/* Section heads: a rule, a number and a label in mono, like a report */
+.sec-head { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--ink); font: 400 12px/16px var(--mono); color: var(--muted); }
+
+/* Manifesto: words fill with ink as you scroll */
+.manifesto { padding-block: 160px; }
+.manifesto p:not(.sec-head) { font-size: 56px; line-height: 64px; letter-spacing: -0.035em; max-width: 1180px; margin-top: 48px; }
+.manifesto .w { opacity: .16; }
+.manifesto mark .w { color: var(--ink); transition: color .4s; }
+.manifesto mark .w.on { color: var(--signal-ink); }
+@media (max-width: 1023px) { .manifesto p:not(.sec-head) { font-size: 40px; line-height: 48px; } }
+@media (max-width: 599px) { .manifesto { padding-block: 96px; } .manifesto p:not(.sec-head) { font-size: 28px; line-height: 36px; margin-top: 32px; } }
+
+/* Results: a pinned report that moves sideways and pauses on each slide */
+.reel { height: calc(var(--n) * 100svh); }
+.reel-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; flex-direction: column; }
+.reel-pin .sec-head { margin: 72px var(--gutter) 0; }
+.track { flex: 1; display: flex; will-change: transform; }
+.panel { flex: 0 0 100vw; display: grid; grid-template-columns: minmax(0, 600px) auto; justify-content: center; align-items: center; column-gap: 120px; padding: 24px var(--gutter); }
+.p-meta { font: 400 12px/16px var(--mono); color: var(--muted); margin-bottom: 12px; }
+.num { font-weight: 400; font-size: 208px; line-height: 184px; letter-spacing: -0.07em; margin-left: -0.05em; white-space: nowrap; font-variant-numeric: tabular-nums; will-change: transform; }
+.num small { font-size: .22em; letter-spacing: -0.02em; margin-right: 12px; }
+.bars { display: grid; gap: 6px; margin-top: 24px; max-width: 440px; }
+.bars i { display: block; height: 12px; background: var(--grid); transform-origin: left; transform: scaleX(var(--w)); }
+.bars i.after { background: var(--signal); }
+.bars.grow i { animation: grow 1.1s var(--ease) both; }
+.bars.grow i.after { animation-delay: .2s; }
+@keyframes grow { from { transform: scaleX(0); } }
+.bars span { font: 400 12px/16px var(--mono); color: var(--muted); margin-top: 4px; }
+.p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.015em; margin-top: 24px; max-width: 480px; }
+.p-case { display: inline-flex; gap: 12px; margin-top: 24px; font: 400 12px/16px var(--mono); padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
+.p-case:hover { color: var(--signal-small); border-color: var(--signal); }
 .stage { perspective: 1200px; display: flex; justify-content: center; }
-.num, .p-label, .p-meta, .p-case { will-change: transform; }
-.phone { width: min(280px, calc(62svh * 360 / 780)); aspect-ratio: 360 / 780; border-radius: 44px; padding: 8px; background: linear-gradient(145deg, #2A2840, #0E0C1E); box-shadow: 0 40px 120px -20px var(--c2), 0 0 0 1px rgba(255, 255, 255, .12) inset;
-  transform-style: preserve-3d; will-change: transform; }
-.phone img, .phone .langs { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 36px; background: #fff; }
-.langs { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; background: #fff; color: #0B0B0B; font-weight: 600; font-size: 28px; line-height: 32px; overflow: hidden; }
-.langs .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 200px; margin-top: 8px; }
-.langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; letter-spacing: .08em; text-align: center; padding: 8px 0; border-radius: 8px; background: #F2F1FA; color: #767676; transition: background .3s, color .3s; }
-.langs .codes i.on { background: #0B0B0B; color: var(--lime); }
-.langs b { display: block; padding: 16px 32px; border-radius: 16px; background: #5046E5; color: #fff; font-weight: 600; font-size: 20px; line-height: 24px; min-width: 200px; text-align: center; transition: opacity .3s; }
-.tests { display: flex; flex-direction: column; justify-content: center; gap: 8px; width: 100%; height: 100%; padding: 24px 16px; border-radius: 36px; background: #0E0C1E; font: 400 12px/16px ui-monospace, 'SF Mono', Menlo, monospace; color: #CFC9E8; overflow: hidden; }
-.tests span { color: var(--lime); }
-.tests small { font: inherit; color: #8A86A3; }
-.tests b { font-weight: 500; color: #fff; margin-top: 8px; }
-.tests .was { color: var(--lime); }
+.phone { width: min(260px, calc(56svh * 360 / 780)); aspect-ratio: 360 / 780; border-radius: 40px; padding: 6px; background: var(--ink); box-shadow: 0 24px 48px -24px rgba(17, 17, 16, .5); transform-style: preserve-3d; will-change: transform; }
+.phone img, .phone .langs, .phone .tests { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 34px; background: #fff; }
+.langs { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; overflow: hidden; }
 .langs small { font: 500 12px/16px var(--sans); letter-spacing: .16em; color: #767676; text-transform: uppercase; }
-@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 160px; line-height: 148px; } .phone { width: min(220px, calc(62svh * 360 / 780)); border-radius: 36px; } .phone img, .phone .langs, .phone .tests { border-radius: 28px; } .tests { padding: 16px 12px; gap: 4px; } }
+.langs b { display: block; padding: 16px 24px; border-radius: 16px; background: #5046E5; color: #fff; font-weight: 600; font-size: 20px; line-height: 24px; min-width: 180px; text-align: center; transition: opacity .3s; }
+.langs .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 184px; }
+.langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; text-align: center; padding: 8px 0; border-radius: 8px; background: #F2F1FA; color: #767676; transition: background .3s, color .3s; }
+.langs .codes i.on { background: var(--ink); color: #fff; }
+.phone .tests { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 24px 16px; background: var(--ink); font: 400 12px/16px var(--mono); color: #B9B4A8; overflow: hidden; }
+.tests span { color: #fff; }
+.tests span::before { content: '✓ '; color: var(--signal); }
+.tests b { font-weight: 500; color: #fff; margin-top: 8px; }
+.tests .was { color: var(--signal); }
+@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 144px; line-height: 128px; } .phone { width: min(200px, calc(56svh * 360 / 780)); border-radius: 32px; } .phone img, .phone .langs, .phone .tests { border-radius: 26px; } }
 @media (max-width: 719px) {
-  .panel { grid-template-columns: 1fr; gap: 24px; align-content: center; }
-  .panel { justify-content: stretch; padding-top: 48px; }
-  .num { font-size: 104px; line-height: 96px; } .p-label { font-size: 20px; line-height: 28px; margin-top: 12px; } .p-case { margin-top: 16px; }
-  .stage { order: -1; } .phone { width: min(160px, calc(36svh * 360 / 780)); border-radius: 28px; padding: 6px; } .phone img, .phone .langs { border-radius: 24px; }
-  .tests { padding: 12px 8px; gap: 2px; font-size: 8px; line-height: 12px; border-radius: 24px; }
-  .langs { gap: 8px; } .langs b { min-width: 120px; font-size: 16px; padding: 12px 16px; } .langs .codes { width: 128px; gap: 4px; } .langs .codes i { padding: 4px 0; border-radius: 4px; font-size: 8px; } .langs small { font-size: 8px; }
+  .panel { grid-template-columns: 1fr; gap: 20px; align-content: center; justify-content: stretch; }
+  .stage { order: -1; } .phone { width: min(140px, calc(30svh * 360 / 780)); border-radius: 24px; padding: 4px; } .phone img, .phone .langs, .phone .tests { border-radius: 20px; }
+  .num { font-size: 96px; line-height: 88px; } .p-label { font-size: 18px; line-height: 26px; margin-top: 16px; } .p-case { margin-top: 16px; } .bars { margin-top: 16px; }
+  .langs { gap: 6px; } .langs b { min-width: 100px; font-size: 12px; line-height: 16px; padding: 8px 12px; border-radius: 8px; } .langs .codes { width: 104px; gap: 3px; } .langs .codes i { font-size: 7px; line-height: 10px; padding: 3px 0; border-radius: 4px; } .langs small { font-size: 7px; }
+  .phone .tests { padding: 12px 8px; gap: 2px; font-size: 7px; line-height: 10px; }
 }
 
-/* Marquee: two rows in opposite directions, they lean with scroll speed */
-.marquee { padding-block: 120px; overflow: hidden; }
-.row { display: flex; width: max-content; will-change: transform; }
-.row + .row { margin-top: 16px; }
-.row span { font-size: 96px; line-height: 112px; letter-spacing: -0.04em; font-weight: 300; padding-right: 48px; white-space: nowrap; }
-.row span:nth-child(3n+2) { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--lime); }
-.row span:nth-child(3n) { color: rgba(244, 241, 255, .48); }
-.row i { font-style: inherit; }
-.skew { transform: skewX(var(--skew, 0deg)); }
-@keyframes slide { to { transform: translateX(-50%); } }
-@media (max-width: 719px) { .marquee { padding-block: 72px; } .row span { font-size: 48px; line-height: 56px; padding-right: 24px; } }
-
-/* Path: a line draws itself through the years */
-.path { padding: 120px var(--gutter); max-width: 1280px; margin: 0 auto; }
-.sec-kicker { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
-.path h2 { font-size: 64px; line-height: 64px; letter-spacing: -0.04em; font-weight: 400; max-width: 880px; }
-.path h2 em { font-size: 72px; color: var(--lime); }
-.stops { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 96px; padding-top: 48px; list-style: none; }
-.stops::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--line); }
-.stops::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; margin-top: -1px; background: linear-gradient(90deg, var(--violet), var(--orchid), var(--lime)); transform-origin: left; transform: scaleX(var(--p, 0)); }
-.stop { opacity: .2; transform: translateY(16px); transition: opacity .6s, transform .6s cubic-bezier(.16, 1, .3, 1); position: relative; }
-.stop::before { content: ''; position: absolute; top: -54px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); border: 2px solid var(--text); transition: background .4s; }
-.stop.on { opacity: 1; transform: none; }
-.stop.on::before { background: var(--lime); border-color: var(--lime); box-shadow: 0 0 24px var(--lime); animation: pop .6s var(--ease); }
-@keyframes pop { 0% { transform: scale(0); } 60% { transform: scale(1.8); } 100% { transform: scale(1); } }
-.stop time { font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.stop h3 { font-size: 32px; line-height: 36px; letter-spacing: -0.03em; font-weight: 500; margin-top: 12px; }
+/* Recent years: an axis that draws itself */
+.path { padding-block: 160px 120px; }
+.path h2 { font-weight: 500; font-size: 64px; line-height: 64px; letter-spacing: -0.045em; max-width: 880px; margin-top: 48px; }
+.stops { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 96px; padding-top: 40px; list-style: none; }
+.stops::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--grid); }
+.stops::after { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px; background: var(--ink); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.stop { position: relative; opacity: .25; transition: opacity .6s; }
+.stop::before { content: ''; position: absolute; top: -47px; left: 0; width: 12px; height: 12px; background: var(--paper); border: 2px solid var(--ink); transform: rotate(45deg); transition: background .3s; }
+.stop.on { opacity: 1; }
+.stop.on::before { background: var(--ink); }
+.stop time { font: 400 12px/16px var(--mono); color: var(--muted); }
+.stop h3 { font-weight: 500; font-size: 32px; line-height: 36px; letter-spacing: -0.03em; margin-top: 12px; }
 .stop p { color: var(--muted); margin-top: 8px; }
-.stop--next h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 44px; color: var(--lime); }
-.stop--next.on::before { animation: pop .6s var(--ease), pulse 1.6s .6s infinite; }
+.stop--next h3 { color: var(--signal-ink); }
+.stop--next.on::before { background: var(--signal); border-color: var(--signal); animation: pulse 1.6s infinite; }
 @media (max-width: 899px) {
-  .path h2 { font-size: 40px; line-height: 44px; } .path h2 em { font-size: 48px; }
-  .stops { grid-template-columns: 1fr; gap: 40px; margin-top: 64px; padding: 0 0 0 32px; }
-  .stops::before { top: 0; bottom: 0; left: 0; right: auto; width: 1px; height: auto; }
-  .stops::after { top: 0; bottom: 0; left: 0; right: auto; width: 2px; height: auto; margin: 0 0 0 -1px; transform-origin: top; transform: scaleY(var(--p, 0)); background: linear-gradient(var(--violet), var(--orchid), var(--lime)); }
+  .path { padding-block: 96px 72px; } .path h2 { font-size: 40px; line-height: 44px; margin-top: 32px; }
+  .stops { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; padding: 0 0 0 32px; }
+  .stops::before { top: 0; bottom: 0; right: auto; width: 1px; height: auto; }
+  .stops::after { top: 0; bottom: 0; right: auto; left: -1px; width: 3px; height: auto; transform-origin: top; transform: scaleY(var(--p, 0)); }
   .stop::before { top: 8px; left: -38px; }
 }
 
-/* Portrait: a circle opens onto Prague */
-.portrait { position: relative; height: 240svh; }
-.portrait-pin { position: sticky; top: 0; height: 100svh; display: grid; place-items: center; overflow: hidden; }
-.portrait-img { position: absolute; inset: 0;
-  clip-path: circle(var(--r, 8%) at 50% 50%); will-change: clip-path; }
-.portrait-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transform: scale(var(--s, 1.3)); }
-.portrait-copy { position: absolute; left: max(var(--gutter), calc((100vw - 1280px) / 2)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 32px; max-width: 520px; }
-.portrait-copy p { opacity: 0; transform: translateY(16px); transition: opacity .8s .4s, transform .8s .4s var(--ease); }
-.portrait-copy.on p { opacity: 1; transform: none; }
-.ring { position: absolute; inset: -14%; width: 128%; height: 128%; pointer-events: none; opacity: var(--o, 0); transform: rotate(var(--rot, 0deg)); }
-.ring text { font: 500 7px var(--sans); letter-spacing: .2em; text-transform: uppercase; fill: var(--text); }
-.portrait-wrap { position: absolute; top: 50%; right: max(var(--gutter), calc((100vw - 1280px) / 2)); width: min(640px, 80svh); aspect-ratio: 1; margin-top: calc(min(640px, 80svh) / -2); }
-.portrait-copy h2 { font-size: 96px; line-height: 88px; letter-spacing: -0.05em; font-weight: 400; }
-.portrait-copy h2 em { font-size: 104px; }
-.portrait-copy .say { margin-top: -16px; font-size: 20px; line-height: 28px; color: var(--muted); }
-.portrait-copy .say em { font-size: 24px; color: var(--lime); }
-.portrait-copy p { max-width: 400px; color: var(--text); font-size: 20px; line-height: 28px; }
-@media (max-width: 899px) and (orientation: portrait) { .portrait-wrap { width: min(72vw, 360px); right: 50%; margin-right: calc(min(72vw, 360px) / -2); top: 18svh; margin-top: 0; } .portrait-copy { top: auto; bottom: 48px; transform: none; right: var(--gutter); max-width: none; gap: 16px; } }
-@media (max-width: 719px) { .portrait-copy h2 { font-size: 56px; line-height: 56px; } .portrait-copy h2 em { font-size: 64px; } .portrait-copy p { font-size: 16px; line-height: 24px; } }
+/* Profile: the person as a record in the analytics tool */
+.profile { padding-block: 120px; }
+.profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; margin-top: 48px; align-items: start; }
+.profile h2 { font-weight: 500; font-size: 96px; line-height: 88px; letter-spacing: -0.055em; }
+.photo { margin-top: 40px; border: 1px solid var(--ink); padding: 8px; background: var(--paper-2); max-width: 520px; clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease-io); }
+.photo.on { clip-path: inset(0 0 0 0); }
+.photo img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 25%; }
+.photo figcaption { font: 400 12px/16px var(--mono); color: #5A564D; padding: 8px 4px 0; }
+.props { border-top: 1px solid var(--ink); font: 400 14px/20px var(--mono); }
+.props div { display: grid; grid-template-columns: 144px 1fr; gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--grid); }
+.props dt { color: var(--muted); }
+@media (max-width: 899px) { .profile { padding-block: 72px; } .profile-grid { grid-template-columns: 1fr; gap: 32px; } .profile h2 { font-size: 56px; line-height: 56px; } .photo { margin-top: 24px; } }
+@media (max-width: 479px) { .props div { grid-template-columns: 96px 1fr; gap: 12px; } .props { font-size: 13px; } }
 
 /* Contact */
-.contact { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--gutter) 64px; max-width: 1360px; margin: 0 auto; }
-.big { font-size: 160px; line-height: 144px; letter-spacing: -0.06em; font-weight: 300; }
-.big em { font-size: 176px; color: var(--lime); }
+.contact { padding-block: 120px 80px; }
+.big { font-weight: 500; font-size: 152px; line-height: 136px; letter-spacing: -0.065em; margin-top: 48px; max-width: 1200px; }
 .seek { margin-top: 40px; font-size: 20px; line-height: 28px; color: var(--muted); max-width: 720px; }
-.payoff { display: none; margin-top: 16px; font-size: 20px; line-height: 28px; color: var(--lime); }
+.payoff { display: none; margin-top: 12px; font: 400 14px/20px var(--mono); color: var(--signal-small); }
 .has-saved .payoff { display: block; }
-.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.btn { display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 32px; border-radius: 999px; border: 1px solid var(--line); font-size: 20px; line-height: 24px; background: rgba(255, 255, 255, .04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: background .3s, color .3s, border-color .3s; will-change: transform; }
-.btn:hover { background: var(--text); color: var(--ink); border-color: var(--text); }
-.btn--main { background: var(--lime); color: var(--ink); border-color: var(--lime); font-weight: 500; }
-.btn--main:hover { background: var(--text); }
-.also { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 64px; font-size: 16px; line-height: 24px; color: var(--muted); }
-.also a { color: var(--text); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
-.also a:hover { text-decoration-color: var(--lime); color: var(--lime); }
-@media (max-width: 1023px) { .big { font-size: 112px; line-height: 104px; } .big em { font-size: 120px; } }
-@media (max-width: 599px) { .seek { font-size: 16px; line-height: 24px; margin-top: 24px; } .big { font-size: 64px; line-height: 64px; } .big em { font-size: 72px; } .btn { height: 56px; padding: 0 24px; font-size: 16px; } .btns { margin-top: 40px; } }
-footer { padding: 24px var(--gutter); display: flex; justify-content: space-between; gap: 16px; font-size: 12px; line-height: 16px; color: var(--muted); border-top: 1px solid var(--line); }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.btn { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 24px; border: 1px solid var(--ink); font-size: 18px; line-height: 24px; transition: background .2s, color .2s; }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn--main { background: var(--signal); border-color: var(--signal); color: var(--ink); font-weight: 500; }
+.btn--main:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.also { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 56px; font: 400 12px/16px var(--mono); color: var(--muted); }
+.also a { color: var(--ink); border-bottom: 1px solid var(--grid); padding-bottom: 2px; }
+.also a:hover { color: var(--signal-small); border-color: var(--signal); }
+@media (max-width: 1199px) { .big { font-size: 112px; line-height: 104px; } }
+@media (max-width: 767px) { .contact { padding-block: 72px 56px; } .big { font-size: 64px; line-height: 64px; margin-top: 32px; } .seek { font-size: 16px; line-height: 24px; margin-top: 24px; } .btn { height: 48px; padding: 0 16px; font-size: 16px; } }
+footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px var(--gutter); border-top: 1px solid var(--grid); font: 400 12px/16px var(--mono); color: var(--muted); }
+@media (max-width: 599px) { footer { flex-direction: column; } }
 
 /* Words rise from under a mask */
-.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .1em .24em 0; margin: 0 -.1em -.24em 0; }
-.wi { display: inline-block; transform: translateY(115%) rotate(6deg); transform-origin: 0 100%; transition: transform 1.2s var(--ease); }
+.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .08em .2em 0; margin: 0 -.08em -.2em 0; }
+.wi { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease); }
 .rise.on .wi { transform: none; }
-
-/* Page exit: a lime curtain rises before the next page loads */
-.curtain { position: fixed; inset: 0; z-index: 60; background: var(--lime); transform: scaleY(0); transform-origin: 50% 100%; pointer-events: none; transition: transform .7s var(--ease-io); }
-.is-leaving .curtain { transform: scaleY(1); }
-
-/* Reveal on scroll */
-.rv { opacity: 0; transform: translateY(40px); transition: opacity 1s, transform 1s cubic-bezier(.16, 1, .3, 1); }
+.rv { opacity: 0; transform: translateY(24px); transition: opacity .9s, transform .9s var(--ease); }
 .rv.on { opacity: 1; transform: none; }
 
-/* Short phones held upright (SE, mini): a tighter slide so the phone clears the header */
-@media (max-width: 719px) and (max-height: 800px) and (orientation: portrait) {
-  .reel-head { top: 72px; } .reel-bar { bottom: 24px; }
-  .panel { gap: 16px; padding-top: 48px; }
-  .phone { width: calc(32svh * 360 / 780); border-radius: 20px; padding: 4px; } .phone img, .phone .langs { border-radius: 16px; }
-  .num { font-size: 80px; line-height: 76px; } .p-meta { margin-bottom: 8px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 8px; } .p-case { margin-top: 12px; }
-}
+/* Page exit: a signal-orange curtain rises before the next page loads */
+.curtain { position: fixed; inset: 0; z-index: 60; background: var(--signal); transform: scaleY(0); transform-origin: 50% 100%; pointer-events: none; transition: transform .6s var(--ease-io); }
+.is-leaving .curtain { transform: scaleY(1); }
 
-/* Phones on their side: short and wide */
+/* Short screens: phones on their side and small phones held upright */
 @media (max-height: 520px) and (orientation: landscape) {
-  .hero { padding-top: 80px; padding-bottom: 24px; }
-  .name { font-size: 72px; line-height: 68px; } .name .line:last-child { padding-left: .8em; }
-  .kicker { margin-bottom: 12px; } .hero-foot { margin-top: 16px; } .tag { font-size: 20px; line-height: 28px; } .tag em { font-size: 24px; } .cue { display: none; }
-  .manifesto { padding-block: 72px; } .manifesto p { font-size: 28px; line-height: 36px; } .manifesto em { font-size: 32px; }
-  .reel-head { top: 64px; } .reel-bar { bottom: 16px; }
-  .panel { grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; padding-top: 40px; }
-  .num { font-size: 96px; line-height: 88px; } .p-meta { margin-bottom: 8px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 12px; } .p-case { margin-top: 12px; }
-  .stage { order: 0; } .phone { width: calc(56svh * 360 / 780); border-radius: 24px; padding: 6px; } .phone img, .phone .langs { border-radius: 20px; }
-  .path { padding-block: 72px; } .path h2 { font-size: 36px; line-height: 40px; } .path h2 em { font-size: 40px; } .stops { margin-top: 48px; }
-  .portrait-copy h2 { font-size: 48px; line-height: 48px; } .portrait-copy h2 em { font-size: 56px; } .portrait-copy p { font-size: 16px; line-height: 24px; } .portrait-copy { gap: 16px; max-width: 45vw; }
-  .contact { padding-top: 88px; } .big { font-size: 56px; line-height: 56px; } .big em { font-size: 64px; } .btns { margin-top: 24px; } .btn { height: 48px; padding: 0 20px; font-size: 16px; } .also { margin-top: 24px; }
+  .hero { padding-top: 72px; } .name { font-size: 64px; line-height: 60px; } .tag { font-size: 18px; line-height: 24px; } .chart { min-height: 240px; }
+  .reel-pin .sec-head { margin-top: 64px; }
+  .panel { grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; padding-block: 8px; }
+  .num { font-size: 80px; line-height: 72px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 8px; } .bars { margin-top: 8px; } .p-case { margin-top: 8px; }
+  .stage { order: 0; } .phone { width: calc(56svh * 360 / 780); }
+  .big { font-size: 56px; line-height: 56px; }
+}
+@media (max-width: 719px) and (max-height: 760px) and (orientation: portrait) {
+  .num { font-size: 72px; line-height: 68px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 8px; } .bars { margin-top: 8px; } .p-case { margin-top: 8px; }
+  .phone { width: calc(24svh * 360 / 780); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .name .ch, .tag, .rv, .stop, .wi, .kicker, .cue, header, .portrait-copy p { transform: none !important; opacity: 1 !important; }
+  .name .ch, .tag, .kicker, header, .chart, .wi, .rv, .stop { transform: none !important; opacity: 1 !important; }
+  .photo { clip-path: none !important; }
+  .manifesto .w { opacity: 1 !important; }
   .curtain { display: none; }
-  .hint { display: none; }
-  .manifesto .w { opacity: 1; }
 }
 </style>
 
-<canvas id="aurora" aria-hidden="true"></canvas>
-<canvas id="flow" aria-hidden="true"></canvas>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"></div>
 <div class="curtain" aria-hidden="true"></div>
 
 <header>
-  <a class="mark" href="#top"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></a>
-  <div class="head-r"><a class="talk" href="#contact"><span lang="en" class="t-en">Let’s talk</span><span lang="ru" class="t-ru">Поговорим</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
+  <a href="#top"><b><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></b><span class="role"> · <span lang="en" class="t-en">senior product designer, fintech</span><span lang="ru" class="t-ru">senior продуктовый дизайнер, финтех</span></span></a>
+  <div class="head-r"><a class="talk" href="#contact"><span lang="en" class="t-en">Let’s talk →</span><span lang="ru" class="t-ru">Поговорим →</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <p class="kicker"><i></i><span lang="en" class="t-en"><b>Senior product designer</b> · <b>Fintech</b> · <b>Prague</b></span><span lang="ru" class="t-ru"><b>Senior продуктовый дизайнер</b> · <b>Финтех</b> · <b>Прага</b></span></p>
-    <h1 class="name"><span lang="en" class="t-en"><span class="sr">Anastasiia Sukhanek</span><span class="line">Anastasiia</span><span class="line">Sukhanek</span></span><span lang="ru" class="t-ru"><span class="sr">Анастасия Суха́нек</span><span class="line">Анастасия</span><span class="line">Суха́нек</span></span></h1>
-    <div class="hero-foot">
+    <div class="head">
       <div>
-        <p class="tag"><span lang="en" class="t-en">I design the moment <em>people almost leave</em></span><span lang="ru" class="t-ru">Проектирую момент, когда <em>человек почти ушёл</em></span></p>
-        <p class="hint" aria-hidden="true"><i></i><span lang="en" class="t-en"><span class="fine">Each dot is a person. Catch the ones leaving with your cursor</span><span class="touch">Each dot is a person. Catch the ones leaving with your finger</span></span><span lang="ru" class="t-ru"><span class="fine">Каждая точка – человек. Поймайте курсором тех, кто уходит</span><span class="touch">Каждая точка – человек. Поймайте пальцем тех, кто уходит</span></span><b class="cnt"><span lang="en" class="t-en">brought back</span><span lang="ru" class="t-ru">вернули</span> <span data-saved>0</span></b></p>
+        <p class="kicker"><b class="live"><span lang="en" class="t-en">open to new roles</span><span lang="ru" class="t-ru">открыта к предложениям</span></b><b>// <span lang="en" class="t-en">senior product designer</span><span lang="ru" class="t-ru">senior продуктовый дизайнер</span></b><b><span lang="en" class="t-en">fintech · Prague</span><span lang="ru" class="t-ru">финтех · Прага</span></b></p>
+        <h1 class="name"><span lang="en" class="t-en"><span class="sr">Anastasiia Sukhanek</span><span class="line">Anastasiia</span><span class="line">Sukhanek</span></span><span lang="ru" class="t-ru"><span class="sr">Анастасия Суха́нек</span><span class="line">Анастасия</span><span class="line">Суха́нек</span></span></h1>
       </div>
-      <span class="cue" aria-hidden="true"><span lang="en" class="t-en">Scroll</span><span lang="ru" class="t-ru">Листайте</span><i></i></span>
+      <p class="tag"><span lang="en" class="t-en">I design the moment <mark>people almost leave</mark> – and count who made it to the end</span><span lang="ru" class="t-ru">Проектирую момент, когда <mark>человек почти ушёл</mark>, – и считаю, кто дошёл до конца</span></p>
+    </div>
+    <div class="chart">
+      <p class="chart-bar"><span><span lang="en" class="t-en"><span class="fine">Each dot is a person. Catch the ones falling out with your cursor</span><span class="touch">Each dot is a person. Catch the ones falling out with your finger</span></span><span lang="ru" class="t-ru"><span class="fine">Каждая точка – человек. Ловите курсором тех, кто выпадает</span><span class="touch">Каждая точка – человек. Ловите пальцем тех, кто выпадает</span></span></span><span><span lang="en" class="t-en">brought back</span><span lang="ru" class="t-ru">вернули</span> <b data-saved>0</b></span></p>
+      <canvas id="funnel" aria-hidden="true"></canvas>
     </div>
   </section>
 
-  <section class="manifesto" aria-label="About">
-    <p lang="en" class="t-en">Eight years in design. Payments, verification, errors – <em>the screens where people drop off.</em> I find why they stop, redesign the step, and then count who made it to the end</p>
-    <p lang="ru" class="t-ru">Восемь лет в дизайне. Оплата, верификация, ошибки – <em>экраны, на которых люди бросают начатое.</em> Нахожу, почему человек остановился, переделываю шаг и потом считаю, сколько людей дошли до конца</p>
+  <section class="manifesto wrap" aria-label="About">
+    <p class="sec-head"><span>01 / <span lang="en" class="t-en">about</span><span lang="ru" class="t-ru">о себе</span></span><span><span lang="en" class="t-en">8 years in design</span><span lang="ru" class="t-ru">8 лет в дизайне</span></span></p>
+    <p lang="en" class="t-en">Eight years in design. Payments, verification, errors – <mark>the screens where people drop off.</mark> I find why they stop, redesign the step, and then count who made it to the end</p>
+    <p lang="ru" class="t-ru">Восемь лет в дизайне. Оплата, верификация, ошибки – <mark>экраны, на которых люди бросают начатое.</mark> Нахожу, почему человек остановился, переделываю шаг и потом считаю, сколько людей дошли до конца</p>
   </section>
 
   <section class="reel" style="--n: 7" aria-label="Results">
     <div class="reel-pin">
-      <div class="reel-head"><span lang="en" class="t-en">Results</span><span lang="ru" class="t-ru">Результаты</span><span class="reel-count">01 / 07</span></div>
+      <p class="sec-head"><span>02 / <span lang="en" class="t-en">results</span><span lang="ru" class="t-ru">результаты</span></span><span class="reel-count">01 / 07</span></p>
       <div class="track">
-        <article class="panel" style="--c1: #D2FF5C; --c2: #8B6CFF">
+        <article class="panel">
           <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025</span></p><p class="num">−54%</p>
+            <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .46"></i><span lang="en" class="t-en">support questions about verification, before → after</span><span lang="ru" class="t-ru">вопросы в поддержку о верификации, до → после</span></div>
             <p lang="en" class="p-label t-en">verification questions to support, after KYC moved from email into the app</p><p lang="ru" class="p-label t-ru">вопросов про верификацию в поддержку после того, как KYC переехал из письма в приложение</p>
             <a class="p-case" href="../case-profee-verification.html"><span lang="en" class="t-en">KYC verification case</span><span lang="ru" class="t-ru">Кейс про KYC</span> →</a></div>
-          <a class="stage" href="../case-profee-verification.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/verif/screen-entry-new.png" alt="Verification bottom sheet in the Profee app" loading="lazy"></div></a>
+          <a class="stage" href="../case-profee-verification.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/verif/screen-entry-new.png" alt="" loading="lazy"></div></a>
         </article>
-        <article class="panel" style="--c1: #F08ACB; --c2: #5B8CFF">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2026</span></p><p class="num">×3.3</p><p class="p-ba"><span lang="en" class="t-en">2.1% → 6.7% of senders</span><span lang="ru" class="t-ru">2,1% → 6,7% отправителей</span></p>
-            <p lang="en" class="p-label t-en">more senders top up the wallet on Android – one button right where they pay</p><p lang="ru" class="p-label t-ru">больше отправителей пополняют кошелёк на Android – одна кнопка прямо там, где они платят</p>
+        <article class="panel">
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2026</span></p><p class="num">×3.3</p>
+            <div class="bars"><i style="--w: .31"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">2.1% → 6.7% of senders top up the wallet</span><span lang="ru" class="t-ru">2,1% → 6,7% отправителей пополняют кошелёк</span></div>
+            <p lang="en" class="p-label t-en">more senders top up on Android – one button right where they pay</p><p lang="ru" class="p-label t-ru">больше отправителей пополняют на Android – одна кнопка прямо там, где они платят</p>
             <a class="p-case" href="../case-profee-topup.html"><span lang="en" class="t-en">Top up case</span><span lang="ru" class="t-ru">Кейс про пополнение</span> →</a></div>
-          <a class="stage" href="../case-profee-topup.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/topup/quick.png" alt="Payment method screen with a Top up button next to the wallet" loading="lazy"></div></a>
+          <a class="stage" href="../case-profee-topup.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/topup/quick.png" alt="" loading="lazy"></div></a>
         </article>
-        <article class="panel" style="--c1: #5B8CFF; --c2: #F08ACB">
+        <article class="panel">
           <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">~70%</p>
+            <div class="bars"><i class="after" style="--w: .7"></i><span lang="en" class="t-en">of people who see the action card</span><span lang="ru" class="t-ru">из тех, кто видит карточку действия</span></div>
             <p lang="en" class="p-label t-en">tap “Continue transfer” within a day, once the status says what is going on</p><p lang="ru" class="p-label t-ru">нажимают «Продолжить перевод» в течение суток, когда статус объясняет, что происходит</p>
             <a class="p-case" href="../case-profee-statuses.html"><span lang="en" class="t-en">Transfer statuses case</span><span lang="ru" class="t-ru">Кейс про статусы</span> →</a></div>
-          <a class="stage" href="../case-profee-statuses.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="Transfer in progress screen with the reason for the delay" loading="lazy"></div></a>
+          <a class="stage" href="../case-profee-statuses.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="" loading="lazy"></div></a>
         </article>
-        <article class="panel" style="--c1: #B9A6FF; --c2: #D2FF5C">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">×2</p><p class="p-ba"><span lang="en" class="t-en">3.9% → 8% of active senders</span><span lang="ru" class="t-ru">3,9% → 8% активных отправителей</span></p>
+        <article class="panel">
+          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">×2</p>
+            <div class="bars"><i style="--w: .49"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">3.9% → 8% of active senders</span><span lang="ru" class="t-ru">3,9% → 8% активных отправителей</span></div>
             <p lang="en" class="p-label t-en">active senders open the Cards tab after the redesign</p><p lang="ru" class="p-label t-ru">активных отправителей открывают «Карты» после редизайна</p>
             <a class="p-case" href="../case-profee-cards.html"><span lang="en" class="t-en">Cards case</span><span lang="ru" class="t-ru">Кейс про карты</span> →</a></div>
-          <a class="stage" href="../case-profee-cards.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/cards/flow/02.jpg" alt="Card created screen in the Profee app" loading="lazy"></div></a>
+          <a class="stage" href="../case-profee-cards.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/cards/flow/02.jpg" alt="" loading="lazy"></div></a>
         </article>
-        <article class="panel" style="--c1: #D2FF5C; --c2: #F08ACB">
-          <div><p class="p-meta"><span lang="en" class="t-en">With the design lead</span><span lang="ru" class="t-ru">Вместе с лидом дизайна</span></p><p class="num">×4</p><p class="p-ba"><span lang="en" class="t-en">1 day → ~2 hours</span><span lang="ru" class="t-ru">1 день → ~2 часа</span></p>
-            <p lang="en" class="p-label t-en">faster to localise a feature: AI agents write the copy and ship 13 languages as a branch</p><p lang="ru" class="p-label t-ru">быстрее локализация фичи: AI-агенты пишут тексты и отдают 13 языков веткой в репозиторий</p>
+        <article class="panel">
+          <div><p class="p-meta"><span lang="en" class="t-en">AI agents · with the design lead</span><span lang="ru" class="t-ru">AI-агенты · вместе с лидом дизайна</span></p><p class="num">×4</p>
+            <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .25"></i><span lang="en" class="t-en">1 day → ~2 hours to localise a feature</span><span lang="ru" class="t-ru">1 день → ~2 часа на локализацию фичи</span></div>
+            <p lang="en" class="p-label t-en">faster: agents write the copy to our rules and ship 13 languages as a branch</p><p lang="ru" class="p-label t-ru">быстрее: агенты пишут тексты по нашим правилам и отдают 13 языков веткой в репозиторий</p>
             <a class="p-case" href="../case-profee-cards.html#ai"><span lang="en" class="t-en">How the agents work</span><span lang="ru" class="t-ru">Как работают агенты</span> →</a></div>
-          <a class="stage" href="../case-profee-cards.html#ai" tabindex="-1" aria-hidden="true"><div class="phone"><div class="langs" aria-hidden="true"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></a>
+          <a class="stage" href="../case-profee-cards.html#ai" tabindex="-1" aria-hidden="true"><div class="phone"><div class="langs"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></a>
         </article>
-        <article class="panel" style="--c1: #D2FF5C; --c2: #5B8CFF">
-          <div><p class="p-meta"><span lang="en" class="t-en">Design system · 2026</span><span lang="ru" class="t-ru">Дизайн-система · 2026</span></p><p class="num">21/21</p>
-            <p lang="en" class="p-label t-en">stories pass automated accessibility checks – the tests caught a contrast bug Figma didn’t show</p><p lang="ru" class="p-label t-ru">stories проходят автопроверку доступности – тесты поймали ошибку контраста, которую Figma не показывала</p>
+        <article class="panel">
+          <div><p class="p-meta"><span lang="en" class="t-en">Design system in code · 2026</span><span lang="ru" class="t-ru">Дизайн-система в коде · 2026</span></p><p class="num">21/21</p>
+            <div class="bars"><i class="after" style="--w: 1"></i><span lang="en" class="t-en">stories with no accessibility violations</span><span lang="ru" class="t-ru">stories без нарушений доступности</span></div>
+            <p lang="en" class="p-label t-en">pass automated checks – the tests caught a contrast bug Figma didn’t show</p><p lang="ru" class="p-label t-ru">проходят автопроверку – тесты поймали ошибку контраста, которую Figma не показывала</p>
             <a class="p-case" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru"><span lang="en" class="t-en">Open the Storybook</span><span lang="ru" class="t-ru">Открыть Storybook</span> →</a></div>
           <a class="stage" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru" tabindex="-1" aria-hidden="true"><div class="phone"><div class="tests">
             <small>$ npx vitest --run</small>
-            <span>✓ Button / Primary</span><span>✓ Button / Secondary</span><span>✓ Button / Ghost</span><span>✓ Button / Loading</span><span>✓ Bottom sheet</span><span>✓ Full screen message</span><span>✓ List item</span>
+            <span>Button / Primary</span><span>Button / Secondary</span><span>Button / Ghost</span><span>Button / Loading</span><span>Bottom sheet</span><span>Full screen message</span><span>List item</span>
             <small>…</small><b>21 passed · 0 a11y violations</b><small class="was">secondary text 3.98:1 → 5.3:1</small>
           </div></div></a>
         </article>
-        <article class="panel" style="--c1: #F08ACB; --c2: #D2FF5C">
+        <article class="panel">
           <div><p class="p-meta">SberSpasibo · 2022–2023</p><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
+            <div class="bars"><i style="--w: .33"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">bonus redemption, before → after the redesign</span><span lang="ru" class="t-ru">траты бонусов до → после редизайна</span></div>
             <p lang="en" class="p-label t-en">more bonus redemption after the games redesign in Sber’s loyalty programme</p><p lang="ru" class="p-label t-ru">чаще тратят бонусы после редизайна игр в программе лояльности Сбера</p>
             <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
-          <a class="stage" href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="A game in the SberSpasibo app" loading="lazy"></div></a>
+          <a class="stage" href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
         </article>
       </div>
-      <div class="reel-bar" aria-hidden="true"><i></i></div>
     </div>
   </section>
 
-  <section class="marquee" aria-label="Skills">
-    <div class="skew">
-      <div class="row" aria-hidden="true"><span>Figma Variables</span><span><i lang="en" class="t-en">tokens</i><i lang="ru" class="t-ru">токены</i></span><span>JTBD</span><span><i lang="en" class="t-en">A/B tests</i><i lang="ru" class="t-ru">A/B-тесты</i></span><span>Amplitude</span><span><i lang="en" class="t-en">UX writing</i><i lang="ru" class="t-ru">UX-тексты</i></span><span>Figma Variables</span><span><i lang="en" class="t-en">tokens</i><i lang="ru" class="t-ru">токены</i></span><span>JTBD</span><span><i lang="en" class="t-en">A/B tests</i><i lang="ru" class="t-ru">A/B-тесты</i></span><span>Amplitude</span><span><i lang="en" class="t-en">UX writing</i><i lang="ru" class="t-ru">UX-тексты</i></span></div>
-      <div class="row" aria-hidden="true"><span>React</span><span>Storybook</span><span>Claude Code</span><span><i lang="en" class="t-en">design systems</i><i lang="ru" class="t-ru">дизайн-системы</i></span><span><i lang="en" class="t-en">13 languages</i><i lang="ru" class="t-ru">13 языков</i></span><span><i lang="en" class="t-en">prototypes</i><i lang="ru" class="t-ru">прототипы</i></span><span>React</span><span>Storybook</span><span>Claude Code</span><span><i lang="en" class="t-en">design systems</i><i lang="ru" class="t-ru">дизайн-системы</i></span><span><i lang="en" class="t-en">13 languages</i><i lang="ru" class="t-ru">13 языков</i></span><span><i lang="en" class="t-en">prototypes</i><i lang="ru" class="t-ru">прототипы</i></span></div>
-    </div>
-    <p lang="en" class="t-en" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Figma Variables, tokens, JTBD, A/B tests, Amplitude, UX writing, React, Storybook, Claude Code, design systems, 13 languages, prototypes</p>
-    <p lang="ru" class="t-ru" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Figma Variables, токены, JTBD, A/B-тесты, Amplitude, UX-тексты, React, Storybook, Claude Code, дизайн-системы, 13 языков, прототипы</p>
-  </section>
-
-  <section class="path">
-    <p class="sec-kicker rv"><span lang="en" class="t-en">Recent years</span><span lang="ru" class="t-ru">Последние годы</span></p>
-    <h2 class="rise"><span lang="en" class="t-en">From bonus games to money <em>that has to arrive</em></span><span lang="ru" class="t-ru">От бонусных игр к деньгам, <em>которые должны дойти</em></span></h2>
+  <section class="path wrap">
+    <p class="sec-head"><span>03 / <span lang="en" class="t-en">recent years</span><span lang="ru" class="t-ru">последние годы</span></span><span>2022 → 2026</span></p>
+    <h2 class="rise"><span lang="en" class="t-en">From bonus games to money <mark>that has to arrive</mark></span><span lang="ru" class="t-ru">От бонусных игр к деньгам, <mark>которые должны дойти</mark></span></h2>
     <ol class="stops">
       <li class="stop"><time>2022 – 2023</time><h3><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h3><p lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme</p><p lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера</p></li>
       <li class="stop"><time>2023 – 2025</time><h3><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h3><p lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</p><p lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</p></li>
       <li class="stop"><time>2025 – <span lang="en" class="t-en">now</span><span lang="ru" class="t-ru">сейчас</span></time><h3>Profee</h3><p lang="en" class="t-en">Money transfers: KYC, cards, statuses, a design system and AI agents</p><p lang="ru" class="t-ru">Денежные переводы: KYC, карты, статусы, дизайн-система и AI-агенты</p></li>
-      <li class="stop stop--next"><time><span lang="en" class="t-en">Next</span><span lang="ru" class="t-ru">Дальше</span></time><h3><span lang="en" class="t-en">your team?</span><span lang="ru" class="t-ru">ваша команда?</span></h3><p lang="en" class="t-en">Remote worldwide or in Prague</p><p lang="ru" class="t-ru">Удалённо из любой точки или в Праге</p></li>
+      <li class="stop stop--next"><time><span lang="en" class="t-en">next</span><span lang="ru" class="t-ru">дальше</span></time><h3><span lang="en" class="t-en">Your team?</span><span lang="ru" class="t-ru">Ваша команда?</span></h3><p lang="en" class="t-en">Remote worldwide or in Prague</p><p lang="ru" class="t-ru">Удалённо из любой точки или в Праге</p></li>
     </ol>
   </section>
 
-  <section class="portrait" aria-label="Prague">
-    <div class="portrait-pin">
-      <div class="portrait-wrap">
-        <div class="portrait-img"><img style="aspect-ratio: auto 1110 / 1298;" src="../images/about/photo-about-prague.jpg" alt="Anastasiia on a street in Prague with a yellow tram behind" loading="lazy"></div>
-        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ringPath" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0"/></defs>
-          <text lang="en" class="t-en"><textPath href="#ringPath" textLength="536" lengthAdjust="spacing">Open to new roles · Prague · Remote worldwide · Open to new roles · Prague · Remote worldwide · </textPath></text>
-          <text lang="ru" class="t-ru"><textPath href="#ringPath" textLength="536" lengthAdjust="spacing">Открыта к предложениям · Прага · Удалённо · Открыта к предложениям · Прага · Удалённо · </textPath></text></svg>
+  <section class="profile wrap" aria-label="Profile">
+    <p class="sec-head"><span>04 / <span lang="en" class="t-en">user profile</span><span lang="ru" class="t-ru">профиль пользователя</span></span><span>user_id: nastya</span></p>
+    <div class="profile-grid">
+      <div>
+        <h2 class="rise"><span lang="en" class="t-en">Hi,<br>I’m <mark>Nastya</mark></span><span lang="ru" class="t-ru">Привет,<br>я <mark>Настя</mark></span></h2>
+        <figure class="photo"><img style="aspect-ratio: auto 1110 / 1298;" src="../images/about/photo-about-prague.jpg" alt="Anastasiia on a street in Prague with a tram behind" loading="lazy"><figcaption><span lang="en" class="t-en">location: Prague · source: my phone</span><span lang="ru" class="t-ru">локация: Прага · источник: мой телефон</span></figcaption></figure>
       </div>
-      <div class="portrait-copy rise">
-        <h2><span lang="en" class="t-en">Hi,<br>I’m <em>Nastya</em></span><span lang="ru" class="t-ru">Привет,<br>я <em>Настя</em></span></h2>
-        <p lang="en" class="say t-en">Sukhanek – say <em>su-KHA-nek</em></p>
-        <p lang="ru" class="say t-ru">Суха́нек – ударение <em>на «а»</em></p>
-        <p lang="en" class="t-en">I live in Prague with two cats – Texas, a very busy Abyssinian, and Alaska, a white one. I work remotely and love the moment a confusing screen turns obvious</p>
-        <p lang="ru" class="t-ru">Живу в Праге с котом Техасом – очень деятельным абиссинцем – и белой кошкой Аляской. Работаю удалённо и люблю момент, когда запутанный экран становится очевидным</p>
-      </div>
+      <dl class="props rv">
+        <div><dt>name</dt><dd><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></dd></div>
+        <div><dt><span lang="en" class="t-en">pronunciation</span><span lang="ru" class="t-ru">ударение</span></dt><dd><span lang="en" class="t-en">su-KHA-nek</span><span lang="ru" class="t-ru">на «а»: Суха́нек</span></dd></div>
+        <div><dt><span lang="en" class="t-en">status</span><span lang="ru" class="t-ru">статус</span></dt><dd class="live"><span lang="en" class="t-en">open to new roles</span><span lang="ru" class="t-ru">открыта к предложениям</span></dd></div>
+        <div><dt><span lang="en" class="t-en">role</span><span lang="ru" class="t-ru">роль</span></dt><dd><span lang="en" class="t-en">Senior product designer · fintech</span><span lang="ru" class="t-ru">Senior продуктовый дизайнер · финтех</span></dd></div>
+        <div><dt><span lang="en" class="t-en">city</span><span lang="ru" class="t-ru">город</span></dt><dd><span lang="en" class="t-en">Prague · Czech permanent residence</span><span lang="ru" class="t-ru">Прага · ПМЖ в Чехии</span></dd></div>
+        <div><dt><span lang="en" class="t-en">works</span><span lang="ru" class="t-ru">работа</span></dt><dd><span lang="en" class="t-en">remote worldwide or in Prague</span><span lang="ru" class="t-ru">удалённо из любой точки или в Праге</span></dd></div>
+        <div><dt><span lang="en" class="t-en">cats</span><span lang="ru" class="t-ru">коты</span></dt><dd><span lang="en" class="t-en">Texas – a very busy Abyssinian · Alaska – a white one</span><span lang="ru" class="t-ru">Техас – очень деятельный абиссинец · Аляска – белая кошка</span></dd></div>
+        <div><dt><span lang="en" class="t-en">loves</span><span lang="ru" class="t-ru">любит</span></dt><dd><span lang="en" class="t-en">the moment a confusing screen turns obvious</span><span lang="ru" class="t-ru">момент, когда запутанный экран становится очевидным</span></dd></div>
+      </dl>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <p class="sec-kicker rv"><span lang="en" class="t-en">Contact</span><span lang="ru" class="t-ru">Контакты</span></p>
-    <h2 class="big rise"><span lang="en" class="t-en">Let’s make something <em>people finish</em></span><span lang="ru" class="t-ru">Сделаем то, что <em>доводят до конца</em></span></h2>
+  <section class="contact wrap" id="contact">
+    <p class="sec-head"><span>05 / <span lang="en" class="t-en">contact</span><span lang="ru" class="t-ru">контакты</span></span><span><span lang="en" class="t-en">step 05 · sent · 100%</span><span lang="ru" class="t-ru">шаг 05 · отправлено · 100%</span></span></p>
+    <h2 class="big rise"><span lang="en" class="t-en">Let’s make something people <mark>finish</mark></span><span lang="ru" class="t-ru">Сделаем то, что <mark>доводят до конца</mark></span></h2>
     <p class="seek rv"><span lang="en" class="t-en">Looking for a Senior product designer role · remote or in Prague · Czech permanent residence, no visa sponsorship needed</span><span lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера · удалённо или в Праге · ПМЖ в Чехии, спонсорство визы не нужно</span></p>
     <p class="payoff" aria-live="polite"></p>
     <div class="btns rv">
-      <a class="btn btn--main magnet" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
-      <a class="btn magnet" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
-      <a class="btn magnet" href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a lang="en" class="btn magnet t-en" href="../anastasiia-sukhanek-cv.pdf" download>CV ↓</a>
-      <a lang="ru" class="btn magnet t-ru" href="../anastasiia-sukhanek-cv-ru.pdf" download>Резюме ↓</a>
+      <a class="btn btn--main" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
+      <a class="btn" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
+      <a class="btn" href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a lang="en" class="btn t-en" href="../anastasiia-sukhanek-cv.pdf" download>CV ↓</a>
+      <a lang="ru" class="btn t-ru" href="../anastasiia-sukhanek-cv-ru.pdf" download>Резюме ↓</a>
     </div>
     <p class="also rv"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
       <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
@@ -436,76 +376,28 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   </section>
 </main>
 
-<footer><span><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span> · 2026</span><span lang="en" class="t-en">Made with Claude Code, WebGL and two cats nearby</span><span lang="ru" class="t-ru">Сделано с Claude Code, WebGL и двумя котами рядом</span></footer>
+<footer><span><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span> · 2026</span><span lang="en" class="t-en">Made with Claude Code and two cats nearby</span><span lang="ru" class="t-ru">Сделано с Claude Code и двумя котами рядом</span></footer>
 
 <script>
 (function () {
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   var root = document.documentElement;
-  var mouse = { x: .5, y: .5, tx: .5, ty: .5, px: -100, py: -100 };
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function smooth(a, b, x) { var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
   function expoOut(t) { return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t); }
   function isRu() { return root.lang === 'ru'; }
 
-  /* ── Aurora: fbm noise, warped by the cursor, palette shifts with scroll, flows faster while you scroll ── */
-  var canvas = document.getElementById('aurora');
-  var gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
-  var uni = {}, glOK = false;
-  if (gl) {
-    var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-    var fs = [
-      '#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\nuniform vec2 r;uniform float t;uniform vec2 m;uniform float s;uniform float k;',
-      'float h(vec2 p){p=fract(p*vec2(.1031,.1030));p+=dot(p,p.yx+33.33);return fract((p.x+p.y)*p.x);}',
-      'float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}',
-      'float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}',
-      'void main(){vec2 uv=gl_FragCoord.xy/r;float ar=r.x/r.y;vec2 p=vec2(uv.x*ar,uv.y);vec2 mm=vec2(m.x*ar,m.y);',
-      'float d=distance(p,mm);p+=(p-mm)*.25*exp(-d*2.5);float T=t*.05;',
-      'vec2 q=vec2(fb(p*1.4+vec2(T,-T)),fb(p*1.4+vec2(-T*1.3,T)+5.2));',
-      'float v=fb(p*1.1+q*2.2+vec2(T*.6,T*.3));',
-      'vec3 ink=vec3(.027,.024,.102);',
-      'vec3 A=mix(vec3(.42,.25,.95),vec3(.22,.4,1.),smoothstep(.15,.45,s));A=mix(A,vec3(.85,.3,.62),smoothstep(.55,.8,s));A=mix(A,vec3(.42,.25,.95),smoothstep(.9,1.,s));',
-      'vec3 B=mix(vec3(.94,.54,.8),vec3(.5,.95,.9),smoothstep(.2,.5,s));B=mix(B,vec3(.82,1.,.36),smoothstep(.6,.85,s));',
-      'vec3 c=mix(ink,A,smoothstep(.38,.78,v));c=mix(c,B,smoothstep(.55,.95,v*q.y*1.6)*.85);',
-      'c+=B*exp(-d*5.)*.18;c*=.6+.4*smoothstep(1.25,.15,length(uv-.5));',
-      'gl_FragColor=vec4(mix(ink,c,k),1.);}'
-    ].join('\n');
-    var sh = function (type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; };
-    var a = sh(gl.VERTEX_SHADER, vs), b = sh(gl.FRAGMENT_SHADER, fs);
-    if (a && b) {
-      var pr = gl.createProgram(); gl.attachShader(pr, a); gl.attachShader(pr, b); gl.linkProgram(pr);
-      if (gl.getProgramParameter(pr, gl.LINK_STATUS)) {
-        gl.useProgram(pr);
-        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-        var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-        ['r', 't', 'm', 's', 'k'].forEach(function (u) { uni[u] = gl.getUniformLocation(pr, u); });
-        glOK = true;
-      }
-    }
-  }
-  function size() {
-    // Half resolution: the aurora is soft anyway, and it keeps laptops cool
-    var q = Math.min(window.devicePixelRatio || 1, 2) * .5;
-    canvas.width = Math.round(innerWidth * q); canvas.height = Math.round(innerHeight * q);
-    if (glOK) gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  size(); addEventListener('resize', size);
-
   /* ── Splitting ── */
-  // Name: letters rise in with a slight tilt, weight swells under the cursor
-  var chars = [];
+  // Name: letters as graphemes, so the stress mark stays on its «а»
   document.querySelectorAll('.name .line').forEach(function (line, li) {
     var t = line.textContent; line.textContent = ''; line.setAttribute('aria-hidden', 'true');
     (t.match(/\P{M}\p{M}*/gu) || []).forEach(function (c, i) {
       var s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
-      s.style.transitionDelay = (.15 + (li % 2) * .14 + i * .04) + 's';
-      line.appendChild(s); chars.push(s);
+      s.style.transitionDelay = (.15 + (li % 2) * .12 + i * .035) + 's'; line.appendChild(s);
     });
   });
-  // Split text nodes into words on plain spaces only: the build glues short words with no-break spaces
+  // Split on plain spaces only: the build glues short words with no-break spaces
   function splitWords(el, make) {
     (function walk(node) {
       Array.prototype.slice.call(node.childNodes).forEach(function (n) {
@@ -516,68 +408,22 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
             if (/^[ \n\t]+$/.test(w)) frag.appendChild(document.createTextNode(' ')); else frag.appendChild(make(w));
           });
           node.replaceChild(frag, n);
-        } else if (n.nodeType === 1 && n.tagName !== 'SMALL') walk(n);
+        } else if (n.nodeType === 1) walk(n);
       });
     })(el);
   }
-  document.querySelectorAll('.manifesto p').forEach(function (p) {
+  document.querySelectorAll('.manifesto p:not(.sec-head)').forEach(function (p) {
     splitWords(p, function (w) { var s = document.createElement('span'); s.className = 'w'; s.textContent = w; return s; });
   });
   var allWords = document.querySelectorAll('.manifesto .w');
-  // Headings: each word rises from under a mask, one after another
-  document.querySelectorAll('.rise h2, h2.rise').forEach(function (h) {
+  document.querySelectorAll('h2.rise').forEach(function (h) {
     var i = 0;
     splitWords(h, function (w) {
       var m = document.createElement('span'); m.className = 'wm';
-      var s = document.createElement('span'); s.className = 'wi'; s.textContent = w; s.style.transitionDelay = (i++ % 12) * .06 + 's';
+      var s = document.createElement('span'); s.className = 'wi'; s.textContent = w; s.style.transitionDelay = (i++ % 12) * .05 + 's';
       m.appendChild(s); return m;
     });
   });
-
-  /* ── Agents phone: a grid of languages, the button translates itself ── */
-  var langs = [['EN', 'Top up'], ['RU', 'Пополнить'], ['PL', 'Doładuj'], ['DE', 'Aufladen'], ['ES', 'Recargar'], ['FR', 'Recharger'], ['IT', 'Ricarica'], ['PT', 'Carregar'], ['TR', 'Yükle'], ['UK', 'Поповнити'], ['RO', 'Reîncarcă'], ['CS', 'Dobít'], ['LT', 'Papildyti']];
-  var lw = document.getElementById('langWord'), lcs = document.getElementById('langCodes'), li = 0;
-  var codes = langs.map(function (l, i) { var c = document.createElement('i'); c.textContent = l[0]; if (!i) c.className = 'on'; lcs.appendChild(c); return c; });
-  if (!reduce) setInterval(function () {
-    codes[li].className = ''; li = (li + 1) % langs.length; codes[li].className = 'on'; lw.style.opacity = 0;
-    setTimeout(function () { lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
-  }, 1400);
-
-  /* ── Cursor: lags behind, grows on links, says "View" over the phones ── */
-  var cursor = document.querySelector('.cursor'), cx = -100, cy = -100;
-  addEventListener('pointermove', function (e) {
-    mouse.tx = e.clientX / innerWidth; mouse.ty = 1 - e.clientY / innerHeight; mouse.px = e.clientX; mouse.py = e.clientY;
-    if (fine) cursor.classList.add('is-on');
-  }, { passive: true });
-  if (fine && !reduce) {
-    document.querySelectorAll('a, button').forEach(function (el) {
-      var stage = el.classList.contains('stage');
-      el.addEventListener('pointerenter', function () {
-        if (stage) { cursor.dataset.label = isRu() ? 'Смотреть' : 'View'; cursor.classList.add('is-label'); } else cursor.classList.add('is-big');
-      });
-      el.addEventListener('pointerleave', function () { cursor.classList.remove('is-big', 'is-label'); });
-    });
-    document.querySelectorAll('.magnet').forEach(function (el) {
-      el.addEventListener('pointermove', function (e) {
-        var r = el.getBoundingClientRect();
-        el.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .3) + 'px,' + ((e.clientY - r.top - r.height / 2) * .4) + 'px)';
-      });
-      el.addEventListener('pointerleave', function () { el.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1), background .3s, color .3s'; el.style.transform = ''; setTimeout(function () { el.style.transition = ''; }, 600); });
-    });
-  }
-
-  /* ── Page exit: the curtain rises, then the next page loads ── */
-  if (!reduce) {
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a');
-      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (a.target === '_blank' || a.hasAttribute('download') || a.getAttribute('href').charAt(0) === '#') return;
-      if (a.origin !== location.origin || /^mailto:|^tel:/.test(a.getAttribute('href'))) return;
-      e.preventDefault(); root.classList.add('is-leaving');
-      setTimeout(function () { location.href = a.href; }, 650);
-    });
-    addEventListener('pageshow', function () { root.classList.remove('is-leaving'); });
-  }
 
   /* ── Links with a Russian version of their target ── */
   function syncHrefs() {
@@ -588,354 +434,185 @@ footer { padding: 24px var(--gutter); display: flex; justify-content: space-betw
   }
   syncHrefs(); new MutationObserver(syncHrefs).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
+  /* ── Agents phone: the button translates itself ── */
+  var langs = [['EN', 'Top up'], ['RU', 'Пополнить'], ['PL', 'Doładuj'], ['DE', 'Aufladen'], ['ES', 'Recargar'], ['FR', 'Recharger'], ['IT', 'Ricarica'], ['PT', 'Carregar'], ['TR', 'Yükle'], ['UK', 'Поповнити'], ['RO', 'Reîncarcă'], ['CS', 'Dobít'], ['LT', 'Papildyti']];
+  var lw = document.getElementById('langWord'), lcs = document.getElementById('langCodes'), li = 0;
+  var codes = langs.map(function (l, i) { var c = document.createElement('i'); c.textContent = l[0]; if (!i) c.className = 'on'; lcs.appendChild(c); return c; });
+  if (!reduce) setInterval(function () {
+    codes[li].className = ''; li = (li + 1) % langs.length; codes[li].className = 'on'; lw.style.opacity = 0;
+    setTimeout(function () { lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
+  }, 1400);
+
+  /* ── Page exit: the curtain rises, then the next page loads ── */
+  if (!reduce) {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var href = a.getAttribute('href') || '';
+      if (a.target === '_blank' || a.hasAttribute('download') || href.charAt(0) === '#' || /^mailto:|^tel:/.test(href) || a.origin !== location.origin) return;
+      e.preventDefault(); root.classList.add('is-leaving');
+      setTimeout(function () { location.href = a.href; }, 550);
+    });
+    addEventListener('pageshow', function () { root.classList.remove('is-leaving'); });
+  }
+
   /* ── Reveal on scroll ── */
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
-  document.querySelectorAll('.rv, h2.rise').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.rv, h2.rise, .photo').forEach(function (el) { io.observe(el); });
+
+  /* ── The funnel: every dot is a person ── */
+  var cv = document.getElementById('funnel'), ctx = cv.getContext('2d'), FW = 0, FH = 0, DPR = 1, people = [], saved = 0;
+  var steps = { en: ['Open app', 'Start transfer', 'Verify', 'Pay', 'Sent'], ru: ['Открыл', 'Начал перевод', 'Верификация', 'Оплата', 'Отправлено'] };
+  var conv = [1, .82, .62, .53, .49];      // share still in the flow at each step – the shape of the funnel
+  var drop = [0, .18, .24, .14, .08];      // chance to fall out when entering a step
+  var ptr = { x: -999, y: -999, t: 0, in: false };
+  function spawn(p, anywhere) {
+    p.x = anywhere ? Math.random() * FW : -Math.random() * 80; p.lane = Math.random(); p.v = (.7 + Math.random() * .7) * clamp(FW / 1280, .5, 1.2);
+    p.s = 0; p.vy = 0; p.al = 1; p.hot = 0; p.y = undefined;
+    p.step = clamp(Math.floor(p.x / (FW / 5)), 0, 4);
+  }
+  function fsize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect(); FW = r.width; FH = r.height;
+    cv.width = Math.round(FW * DPR); cv.height = Math.round(FH * DPR);
+    var n = Math.round(clamp(FW * FH / 500, 160, 640));
+    while (people.length < n) { var p = {}; spawn(p, true); people.push(p); }
+    people.length = n;
+  }
+  function move(x, y) { var r = cv.getBoundingClientRect(); ptr.x = x - r.left; ptr.y = y - r.top; ptr.t = performance.now(); ptr.in = ptr.x >= 0 && ptr.x <= FW && ptr.y >= -40 && ptr.y <= FH; }
+  addEventListener('pointermove', function (e) { move(e.clientX, e.clientY); }, { passive: true });
+  addEventListener('touchmove', function (e) { var t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  addEventListener('touchstart', function (e) { var t = e.touches[0]; move(t.clientX, t.clientY); }, { passive: true });
+  fsize(); addEventListener('resize', fsize);
+
+  var savedEls = document.querySelectorAll('[data-saved]'), payoff = document.querySelector('.payoff');
+  function showSaved() {
+    savedEls.forEach(function (el) { el.textContent = saved; });
+    root.classList.toggle('has-saved', saved > 0);
+    payoff.textContent = isRu()
+      ? '// по дороге сюда вы вернули в поток: ' + saved + '. Этим я и занимаюсь'
+      : '// you brought ' + saved + (saved === 1 ? ' person' : ' people') + ' back on the way here. That’s my job';
+  }
+  new MutationObserver(showSaved).observe(root, { attributes: true, attributeFilter: ['lang'] });
+
+  function funnel(dt, active) {
+    var lang = isRu() ? 'ru' : 'en', small = FW < 600;
+    var B = FH - 32, bandH = (B - 32) * .62, mid = 32 + (B - 32) * .42, cw = FW / 5;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, FW, FH);
+    // Grid: a column per step, its name on top, conversion under the axis
+    ctx.lineWidth = 1; ctx.font = '12px ui-monospace, "SF Mono", Menlo, monospace';
+    for (var k = 0; k < 5; k++) {
+      var x = Math.round(cw * k) + .5;
+      ctx.strokeStyle = '#DEDAD0'; ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, B); ctx.stroke();
+      ctx.fillStyle = '#6E6A60'; ctx.fillText('0' + (k + 1) + (small ? '' : ' ' + steps[lang][k]), x + 8, 16);
+      // The stepped band: the funnel itself
+      var hh = bandH * conv[k];
+      ctx.fillStyle = 'rgba(17,17,16,.055)'; ctx.fillRect(x + .5, mid - hh / 2, cw - 1, hh);
+      ctx.fillStyle = '#111110'; ctx.fillText(Math.round(conv[k] * 100) + '%', x + 8, B + 22);
+    }
+    ctx.strokeStyle = '#111110'; ctx.beginPath(); ctx.moveTo(0, B + .5); ctx.lineTo(FW, B + .5); ctx.stroke();
+    // Crosshair on hover, like a chart tooltip
+    if (ptr.in && performance.now() - ptr.t < 2000) {
+      var hs = clamp(Math.floor(ptr.x / cw), 0, 4);
+      ctx.strokeStyle = 'rgba(17,17,16,.35)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(Math.round(ptr.x) + .5, 0); ctx.lineTo(Math.round(ptr.x) + .5, B); ctx.stroke(); ctx.setLineDash([]);
+      var tip = steps[lang][hs] + ' · ' + Math.round(conv[hs] * 100) + '%', tw = ctx.measureText(tip).width + 16, tx = clamp(ptr.x + 12, 0, FW - tw);
+      ctx.fillStyle = '#111110'; ctx.fillRect(tx, 24, tw, 24); ctx.fillStyle = '#F3F0E8'; ctx.fillText(tip, tx + 8, 40);
+    }
+    // People
+    var catchR = small ? 64 : 88, moving = performance.now() - ptr.t < 350;
+    for (var i = 0; i < people.length; i++) {
+      var p = people[i], st = clamp(Math.floor(p.x / cw), 0, 4);
+      if (st > p.step) { p.step = st; if (p.s === 0 && Math.random() < drop[st]) { p.s = 1; p.vy = .3 + Math.random() * .5; } }
+      var cy = mid + (p.lane - .5) * bandH * conv[st] * .9;
+      if (p.y === undefined) p.y = cy;
+      if (p.s === 0) { p.x += p.v * dt; p.y += (cy - p.y) * .08 * dt; }
+      else if (p.s === 1) { p.x += p.v * .2 * dt; p.y += p.vy * dt; p.vy += .035 * dt; if (p.y > B - 3) { p.y = B - 3; p.vy = 0; p.al -= .02 * dt; } else p.al -= .004 * dt; if (p.al <= 0) spawn(p, false); }
+      else { p.x += p.v * 1.3 * dt; p.y += (cy - p.y) * .14 * dt; if (Math.abs(cy - p.y) < 2) p.s = 0; }
+      if (active && moving && p.s === 1) { var dx = p.x - ptr.x, dy = p.y - ptr.y; if (dx * dx + dy * dy < catchR * catchR) { p.s = 2; p.hot = 1; saved++; showSaved(); } }
+      if (p.hot > 0) p.hot -= .008 * dt;
+      if (p.x > FW + 8) spawn(p, false);
+      ctx.globalAlpha = clamp(p.al, 0, 1);
+      if (p.hot > 0) { ctx.fillStyle = '#FF4F1F'; ctx.fillRect(p.x - 2, p.y - 2, 4, 4); }
+      else { ctx.fillStyle = p.s === 1 ? '#8C877C' : '#111110'; ctx.fillRect(p.x - 1, p.y - 1, 2.4, 2.4); }
+    }
+    ctx.globalAlpha = 1;
+  }
 
   /* ── Scenes ── */
-  var header = document.querySelector('header');
+  var header = document.querySelector('header'), hero = document.querySelector('.hero');
   var reel = document.querySelector('.reel'), track = document.querySelector('.track'), panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var count = document.querySelector('.reel-count'), bar = document.querySelector('.reel-bar');
-  var parts = panels.map(function (pn) {
-    return { phone: pn.querySelector('.phone'), num: pn.querySelector('.num'), meta: pn.querySelector('.p-meta'), labels: pn.querySelectorAll('.p-label'), link: pn.querySelector('.p-case') };
-  });
-  // Count-up: the last text node of each number holds its value (×3.3, −54%, ~70%)
+  var count = document.querySelector('.reel-count'), manifesto = document.querySelector('.manifesto');
+  var parts = panels.map(function (pn) { return { phone: pn.querySelector('.phone'), num: pn.querySelector('.num'), text: pn.firstElementChild, bars: pn.querySelector('.bars') }; });
   var counters = parts.map(function (pt) {
     var nodes = Array.prototype.filter.call(pt.num.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
     var node = nodes[nodes.length - 1], m = node && node.textContent.match(/^([^0-9]*)([0-9]+)(?:\.([0-9]+))?(.*)$/);
     return m && { node: node, pre: m[1], val: parseFloat(m[2] + '.' + (m[3] || '0')), dec: (m[3] || '').length, post: m[4], t0: 0 };
   });
-  var active = -1;
-  var path = document.querySelector('.stops'), stops = document.querySelectorAll('.stop');
-  var portrait = document.querySelector('.portrait'), pimg = document.querySelector('.portrait-img'), pcopy = document.querySelector('.portrait-copy'), ring = document.querySelector('.ring');
-  var skew = document.querySelector('.skew'), rows = document.querySelectorAll('.row'), rx = [0, 0];
-  var sy = scrollY, lastRaw = scrollY, vel = 0, skewNow = 0, dir = 1, lastHeaderY = scrollY;
-
+  var active = -1, path = document.querySelector('.stops'), stops = document.querySelectorAll('.stop');
+  var sy = scrollY, lastHeaderY = scrollY;
   function offsetTop(el) { var t = 0; while (el) { t += el.offsetTop; el = el.offsetParent; } return t; }
   var tops = {};
-  function measure() {
-    tops.reel = offsetTop(reel); tops.reelH = reel.offsetHeight;
-    tops.portrait = offsetTop(portrait); tops.portraitH = portrait.offsetHeight;
-    tops.manifesto = offsetTop(document.querySelector('.manifesto')); tops.manifestoH = document.querySelector('.manifesto').offsetHeight;
-    tops.path = offsetTop(path);
-    tops.half = rows[0].scrollWidth / 2;
-  }
+  function measure() { tops.reel = offsetTop(reel); tops.reelH = reel.offsetHeight; tops.man = offsetTop(manifesto); tops.manH = manifesto.offsetHeight; }
   measure(); addEventListener('resize', measure); addEventListener('load', measure);
-  new MutationObserver(function () { measure(); rx[0] = 0; rx[1] = -tops.half; }).observe(root, { attributes: true, attributeFilter: ['lang'] });
-  rx[1] = -tops.half;
 
-  function scenes(now, dt) {
-    var H = document.documentElement.scrollHeight - innerHeight;
+  function scenes(now) {
     var y = reduce ? scrollY : sy;
-
-    // Manifesto: a soft wave of light runs through the words
+    // Manifesto
     var ws = Array.prototype.filter.call(allWords, function (w) { return w.offsetParent; });
     if (ws.length) {
-      var mp = clamp((y + innerHeight * .8 - tops.manifesto) / (tops.manifestoH * .9), 0, 1);
-      var lead = reduce ? ws.length + 4 : mp * (ws.length + 4);
+      var lead = reduce ? ws.length + 4 : clamp((y + innerHeight * .8 - tops.man) / (tops.manH * .85), 0, 1) * (ws.length + 4);
       for (var i = 0; i < ws.length; i++) {
-        var o = clamp((lead - i) / 4, 0, 1);
-        ws[i].style.opacity = (.14 + .86 * o).toFixed(3);
-        if (ws[i].parentNode.tagName === 'EM') ws[i].classList.toggle('on', o > .6);
+        var o = clamp((lead - i) / 4, 0, 1); ws[i].style.opacity = (.16 + .84 * o).toFixed(3);
+        if (ws[i].parentNode.tagName === 'MARK') ws[i].classList.toggle('on', o > .6);
       }
     }
-
-    // Reel: each slide pauses in the centre, the rest of the scroll moves between them
-    var rp = clamp((y - tops.reel) / (tops.reelH - innerHeight), 0, 1);
-    var segs = panels.length - 1, raw = rp * segs, si = Math.min(Math.floor(raw), segs - 1), f = raw - si;
-    var eased = reduce ? rp : (si + smooth(.3, .7, f)) / segs;
+    // Reel: each slide pauses in the centre
+    var rp = clamp((y - tops.reel) / (tops.reelH - innerHeight), 0, 1), segs = panels.length - 1;
+    var raw = rp * segs, si = Math.min(Math.floor(raw), segs - 1), eased = reduce ? rp : (si + smooth(.3, .7, raw - si)) / segs;
     track.style.transform = 'translate3d(' + (-eased * (track.scrollWidth - innerWidth)) + 'px,0,0)';
-    bar.style.setProperty('--p', rp);
     var idx = Math.round(eased * segs);
     count.textContent = ('0' + (idx + 1)).slice(-2) + ' / ' + ('0' + panels.length).slice(-2);
     if (idx !== active) {
-      active = idx;
-      var c = counters[idx];
+      active = idx; var c = counters[idx];
       if (c && !reduce && now - c.t0 > 2500) c.t0 = now;
+      if (!reduce) { var bs = parts[idx].bars; bs.classList.remove('grow'); void bs.offsetWidth; bs.classList.add('grow'); }
     }
     counters.forEach(function (c) {
       if (!c) return;
-      var t = c.t0 ? expoOut(clamp((now - c.t0) / 1100, 0, 1)) : 1;
-      var v = (t >= 1 ? c.val : c.val * t).toFixed(c.dec);
-      var txt = c.pre + (isRu() ? v.replace('.', ',') : v) + c.post;
-      if (c.node.textContent !== txt) c.node.textContent = txt;
+      var t = c.t0 ? expoOut(clamp((now - c.t0) / 1100, 0, 1)) : 1, v = (t >= 1 ? c.val : c.val * t).toFixed(c.dec);
+      var txt = c.pre + (isRu() ? v.replace('.', ',') : v) + c.post; if (c.node.textContent !== txt) c.node.textContent = txt;
     });
     if (!reduce) panels.forEach(function (pn, i) {
-      var r = pn.getBoundingClientRect(), d = clamp(((r.left + r.width / 2) - innerWidth / 2) / innerWidth, -1, 1), ad = Math.abs(d);
-      var pt = parts[i], bob = Math.sin(now / 900 + i) * 6;
-      pt.phone.style.transform = 'rotateY(' + (-d * 40) + 'deg) rotateZ(' + (d * 8) + 'deg) translateY(' + (ad * 40 + bob) + 'px) scale(' + (1 - ad * .2) + ')';
-      // Depth: the number, the label and the link travel at different speeds
-      pt.num.style.transform = 'translate3d(' + (d * -innerWidth * .1) + 'px,0,0)';
-      pt.meta.style.transform = 'translate3d(' + (d * innerWidth * .06) + 'px,0,0)';
-      for (var k = 0; k < pt.labels.length; k++) pt.labels[k].style.transform = 'translate3d(' + (d * innerWidth * .14) + 'px,0,0)';
-      pt.link.style.transform = 'translate3d(' + (d * innerWidth * .2) + 'px,0,0)';
-      pn.firstElementChild.style.opacity = clamp(1 - ad * 1.6, 0, 1);
+      var r = pn.getBoundingClientRect(), d = clamp(((r.left + r.width / 2) - innerWidth / 2) / innerWidth, -1, 1), ad = Math.abs(d), pt = parts[i];
+      pt.phone.style.transform = 'rotateY(' + (-d * 24) + 'deg) translateY(' + (ad * 24) + 'px) scale(' + (1 - ad * .12) + ')';
+      pt.num.style.transform = 'translate3d(' + (d * -innerWidth * .08) + 'px,0,0)';
+      pt.text.style.opacity = clamp(1 - ad * 1.6, 0, 1);
     });
-
-    // Path
-    var pp = clamp((innerHeight * .9 - path.getBoundingClientRect().top) / (innerHeight * .45), 0, 1);
+    // Recent years
+    var pr = path.getBoundingClientRect(), pp = clamp((innerHeight * .9 - pr.top) / (innerHeight * .45), 0, 1);
     path.style.setProperty('--p', reduce ? 1 : pp);
     stops.forEach(function (s, i) { s.classList.toggle('on', reduce || pp > .05 + i * .2); });
-
-    // Portrait: the disc opens, the ring spins in, the copy rises
-    var ptp = clamp((y - tops.portrait) / (tops.portraitH - innerHeight), 0, 1);
-    pimg.style.setProperty('--r', reduce ? '50%' : (6 + smooth(0, .7, ptp) * 44) + '%');
-    pimg.style.setProperty('--s', reduce ? 1 : (1.3 - ptp * .3));
-    ring.style.setProperty('--o', reduce ? 1 : smooth(.45, .75, ptp));
-    ring.style.setProperty('--rot', (reduce ? 0 : ptp * 140 + now / 200) + 'deg');
-    pcopy.classList.toggle('on', reduce || ptp > .5);
-
-    // Marquee: drifts on its own, speeds up and changes direction with the scroll; leans with speed
-    if (!reduce) {
-      if (Math.abs(vel) > .5) dir = vel > 0 ? 1 : -1;
-      var sp = (.6 + Math.min(Math.abs(vel) * .35, 24)) * dt * dir;
-      rx[0] -= sp; rx[1] += sp;
-      for (var q = 0; q < 2; q++) { if (rx[q] <= -tops.half) rx[q] += tops.half; if (rx[q] > 0) rx[q] -= tops.half; rows[q].style.transform = 'translate3d(' + rx[q] + 'px,0,0)'; }
-      skewNow += (clamp(-vel * .3, -10, 10) - skewNow) * .12 * dt;
-      skew.style.setProperty('--skew', skewNow.toFixed(2) + 'deg');
-    }
-
-    // Header hides on the way down, comes back on the way up
-    if (Math.abs(scrollY - lastHeaderY) > 8) {
-      header.classList.toggle('is-hidden', scrollY > lastHeaderY && scrollY > innerHeight * .8);
-      lastHeaderY = scrollY;
-    }
-    return H > 0 ? y / H : 0;
-  }
-
-  /* ── Frame loop ── */
-  var t0 = performance.now(), last = t0, flow = 20;
-  function frame(now) {
-    var dt = Math.min((now - last) / 16.67, 3); last = now;
-    // Smoothed scroll: scenes follow the wheel with a little inertia, the page itself scrolls natively
-    sy += (scrollY - sy) * (1 - Math.pow(1 - .14, dt));
-    if (Math.abs(scrollY - sy) < .1) sy = scrollY;
-    vel += ((scrollY - lastRaw) / dt - vel) * .2; lastRaw = scrollY;
-
-    mouse.x += (mouse.tx - mouse.x) * .06 * dt; mouse.y += (mouse.ty - mouse.y) * .06 * dt;
-    if (fine) { cx += (mouse.px - cx) * .2 * dt; cy += (mouse.py - cy) * .2 * dt; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; }
-    if (fine && !reduce && scrollY < innerHeight) for (var i = 0; i < chars.length; i++) {
-      var r = chars[i].getBoundingClientRect(), dx = mouse.px - (r.left + r.width / 2), dy = mouse.py - (r.top + r.height / 2);
-      chars[i].style.setProperty('--w', (300 + 240 * Math.exp(-(dx * dx + dy * dy) / 120000)).toFixed(0));
-    }
-    var sp = scenes(now, dt);
-    if (glOK && (!reduce || now - t0 < 50)) {
-      // The aurora rises out of the dark on load and flows faster while the page moves
-      flow += dt / 60 * (1 + Math.min(Math.abs(vel) * .08, 4));
-      var hero = clamp(1 - scrollY / innerHeight, 0, 1);
-      var k = (.55 + .45 * Math.max(hero, sp > .9 ? (sp - .9) * 10 : 0)) * (reduce ? 1 : smooth(0, 1800, now - t0));
-      gl.uniform2f(uni.r, canvas.width, canvas.height);
-      gl.uniform1f(uni.t, flow);
-      gl.uniform2f(uni.m, mouse.x, mouse.y);
-      gl.uniform1f(uni.s, sp);
-      gl.uniform1f(uni.k, k);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-  requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('is-ready'); }); });
-})();
-</script>
-<script>
-/* People flow: every particle is a person going through a flow. Some drift away and fade – the drop-off.
-   The cursor (a finger on phones) pulls them back; returned ones flash lime and are counted.
-   With every case fewer drift away, on the timeline the stream narrows into its line, around the portrait it
-   orbits, and at the contact it all arrives at the Telegram button */
-(function () {
-  'use strict';
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var root = document.documentElement;
-  var cv = document.getElementById('flow'), ctx = cv.getContext('2d');
-  if (!ctx) return;
-  var W = 0, H = 0, DPR = 1, P = [], N = 0, arriving = 0, arrivingX = 0, orbitNow = 0;
-  var pointer = { x: -9999, y: -9999, on: false, t: 0 };
-  var saved = 0, savedEls = document.querySelectorAll('[data-saved]'), payoff = document.querySelector('.payoff');
-  var LIME = '#D2FF5C';
-
-  function gauss() { var u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.max(-2.2, Math.min(2.2, Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v))); }
-  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-  function smooth(a, b, x) { var t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function spawn(p, anywhere) {
-    p.x = anywhere ? Math.random() * W : (arriving > .5 ? Math.random() * arrivingX * .7 : -Math.random() * W * .2 - 10);
-    p.o = gauss();                       // lane: distance from the centre of the stream
-    p.v = (1.1 + Math.random() * 1.3) * (W / 1440 * .6 + .4);
-    p.a = Math.random() * Math.PI * 2;   // orbit angle around the portrait
-    p.y = H * .6 + p.o * H * .07;
-    p.s = 0;                             // 0 flow · 1 drifting away · 2 coming back
-    p.al = anywhere ? 1 : 0;             // alpha: new ones fade in
-    p.lime = 0; p.dy = 0; p.px = p.x; p.py = p.y; p.hx = p.v; p.hy = 0;
-  }
-  function resize() {
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
-    W = innerWidth; H = innerHeight;
-    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
-    cv.style.width = W + 'px'; cv.style.height = H + 'px';
-    var n = Math.round(clamp(W * H / 520, 500, 2600));
-    while (P.length < n) { var p = {}; spawn(p, true); P.push(p); }
-    P.length = n; N = n;
-  }
-  resize(); addEventListener('resize', resize);
-
-  // Pointer: mouse, pen and touch (touch also while the page scrolls)
-  addEventListener('pointermove', function (e) { pointer.x = e.clientX; pointer.y = e.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
-  addEventListener('pointerleave', function () { pointer.on = false; });
-  document.addEventListener('mouseleave', function () { pointer.on = false; });
-  addEventListener('touchstart', function (e) { var t = e.touches[0]; pointer.x = t.clientX; pointer.y = t.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
-  addEventListener('touchmove', function (e) { var t = e.touches[0]; pointer.x = t.clientX; pointer.y = t.clientY; pointer.on = true; pointer.t = performance.now(); }, { passive: true });
-  addEventListener('touchend', function () { setTimeout(function () { pointer.on = false; }, 300); }, { passive: true });
-
-  // Scene state, read from the page every frame
-  var hero = document.querySelector('.hero'), manifesto = document.querySelector('.manifesto'), reel = document.querySelector('.reel');
-  var stops = document.querySelector('.stops'), portrait = document.querySelector('.portrait'), wrap = document.querySelector('.portrait-wrap');
-  var contact = document.querySelector('.contact'), target = document.querySelector('.btn--main');
-  var count = document.querySelector('.reel-count');
-  function vis(el) { var r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, H) - Math.max(r.top, 0)) / Math.min(H, r.height), 0, 1); }
-
-  function scene() {
-    var s = {};
-    var heroV = vis(hero), manV = vis(manifesto), reelV = vis(reel);
-    var slide = count ? parseInt(count.textContent, 10) - 1 : 0, slides = count ? parseInt(count.textContent.split('/')[1], 10) : 7;
-    // Drop-off per second per person: high on the first screen, shrinking with every case, none at the finish
-    var reelDrop = .012 * (1 - slide / (slides - 1) * .85);
-    s.drop = heroV * .016 + manV * (1 - heroV) * .01 + reelV * reelDrop;
-    s.alpha = clamp(heroV * .8 + manV * .3 + reelV * .3 + .2, 0, .8);
-    s.cy = lerp(H * (W < 720 ? .72 : .62), H * .92, smooth(.3, .8, reelV) * (1 - heroV));
-    s.w = H * .06;
-    // Timeline (desktop): the stream narrows into the line of the timeline
-    s.line = 0;
-    if (W >= 900) {
-      var sr = stops.getBoundingClientRect();
-      s.lineY = sr.top; s.line = smooth(H * .95, H * .55, sr.top) * smooth(-H * .1, H * .25, sr.top + sr.height);
-      s.lineX0 = sr.left; s.lineX1 = sr.right;
-      s.alpha = Math.max(s.alpha, .75 * s.line);
-    }
-    // Portrait: orbit around the disc
-    var pr = portrait.getBoundingClientRect(), pp = clamp(-pr.top / (pr.height - H), 0, 1);
-    s.orbit = pr.top < H && pr.bottom > 0 ? smooth(.25, .6, pp) * (1 - smooth(.97, 1, pp)) : 0;
-    if (s.orbit) { var wr = wrap.getBoundingClientRect(); s.ox = wr.left + wr.width / 2; s.oy = wr.top + wr.height / 2; s.or = wr.width / 2 * 1.42; s.alpha = Math.max(s.alpha, .85 * s.orbit); }
-    // Contact: everyone arrives at the button
-    var cr = contact.getBoundingClientRect();
-    s.arrive = smooth(H * .9, H * .2, cr.top);
-    var tr = target.getBoundingClientRect(); s.tx = tr.left + tr.width / 2; s.ty = tr.top + tr.height / 2;
-    if (s.arrive > .01) { s.drop *= 1 - s.arrive; s.alpha = Math.max(s.alpha, s.arrive * .9); }
-    arriving = s.arrive; arrivingX = s.tx; orbitNow = s.orbit > .8 ? 1 : 0;
-    return s;
-  }
-
-  function step(dt, t, S, interact) {
-    var R = W < 720 ? 90 : 130, R2 = R * R;
-    for (var i = 0; i < N; i++) {
-      var p = P[i];
-      p.px = p.x; p.py = p.y;
-      // Lane target: a gently waving stream
-      var ty = S.cy + Math.sin(p.x / W * 3.6 + t * .35) * H * .05 + Math.sin(p.x / W * 9 - t * .6) * H * .012 + p.o * S.w;
-      if (S.line > 0) ty = lerp(ty, S.lineY + p.o * 2, S.line * smooth(S.lineX0 - 240, S.lineX0, p.x) * (1 - smooth(S.lineX1, S.lineX1 + 240, p.x)));
-      if (S.arrive > 0) {
-        var f = smooth(0, S.tx, p.x);
-        ty = lerp(ty, S.ty + p.o * S.w * (1 - f) * .6, S.arrive * f);
-      }
-      if (p.s === 0) {
-        p.x += p.v * dt * (1 + S.arrive * 1.5);
-        p.y += (ty - p.y) * .06 * dt;
-        p.al = Math.min(1, p.al + .02 * dt);
-        if (Math.random() < S.drop / 60 * dt && p.x > 0 && p.x < W) { p.s = 1; p.dy = (p.o >= 0 ? 1 : -1) * (.3 + Math.random() * .7); }
-      } else if (p.s === 1) {
-        // Drifting away: slows down, leaves the stream, fades
-        p.x += p.v * dt * .45; p.y += p.dy * dt; p.dy *= 1 + .01 * dt;
-        p.al -= .007 * dt;
-        if (p.al <= 0) spawn(p, false);
-      } else {
-        // Coming back: steered into the lane, bright
-        p.x += p.v * dt * 1.3; p.y += (ty - p.y) * .12 * dt;
-        p.al = Math.min(1, p.al + .06 * dt);
-        if (Math.abs(ty - p.y) < 3) p.s = 0;
-      }
-      if (p.lime > 0) p.lime -= dt / 90;
-      // The cursor catches people who are leaving
-      if (interact && p.s === 1) {
-        var dx = p.x - pointer.x, dy = p.y - pointer.y;
-        if (dx * dx + dy * dy < R2) { p.s = 2; p.lime = 1; saved++; }
-      }
-      // Orbit around the portrait overrides the stream
-      if (S.orbit > 0) {
-        p.a += (.004 + p.v * .0015) * dt;
-        var r = S.or + p.o * 16, ox = S.ox + Math.cos(p.a) * r, oy = S.oy + Math.sin(p.a) * r;
-        p.x = lerp(p.x, ox, S.orbit * .06 * dt); p.y = lerp(p.y, oy, S.orbit * .06 * dt);
-      }
-      var mx = p.x - p.px, my = p.y - p.py;
-      if (mx * mx + my * my < 3600) { p.hx += (mx - p.hx) * .15; p.hy += (my - p.hy) * .15; }
-      // Arrived at the button, or left the screen: start again from the left
-      if (S.arrive > .5 && p.x > S.tx - 6 && Math.abs(p.y - S.ty) < 40) spawn(p, false);
-      else if (p.x > W + 20 && S.orbit < .5) spawn(p, false);
-    }
-  }
-
-  var buckets = [[], [], [], [], []], limes = [];
-  // A short trail behind the particle along its last move, at least a dot, at most 24 px
-  function trail(q, k) {
-    var dx = q.hx, dy = q.hy, d = Math.sqrt(dx * dx + dy * dy);
-    if (d < .01) { dx = 1; dy = 0; d = 1; }
-    // Length from forward travel only: while the stream regroups, people show as dots, not scratches
-    var len = Math.min(12, Math.max(1.5, Math.abs(dx) * k * (q.s === 3 ? 0 : 1) + (orbitNow ? d * k * .8 : 0)));
-    ctx.moveTo(q.x, q.y); ctx.lineTo(q.x - dx / d * len, q.y - dy / d * len);
-  }
-  function draw(S) {
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-    for (var b = 0; b < 5; b++) buckets[b].length = 0; limes.length = 0;
-    for (var i = 0; i < N; i++) {
-      var p = P[i];
-      if (p.al <= .02 || p.y < -20 || p.y > H + 20) continue;
-      if (p.lime > 0) limes.push(p); else buckets[Math.min(4, Math.floor(p.al * 5))].push(p);
-    }
-    ctx.lineCap = 'round'; ctx.lineWidth = 1.6;
-    for (b = 0; b < 5; b++) {
-      if (!buckets[b].length) continue;
-      ctx.strokeStyle = 'rgba(244,241,255,' + ((b + 1) / 5 * .55 * S.alpha).toFixed(3) + ')';
-      ctx.beginPath();
-      for (var k = 0; k < buckets[b].length; k++) { var q = buckets[b][k], L = q.s === 1 ? 1.2 : 3; trail(q, L); }
-      ctx.stroke();
-    }
-    if (limes.length) {
-      ctx.strokeStyle = LIME; ctx.lineWidth = 2.4; ctx.shadowColor = LIME; ctx.shadowBlur = 8;
-      ctx.beginPath();
-      for (k = 0; k < limes.length; k++) { var m = limes[k]; trail(m, 7); }
-      ctx.globalAlpha = Math.max(.5, S.alpha); ctx.stroke(); ctx.globalAlpha = 1; ctx.shadowBlur = 0;
-    }
-  }
-
-  function showSaved() {
-    savedEls.forEach(function (el) { el.textContent = saved; });
-    root.classList.toggle('has-saved', saved > 0);
-    if (payoff) {
-      var ru = root.lang === 'ru';
-      payoff.textContent = ru
-        ? 'По дороге сюда вы вернули в поток: ' + saved + '. Этим я и занимаюсь'
-        : 'You brought ' + saved + (saved === 1 ? ' person' : ' people') + ' back on the way here. That’s my job';
-    }
+    // Header hides on the way down
+    if (Math.abs(scrollY - lastHeaderY) > 8) { header.classList.toggle('is-hidden', scrollY > lastHeaderY && scrollY > innerHeight * .8); lastHeaderY = scrollY; }
   }
 
   if (reduce) {
-    // A still picture of the stream: settle it once, draw, redraw on resize
-    var still = function () { var S = scene(); S.drop = .004; P.forEach(function (q) { spawn(q, true); }); for (var j = 0; j < 90; j++) step(1, j / 60, S, false); draw(S); };
-    still(); addEventListener('resize', still);
-    return;
+    // Still: the funnel settles once and stays as a chart
+    for (var j = 0; j < 240; j++) funnel(1, false);
+    scenes(0); addEventListener('scroll', function () { scenes(0); }, { passive: true });
+    addEventListener('resize', function () { for (var j = 0; j < 120; j++) funnel(1, false); });
+  } else {
+    var last = performance.now();
+    (function frame(now) {
+      var dt = Math.min((now - last) / 16.67, 3); last = now;
+      sy += (scrollY - sy) * (1 - Math.pow(1 - .14, dt)); if (Math.abs(scrollY - sy) < .1) sy = scrollY;
+      // The funnel only runs while it is on screen
+      if (hero.getBoundingClientRect().bottom > 0) funnel(dt, true);
+      scenes(now);
+      requestAnimationFrame(frame);
+    })(last);
   }
-  var last = performance.now(), t0 = last, lastSaved = 0;
-  (function frame(now) {
-    var dt = Math.min((now - last) / 16.67, 3); last = now;
-    var S = scene();
-    // Fade in with the intro
-    S.alpha *= smooth(600, 2200, now - t0);
-    step(dt, (now - t0) / 1000, S, pointer.on && now - pointer.t < 350);
-    draw(S);
-    if (saved !== lastSaved) { lastSaved = saved; showSaved(); }
-    requestAnimationFrame(frame);
-  })(last);
-  new MutationObserver(showSaved).observe(root, { attributes: true, attributeFilter: ['lang'] });
+  requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.add('is-ready'); }); });
 })();
 </script>
 <script src="../js/copy-email.js?v=9eb5e608" defer></script>

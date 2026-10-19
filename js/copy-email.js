@@ -11,7 +11,7 @@
       toast.setAttribute('aria-live', 'polite');
       toast.setAttribute('style', [
         'position:fixed', 'left:50%', 'bottom:32px', 'z-index:10000',
-        'display:flex', 'align-items:center', 'gap:12px', 'padding:12px 20px', 'border-radius:999px',
+        'display:flex', 'align-items:center', 'gap:12px', 'padding:12px 24px 12px 16px', 'border-radius:24px',
         'background:#0B0B0B', 'color:#fff', 'border:1px solid rgba(255,255,255,.16)',
         'box-shadow:0 16px 48px -12px rgba(0,0,0,.5)',
         "font:500 16px/24px 'Inter',system-ui,sans-serif", 'width:max-content', 'max-width:calc(100vw - 32px)', 'text-align:left',
@@ -20,8 +20,10 @@
       ].join(';'));
       document.body.appendChild(toast);
     }
-    toast.innerHTML = '<span style="display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#D2FF5C;color:#0B0B0B;font-size:12px;line-height:1" aria-hidden="true">✓</span>';
-    toast.appendChild(document.createTextNode(text));
+    toast.innerHTML = '<span style="flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#D2FF5C;color:#0B0B0B;font-size:12px;line-height:1" aria-hidden="true">✓</span>' +
+      '<span style="display:flex;flex-direction:column;min-width:0"><b style="font-weight:500"></b><span style="font-size:12px;line-height:16px;color:rgba(255,255,255,.64);overflow-wrap:anywhere"></span></span>';
+    toast.querySelector('b').textContent = text[0];
+    toast.querySelector('b + span').textContent = text[1];
     // Restart the entrance on repeated clicks
     toast.style.opacity = '0'; toast.style.transform = 'translate(-50%,16px)';
     void toast.offsetWidth;
@@ -49,7 +51,7 @@
     var ru = document.documentElement.lang === 'ru';
     e.preventDefault();
     copy(email).then(function () {
-      show((ru ? 'Почта скопирована · ' : 'Email copied · ') + email);
+      show([ru ? 'Почта скопирована' : 'Email copied', email]);
     }, function () {
       // Copy refused (rare): fall back to the mail app
       location.href = a.href;

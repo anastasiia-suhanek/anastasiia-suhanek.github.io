@@ -172,6 +172,18 @@ header b { font-weight: 500; color: var(--text); }
 @media (max-width: 899px) { .driver { grid-template-columns: 1fr; } .photo { max-width: 360px; } }
 @media (max-width: 479px) { .props div { grid-template-columns: 96px 1fr; gap: 12px; } .props { font-size: 13px; } }
 
+
+/* Prints pinned along the route: real photos from each stop, slightly askew */
+.prints { display: flex; flex-wrap: wrap; gap: 24px 32px; margin-top: 40px; align-items: flex-start; }
+.print { width: 200px; padding: 8px 8px 0; background: #EDE6DA; box-shadow: 0 24px 48px -20px rgba(0, 0, 0, .85); transform: rotate(var(--r, -2deg)); transition: transform .5s var(--ease); }
+.print:nth-child(2) { --r: 2.5deg; margin-top: 24px; } .print:nth-child(3) { --r: -1deg; margin-top: 8px; } .print:nth-child(4) { --r: 3deg; margin-top: 32px; }
+.print:hover { transform: rotate(0) scale(1.04); }
+.print img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.print--wide { width: 280px; }
+.print--wide img { aspect-ratio: 4 / 3; }
+.print figcaption { font: 400 12px/16px var(--mono); color: #5E574C; padding: 8px 2px 12px; }
+@media (max-width: 599px) { .prints { gap: 16px 12px; } .print { width: calc(50% - 6px); padding: 6px 6px 0; } .print--wide { width: 100%; max-width: 320px; } .print:nth-child(n) { margin-top: 0; } .print:nth-child(even) { margin-top: 16px; } }
+
 /* Last stop */
 .terminus { padding-bottom: 96px; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
 .terminus::before { width: 24px; height: 24px; left: calc(var(--rail) - 11px); background: var(--bg); border-width: 4px; }
@@ -256,6 +268,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
           <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
         <a href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
       </div>
+      <div class="prints rv"><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_9_2026-09-18_10-37-56.jpg" alt="Selfie with colleagues from Sber at the office" loading="lazy"><figcaption><span lang="en" class="t-en">Masha, Ksyusha and me</span><span lang="ru" class="t-ru">Маша, Ксюша и я</span></figcaption></figure><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_22_2026-09-18_10-37-56.jpg" alt="Instax photo of three friends at a colleague's birthday party" loading="lazy"><figcaption><span lang="en" class="t-en">Masha’s birthday</span><span lang="ru" class="t-ru">день рождения Маши</span></figcaption></figure></div>
     </article>
 
     <article class="stop stop--major">
@@ -263,6 +276,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       <p class="stop-label rv"><span lang="en" class="t-en">stop 2</span><span lang="ru" class="t-ru">остановка 2</span></p>
       <h2 class="stop-name rv"><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h2>
       <p class="stop-note rv"><span lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</span><span lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</span></p>
+      <div class="prints rv"><figure class="print print--wide"><img style="aspect-ratio: auto 1280 / 960;" src="../images/about/photo_17_2026-09-18_10-37-56.jpg" alt="Selfie with former Beeline colleagues at a long table in a restaurant" loading="lazy"><figcaption><span lang="en" class="t-en">after-work hangout</span><span lang="ru" class="t-ru">посиделки после работы</span></figcaption></figure></div>
     </article>
 
     <article class="stop stop--major">
@@ -270,6 +284,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       <p class="stop-label rv"><span lang="en" class="t-en">stop 3</span><span lang="ru" class="t-ru">остановка 3</span></p>
       <h2 class="stop-name rv">Profee</h2>
       <p class="stop-note rv"><span lang="en" class="t-en">Money transfers on iOS, Android and the web. The longest stretch of the route so far – six stops in a row</span><span lang="ru" class="t-ru">Денежные переводы на iOS, Android и в вебе. Самый длинный участок маршрута – шесть остановок подряд</span></p>
+      <div class="prints rv"><figure class="print print--wide"><img style="aspect-ratio: auto 1280 / 960;" src="../images/about/photo-profee-ux-editor.jpg" alt="Selfie with a UX writer colleague from Profee in a bar" loading="lazy"><figcaption><span lang="en" class="t-en">with my favourite UX writer</span><span lang="ru" class="t-ru">с любимым UX-редактором</span></figcaption></figure></div>
     </article>
 
     <article class="stop stop--case">
@@ -326,6 +341,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
           <div><dt><span lang="en" class="t-en">loves</span><span lang="ru" class="t-ru">любит</span></dt><dd><span lang="en" class="t-en">the moment a confusing screen turns obvious</span><span lang="ru" class="t-ru">момент, когда запутанный экран становится очевидным</span></dd></div>
         </dl>
       </div>
+      <div class="prints rv"><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_24_2026-09-18_10-37-56.jpg" alt="Abyssinian cat Texas lying on the desk next to a laptop" loading="lazy"><figcaption><span lang="en" class="t-en">junior Texas at work</span><span lang="ru" class="t-ru">джуниор Техас на работе</span></figcaption></figure><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_13_2026-09-18_10-37-56.jpg" alt="Home desk setup with iMac, pink roses and books" loading="lazy"><figcaption><span lang="en" class="t-en">home office</span><span lang="ru" class="t-ru">домашний офис</span></figcaption></figure><figure class="print print--wide"><img style="aspect-ratio: auto 1268 / 906;" src="../images/about/photo-designer-friend.jpg" alt="Two laptops on a café table, one showing a video call with a designer friend" loading="lazy"><figcaption><span lang="en" class="t-en">with my best designer friend</span><span lang="ru" class="t-ru">с лучшей подружкой-дизайнером</span></figcaption></figure><figure class="print"><img style="aspect-ratio: auto 960 / 1280;" src="../images/about/photo_16_2026-09-18_10-37-56.jpg" alt="At a design exhibition, standing in a binary code projection" loading="lazy"><figcaption><span lang="en" class="t-en">at a design exhibition</span><span lang="ru" class="t-ru">на дизайнерской выставке</span></figcaption></figure></div>
     </article>
 
     <article class="stop stop--case">

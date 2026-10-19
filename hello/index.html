@@ -20,18 +20,21 @@
 <script src="../js/lang.js?v=a36bd0c1"></script>
 <link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
 <style>
-/* Showreel as a night street on a long exposure. People are light trails – sodium amber, cold white, red tail lights.
-   Some turn off the road and fade; the cursor brings them back. On the timeline the lights become a tram route,
-   at the contact they all arrive at the button. Sizes are multiples of 4, weights 400/500/600, motion off with reduced motion */
+/* Showreel as one night tram route. The first screen is the departure: a street on a long exposure, every light a person.
+   Then a single lit line runs down the whole page with stops in order – SberSpasibo, Beeline, Profee and its cases,
+   the driver halfway – and ends at the last stop: your team. Sizes are multiples of 4, weights 400/500/600 */
 :root {
-  --bg: #0B0907; --bg-2: #15120E; --text: #F2EDE4; --soft: #D6CEC1; --muted: #A39A8C; --line: rgba(242, 237, 228, .14);
-  --amber: #FFB547; --red: #FF4A3D;
+  --bg: #0B0907; --text: #F2EDE4; --soft: #D6CEC1; --muted: #A39A8C; --line: rgba(242, 237, 228, .14);
+  --amber: #FFB547;
   --sans: 'Inter', system-ui, sans-serif; --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --ease: cubic-bezier(.16, 1, .3, 1); --ease-io: cubic-bezier(.65, 0, .35, 1);
   --gutter: 16px; --max: 1360px;
+  --rail: 7px;               /* x of the route line inside the content box */
+  --indent: 40px;            /* where the stop content starts */
   color-scheme: dark;
 }
 @media (min-width: 720px) { :root { --gutter: 40px; } }
+@media (min-width: 1024px) { :root { --rail: 191px; --indent: 248px; } }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html[lang="en"] .t-ru { display: none !important; }
 html[lang="ru"] .t-en { display: none !important; }
@@ -42,8 +45,8 @@ img { display: block; max-width: 100%; }
 ::selection { background: var(--amber); color: var(--bg); }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
 mark { background: none; color: var(--amber); }
+.mono { font-family: var(--mono); }
 
 /* The exposure: light trails, then film grain and a vignette on top, like a print */
 #trails { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
@@ -55,7 +58,7 @@ main, header, footer { position: relative; z-index: 2; }
 
 /* Header */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding-inline: var(--gutter);
-  background: linear-gradient(rgba(11, 9, 7, .8), rgba(11, 9, 7, 0)); font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  background: linear-gradient(rgba(11, 9, 7, .85), rgba(11, 9, 7, 0)); font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
   opacity: 0; transition: opacity .8s 1s, transform .5s var(--ease); }
 .is-ready header { opacity: 1; }
 .is-ready header.is-hidden { transform: translateY(-100%); }
@@ -68,7 +71,7 @@ header b { font-weight: 500; color: var(--text); }
 .lang-btn.lang-active, .lang-btn:hover { color: var(--text); }
 @media (max-width: 599px) { header .role, .talk { display: none; } }
 
-/* Hero */
+/* Departure */
 .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: 96px var(--gutter) 28px; max-width: var(--max); margin: 0 auto; }
 .hero-main { margin-top: auto; padding-bottom: 32svh; }
 .kicker { font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 4px 16px; opacity: 0; transition: opacity .8s .3s; }
@@ -94,103 +97,87 @@ header b { font-weight: 500; color: var(--text); }
 @media (max-width: 479px) { .name { font-size: 64px; line-height: 64px; } }
 @media (max-width: 359px) { .name { font-size: 52px; line-height: 52px; } }
 
-/* Section heads: a thin rule and a frame number, like a contact sheet */
-.sec-head { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--line); font: 400 12px/16px var(--mono); color: var(--muted); }
+/* The route: one line down the whole page, lit as you go, passengers riding along it */
+.route { position: relative; max-width: var(--max); margin: 0 auto; padding: 96px var(--gutter) 0; }
+.rail { position: absolute; top: 0; bottom: 0; left: calc(var(--gutter) + var(--rail)); width: 2px; background: var(--line); }
+.rail-lit { position: absolute; top: 0; left: -1px; width: 4px; height: calc(var(--p, 0) * 100%); border-radius: 2px; background: var(--amber); box-shadow: 0 0 16px rgba(255, 181, 71, .8); }
+.rail-lit::after { content: ''; position: absolute; inset: 0; border-radius: 2px; opacity: .9; animation: ride 1.4s linear infinite;
+  background: radial-gradient(circle at 50% 50%, #fff 0 1.5px, transparent 2.5px) 0 0 / 4px 48px repeat-y; }
+@keyframes ride { to { background-position: 0 48px; } }
+.route-head { margin-left: var(--indent); font: 400 12px/16px var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.route-head b { font-weight: 400; color: var(--amber); }
 
-/* Manifesto */
-.manifesto { padding-block: 160px; }
-.manifesto p:not(.sec-head) { font-size: 56px; line-height: 64px; letter-spacing: -0.035em; max-width: 1180px; margin-top: 48px; }
-.manifesto .w { opacity: .18; }
-.manifesto mark .w { color: var(--text); transition: color .4s; }
-.manifesto mark .w.on { color: var(--amber); }
-@media (max-width: 1023px) { .manifesto p:not(.sec-head) { font-size: 40px; line-height: 48px; } }
-@media (max-width: 599px) { .manifesto { padding-block: 96px; } .manifesto p:not(.sec-head) { font-size: 28px; line-height: 36px; margin-top: 32px; } }
+.stop { position: relative; padding-left: var(--indent); padding-block: 72px; }
+.stop::before { content: ''; position: absolute; left: calc(var(--rail) - 7px); top: 82px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid rgba(242, 237, 228, .35); transition: border-color .4s, box-shadow .4s, background .4s; }
+.stop.on::before { border-color: var(--amber); box-shadow: 0 0 16px rgba(255, 181, 71, .8); }
+.stop--case::before { left: calc(var(--rail) - 4px); top: 86px; width: 10px; height: 10px; border-width: 2px; }
+.stop-when { font: 400 12px/16px var(--mono); color: var(--muted); }
+@media (min-width: 1024px) { .stop-when { position: absolute; left: 0; top: 84px; width: calc(var(--rail) - 32px); text-align: right; } }
+.stop-label { font: 400 12px/16px var(--mono); color: var(--amber); margin-top: 8px; }
+@media (min-width: 1024px) { .stop-label { margin-top: 0; } }
+.stop-name { font-weight: 500; font-size: 72px; line-height: 72px; letter-spacing: -0.05em; margin-top: 8px; }
+.stop-note { margin-top: 16px; font-size: 20px; line-height: 28px; color: var(--soft); max-width: 640px; }
+.stop--major { padding-block: 96px 40px; }
+.stop--major::before { top: 106px; }
+@media (min-width: 1024px) { .stop--major .stop-when { top: 108px; } }
+@media (max-width: 767px) { .stop { padding-block: 56px; } .stop-name { font-size: 48px; line-height: 48px; } .stop-note { font-size: 18px; line-height: 26px; } .stop--major { padding-block: 72px 24px; } .stop::before { top: 62px; } .stop--case::before { top: 64px; } .stop--major::before { top: 78px; } }
 
-/* Results: frames on a strip, each one pauses in the centre */
-.reel { height: calc(var(--n) * 100svh); }
-.reel-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; flex-direction: column; }
-.reel-pin .sec-head { margin: 72px var(--gutter) 0; }
-.track { flex: 1; display: flex; will-change: transform; }
-.panel { flex: 0 0 100vw; display: grid; grid-template-columns: minmax(0, 600px) auto; justify-content: center; align-items: center; column-gap: 120px; padding: 24px var(--gutter); }
-.p-meta { font: 400 12px/16px var(--mono); color: var(--muted); margin-bottom: 12px; }
-.num { font-weight: 500; font-size: 208px; line-height: 184px; letter-spacing: -0.07em; margin-left: -0.05em; white-space: nowrap; font-variant-numeric: tabular-nums; will-change: transform; text-shadow: 0 0 60px rgba(255, 181, 71, .18); }
-.num small { font-size: .22em; letter-spacing: -0.02em; margin-right: 12px; font-weight: 400; color: var(--soft); }
-.bars { display: grid; gap: 8px; margin-top: 24px; max-width: 440px; }
-.bars i { display: block; height: 3px; border-radius: 2px; background: rgba(242, 237, 228, .28); transform-origin: left; transform: scaleX(var(--w)); }
-.bars i.after { background: var(--amber); box-shadow: 0 0 12px rgba(255, 181, 71, .7); }
-.bars.grow i { animation: grow 1.1s var(--ease) both; }
-.bars.grow i.after { animation-delay: .2s; }
-@keyframes grow { from { transform: scaleX(0); } }
+/* A case at a stop: the number and its proof on the left, the screen on the right */
+.case { display: grid; grid-template-columns: minmax(0, 560px) auto; gap: 24px 96px; align-items: center; margin-top: 8px; }
+.case-name { font-weight: 500; font-size: 28px; line-height: 36px; letter-spacing: -0.02em; margin-top: 8px; }
+.num { font-weight: 500; font-size: 160px; line-height: 144px; letter-spacing: -0.07em; margin: 16px 0 0 -0.05em; white-space: nowrap; font-variant-numeric: tabular-nums; text-shadow: 0 0 60px rgba(255, 181, 71, .18); }
+.num small { font-size: .24em; letter-spacing: -0.02em; margin-right: 12px; font-weight: 400; color: var(--soft); }
+.bars { display: grid; gap: 8px; margin-top: 20px; max-width: 440px; }
+.bars i { display: block; height: 3px; border-radius: 2px; background: rgba(242, 237, 228, .28); transform-origin: left; transform: scaleX(0); transition: transform 1.2s var(--ease); }
+.bars i.after { background: var(--amber); box-shadow: 0 0 12px rgba(255, 181, 71, .7); transition-delay: .2s; }
+.on .bars i { transform: scaleX(var(--w)); }
 .bars span { font: 400 12px/16px var(--mono); color: var(--muted); margin-top: 4px; }
-.p-label { font-size: 24px; line-height: 32px; letter-spacing: -0.015em; margin-top: 24px; max-width: 480px; color: var(--soft); }
-.p-case { display: inline-flex; gap: 12px; margin-top: 24px; font: 400 12px/16px var(--mono); color: var(--amber); padding-bottom: 4px; border-bottom: 1px solid rgba(255, 181, 71, .4); }
+.p-label { font-size: 20px; line-height: 28px; letter-spacing: -0.01em; margin-top: 20px; max-width: 480px; color: var(--soft); }
+.p-case { display: inline-flex; gap: 12px; margin-top: 20px; font: 400 12px/16px var(--mono); color: var(--amber); padding-bottom: 4px; border-bottom: 1px solid rgba(255, 181, 71, .4); }
 .p-case:hover { border-color: var(--amber); }
-.stage { perspective: 1200px; display: flex; justify-content: center; }
-.phone { width: min(260px, calc(56svh * 360 / 780)); aspect-ratio: 360 / 780; border-radius: 40px; padding: 6px; background: #1C1914; box-shadow: 0 0 0 1px rgba(242, 237, 228, .12) inset, 0 32px 80px -24px rgba(255, 181, 71, .28); transform-style: preserve-3d; will-change: transform; }
-.phone img, .phone .langs, .phone .tests { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 34px; background: #fff; }
-.langs { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; overflow: hidden; }
+.phone { width: 220px; aspect-ratio: 360 / 780; border-radius: 36px; padding: 6px; background: #1C1914; box-shadow: 0 0 0 1px rgba(242, 237, 228, .12) inset, 0 32px 80px -24px rgba(255, 181, 71, .28);
+  transform: translateY(40px) rotate(3deg); opacity: 0; transition: transform 1.2s var(--ease), opacity 1s; }
+.on .phone { transform: none; opacity: 1; }
+.phone img, .phone .langs, .phone .tests { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 30px; background: #fff; }
+.langs { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; overflow: hidden; }
 .langs small { font: 500 12px/16px var(--sans); letter-spacing: .16em; color: #767676; text-transform: uppercase; }
-.langs b { display: block; padding: 16px 24px; border-radius: 16px; background: #5046E5; color: #fff; font-weight: 600; font-size: 20px; line-height: 24px; min-width: 180px; text-align: center; transition: opacity .3s; }
-.langs .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 184px; }
-.langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; text-align: center; padding: 8px 0; border-radius: 8px; background: #F2F1FA; color: #767676; transition: background .3s, color .3s; }
+.langs b { display: block; padding: 12px 20px; border-radius: 12px; background: #5046E5; color: #fff; font-weight: 600; font-size: 18px; line-height: 24px; min-width: 150px; text-align: center; transition: opacity .3s; }
+.langs .codes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 156px; }
+.langs .codes i { font: 500 12px/16px var(--sans); font-style: normal; text-align: center; padding: 6px 0; border-radius: 6px; background: #F2F1FA; color: #5C5C66; transition: background .3s, color .3s; }
 .langs .codes i.on { background: #0B0B0B; color: #fff; }
-.phone .tests { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 24px 16px; background: #100E0B; font: 400 12px/16px var(--mono); color: var(--muted); overflow: hidden; }
+.phone .tests { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 20px 12px; background: #100E0B; font: 400 12px/16px var(--mono); color: var(--muted); overflow: hidden; }
 .tests span { color: var(--text); }
 .tests span::before { content: '✓ '; color: var(--amber); }
 .tests b { font-weight: 500; color: var(--text); margin-top: 8px; }
 .tests .was { color: var(--amber); }
-@media (max-width: 1023px) { .panel { column-gap: 48px; } .num { font-size: 144px; line-height: 128px; } .phone { width: min(200px, calc(56svh * 360 / 780)); border-radius: 32px; } .phone img, .phone .langs, .phone .tests { border-radius: 26px; } }
+@media (max-width: 1023px) { .case { gap: 24px 48px; } .num { font-size: 120px; line-height: 108px; } .phone { width: 180px; border-radius: 30px; } .phone img, .phone .langs, .phone .tests { border-radius: 24px; } }
 @media (max-width: 719px) {
-  .panel { grid-template-columns: 1fr; gap: 20px; align-content: center; justify-content: stretch; }
-  .stage { order: -1; } .phone { width: min(140px, calc(30svh * 360 / 780)); border-radius: 24px; padding: 4px; } .phone img, .phone .langs, .phone .tests { border-radius: 20px; }
-  .num { font-size: 96px; line-height: 88px; } .p-label { font-size: 18px; line-height: 26px; margin-top: 16px; } .p-case { margin-top: 16px; } .bars { margin-top: 16px; }
-  .langs { gap: 6px; } .langs b { min-width: 100px; font-size: 12px; line-height: 16px; padding: 8px 12px; border-radius: 8px; } .langs .codes { width: 104px; gap: 3px; } .langs .codes i { font-size: 7px; line-height: 10px; padding: 3px 0; border-radius: 4px; } .langs small { font-size: 7px; }
-  .phone .tests { padding: 12px 8px; gap: 2px; font-size: 7px; line-height: 10px; }
+  .case { grid-template-columns: 1fr; }
+  .num { font-size: 88px; line-height: 80px; } .p-label { font-size: 18px; line-height: 26px; } .case-name { font-size: 22px; line-height: 28px; }
+  .phone { width: 148px; border-radius: 24px; padding: 4px; } .phone img, .phone .langs, .phone .tests { border-radius: 20px; }
+  .langs { gap: 6px; } .langs b { min-width: 100px; font-size: 12px; line-height: 16px; padding: 8px 12px; border-radius: 8px; } .langs .codes { width: 108px; gap: 3px; } .langs .codes i { font-size: 8px; line-height: 12px; padding: 2px 0; border-radius: 4px; } .langs small { font-size: 8px; }
+  .phone .tests { padding: 12px 8px; gap: 2px; font-size: 8px; line-height: 12px; }
 }
 
-/* Recent years: a tram route lit by the lights */
-.path { padding-block: 160px 120px; }
-.path h2 { font-weight: 500; font-size: 64px; line-height: 64px; letter-spacing: -0.045em; max-width: 880px; margin-top: 48px; }
-.stops { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 96px; padding-top: 40px; list-style: none; }
-.stops::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--line); }
-.stops::after { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px; border-radius: 2px; background: var(--amber); box-shadow: 0 0 16px rgba(255, 181, 71, .7); transform-origin: left; transform: scaleX(var(--p, 0)); }
-.stop { position: relative; opacity: .3; transition: opacity .6s; }
-.stop::before { content: ''; position: absolute; top: -48px; left: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--muted); transition: border-color .3s, box-shadow .3s; }
-.stop.on { opacity: 1; }
-.stop.on::before { border-color: var(--amber); box-shadow: 0 0 16px rgba(255, 181, 71, .8); }
-.stop time { font: 400 12px/16px var(--mono); color: var(--muted); }
-.stop h3 { font-weight: 500; font-size: 32px; line-height: 36px; letter-spacing: -0.03em; margin-top: 12px; }
-.stop p { color: var(--muted); margin-top: 8px; }
-.stop--next h3 { color: var(--amber); }
-.stop--next.on::before { background: var(--amber); animation: pulse 1.6s infinite; }
-@media (max-width: 899px) {
-  .path { padding-block: 96px 72px; } .path h2 { font-size: 40px; line-height: 44px; margin-top: 32px; }
-  .stops { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; padding: 0 0 0 36px; }
-  .stops::before { top: 0; bottom: 0; right: auto; width: 1px; height: auto; }
-  .stops::after { top: 0; bottom: 0; right: auto; left: -1px; width: 3px; height: auto; transform-origin: top; transform: scaleY(var(--p, 0)); }
-  .stop::before { top: 4px; left: -43px; }
-}
-
-/* Profile: a print with its metadata */
-.profile { padding-block: 120px; }
-.profile-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; margin-top: 48px; align-items: start; }
-.profile h2 { font-weight: 500; font-size: 96px; line-height: 88px; letter-spacing: -0.055em; }
-.photo { margin-top: 40px; padding: 12px 12px 0; background: #EDE6DA; max-width: 520px; box-shadow: 0 40px 80px -32px rgba(0, 0, 0, .8); transform: rotate(-1.5deg); clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease-io); }
-.photo.on { clip-path: inset(0 0 0 0); }
+/* The driver: a print with its metadata, halfway along the route */
+.driver { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 32px 64px; align-items: start; margin-top: 24px; }
+.photo { padding: 12px 12px 0; background: #EDE6DA; box-shadow: 0 40px 80px -32px rgba(0, 0, 0, .8); transform: rotate(-1.5deg); clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease-io); }
+.on .photo { clip-path: inset(0 0 0 0); }
 .photo img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 25%; }
 .photo figcaption { font: 400 12px/16px var(--mono); color: #5E574C; padding: 12px 4px 16px; }
 .props { border-top: 1px solid var(--line); font: 400 14px/20px var(--mono); }
-.props div { display: grid; grid-template-columns: 144px 1fr; gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.props div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
 .props dt { color: var(--muted); }
-.props dd { color: var(--text); }
 .props .live { color: var(--amber); }
-@media (max-width: 899px) { .profile { padding-block: 72px; } .profile-grid { grid-template-columns: 1fr; gap: 32px; } .profile h2 { font-size: 56px; line-height: 56px; } .photo { margin-top: 24px; } }
-@media (max-width: 479px) { .props div { grid-template-columns: 104px 1fr; gap: 12px; } .props { font-size: 13px; } }
+@media (max-width: 899px) { .driver { grid-template-columns: 1fr; } .photo { max-width: 360px; } }
+@media (max-width: 479px) { .props div { grid-template-columns: 96px 1fr; gap: 12px; } .props { font-size: 13px; } }
 
-/* Contact */
-.contact { padding-block: 120px 80px; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-.big { font-weight: 500; font-size: 152px; line-height: 136px; letter-spacing: -0.065em; margin-top: 48px; max-width: 1200px; }
-.seek { margin-top: 40px; font-size: 20px; line-height: 28px; color: var(--soft); max-width: 720px; }
+/* Last stop */
+.terminus { padding-bottom: 96px; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+.terminus::before { width: 24px; height: 24px; left: calc(var(--rail) - 11px); background: var(--bg); border-width: 4px; }
+.terminus.on::before { background: var(--amber); animation: pulse 1.6s infinite; }
+.big { font-weight: 500; font-size: 128px; line-height: 116px; letter-spacing: -0.06em; margin-top: 12px; max-width: 1100px; }
+.seek { margin-top: 32px; font-size: 20px; line-height: 28px; color: var(--soft); max-width: 720px; }
 .payoff { display: none; margin-top: 12px; font: 400 14px/20px var(--mono); color: var(--amber); }
 .has-saved .payoff { display: block; }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
@@ -198,44 +185,34 @@ header b { font-weight: 500; color: var(--text); }
 .btn:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
 .btn--main { background: var(--amber); border-color: var(--amber); color: var(--bg); font-weight: 500; box-shadow: 0 0 32px rgba(255, 181, 71, .35); }
 .btn--main:hover { background: var(--text); border-color: var(--text); }
-.also { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 56px; font: 400 12px/16px var(--mono); color: var(--muted); }
+.also { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 48px; font: 400 12px/16px var(--mono); color: var(--muted); }
 .also a { color: var(--text); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 .also a:hover { color: var(--amber); border-color: var(--amber); }
-@media (max-width: 1199px) { .big { font-size: 112px; line-height: 104px; } }
-@media (max-width: 767px) { .contact { padding-block: 72px 56px; } .big { font-size: 64px; line-height: 64px; margin-top: 32px; } .seek { font-size: 16px; line-height: 24px; margin-top: 24px; } .btn { height: 48px; padding: 0 16px; font-size: 16px; } }
+@media (max-width: 1199px) { .big { font-size: 96px; line-height: 88px; } }
+@media (max-width: 419px) { .stop-name { font-size: 40px; line-height: 44px; } .big { font-size: 40px !important; line-height: 44px !important; } }
+.stop-name, .big { overflow-wrap: anywhere; }
+@media (max-width: 767px) { .terminus { min-height: 0; padding-block: 72px 56px; } .big { font-size: 52px; line-height: 52px; } .seek { font-size: 16px; line-height: 24px; margin-top: 24px; } .btn { height: 48px; padding: 0 16px; font-size: 16px; } }
 footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px var(--gutter); border-top: 1px solid var(--line); font: 400 12px/16px var(--mono); color: var(--muted); }
 @media (max-width: 599px) { footer { flex-direction: column; } }
 
-/* Words rise from under a mask */
-.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .08em .2em 0; margin: 0 -.08em -.2em 0; }
-.wi { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease); }
-.rise.on .wi { transform: none; }
-.rv { opacity: 0; transform: translateY(24px); transition: opacity .9s, transform .9s var(--ease); }
-.rv.on { opacity: 1; transform: none; }
+/* Reveal: stop content rises in as the line reaches it */
+.stop .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s, transform .9s var(--ease); }
+.stop.on .rv { opacity: 1; transform: none; }
+.stop.on .rv:nth-child(2) { transition-delay: .08s; } .stop.on .rv:nth-child(3) { transition-delay: .16s; } .stop.on .rv:nth-child(4) { transition-delay: .24s; }
 
 /* Page exit: an amber flash, like a lamp, before the next page */
 .curtain { position: fixed; inset: 0; z-index: 60; background: var(--amber); opacity: 0; pointer-events: none; transition: opacity .45s var(--ease-io); }
 .is-leaving .curtain { opacity: 1; }
 
-/* Short screens */
 @media (max-height: 520px) and (orientation: landscape) {
   .hero { padding-top: 72px; } .hero-main { padding-bottom: 16svh; } .name { font-size: 64px; line-height: 60px; } .tag { font-size: 18px; line-height: 24px; margin-top: 12px; }
-  .reel-pin .sec-head { margin-top: 64px; }
-  .panel { grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; padding-block: 8px; }
-  .num { font-size: 80px; line-height: 72px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 8px; } .bars { margin-top: 8px; } .p-case { margin-top: 8px; }
-  .stage { order: 0; } .phone { width: calc(56svh * 360 / 780); }
   .big { font-size: 56px; line-height: 56px; }
 }
-@media (max-width: 719px) and (max-height: 760px) and (orientation: portrait) {
-  .num { font-size: 72px; line-height: 68px; } .p-label { font-size: 16px; line-height: 24px; margin-top: 8px; } .bars { margin-top: 8px; } .p-case { margin-top: 8px; }
-  .phone { width: calc(24svh * 360 / 780); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .name .ch, .tag, .kicker, header, .hero-foot, .wi, .rv, .stop { transform: none !important; opacity: 1 !important; }
+  .name .ch, .tag, .kicker, header, .hero-foot, .stop .rv, .phone { transform: none !important; opacity: 1 !important; }
   .photo { clip-path: none !important; }
-  .manifesto .w { opacity: 1 !important; }
+  .bars i { transform: scaleX(var(--w)) !important; }
   .curtain { display: none; }
   .hero-foot .hint { display: none; }
 }
@@ -247,7 +224,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
 
 <header>
   <a href="#top"><b><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></b><span class="role"> · <span lang="en" class="t-en">senior product designer</span><span lang="ru" class="t-ru">senior продуктовый дизайнер</span></span></a>
-  <div class="head-r"><a class="talk" href="#contact"><span lang="en" class="t-en">Let’s talk</span><span lang="ru" class="t-ru">Поговорим</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
+  <div class="head-r"><a class="talk" href="#terminus"><span lang="en" class="t-en">Last stop</span><span lang="ru" class="t-ru">Конечная</span></a><div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div></div>
 </header>
 
 <main id="top">
@@ -263,120 +240,155 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     </div>
   </section>
 
-  <section class="manifesto wrap" aria-label="About">
-    <p class="sec-head"><span>01 / <span lang="en" class="t-en">about</span><span lang="ru" class="t-ru">о себе</span></span><span><span lang="en" class="t-en">8 years in design</span><span lang="ru" class="t-ru">8 лет в дизайне</span></span></p>
-    <p lang="en" class="t-en">Eight years in design. Payments, verification, errors – <mark>the screens where people drop off.</mark> I find why they stop, redesign the step, and then count who made it to the end</p>
-    <p lang="ru" class="t-ru">Восемь лет в дизайне. Оплата, верификация, ошибки – <mark>экраны, на которых люди бросают начатое.</mark> Нахожу, почему человек остановился, переделываю шаг и потом считаю, сколько людей дошли до конца</p>
-  </section>
+  <section class="route" aria-label="Route">
+    <div class="rail" aria-hidden="true"><div class="rail-lit"></div></div>
+    <p class="route-head"><b><span lang="en" class="t-en">route 2022 → your team</span><span lang="ru" class="t-ru">маршрут 2022 → ваша команда</span></b><span><span lang="en" class="t-en">8 years in design · payments, verification, errors</span><span lang="ru" class="t-ru">8 лет в дизайне · оплата, верификация, ошибки</span></span></p>
 
-  <section class="reel" style="--n: 7" aria-label="Results">
-    <div class="reel-pin">
-      <p class="sec-head"><span>02 / <span lang="en" class="t-en">results</span><span lang="ru" class="t-ru">результаты</span></span><span><span lang="en" class="t-en">frame</span><span lang="ru" class="t-ru">кадр</span> <span class="reel-count">01 / 07</span></span></p>
-      <div class="track">
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025</span></p><p class="num">−54%</p>
-            <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .46"></i><span lang="en" class="t-en">support questions about verification, before → after</span><span lang="ru" class="t-ru">вопросы в поддержку о верификации, до → после</span></div>
-            <p lang="en" class="p-label t-en">verification questions to support, after KYC moved from email into the app</p><p lang="ru" class="p-label t-ru">вопросов про верификацию в поддержку после того, как KYC переехал из письма в приложение</p>
-            <a class="p-case" href="../case-profee-verification.html"><span lang="en" class="t-en">KYC verification case</span><span lang="ru" class="t-ru">Кейс про KYC</span> →</a></div>
-          <a class="stage" href="../case-profee-verification.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/verif/screen-entry-new.png" alt="" loading="lazy"></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2026</span></p><p class="num">×3.3</p>
-            <div class="bars"><i style="--w: .31"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">2.1% → 6.7% of senders top up the wallet</span><span lang="ru" class="t-ru">2,1% → 6,7% отправителей пополняют кошелёк</span></div>
-            <p lang="en" class="p-label t-en">more senders top up on Android – one button right where they pay</p><p lang="ru" class="p-label t-ru">больше отправителей пополняют на Android – одна кнопка прямо там, где они платят</p>
-            <a class="p-case" href="../case-profee-topup.html"><span lang="en" class="t-en">Top up case</span><span lang="ru" class="t-ru">Кейс про пополнение</span> →</a></div>
-          <a class="stage" href="../case-profee-topup.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/topup/quick.png" alt="" loading="lazy"></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">~70%</p>
-            <div class="bars"><i class="after" style="--w: .7"></i><span lang="en" class="t-en">of people who see the action card</span><span lang="ru" class="t-ru">из тех, кто видит карточку действия</span></div>
-            <p lang="en" class="p-label t-en">tap “Continue transfer” within a day, once the status says what is going on</p><p lang="ru" class="p-label t-ru">нажимают «Продолжить перевод» в течение суток, когда статус объясняет, что происходит</p>
-            <a class="p-case" href="../case-profee-statuses.html"><span lang="en" class="t-en">Transfer statuses case</span><span lang="ru" class="t-ru">Кейс про статусы</span> →</a></div>
-          <a class="stage" href="../case-profee-statuses.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="" loading="lazy"></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">Profee · money transfers · 2025–2026</span><span lang="ru" class="t-ru">Profee · денежные переводы · 2025–2026</span></p><p class="num">×2</p>
-            <div class="bars"><i style="--w: .49"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">3.9% → 8% of active senders</span><span lang="ru" class="t-ru">3,9% → 8% активных отправителей</span></div>
-            <p lang="en" class="p-label t-en">active senders open the Cards tab after the redesign</p><p lang="ru" class="p-label t-ru">активных отправителей открывают «Карты» после редизайна</p>
-            <a class="p-case" href="../case-profee-cards.html"><span lang="en" class="t-en">Cards case</span><span lang="ru" class="t-ru">Кейс про карты</span> →</a></div>
-          <a class="stage" href="../case-profee-cards.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/cards/flow/02.jpg" alt="" loading="lazy"></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">AI agents · with the design lead</span><span lang="ru" class="t-ru">AI-агенты · вместе с лидом дизайна</span></p><p class="num">×4</p>
-            <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .25"></i><span lang="en" class="t-en">1 day → ~2 hours to localise a feature</span><span lang="ru" class="t-ru">1 день → ~2 часа на локализацию фичи</span></div>
-            <p lang="en" class="p-label t-en">faster: agents write the copy to our rules and ship 13 languages as a branch</p><p lang="ru" class="p-label t-ru">быстрее: агенты пишут тексты по нашим правилам и отдают 13 языков веткой в репозиторий</p>
-            <a class="p-case" href="../case-profee-cards.html#ai"><span lang="en" class="t-en">How the agents work</span><span lang="ru" class="t-ru">Как работают агенты</span> →</a></div>
-          <a class="stage" href="../case-profee-cards.html#ai" tabindex="-1" aria-hidden="true"><div class="phone"><div class="langs"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta"><span lang="en" class="t-en">Design system in code · 2026</span><span lang="ru" class="t-ru">Дизайн-система в коде · 2026</span></p><p class="num">21/21</p>
-            <div class="bars"><i class="after" style="--w: 1"></i><span lang="en" class="t-en">stories with no accessibility violations</span><span lang="ru" class="t-ru">stories без нарушений доступности</span></div>
-            <p lang="en" class="p-label t-en">pass automated checks – the tests caught a contrast bug Figma didn’t show</p><p lang="ru" class="p-label t-ru">проходят автопроверку – тесты поймали ошибку контраста, которую Figma не показывала</p>
-            <a class="p-case" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru"><span lang="en" class="t-en">Open the Storybook</span><span lang="ru" class="t-ru">Открыть Storybook</span> →</a></div>
-          <a class="stage" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru" tabindex="-1" aria-hidden="true"><div class="phone"><div class="tests">
-            <small>$ npx vitest --run</small>
-            <span>Button / Primary</span><span>Button / Secondary</span><span>Button / Ghost</span><span>Button / Loading</span><span>Bottom sheet</span><span>Full screen message</span><span>List item</span>
-            <small>…</small><b>21 passed · 0 a11y violations</b><small class="was">secondary text 3.98:1 → 5.3:1</small>
-          </div></div></a>
-        </article>
-        <article class="panel">
-          <div><p class="p-meta">SberSpasibo · 2022–2023</p><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
-            <div class="bars"><i style="--w: .33"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">bonus redemption, before → after the redesign</span><span lang="ru" class="t-ru">траты бонусов до → после редизайна</span></div>
-            <p lang="en" class="p-label t-en">more bonus redemption after the games redesign in Sber’s loyalty programme</p><p lang="ru" class="p-label t-ru">чаще тратят бонусы после редизайна игр в программе лояльности Сбера</p>
-            <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
-          <a class="stage" href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
-        </article>
+    <article class="stop stop--major">
+      <p class="stop-when">2022 – 2023</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">stop 1</span><span lang="ru" class="t-ru">остановка 1</span></p>
+      <h2 class="stop-name rv"><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h2>
+      <p class="stop-note rv"><span lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme – in the app, then on the web</span><span lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера – в приложении, потом в вебе</span></p>
+      <div class="case rv">
+        <div><p class="num"><small lang="en" class="t-en">up to</small><small lang="ru" class="t-ru">до</small>×3</p>
+          <div class="bars"><i style="--w: .33"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">bonus redemption, before → after the redesign</span><span lang="ru" class="t-ru">траты бонусов до → после редизайна</span></div>
+          <p lang="en" class="p-label t-en">more bonus redemption after the games redesign</p><p lang="ru" class="p-label t-ru">чаще тратят бонусы после редизайна игр</p>
+          <a class="p-case" href="../case-sber-spasibo.html"><span lang="en" class="t-en">SberSpasibo case</span><span lang="ru" class="t-ru">Кейс про СберСпасибо</span> →</a></div>
+        <a href="../case-sber-spasibo.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 651 / 1410;" src="../images/sber/app-game-play.png" alt="" loading="lazy"></div></a>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <section class="path wrap">
-    <p class="sec-head"><span>03 / <span lang="en" class="t-en">recent years</span><span lang="ru" class="t-ru">последние годы</span></span><span><span lang="en" class="t-en">route</span><span lang="ru" class="t-ru">маршрут</span> 2022 → 2026</span></p>
-    <h2 class="rise"><span lang="en" class="t-en">From bonus games to money <mark>that has to arrive</mark></span><span lang="ru" class="t-ru">От бонусных игр к деньгам, <mark>которые должны дойти</mark></span></h2>
-    <ol class="stops">
-      <li class="stop"><time>2022 – 2023</time><h3><span lang="en" class="t-en">SberSpasibo</span><span lang="ru" class="t-ru">СберСпасибо</span></h3><p lang="en" class="t-en">Lead designer. Games and tasks in Sber’s loyalty programme</p><p lang="ru" class="t-ru">Ведущий дизайнер. Игры и задания в программе лояльности Сбера</p></li>
-      <li class="stop"><time>2023 – 2025</time><h3><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h3><p lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</p><p lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</p></li>
-      <li class="stop"><time>2025 – <span lang="en" class="t-en">now</span><span lang="ru" class="t-ru">сейчас</span></time><h3>Profee</h3><p lang="en" class="t-en">Money transfers: KYC, cards, statuses, a design system and AI agents</p><p lang="ru" class="t-ru">Денежные переводы: KYC, карты, статусы, дизайн-система и AI-агенты</p></li>
-      <li class="stop stop--next"><time><span lang="en" class="t-en">next stop</span><span lang="ru" class="t-ru">следующая остановка</span></time><h3><span lang="en" class="t-en">Your team?</span><span lang="ru" class="t-ru">Ваша команда?</span></h3><p lang="en" class="t-en">Remote worldwide or in Prague</p><p lang="ru" class="t-ru">Удалённо из любой точки или в Праге</p></li>
-    </ol>
-  </section>
+    <article class="stop stop--major">
+      <p class="stop-when">2023 – 2025</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">stop 2</span><span lang="ru" class="t-ru">остановка 2</span></p>
+      <h2 class="stop-name rv"><span lang="en" class="t-en">Beeline</span><span lang="ru" class="t-ru">Билайн</span></h2>
+      <p class="stop-note rv"><span lang="en" class="t-en">Product designer in one of Russia’s largest telecoms</span><span lang="ru" class="t-ru">Продуктовый дизайнер в одном из крупнейших операторов связи</span></p>
+    </article>
 
-  <section class="profile wrap" aria-label="Profile">
-    <p class="sec-head"><span>04 / <span lang="en" class="t-en">portrait</span><span lang="ru" class="t-ru">портрет</span></span><span>EXIF</span></p>
-    <div class="profile-grid">
-      <div>
-        <h2 class="rise"><span lang="en" class="t-en">Hi,<br>I’m <mark>Nastya</mark></span><span lang="ru" class="t-ru">Привет,<br>я <mark>Настя</mark></span></h2>
+    <article class="stop stop--major">
+      <p class="stop-when">2025 – <span lang="en" class="t-en">now</span><span lang="ru" class="t-ru">сейчас</span></p>
+      <p class="stop-label rv"><span lang="en" class="t-en">stop 3</span><span lang="ru" class="t-ru">остановка 3</span></p>
+      <h2 class="stop-name rv">Profee</h2>
+      <p class="stop-note rv"><span lang="en" class="t-en">Money transfers on iOS, Android and the web. The longest stretch of the route so far – six stops in a row</span><span lang="ru" class="t-ru">Денежные переводы на iOS, Android и в вебе. Самый длинный участок маршрута – шесть остановок подряд</span></p>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when">2025</p>
+      <p class="stop-label rv">Profee · KYC</p>
+      <p class="case-name rv"><span lang="en" class="t-en">Verification moved from email into the app</span><span lang="ru" class="t-ru">Верификация переехала из письма в приложение</span></p>
+      <div class="case rv">
+        <div><p class="num">−54%</p>
+          <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .46"></i><span lang="en" class="t-en">support questions about verification, before → after</span><span lang="ru" class="t-ru">вопросы в поддержку о верификации, до → после</span></div>
+          <p lang="en" class="p-label t-en">verification questions to support – ten scenarios run on one component</p><p lang="ru" class="p-label t-ru">вопросов про верификацию в поддержку – десять сценариев работают на одном компоненте</p>
+          <a class="p-case" href="../case-profee-verification.html"><span lang="en" class="t-en">KYC verification case</span><span lang="ru" class="t-ru">Кейс про KYC</span> →</a></div>
+        <a href="../case-profee-verification.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/verif/screen-entry-new.png" alt="" loading="lazy"></div></a>
+      </div>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when">2025 – 2026</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">Profee · transfer statuses</span><span lang="ru" class="t-ru">Profee · статусы переводов</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">Where’s my money? The status now says</span><span lang="ru" class="t-ru">Где мои деньги? Теперь это говорит статус</span></p>
+      <div class="case rv">
+        <div><p class="num">~70%</p>
+          <div class="bars"><i class="after" style="--w: .7"></i><span lang="en" class="t-en">of people who see the action card</span><span lang="ru" class="t-ru">из тех, кто видит карточку действия</span></div>
+          <p lang="en" class="p-label t-en">tap “Continue transfer” within a day</p><p lang="ru" class="p-label t-ru">нажимают «Продолжить перевод» в течение суток</p>
+          <a class="p-case" href="../case-profee-statuses.html"><span lang="en" class="t-en">Transfer statuses case</span><span lang="ru" class="t-ru">Кейс про статусы</span> →</a></div>
+        <a href="../case-profee-statuses.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 720 / 1532;" src="../images/statuses/transfer-screen-main.png" alt="" loading="lazy"></div></a>
+      </div>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when">2025 – 2026</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">Profee · cards</span><span lang="ru" class="t-ru">Profee · карты</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">A card that became a product</span><span lang="ru" class="t-ru">Карта, которая стала продуктом</span></p>
+      <div class="case rv">
+        <div><p class="num">×2</p>
+          <div class="bars"><i style="--w: .49"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">3.9% → 8% of active senders</span><span lang="ru" class="t-ru">3,9% → 8% активных отправителей</span></div>
+          <p lang="en" class="p-label t-en">active senders open the Cards tab after the redesign</p><p lang="ru" class="p-label t-ru">активных отправителей открывают «Карты» после редизайна</p>
+          <a class="p-case" href="../case-profee-cards.html"><span lang="en" class="t-en">Cards case</span><span lang="ru" class="t-ru">Кейс про карты</span> →</a></div>
+        <a href="../case-profee-cards.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/cards/flow/02.jpg" alt="" loading="lazy"></div></a>
+      </div>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when"><span lang="en" class="t-en">halfway</span><span lang="ru" class="t-ru">полпути</span></p>
+      <p class="stop-label rv"><span lang="en" class="t-en">the driver</span><span lang="ru" class="t-ru">водитель маршрута</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">Hi, I’m <mark>Nastya</mark></span><span lang="ru" class="t-ru">Привет, я <mark>Настя</mark></span></p>
+      <div class="driver rv">
         <figure class="photo"><img style="aspect-ratio: auto 1110 / 1298;" src="../images/about/photo-about-prague.jpg" alt="Anastasiia on a street in Prague with a tram behind" loading="lazy"><figcaption><span lang="en" class="t-en">Prague · tram in the background, as it should be</span><span lang="ru" class="t-ru">Прага · трамвай на фоне, как и положено</span></figcaption></figure>
+        <dl class="props">
+          <div><dt><span lang="en" class="t-en">say it</span><span lang="ru" class="t-ru">ударение</span></dt><dd><span lang="en" class="t-en">su-KHA-nek</span><span lang="ru" class="t-ru">на «а»: Суха́нек</span></dd></div>
+          <div><dt><span lang="en" class="t-en">status</span><span lang="ru" class="t-ru">статус</span></dt><dd class="live"><span lang="en" class="t-en">open to new roles</span><span lang="ru" class="t-ru">открыта к предложениям</span></dd></div>
+          <div><dt><span lang="en" class="t-en">location</span><span lang="ru" class="t-ru">локация</span></dt><dd><span lang="en" class="t-en">Prague · Czech permanent residence</span><span lang="ru" class="t-ru">Прага · ПМЖ в Чехии</span></dd></div>
+          <div><dt><span lang="en" class="t-en">works</span><span lang="ru" class="t-ru">работа</span></dt><dd><span lang="en" class="t-en">remote worldwide or in Prague</span><span lang="ru" class="t-ru">удалённо из любой точки или в Праге</span></dd></div>
+          <div><dt><span lang="en" class="t-en">cats</span><span lang="ru" class="t-ru">коты</span></dt><dd><span lang="en" class="t-en">Texas – a very busy Abyssinian · Alaska – a white one</span><span lang="ru" class="t-ru">Техас – очень деятельный абиссинец · Аляска – белая кошка</span></dd></div>
+          <div><dt><span lang="en" class="t-en">loves</span><span lang="ru" class="t-ru">любит</span></dt><dd><span lang="en" class="t-en">the moment a confusing screen turns obvious</span><span lang="ru" class="t-ru">момент, когда запутанный экран становится очевидным</span></dd></div>
+        </dl>
       </div>
-      <dl class="props rv">
-        <div><dt><span lang="en" class="t-en">subject</span><span lang="ru" class="t-ru">в кадре</span></dt><dd><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></dd></div>
-        <div><dt><span lang="en" class="t-en">say it</span><span lang="ru" class="t-ru">ударение</span></dt><dd><span lang="en" class="t-en">su-KHA-nek</span><span lang="ru" class="t-ru">на «а»: Суха́нек</span></dd></div>
-        <div><dt><span lang="en" class="t-en">status</span><span lang="ru" class="t-ru">статус</span></dt><dd class="live"><span lang="en" class="t-en">open to new roles</span><span lang="ru" class="t-ru">открыта к предложениям</span></dd></div>
-        <div><dt><span lang="en" class="t-en">role</span><span lang="ru" class="t-ru">роль</span></dt><dd><span lang="en" class="t-en">Senior product designer · fintech</span><span lang="ru" class="t-ru">Senior продуктовый дизайнер · финтех</span></dd></div>
-        <div><dt><span lang="en" class="t-en">location</span><span lang="ru" class="t-ru">локация</span></dt><dd><span lang="en" class="t-en">Prague · Czech permanent residence</span><span lang="ru" class="t-ru">Прага · ПМЖ в Чехии</span></dd></div>
-        <div><dt><span lang="en" class="t-en">works</span><span lang="ru" class="t-ru">работа</span></dt><dd><span lang="en" class="t-en">remote worldwide or in Prague</span><span lang="ru" class="t-ru">удалённо из любой точки или в Праге</span></dd></div>
-        <div><dt><span lang="en" class="t-en">cats</span><span lang="ru" class="t-ru">коты</span></dt><dd><span lang="en" class="t-en">Texas – a very busy Abyssinian · Alaska – a white one</span><span lang="ru" class="t-ru">Техас – очень деятельный абиссинец · Аляска – белая кошка</span></dd></div>
-        <div><dt><span lang="en" class="t-en">loves</span><span lang="ru" class="t-ru">любит</span></dt><dd><span lang="en" class="t-en">the moment a confusing screen turns obvious</span><span lang="ru" class="t-ru">момент, когда запутанный экран становится очевидным</span></dd></div>
-      </dl>
-    </div>
-  </section>
+    </article>
 
-  <section class="contact wrap" id="contact">
-    <p class="sec-head"><span>05 / <span lang="en" class="t-en">contact</span><span lang="ru" class="t-ru">контакты</span></span><span><span lang="en" class="t-en">last stop</span><span lang="ru" class="t-ru">конечная</span></span></p>
-    <h2 class="big rise"><span lang="en" class="t-en">Let’s make something people <mark>finish</mark></span><span lang="ru" class="t-ru">Сделаем то, что <mark>доводят до конца</mark></span></h2>
-    <p class="seek rv"><span lang="en" class="t-en">Looking for a Senior product designer role · remote or in Prague · Czech permanent residence, no visa sponsorship needed</span><span lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера · удалённо или в Праге · ПМЖ в Чехии, спонсорство визы не нужно</span></p>
-    <p class="payoff" aria-live="polite"></p>
-    <div class="btns rv">
-      <a class="btn btn--main" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
-      <a class="btn" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
-      <a class="btn" href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a lang="en" class="btn t-en" href="../anastasiia-sukhanek-cv.pdf" download>CV ↓</a>
-      <a lang="ru" class="btn t-ru" href="../anastasiia-sukhanek-cv-ru.pdf" download>Резюме ↓</a>
-    </div>
-    <p class="also rv"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
-      <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
-      <a href="../systems/"><span lang="en" class="t-en">Design systems →</span><span lang="ru" class="t-ru">Дизайн-системы →</span></a>
-      <a href="../engineer/"><span lang="en" class="t-en">Design engineer →</span><span lang="ru" class="t-ru">Дизайн-инженер →</span></a></p>
+    <article class="stop stop--case">
+      <p class="stop-when">2025 – 2026</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">Profee · AI agents, with the design lead</span><span lang="ru" class="t-ru">Profee · AI-агенты, вместе с лидом дизайна</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">Copy and 13 languages, straight into the code</span><span lang="ru" class="t-ru">Тексты и 13 языков – сразу в код</span></p>
+      <div class="case rv">
+        <div><p class="num">×4</p>
+          <div class="bars"><i style="--w: 1"></i><i class="after" style="--w: .25"></i><span lang="en" class="t-en">1 day → ~2 hours to localise a feature</span><span lang="ru" class="t-ru">1 день → ~2 часа на локализацию фичи</span></div>
+          <p lang="en" class="p-label t-en">faster: agents write to our rules and ship the strings as a branch</p><p lang="ru" class="p-label t-ru">быстрее: агенты пишут по нашим правилам и отдают строки веткой в репозиторий</p>
+          <a class="p-case" href="../case-profee-cards.html#ai"><span lang="en" class="t-en">How the agents work</span><span lang="ru" class="t-ru">Как работают агенты</span> →</a></div>
+        <a href="../case-profee-cards.html#ai" tabindex="-1" aria-hidden="true"><div class="phone"><div class="langs"><small>Button / Primary</small><b id="langWord">Top up</b><span class="codes" id="langCodes"></span></div></div></a>
+      </div>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when">2026</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">design system in code</span><span lang="ru" class="t-ru">дизайн-система в коде</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">Figma components rebuilt in React and Storybook</span><span lang="ru" class="t-ru">Компоненты из Figma пересобраны на React и Storybook</span></p>
+      <div class="case rv">
+        <div><p class="num">21/21</p>
+          <div class="bars"><i class="after" style="--w: 1"></i><span lang="en" class="t-en">stories with no accessibility violations</span><span lang="ru" class="t-ru">stories без нарушений доступности</span></div>
+          <p lang="en" class="p-label t-en">the tests caught a contrast bug Figma didn’t show</p><p lang="ru" class="p-label t-ru">тесты поймали ошибку контраста, которую Figma не показывала</p>
+          <a class="p-case" href="../design-system/" data-href-ru="../design-system/?globals=locale:ru"><span lang="en" class="t-en">Open the Storybook</span><span lang="ru" class="t-ru">Открыть Storybook</span> →</a></div>
+        <a href="../design-system/" data-href-ru="../design-system/?globals=locale:ru" tabindex="-1" aria-hidden="true"><div class="phone"><div class="tests">
+          <small>$ npx vitest --run</small>
+          <span>Button / Primary</span><span>Button / Secondary</span><span>Button / Ghost</span><span>Button / Loading</span><span>Bottom sheet</span><span>Full screen message</span><span>List item</span>
+          <small>…</small><b>21 passed · 0 a11y violations</b><small class="was">secondary text 3.98:1 → 5.3:1</small>
+        </div></div></a>
+      </div>
+    </article>
+
+    <article class="stop stop--case">
+      <p class="stop-when">2026</p>
+      <p class="stop-label rv"><span lang="en" class="t-en">Profee · top up</span><span lang="ru" class="t-ru">Profee · пополнение</span></p>
+      <p class="case-name rv"><span lang="en" class="t-en">Top up without leaving the transfer</span><span lang="ru" class="t-ru">Пополнить, не выходя из перевода</span></p>
+      <div class="case rv">
+        <div><p class="num">×3.3</p>
+          <div class="bars"><i style="--w: .31"></i><i class="after" style="--w: 1"></i><span lang="en" class="t-en">2.1% → 6.7% of senders top up the wallet</span><span lang="ru" class="t-ru">2,1% → 6,7% отправителей пополняют кошелёк</span></div>
+          <p lang="en" class="p-label t-en">more senders top up on Android – one button right where they pay</p><p lang="ru" class="p-label t-ru">больше отправителей пополняют на Android – одна кнопка прямо там, где они платят</p>
+          <a class="p-case" href="../case-profee-topup.html"><span lang="en" class="t-en">Top up case</span><span lang="ru" class="t-ru">Кейс про пополнение</span> →</a></div>
+        <a href="../case-profee-topup.html" tabindex="-1" aria-hidden="true"><div class="phone"><img style="aspect-ratio: auto 360 / 780;" src="../images/topup/quick.png" alt="" loading="lazy"></div></a>
+      </div>
+    </article>
+
+    <article class="stop terminus" id="terminus">
+      <p class="stop-when"><span lang="en" class="t-en">next</span><span lang="ru" class="t-ru">дальше</span></p>
+      <p class="stop-label rv"><span lang="en" class="t-en">last stop</span><span lang="ru" class="t-ru">конечная</span></p>
+      <h2 class="big rv"><span lang="en" class="t-en">Next stop – <mark>your team</mark></span><span lang="ru" class="t-ru">Следующая остановка – <mark>ваша команда</mark></span></h2>
+      <p class="seek rv"><span lang="en" class="t-en">Looking for a Senior product designer role · remote or in Prague · Czech permanent residence, no visa sponsorship needed</span><span lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера · удалённо или в Праге · ПМЖ в Чехии, спонсорство визы не нужно</span></p>
+      <p class="payoff" aria-live="polite"></p>
+      <div class="btns rv">
+        <a class="btn btn--main" href="https://t.me/suhastasiia" target="_blank" rel="noopener">Telegram ↗</a>
+        <a class="btn" href="mailto:anastasiia.suhanek@gmail.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/anastasiiasukhanek/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a lang="en" class="btn t-en" href="../anastasiia-sukhanek-cv.pdf" download>CV ↓</a>
+        <a lang="ru" class="btn t-ru" href="../anastasiia-sukhanek-cv-ru.pdf" download>Резюме ↓</a>
+      </div>
+      <p class="also rv"><span lang="en" class="t-en">Also as</span><span lang="ru" class="t-ru">Другие ракурсы</span>
+        <a href="../"><span lang="en" class="t-en">Product designer →</span><span lang="ru" class="t-ru">Продуктовый дизайнер →</span></a>
+        <a href="../systems/"><span lang="en" class="t-en">Design systems →</span><span lang="ru" class="t-ru">Дизайн-системы →</span></a>
+        <a href="../engineer/"><span lang="en" class="t-en">Design engineer →</span><span lang="ru" class="t-ru">Дизайн-инженер →</span></a></p>
+    </article>
   </section>
 </main>
 
@@ -393,7 +405,6 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   function expoOut(t) { return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t); }
   function isRu() { return root.lang === 'ru'; }
 
-  /* ── Splitting ── */
   // Name: letters as graphemes, so the stress mark stays on its «а»
   document.querySelectorAll('.name .line').forEach(function (line, li) {
     var t = line.textContent; line.textContent = ''; line.setAttribute('aria-hidden', 'true');
@@ -402,35 +413,8 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       s.style.transitionDelay = (.15 + (li % 2) * .12 + i * .035) + 's'; line.appendChild(s);
     });
   });
-  // Split on plain spaces only: the build glues short words with no-break spaces
-  function splitWords(el, make) {
-    (function walk(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          var frag = document.createDocumentFragment();
-          n.textContent.split(/([ \n\t]+)/).forEach(function (w) {
-            if (!w) return;
-            if (/^[ \n\t]+$/.test(w)) frag.appendChild(document.createTextNode(' ')); else frag.appendChild(make(w));
-          });
-          node.replaceChild(frag, n);
-        } else if (n.nodeType === 1) walk(n);
-      });
-    })(el);
-  }
-  document.querySelectorAll('.manifesto p:not(.sec-head)').forEach(function (p) {
-    splitWords(p, function (w) { var s = document.createElement('span'); s.className = 'w'; s.textContent = w; return s; });
-  });
-  var allWords = document.querySelectorAll('.manifesto .w');
-  document.querySelectorAll('h2.rise').forEach(function (h) {
-    var i = 0;
-    splitWords(h, function (w) {
-      var m = document.createElement('span'); m.className = 'wm';
-      var s = document.createElement('span'); s.className = 'wi'; s.textContent = w; s.style.transitionDelay = (i++ % 12) * .05 + 's';
-      m.appendChild(s); return m;
-    });
-  });
 
-  /* ── Links with a Russian version of their target ── */
+  // Links with a Russian version of their target
   function syncHrefs() {
     document.querySelectorAll('[data-href-ru]').forEach(function (a) {
       if (!a.dataset.hrefEn) a.dataset.hrefEn = a.getAttribute('href');
@@ -439,7 +423,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   }
   syncHrefs(); new MutationObserver(syncHrefs).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
-  /* ── Agents phone: the button translates itself ── */
+  // Agents phone: the button translates itself
   var langs = [['EN', 'Top up'], ['RU', 'Пополнить'], ['PL', 'Doładuj'], ['DE', 'Aufladen'], ['ES', 'Recargar'], ['FR', 'Recharger'], ['IT', 'Ricarica'], ['PT', 'Carregar'], ['TR', 'Yükle'], ['UK', 'Поповнити'], ['RO', 'Reîncarcă'], ['CS', 'Dobít'], ['LT', 'Papildyti']];
   var lw = document.getElementById('langWord'), lcs = document.getElementById('langCodes'), li = 0;
   var codes = langs.map(function (l, i) { var c = document.createElement('i'); c.textContent = l[0]; if (!i) c.className = 'on'; lcs.appendChild(c); return c; });
@@ -448,7 +432,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     setTimeout(function () { lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
   }, 1400);
 
-  /* ── Page exit: an amber flash, then the next page ── */
+  // Page exit: an amber flash, then the next page
   if (!reduce) {
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a');
@@ -460,10 +444,6 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     });
     addEventListener('pageshow', function () { root.classList.remove('is-leaving'); });
   }
-
-  /* ── Reveal on scroll ── */
-  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -12% 0px' });
-  document.querySelectorAll('.rv, h2.rise, .photo').forEach(function (el) { io.observe(el); });
 
   /* ── The exposure: every light is a person ── */
   var cv = document.getElementById('trails'), ctx = cv.getContext('2d'), W = 0, H = 0, DPR = 1, P = [], saved = 0;
@@ -501,24 +481,17 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   }
   new MutationObserver(showSaved).observe(root, { attributes: true, attributeFilter: ['lang'] });
 
-  // Scene, read from the page every frame
-  var hero = document.querySelector('.hero'), reel = document.querySelector('.reel'), stopsEl = document.querySelector('.stops');
-  var contact = document.querySelector('.contact'), target = document.querySelector('.btn--main'), count = document.querySelector('.reel-count');
+  var hero = document.querySelector('.hero'), terminus = document.querySelector('.terminus'), target = document.querySelector('.btn--main');
   function vis(el) { var r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, H) - Math.max(r.top, 0)) / Math.min(H, r.height), 0, 1); }
   function scene() {
-    var s = {}, hv = vis(hero), rv = vis(reel);
-    var slide = parseInt(count.textContent, 10) - 1;
-    // Lights turn off less and less: a lot on the first screen, fewer with every case, none at the last stop
-    s.drop = hv * .0018 + rv * .0012 * (1 - slide / 6 * .85) + (1 - hv - rv > 0 ? .0006 : 0);
-    // Where the road runs: across the lower middle of the first screen, low under the content elsewhere
-    s.base = lerp(H * .9, H * .78, hv); s.spread = lerp(H * .08, H * .12, hv);
-    s.fade = lerp(.14, .06, hv);           // shorter trails while you read
-    s.alpha = lerp(.45, 1, hv);
-    // Timeline: the road becomes the tram route
-    s.line = 0;
-    if (W >= 900) { var sr = stopsEl.getBoundingClientRect(); s.lineY = sr.top; s.line = smooth(H * .95, H * .55, sr.top) * smooth(-H * .1, H * .25, sr.top + sr.height); s.lx0 = sr.left; s.lx1 = sr.right; s.alpha = Math.max(s.alpha, .85 * s.line); }
-    // Contact: every light arrives at the button
-    s.arrive = smooth(H * .9, H * .25, contact.getBoundingClientRect().top);
+    var s = {}, hv = vis(hero);
+    // Lights turn off often at the departure, rarely along the route, never at the last stop
+    s.drop = lerp(.0005, .0018, hv);
+    // The road: across the bottom of the departure, low and faint under the route
+    s.base = lerp(H * .92, H * .78, hv); s.spread = lerp(H * .05, H * .12, hv);
+    s.fade = lerp(.14, .06, hv);
+    s.alpha = lerp(.35, 1, hv);
+    s.arrive = smooth(H * .9, H * .2, terminus.getBoundingClientRect().top);
     var tr = target.getBoundingClientRect(); s.tx = tr.left + tr.width / 2; s.ty = tr.top + tr.height / 2;
     if (s.arrive > .01) { s.drop *= 1 - s.arrive; s.alpha = Math.max(s.alpha, s.arrive); s.fade = lerp(s.fade, .07, s.arrive); }
     arriving = s.arrive; arriveX = s.tx;
@@ -526,7 +499,6 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   }
   function laneY(p, S, t) {
     var y = S.base + (p.l - .5) * S.spread * 2 + Math.sin(p.x / W * 2.4 + p.l * 3) * H * .03 + Math.sin(t * .0003 + p.l * 5) * 4;
-    if (S.line > 0) y = lerp(y, S.lineY + (p.l - .5) * 4, S.line * smooth(S.lx0 - 260, S.lx0, p.x) * (1 - smooth(S.lx1, S.lx1 + 260, p.x)));
     if (S.arrive > 0 && p.dir > 0) y = lerp(y, S.ty + (p.l - .5) * 12 * (1 - smooth(0, S.tx, p.x)), S.arrive * smooth(0, S.tx, p.x));
     return y;
   }
@@ -557,79 +529,49 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       var c = p.hot > 0 ? '255,255,255' : p.c, a = Math.max(0, p.al) * (p.hot > 0 ? 1 : .55) * S.alpha;
       ctx.strokeStyle = 'rgba(' + c + ',' + a.toFixed(3) + ')'; ctx.lineWidth = p.w + p.hot * 2;
       ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(p.x, p.y); ctx.stroke();
-      // a soft halo around the head of each light
       ctx.fillStyle = 'rgba(' + c + ',' + (a * .12).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(p.x, p.y, 4 + p.w * 2 + p.hot * 8, 0, 6.283); ctx.fill();
     }
     ctx.globalCompositeOperation = 'source-over';
   }
 
-  /* ── Scenes ── */
-  var header = document.querySelector('header');
-  var track = document.querySelector('.track'), panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var manifesto = document.querySelector('.manifesto');
-  var parts = panels.map(function (pn) { return { phone: pn.querySelector('.phone'), num: pn.querySelector('.num'), text: pn.firstElementChild, bars: pn.querySelector('.bars') }; });
-  var counters = parts.map(function (pt) {
-    var nodes = Array.prototype.filter.call(pt.num.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+  /* ── The route ── */
+  var header = document.querySelector('header'), route = document.querySelector('.route'), lit = document.querySelector('.rail-lit');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  var lastHeaderY = scrollY;
+  // Count-up for each number, started when its stop lights up
+  var counters = stops.map(function (st) {
+    var num = st.querySelector('.num'); if (!num) return null;
+    var nodes = Array.prototype.filter.call(num.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); });
     var node = nodes[nodes.length - 1], m = node && node.textContent.match(/^([^0-9]*)([0-9]+)(?:\.([0-9]+))?(.*)$/);
     return m && { node: node, pre: m[1], val: parseFloat(m[2] + '.' + (m[3] || '0')), dec: (m[3] || '').length, post: m[4], t0: 0 };
   });
-  var active = -1, stops = document.querySelectorAll('.stop');
-  var sy = scrollY, lastHeaderY = scrollY;
-  function offsetTop(el) { var t = 0; while (el) { t += el.offsetTop; el = el.offsetParent; } return t; }
-  var tops = {};
-  function measure() { tops.reel = offsetTop(reel); tops.reelH = reel.offsetHeight; tops.man = offsetTop(manifesto); tops.manH = manifesto.offsetHeight; }
-  measure(); addEventListener('resize', measure); addEventListener('load', measure);
-
-  function scenes(now) {
-    var y = reduce ? scrollY : sy;
-    var ws = Array.prototype.filter.call(allWords, function (w) { return w.offsetParent; });
-    if (ws.length) {
-      var lead = reduce ? ws.length + 4 : clamp((y + innerHeight * .8 - tops.man) / (tops.manH * .85), 0, 1) * (ws.length + 4);
-      for (var i = 0; i < ws.length; i++) {
-        var o = clamp((lead - i) / 4, 0, 1); ws[i].style.opacity = (.18 + .82 * o).toFixed(3);
-        if (ws[i].parentNode.tagName === 'MARK') ws[i].classList.toggle('on', o > .6);
-      }
-    }
-    var rp = clamp((y - tops.reel) / (tops.reelH - innerHeight), 0, 1), segs = panels.length - 1;
-    var raw = rp * segs, si = Math.min(Math.floor(raw), segs - 1), eased = reduce ? rp : (si + smooth(.3, .7, raw - si)) / segs;
-    track.style.transform = 'translate3d(' + (-eased * (track.scrollWidth - innerWidth)) + 'px,0,0)';
-    var idx = Math.round(eased * segs);
-    count.textContent = ('0' + (idx + 1)).slice(-2) + ' / ' + ('0' + panels.length).slice(-2);
-    if (idx !== active) {
-      active = idx; var c = counters[idx];
-      if (c && !reduce && now - c.t0 > 2500) c.t0 = now;
-      if (!reduce) { var bs = parts[idx].bars; bs.classList.remove('grow'); void bs.offsetWidth; bs.classList.add('grow'); }
-    }
+  function routeScene(now) {
+    var mark = innerHeight * .62;
+    var rr = route.getBoundingClientRect();
+    lit.parentNode.style.setProperty('--p', reduce ? 1 : clamp((mark - rr.top) / rr.height, 0, 1));
+    stops.forEach(function (st, i) {
+      var on = reduce || st.getBoundingClientRect().top + 90 < mark;
+      if (on && !st.classList.contains('on')) { st.classList.add('on'); if (counters[i] && !reduce) counters[i].t0 = now; }
+    });
     counters.forEach(function (c) {
       if (!c) return;
-      var t = c.t0 ? expoOut(clamp((now - c.t0) / 1100, 0, 1)) : 1, v = (t >= 1 ? c.val : c.val * t).toFixed(c.dec);
+      var t = c.t0 ? expoOut(clamp((now - c.t0) / 1200, 0, 1)) : (reduce ? 1 : 0), v = (t >= 1 ? c.val : c.val * t).toFixed(c.dec);
       var txt = c.pre + (isRu() ? v.replace('.', ',') : v) + c.post; if (c.node.textContent !== txt) c.node.textContent = txt;
     });
-    if (!reduce) panels.forEach(function (pn, i) {
-      var r = pn.getBoundingClientRect(), d = clamp(((r.left + r.width / 2) - innerWidth / 2) / innerWidth, -1, 1), ad = Math.abs(d), pt = parts[i];
-      pt.phone.style.transform = 'rotateY(' + (-d * 24) + 'deg) translateY(' + (ad * 24) + 'px) scale(' + (1 - ad * .12) + ')';
-      pt.num.style.transform = 'translate3d(' + (d * -innerWidth * .08) + 'px,0,0)';
-      pt.text.style.opacity = clamp(1 - ad * 1.6, 0, 1);
-    });
-    var pr = stopsEl.getBoundingClientRect(), pp = clamp((innerHeight * .9 - pr.top) / (innerHeight * .45), 0, 1);
-    stopsEl.style.setProperty('--p', reduce ? 1 : pp);
-    stops.forEach(function (s, i) { s.classList.toggle('on', reduce || pp > .05 + i * .2); });
     if (Math.abs(scrollY - lastHeaderY) > 8) { header.classList.toggle('is-hidden', scrollY > lastHeaderY && scrollY > innerHeight * .8); lastHeaderY = scrollY; }
   }
 
   if (reduce) {
-    // A still long exposure: let the lights draw their full trails once, then stop
     var still = function () { size(); var S = scene(); S.fade = .015; S.drop = .0008; for (var j = 0; j < 160; j++) step(1, j * 16, S, false); };
     still(); addEventListener('resize', still);
-    scenes(0); addEventListener('scroll', function () { scenes(0); }, { passive: true });
+    routeScene(0); addEventListener('scroll', function () { routeScene(0); }, { passive: true });
   } else {
     var last = performance.now(), t0 = last;
     (function frame(now) {
       var dt = Math.min((now - last) / 16.67, 3); last = now;
-      sy += (scrollY - sy) * (1 - Math.pow(1 - .14, dt)); if (Math.abs(scrollY - sy) < .1) sy = scrollY;
       var S = scene(); S.alpha *= smooth(400, 2000, now - t0);
       step(dt, now, S, now - ptr.t < 350);
-      scenes(now);
+      routeScene(now);
       requestAnimationFrame(frame);
     })(last);
   }

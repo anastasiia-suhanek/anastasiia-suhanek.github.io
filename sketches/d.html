@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sketch D – Ink in water</title>
+<script src="../js/lang.js?v=a36bd0c1"></script>
+<link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
+<style>
+/* Sketch D: ink spreading in water on paper. Indigo, near-black, a drop of vermilion. The cursor stirs it */
+:root { --paper: #F2EEE6; --ink: #15141A; --muted: #6B665E; --vermilion: #D8432A; --gutter: 16px; }
+@media (min-width: 720px) { :root { --gutter: 40px; } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html[lang="en"] .t-ru { display: none !important; }
+html[lang="ru"] .t-en { display: none !important; }
+body { background: var(--paper); color: var(--ink); font: 400 16px/24px 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; height: 100svh; }
+#ink { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+/* Paper fibres */
+.paper { position: fixed; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .42 0 0 0 0 .36 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.ui { position: relative; z-index: 2; height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: 24px var(--gutter) 32px; pointer-events: none; }
+.ui button { pointer-events: auto; }
+.top { display: flex; justify-content: space-between; font-size: 12px; line-height: 16px; letter-spacing: .06em; color: var(--muted); }
+.lang-btn { background: none; border: 0; font: inherit; color: var(--muted); cursor: pointer; padding: 4px; }
+.lang-btn.lang-active { color: var(--ink); }
+.kicker { font-size: 12px; line-height: 16px; letter-spacing: .06em; color: var(--muted); margin-bottom: 20px; }
+.kicker i { font-style: normal; color: var(--vermilion); }
+h1 { font-weight: 500; font-size: 160px; line-height: 136px; letter-spacing: -0.06em; mix-blend-mode: multiply; }
+.tag { margin-top: 28px; font-size: 24px; line-height: 32px; letter-spacing: -0.02em; max-width: 520px; }
+.foot { display: flex; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 16px; color: var(--muted); }
+@media (max-width: 1023px) { h1 { font-size: 112px; line-height: 100px; } }
+@media (max-width: 599px) { h1 { font-size: 64px; line-height: 60px; } .tag { font-size: 18px; line-height: 26px; } .foot { flex-direction: column; } }
+</style>
+
+<canvas id="ink" aria-hidden="true"></canvas>
+<div class="paper" aria-hidden="true"></div>
+<div class="ui">
+  <div class="top"><span><span lang="en" class="t-en">Sketch D · ink in water</span><span lang="ru" class="t-ru">Набросок Г · тушь в воде</span></span><span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></span></div>
+  <div>
+    <p class="kicker"><i>●</i> <span lang="en" class="t-en">Senior product designer · fintech · Prague</span><span lang="ru" class="t-ru">Senior продуктовый дизайнер · финтех · Прага</span></p>
+    <h1><span lang="en" class="t-en">Anastasiia<br>Sukhanek</span><span lang="ru" class="t-ru">Анастасия<br>Суха́нек</span></h1>
+    <p class="tag"><span lang="en" class="t-en">Complex flows are like ink in water. I find the shape in them, so people make it to the end</span><span lang="ru" class="t-ru">Сложные сценарии похожи на тушь в воде. Я нахожу в них форму, чтобы люди доходили до конца</span></p>
+  </div>
+  <div class="foot"><span><span lang="en" class="t-en">Move the cursor to stir the ink</span><span lang="ru" class="t-ru">Ведите курсором, чтобы размешать тушь</span></span><span><span lang="en" class="t-en">indigo · lamp black · a drop of vermilion</span><span lang="ru" class="t-ru">индиго · сажа · капля киновари</span></span></div>
+</div>
+
+<script>
+(function () {
+  var cv = document.getElementById('ink'), gl = cv.getContext('webgl', { antialias: false, premultipliedAlpha: false });
+  if (!gl) return;
+  var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  var fs = [
+    '#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif',
+    'uniform vec2 r;uniform float t;uniform vec2 m;uniform float mv;',
+    'float h(vec2 p){p=fract(p*vec2(.1031,.1030));p+=dot(p,p.yx+33.33);return fract((p.x+p.y)*p.x);}',
+    'float n(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}',
+    'float fb(vec2 p){float v=0.,a=.5;for(int i=0;i<6;i++){v+=a*n(p);p=p*2.02+vec2(3.1,1.7);a*=.5;}return v;}',
+    'void main(){vec2 uv=gl_FragCoord.xy/r;float ar=r.x/r.y;vec2 p=vec2(uv.x*ar,uv.y)*1.6;vec2 mm=vec2(m.x*ar,m.y)*1.6;',
+    'float T=t*.025;',
+    // stirring: the cursor swirls the field around it
+    'vec2 d=p-mm;float dl=length(d);float sw=exp(-dl*dl*2.5)*(.6+mv*1.6);p+=vec2(-d.y,d.x)*sw*.6;',
+    // domain warping: billows and tendrils like ink in water
+    'vec2 q=vec2(fb(p+vec2(0.,T)),fb(p+vec2(5.2,1.3-T)));',
+    'vec2 w=vec2(fb(p+3.*q+vec2(1.7,9.2)+T*.6),fb(p+3.*q+vec2(8.3,2.8)-T*.4));',
+    'float v=fb(p+3.5*w);',
+    // ink density with darker pooled edges, as real ink dries at its borders
+    'float body=smoothstep(.58,.7,v);float edge=smoothstep(.56,.585,v)-smoothstep(.585,.66,v);',
+    'float dens=clamp(body*.95+edge*.7,0.,1.);',
+    // pigments: indigo and lamp black mixing, a rare vermilion where the field peaks
+    'vec3 indigo=vec3(.12,.15,.56);vec3 black=vec3(.06,.06,.1);vec3 verm=vec3(.86,.25,.13);',
+    'vec3 pig=mix(indigo,black,smoothstep(.62,.8,w.x)*.8);pig=mix(pig,verm,smoothstep(.8,.86,q.y*v*1.9));',
+    'vec3 paper=vec3(.949,.933,.902);',
+    // keep the left side lighter, where the name sits
+    'float keep=mix(.35,1.,smoothstep(.15,.75,uv.x))*mix(.6,1.,smoothstep(.0,.4,1.-uv.y));',
+    'vec3 col=mix(paper,pig,dens*keep);',
+    'gl_FragColor=vec4(col,1.);}'
+  ].join('\n');
+  function sh(type, src) { var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(o)); return null; } return o; }
+  var pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr); gl.useProgram(pr);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var U = {}; ['r', 't', 'm', 'mv'].forEach(function (k) { U[k] = gl.getUniformLocation(pr, k); });
+  function size() { var q = Math.min(devicePixelRatio || 1, 2) * .6; cv.width = Math.round(innerWidth * q); cv.height = Math.round(innerHeight * q); gl.viewport(0, 0, cv.width, cv.height); }
+  size(); addEventListener('resize', size);
+  var m = { x: .7, y: .5, tx: .7, ty: .5, mv: 0 }, lastMove = 0;
+  addEventListener('pointermove', function (e) { m.tx = e.clientX / innerWidth; m.ty = 1 - e.clientY / innerHeight; lastMove = performance.now(); });
+  addEventListener('touchmove', function (e) { var t = e.touches[0]; m.tx = t.clientX / innerWidth; m.ty = 1 - t.clientY / innerHeight; lastMove = performance.now(); }, { passive: true });
+  var t0 = performance.now(), flow = 10, last = t0;
+  (function frame(now) {
+    var dt = Math.min((now - last) / 1000, .05); last = now;
+    var vx = m.tx - m.x, vy = m.ty - m.y; m.x += vx * .05; m.y += vy * .05;
+    m.mv += ((now - lastMove < 200 ? Math.min(1, Math.hypot(vx, vy) * 20) : 0) - m.mv) * .05;
+    flow += dt * (1 + m.mv * 3);
+    gl.uniform2f(U.r, cv.width, cv.height); gl.uniform1f(U.t, flow); gl.uniform2f(U.m, m.x, m.y); gl.uniform1f(U.mv, m.mv);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(frame);
+  })(t0);
+})();
+</script>

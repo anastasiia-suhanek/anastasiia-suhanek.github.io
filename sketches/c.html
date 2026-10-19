@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sketch C – Night exposure</title>
+<script src="../js/lang.js?v=a36bd0c1"></script>
+<link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
+<style>
+/* Sketch C: a night street on a long exposure. People are light trails: sodium amber, tram red, cold white */
+:root { --bg: #0B0907; --text: #F2EDE4; --muted: #9C9283; --amber: #FFB547; --red: #FF4A3D; --gutter: 16px; }
+@media (min-width: 720px) { :root { --gutter: 40px; } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html[lang="en"] .t-ru { display: none !important; }
+html[lang="ru"] .t-en { display: none !important; }
+body { background: var(--bg); color: var(--text); font: 400 16px/24px 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow: hidden; height: 100svh; }
+#trails { position: fixed; inset: 0; width: 100%; height: 100%; }
+/* Film: grain and a soft vignette, like a print */
+.film { position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(0,0,0,.55)); }
+.film::after { content: ''; position: absolute; inset: -50%; opacity: .14; mix-blend-mode: screen; animation: grain .8s steps(3) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@keyframes grain { 33% { transform: translate(-3%, 2%); } 66% { transform: translate(2%, -3%); } }
+.ui { position: relative; z-index: 2; height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: 24px var(--gutter) 32px; pointer-events: none; }
+.ui a, .ui button { pointer-events: auto; }
+.top { display: flex; justify-content: space-between; font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lang-btn { background: none; border: 0; font: inherit; color: var(--muted); cursor: pointer; padding: 4px; letter-spacing: inherit; }
+.lang-btn.lang-active { color: var(--text); }
+.kicker { font-size: 12px; line-height: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: 20px; }
+h1 { font-weight: 600; font-size: 160px; line-height: 136px; letter-spacing: -0.06em; text-shadow: 0 0 40px rgba(0,0,0,.6); }
+.tag { margin-top: 28px; font-size: 24px; line-height: 32px; letter-spacing: -0.02em; max-width: 520px; color: #DCD4C8; }
+.tag b { font-weight: 500; color: var(--text); }
+.foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; font-size: 12px; line-height: 16px; color: var(--muted); letter-spacing: .04em; }
+.foot b { color: var(--amber); font-weight: 500; }
+.exif { font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+@media (max-width: 1023px) { h1 { font-size: 112px; line-height: 100px; } }
+@media (max-width: 599px) { h1 { font-size: 64px; line-height: 60px; } .tag { font-size: 18px; line-height: 26px; } .foot { flex-direction: column; align-items: flex-start; } }
+</style>
+
+<canvas id="trails" aria-hidden="true"></canvas>
+<div class="film" aria-hidden="true"></div>
+<div class="ui">
+  <div class="top"><span><span lang="en" class="t-en">Sketch C · night exposure</span><span lang="ru" class="t-ru">Набросок В · ночная выдержка</span></span><span><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></span></div>
+  <div>
+    <p class="kicker"><span lang="en" class="t-en">Senior product designer · fintech · Prague</span><span lang="ru" class="t-ru">Senior продуктовый дизайнер · финтех · Прага</span></p>
+    <h1><span lang="en" class="t-en">Anastasiia<br>Sukhanek</span><span lang="ru" class="t-ru">Анастасия<br>Суха́нек</span></h1>
+    <p class="tag"><span lang="en" class="t-en">Every light is a person on their way. <b>I design the moment they almost turn off</b></span><span lang="ru" class="t-ru">Каждый огонёк – человек на своём пути. <b>Я проектирую момент, когда он почти свернул</b></span></p>
+  </div>
+  <div class="foot">
+    <span><span lang="en" class="t-en">Some lights turn off and fade – bring them back with your cursor</span><span lang="ru" class="t-ru">Некоторые огни сворачивают и гаснут – верните их курсором</span> · <span lang="en" class="t-en">back on the road</span><span lang="ru" class="t-ru">вернули</span> <b id="saved">0</b></span>
+    <span class="exif">f/8 · 30s · ISO 100 · Praha, 22:47</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var cv = document.getElementById('trails'), ctx = cv.getContext('2d'), W, H, DPR, P = [], saved = 0;
+  var ptr = { x: -999, y: -999, t: 0 };
+  addEventListener('pointermove', function (e) { ptr.x = e.clientX; ptr.y = e.clientY; ptr.t = performance.now(); });
+  addEventListener('touchmove', function (e) { var t = e.touches[0]; ptr.x = t.clientX; ptr.y = t.clientY; ptr.t = performance.now(); }, { passive: true });
+  function size() { DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.fillStyle = '#0B0907'; ctx.fillRect(0, 0, W, H); }
+  size(); addEventListener('resize', size);
+  // Lanes like a street seen from a window: they sweep across, two directions, slightly converging
+  var palette = ['255,181,71', '255,181,71', '255,205,120', '255,74,61', '242,237,228', '170,220,255'];
+  function lane(x, l, t) { var base = H * (.56 + l * .3), bend = Math.sin(x / W * 2.4 + l * 3) * H * .05 + Math.sin(t * .0003 + l * 5) * 6; return base + bend - (x / W) * H * .06 * (l - .5); }
+  function spawn(p, any) {
+    p.dir = Math.random() < .7 ? 1 : -1; p.x = any ? Math.random() * W : (p.dir > 0 ? -20 : W + 20);
+    p.l = Math.random(); p.v = (2 + Math.random() * 3.5) * (W / 1440 * .5 + .5); p.c = palette[Math.floor(Math.random() * palette.length)];
+    p.s = 0; p.al = .7 + Math.random() * .3; p.w = .8 + Math.random() * 1.6; p.y = lane(p.x, p.l, 0); p.dy = 0; p.hot = 0;
+    if (p.dir < 0) p.c = '255,74,61'; // tail lights going away are red
+  }
+  for (var i = 0; i < 220; i++) { var p = {}; spawn(p, true); P.push(p); }
+  var last = performance.now();
+  (function frame(now) {
+    var dt = Math.min((now - last) / 16.67, 3); last = now;
+    // Long exposure: the previous frame fades slowly, so every light leaves a trail
+    ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgba(11,9,7,' + (.06 * dt) + ')'; ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
+    var moving = now - ptr.t < 350;
+    for (var i = 0; i < P.length; i++) {
+      var p = P[i], px = p.x, py = p.y;
+      if (p.s === 0) {
+        p.x += p.v * p.dir * dt; p.y += (lane(p.x, p.l, now) - p.y) * .1 * dt;
+        if (Math.random() < .0016 * dt) { p.s = 1; p.dy = (Math.random() < .5 ? -1 : 1) * (.6 + Math.random()); }
+      } else if (p.s === 1) { // turning off the road: veers away and dims
+        p.x += p.v * p.dir * .6 * dt; p.y += p.dy * dt; p.dy *= 1.02; p.al -= .012 * dt;
+        if (moving) { var dx = p.x - ptr.x, dy = p.y - ptr.y; if (dx * dx + dy * dy < 120 * 120) { p.s = 2; p.hot = 1; saved++; document.getElementById('saved').textContent = saved; } }
+        if (p.al <= 0) spawn(p, false);
+      } else { p.x += p.v * p.dir * 1.2 * dt; p.y += (lane(p.x, p.l, now) - p.y) * .15 * dt; p.al = Math.min(1, p.al + .05 * dt); if (Math.abs(lane(p.x, p.l, now) - p.y) < 1) p.s = 0; }
+      if (p.hot > 0) p.hot -= .01 * dt;
+      if (p.x < -40 || p.x > W + 40) spawn(p, false);
+      var c = p.hot > 0 ? '255,255,255' : p.c, a = Math.max(0, p.al) * (p.hot > 0 ? 1 : .55);
+      ctx.strokeStyle = 'rgba(' + c + ',' + a + ')'; ctx.lineWidth = p.w + p.hot * 2;
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(p.x, p.y); ctx.stroke();
+      // a soft halo around the head of each light
+      ctx.fillStyle = 'rgba(' + c + ',' + (a * .12) + ')'; ctx.beginPath(); ctx.arc(p.x, p.y, 4 + p.w * 2 + p.hot * 6, 0, 6.283); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  })(last);
+})();
+</script>

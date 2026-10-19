@@ -15,6 +15,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <script>
 // Language before anything else: if lang.js fails to load, the page still shows one language, not both
+(function () { var pal = (location.search.match(/[?&]palette=(indigo|blue|orange)/) || [])[1]; if (pal) document.documentElement.setAttribute('data-palette', pal); })();
 (function () { var l; try { l = localStorage.getItem('lang'); } catch (e) {} if (l !== 'en' && l !== 'ru') l = /^ru/i.test(navigator.language || '') ? 'ru' : 'en'; document.documentElement.lang = l; })();
 </script>
 <script src="../js/lang.js?v=a36bd0c1"></script>
@@ -30,6 +31,10 @@
   --gutter: 16px; --max: 1360px;
 }
 @media (min-width: 720px) { :root { --gutter: 40px; } }
+/* Palette previews */
+[data-palette="indigo"] { --paper: #F4F3EF; --paper-2: #EAE9E4; --ink: #121218; --muted: #66656E; --grid: #DDDCD6; --signal: #5046E5; --signal-ink: #4B41E0; --signal-small: #4338CA; }
+[data-palette="indigo"] .btn--main, [data-palette="blue"] .btn--main { color: #fff; }
+[data-palette="blue"] { --paper: #F5F6F8; --paper-2: #EBEDF1; --ink: #0F1420; --muted: #5E6573; --grid: #DCDFE6; --signal: #1E61F0; --signal-ink: #1A56D6; --signal-small: #1747B8; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html[lang="en"] .t-ru { display: none !important; }
 html[lang="ru"] .t-en { display: none !important; }
@@ -48,7 +53,7 @@ main, header, footer { position: relative; z-index: 1; }
 
 /* Header */
 header { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; padding-inline: var(--gutter);
-  background: rgba(243, 240, 232, .88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid);
+  background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid);
   font: 400 12px/16px var(--mono); opacity: 0; transition: opacity .8s .9s, transform .5s var(--ease); }
 .is-ready header { opacity: 1; }
 .is-ready header.is-hidden { transform: translateY(-100%); }
@@ -466,6 +471,8 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   var conv = [1, .82, .62, .53, .49];      // share still in the flow at each step – the shape of the funnel
   var drop = [0, .18, .24, .14, .08];      // chance to fall out when entering a step
   var ptr = { x: -999, y: -999, t: 0, in: false };
+  var css = getComputedStyle(root), C = { ink: css.getPropertyValue('--ink').trim(), muted: css.getPropertyValue('--muted').trim(), grid: css.getPropertyValue('--grid').trim(), signal: css.getPropertyValue('--signal').trim(), paper: css.getPropertyValue('--paper').trim() };
+  function rgba(hex, a) { var n = parseInt(hex.slice(1), 16); return 'rgba(' + (n >> 16) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
   function spawn(p, anywhere) {
     p.x = anywhere ? Math.random() * FW : -Math.random() * 80; p.lane = Math.random(); p.v = (.7 + Math.random() * .7) * clamp(FW / 1280, .5, 1.2);
     p.s = 0; p.vy = 0; p.al = 1; p.hot = 0; p.y = undefined;
@@ -503,20 +510,20 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     ctx.lineWidth = 1; ctx.font = '12px ui-monospace, "SF Mono", Menlo, monospace';
     for (var k = 0; k < 5; k++) {
       var x = Math.round(cw * k) + .5;
-      ctx.strokeStyle = '#DEDAD0'; ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, B); ctx.stroke();
-      ctx.fillStyle = '#6E6A60'; ctx.fillText('0' + (k + 1) + (small ? '' : ' ' + steps[lang][k]), x + 8, 16);
+      ctx.strokeStyle = C.grid; ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, B); ctx.stroke();
+      ctx.fillStyle = C.muted; ctx.fillText('0' + (k + 1) + (small ? '' : ' ' + steps[lang][k]), x + 8, 16);
       // The stepped band: the funnel itself
       var hh = bandH * conv[k];
-      ctx.fillStyle = 'rgba(17,17,16,.055)'; ctx.fillRect(x + .5, mid - hh / 2, cw - 1, hh);
-      ctx.fillStyle = '#111110'; ctx.fillText(Math.round(conv[k] * 100) + '%', x + 8, B + 22);
+      ctx.fillStyle = rgba(C.ink, .055); ctx.fillRect(x + .5, mid - hh / 2, cw - 1, hh);
+      ctx.fillStyle = C.ink; ctx.fillText(Math.round(conv[k] * 100) + '%', x + 8, B + 22);
     }
-    ctx.strokeStyle = '#111110'; ctx.beginPath(); ctx.moveTo(0, B + .5); ctx.lineTo(FW, B + .5); ctx.stroke();
+    ctx.strokeStyle = C.ink; ctx.beginPath(); ctx.moveTo(0, B + .5); ctx.lineTo(FW, B + .5); ctx.stroke();
     // Crosshair on hover, like a chart tooltip
     if (ptr.in && performance.now() - ptr.t < 2000) {
       var hs = clamp(Math.floor(ptr.x / cw), 0, 4);
-      ctx.strokeStyle = 'rgba(17,17,16,.35)'; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(Math.round(ptr.x) + .5, 0); ctx.lineTo(Math.round(ptr.x) + .5, B); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = rgba(C.ink, .35); ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(Math.round(ptr.x) + .5, 0); ctx.lineTo(Math.round(ptr.x) + .5, B); ctx.stroke(); ctx.setLineDash([]);
       var tip = steps[lang][hs] + ' · ' + Math.round(conv[hs] * 100) + '%', tw = ctx.measureText(tip).width + 16, tx = clamp(ptr.x + 12, 0, FW - tw);
-      ctx.fillStyle = '#111110'; ctx.fillRect(tx, 24, tw, 24); ctx.fillStyle = '#F3F0E8'; ctx.fillText(tip, tx + 8, 40);
+      ctx.fillStyle = C.ink; ctx.fillRect(tx, 24, tw, 24); ctx.fillStyle = C.paper; ctx.fillText(tip, tx + 8, 40);
     }
     // People
     var catchR = small ? 64 : 88, moving = performance.now() - ptr.t < 350;
@@ -532,8 +539,8 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       if (p.hot > 0) p.hot -= .008 * dt;
       if (p.x > FW + 8) spawn(p, false);
       ctx.globalAlpha = clamp(p.al, 0, 1);
-      if (p.hot > 0) { ctx.fillStyle = '#FF4F1F'; ctx.fillRect(p.x - 2, p.y - 2, 4, 4); }
-      else { ctx.fillStyle = p.s === 1 ? '#8C877C' : '#111110'; ctx.fillRect(p.x - 1, p.y - 1, 2.4, 2.4); }
+      if (p.hot > 0) { ctx.fillStyle = C.signal; ctx.fillRect(p.x - 2, p.y - 2, 4, 4); }
+      else { ctx.fillStyle = p.s === 1 ? rgba(C.ink, .45) : C.ink; ctx.fillRect(p.x - 1, p.y - 1, 2.4, 2.4); }
     }
     ctx.globalAlpha = 1;
   }

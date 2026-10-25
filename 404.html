@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-ru="Маршрут не найден – Анастасия Суханек">Wrong turn – Anastasiia Sukhanek</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0907">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script>
+// GitHub Pages serves this file for any missing URL, so every link here is absolute
+(function () { var l; try { l = localStorage.getItem('lang'); } catch (e) {} if (l !== 'en' && l !== 'ru') l = /^ru/i.test(navigator.language || '') ? 'ru' : 'en'; document.documentElement.lang = l; if (l === 'ru') document.title = document.querySelector('title').getAttribute('data-ru'); })();
+</script>
+<link rel="stylesheet" href="/fonts/inter.css">
+<style>
+/* The error page is a small case of its own: say what happened, show where you are, offer the way back. Sizes are multiples of 4 */
+:root {
+  --bg: #0B0907; --text: #F2EDE4; --soft: #D6CEC1; --muted: #A39A8C; --line: rgba(242, 237, 228, .14);
+  --amber: #FFB547; --violet: #A06EFF;
+  --sans: 'Inter', system-ui, sans-serif; --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html[lang="en"] .t-ru { display: none !important; }
+html[lang="ru"] .t-en { display: none !important; }
+body { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 48px 16px; background: var(--bg); color: var(--text); font: 400 16px/24px var(--sans); -webkit-font-smoothing: antialiased; }
+@media (min-width: 720px) { body { padding: 64px 40px; } }
+main { width: 100%; max-width: 960px; margin: 0 auto; }
+.kicker { font: 400 12px/16px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
+h1 { font-weight: 600; font-size: 48px; line-height: 52px; letter-spacing: -0.04em; max-width: 720px; }
+@media (min-width: 720px) { h1 { font-size: 80px; line-height: 80px; } }
+.lead { margin-top: 24px; max-width: 560px; font-size: 20px; line-height: 28px; color: var(--soft); }
+.path { display: inline-block; margin-top: 16px; padding: 4px 8px; border: 1px solid var(--line); font: 400 12px/16px var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.map { display: block; width: 100%; height: auto; margin: 40px 0 32px; overflow: visible; }
+.map text { font: 400 12px var(--mono); fill: var(--muted); }
+.map .here { fill: var(--violet); }
+@media (max-width: 719px) { .map text { font-size: 28px; } } /* the map scales down ~2.5× on phones, so its labels scale up */
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; height: 56px; padding: 0 24px; border: 1px solid rgba(242, 237, 228, .3); color: var(--text); text-decoration: none; font-size: 18px; }
+.btn:hover { border-color: var(--text); }
+.btn--main { background: var(--amber); border-color: var(--amber); color: var(--bg); font-weight: 500; }
+.btn--main:hover { border-color: var(--amber); filter: brightness(1.08); }
+.btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+.note { margin-top: 32px; font: 400 12px/16px var(--mono); color: var(--muted); }
+.lang { position: fixed; top: 16px; right: 16px; display: flex; gap: 12px; font-size: 12px; line-height: 16px; letter-spacing: .08em; }
+.lang button { border: 0; background: none; color: var(--muted); font: inherit; letter-spacing: inherit; cursor: pointer; padding: 4px; }
+html[lang="en"] .lang [data-l="en"], html[lang="ru"] .lang [data-l="ru"] { color: var(--text); }
+.trail { stroke-dasharray: 4 8; animation: run 1.2s linear infinite; }
+@keyframes run { to { stroke-dashoffset: -24; } }
+.pulse { animation: pulse 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pulse { 50% { transform: scale(1.6); opacity: .4; } }
+@media (prefers-reduced-motion: reduce) { .trail, .pulse { animation: none; } }
+</style>
+
+<div class="lang"><button type="button" data-l="en">EN</button><button type="button" data-l="ru">RU</button></div>
+
+<main>
+  <p class="kicker"><span lang="en" class="t-en">404 · route not found</span><span lang="ru" class="t-ru">404 · маршрут не найден</span></p>
+  <h1><span lang="en" class="t-en">This tram took a wrong turn</span><span lang="ru" class="t-ru">Трамвай свернул не туда</span></h1>
+  <p class="lead"><span lang="en" class="t-en">There’s no page at this address. It happens – and designing moments like this is literally my job, so here’s the way back</span><span lang="ru" class="t-ru">По этому адресу ничего нет. Так бывает – а проектировать такие моменты как раз моя работа, так что вот дорога обратно</span></p>
+  <code class="path" id="path"></code>
+
+  <svg class="map" viewBox="0 0 960 160" role="img" aria-labelledby="map-t">
+    <title id="map-t">A route line with stops; a branch turns off it and ends at a dead end marked “you are here”</title>
+    <line x1="0" y1="48" x2="960" y2="48" stroke="#FFB547" stroke-width="4" stroke-linecap="round"/>
+    <g fill="#0B0907" stroke="#FFB547" stroke-width="3">
+      <circle cx="120" cy="48" r="8"/><circle cx="360" cy="48" r="8"/><circle cx="600" cy="48" r="8"/><circle cx="840" cy="48" r="8"/>
+    </g>
+    <text x="120" y="24" text-anchor="middle"><tspan lang="en" class="t-en">Sber</tspan><tspan lang="ru" class="t-ru">Сбер</tspan></text><text x="360" y="24" text-anchor="middle"><tspan lang="en" class="t-en">Beeline</tspan><tspan lang="ru" class="t-ru">Билайн</tspan></text><text x="600" y="24" text-anchor="middle">Profee</text>
+    <text x="840" y="24" text-anchor="middle"><tspan lang="en" class="t-en">your team</tspan><tspan lang="ru" class="t-ru">ваша команда</tspan></text>
+    <path class="trail" d="M440 48 C 480 48, 500 120, 560 128 L 640 128" fill="none" stroke="#A06EFF" stroke-width="3" stroke-linecap="round"/>
+    <circle class="pulse" cx="652" cy="128" r="8" fill="#A06EFF"/>
+    <text class="here" x="676" y="132"><tspan lang="en" class="t-en">you are here</tspan><tspan lang="ru" class="t-ru">вы здесь</tspan></text>
+  </svg>
+
+  <div class="btns">
+    <a class="btn btn--main" href="/hello/"><span lang="en" class="t-en">Back on the route →</span><span lang="ru" class="t-ru">Вернуться на маршрут →</span></a>
+    <a class="btn" href="/"><span lang="en" class="t-en">Home</span><span lang="ru" class="t-ru">Главная</span></a>
+    <a class="btn" href="/about.html"><span lang="en" class="t-en">About me</span><span lang="ru" class="t-ru">Обо мне</span></a>
+  </div>
+
+  <p class="note"><span lang="en" class="t-en">If anything, the cat says it wasn’t him</span><span lang="ru" class="t-ru">Кот, если что, говорит, что это не он</span></p>
+</main>
+
+<script>
+var path = location.pathname; try { path = decodeURIComponent(path); } catch (e) {} document.getElementById('path').textContent = path;
+document.querySelectorAll('.lang button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var l = b.getAttribute('data-l'); document.documentElement.lang = l;
+    try { localStorage.setItem('lang', l); } catch (e) {}
+    document.title = l === 'ru' ? document.querySelector('title').getAttribute('data-ru') : 'Wrong turn – Anastasiia Sukhanek';
+  });
+});
+// The suspect runs past
+setTimeout(function () { if (window.texas) window.texas(); }, 2500);
+</script>
+<script src="/js/eggs.js" defer></script>
+<script src="js/count.js?v=bba18f48" data-goatcounter="https://anastasiia.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true,"no_events":true}' defer></script>
+<script src="js/track.js?v=b0e0d87b" defer></script>

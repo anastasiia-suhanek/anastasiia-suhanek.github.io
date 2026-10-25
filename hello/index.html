@@ -80,11 +80,34 @@ header b { font-weight: 500; color: var(--text); }
 @keyframes pulse { 50% { opacity: .3; } }
 .is-ready .kicker { opacity: 1; }
 .name { font-weight: 600; font-size: 168px; line-height: 144px; letter-spacing: -0.06em; text-shadow: 0 0 48px rgba(0, 0, 0, .6); }
-.name .line { display: block; overflow: hidden; padding-bottom: 48px; margin-bottom: -48px; white-space: nowrap; }
+.name > span { display: flex; flex-direction: column; } /* flex: the lines' negative margins add up instead of collapsing */
+.name .line { display: block; overflow: hidden; padding: 48px 0; margin: -48px 0; white-space: nowrap; }
 .name .ch { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
 .is-ready .name .ch { transform: none; }
 .name .stress { position: relative; }
 .name .stress::after { content: '\00B4'; position: absolute; left: 50%; top: 0; transform: translateX(-36%); }
+/* Easter egg: hover the «а» and the stress jumps to «е», becomes «ё» (how people misread the name), shakes its head and comes back. 1.07em = а → е in Inter at -0.06em tracking */
+.name .stress::before { content: '\00A8'; position: absolute; left: calc(50% + 1.07em); top: 0; transform: translateX(-50%); opacity: 0; pointer-events: none; }
+.name .stress { cursor: help; }
+.name .stress.hop::after { animation: hop-acute 2.4s var(--ease-io); }
+.name .stress.hop::before { animation: hop-dots 2.4s linear; }
+@keyframes hop-acute {
+  0%   { transform: translate(-36%, 0); opacity: 1; }
+  16%  { transform: translate(calc(-36% + .54em), -.2em) rotate(20deg); }
+  30%  { transform: translate(calc(-36% + 1.07em), 0); opacity: 1; }
+  34%, 70% { transform: translate(calc(-36% + 1.07em), 0); opacity: 0; }
+  74%  { transform: translate(calc(-36% + 1.07em), 0); opacity: 1; }
+  88%  { transform: translate(calc(-36% + .54em), -.2em) rotate(-20deg); }
+  100% { transform: translate(-36%, 0); opacity: 1; }
+}
+@keyframes hop-dots {
+  0%, 31% { opacity: 0; }
+  34%, 46% { opacity: 1; transform: translateX(-50%); }
+  52% { transform: translateX(calc(-50% - .04em)); }
+  58% { transform: translateX(calc(-50% + .04em)); }
+  64%, 68% { opacity: 1; transform: translateX(-50%); }
+  72%, 100% { opacity: 0; }
+}
 .tag { margin-top: 28px; font-size: 24px; line-height: 32px; letter-spacing: -0.02em; max-width: 560px; color: var(--soft); text-wrap: balance; opacity: 0; transform: translateY(16px); transition: opacity 1s .9s, transform 1s .9s var(--ease); }
 .tag b { font-weight: 500; color: var(--text); }
 .is-ready .tag { opacity: 1; transform: none; }
@@ -203,6 +226,13 @@ header b { font-weight: 500; color: var(--text); }
 .seek { margin-top: 32px; font-size: 20px; line-height: 28px; color: var(--soft); max-width: 720px; }
 .payoff { display: none; margin-top: 12px; font: 400 14px/20px var(--mono); color: var(--amber); }
 .has-saved .payoff { display: block; }
+.award { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; flex-direction: column; gap: 4px; max-width: 360px; padding: 16px 48px 16px 20px; border: 1px solid var(--amber); background: var(--bg); color: var(--text); font-size: 16px; line-height: 24px; opacity: 0; transform: translateY(16px); transition: opacity .4s, transform .6s var(--ease); }
+.award.on { opacity: 1; transform: none; }
+.award b { font-weight: 500; color: var(--amber); }
+.award span { color: var(--soft); }
+.award a { margin-top: 8px; font: 400 12px/16px var(--mono); color: var(--amber); }
+.award-x { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 32px; cursor: pointer; }
+.award-x:hover { color: var(--text); }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
 .btn { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 24px; border: 1px solid rgba(242, 237, 228, .3); font-size: 18px; line-height: 24px; transition: background .2s, color .2s, border-color .2s; }
 .btn:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
@@ -443,6 +473,12 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     });
   });
 
+  // Stress hop on hover or tap; runs to the end even if the pointer leaves
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('.name .stress').forEach(function (st) {
+    function hop() { if (st.classList.contains('hop')) return; st.classList.add('hop'); setTimeout(function () { st.classList.remove('hop'); }, 2500); }
+    st.addEventListener('mouseenter', hop); st.addEventListener('click', hop);
+  });
+
   // Links with a Russian version of their target
   function syncHrefs() {
     document.querySelectorAll('[data-href-ru]').forEach(function (a) {
@@ -513,6 +549,20 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
       : 'You brought ' + saved + (saved === 1 ? ' light' : ' lights') + ' back on the road on your way here. That’s my job';
   }
   new MutationObserver(showSaved).observe(root, { attributes: true, attributeFilter: ['lang'] });
+  // Easter egg: the 10th light brought back earns a note
+  var award = 10, awarded = false;
+  function maybeAward() {
+    if (awarded || saved < award) return; awarded = true;
+    var t = document.createElement('div'); t.className = 'award'; t.setAttribute('role', 'status');
+    t.innerHTML = isRu()
+      ? '<b>' + award + ' ' + lights(award) + ' снова на маршруте</b><span>Похоже, вы тоже продуктовый дизайнер. Давайте дружить?</span><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Написать в Telegram ↗</a>'
+      : '<b>' + award + ' lights back on the road</b><span>Looks like you’re a product designer too. Let’s be friends?</span><a href="https://t.me/suhastasiia" target="_blank" rel="noopener">Say hi on Telegram ↗</a>';
+    var x = document.createElement('button'); x.type = 'button'; x.className = 'award-x'; x.setAttribute('aria-label', isRu() ? 'Закрыть' : 'Close'); x.textContent = '×';
+    x.addEventListener('click', function () { t.classList.remove('on'); });
+    t.appendChild(x); document.body.appendChild(t);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { t.classList.add('on'); }); });
+    setTimeout(function () { t.classList.remove('on'); }, 12000);
+  }
 
   var hero = document.querySelector('.hero'), terminus = document.querySelector('.terminus'), target = document.querySelector('.btn--main');
   function vis(el) { var r = el.getBoundingClientRect(); return clamp((Math.min(r.bottom, H) - Math.max(r.top, 0)) / Math.min(H, r.height), 0, 1); }
@@ -549,7 +599,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
         if (Math.random() < S.drop * dt && p.x > 0 && p.x < W) { p.s = 1; p.dy = (Math.random() < .5 ? -1 : 1) * (.6 + Math.random()); }
       } else if (p.s === 1) { // turning off the road: veers away and dims
         p.x += p.v * p.dir * .6 * dt; p.y += p.dy * dt; p.dy *= 1 + .02 * dt; p.al -= .012 * dt;
-        if (interact) { var dx = p.x - ptr.x, dy = p.y - ptr.y; if (dx * dx + dy * dy < R * R) { p.s = 2; p.hot = 1; saved++; showSaved(); } }
+        if (interact) { var dx = p.x - ptr.x, dy = p.y - ptr.y; if (dx * dx + dy * dy < R * R) { p.s = 2; p.hot = 1; saved++; showSaved(); maybeAward(); } }
         if (p.al <= 0) spawn(p, false);
       } else { // back on the road: bright, catching up
         p.x += p.v * p.dir * 1.25 * dt; p.y += (ty - p.y) * .16 * dt; p.al = Math.min(1, p.al + .05 * dt);
@@ -612,5 +662,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
 })();
 </script>
 <script src="../js/copy-email.js?v=9eb5e608" defer></script>
+
+<script src="../js/eggs.js?v=db37c77f" defer></script>
 <script src="../js/count.js?v=bba18f48" data-goatcounter="https://anastasiia.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true,"no_events":true}' defer></script>
 <script src="../js/track.js?v=b0e0d87b" defer></script>

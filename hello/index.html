@@ -474,7 +474,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
   /* ── The exposure: every light is a person ── */
   var cv = document.getElementById('trails'), ctx = cv.getContext('2d'), W = 0, H = 0, DPR = 1, P = [], saved = 0;
   var ptr = { x: -999, y: -999, t: 0 };
-  var AMBER = '255,181,71', WARM = '255,205,120', WHITE = '242,237,228', COLD = '178,222,255', RED = '255,74,61';
+  var AMBER = '255,181,71', WARM = '255,205,120', WHITE = '242,237,228', COLD = '178,222,255', RED = '160,110,255';
   var palette = [AMBER, AMBER, WARM, WHITE, WHITE, COLD];
   var arriving = 0, arriveX = 0;
   function size() {
@@ -489,7 +489,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     p.dir = arriving > .3 || Math.random() < .72 ? 1 : -1;
     p.x = any ? Math.random() * W : (p.dir > 0 ? (arriving > .5 ? Math.random() * arriveX * .6 : -20) : W + 20);
     p.l = Math.random(); p.v = (2 + Math.random() * 3.2) * clamp(W / 1440, .55, 1.1);
-    p.c = p.dir < 0 ? RED : palette[Math.floor(Math.random() * palette.length)]; // tail lights going away are red
+    p.c = p.dir < 0 ? RED : palette[Math.floor(Math.random() * palette.length)]; // tail lights going away are violet
     p.s = 0; p.al = .7 + Math.random() * .3; p.w = .8 + Math.random() * 1.5; p.y = undefined; p.dy = 0; p.hot = 0;
   }
   addEventListener('pointermove', function (e) { ptr.x = e.clientX; ptr.y = e.clientY; ptr.t = performance.now(); }, { passive: true });

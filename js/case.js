@@ -209,15 +209,15 @@
     Array.prototype.slice.call(document.querySelectorAll('a[data-lightbox]')).forEach(function (a) {
       var thumb = a.querySelector('img');
       items.push({ el: a, group: 'a:' + a.dataset.lightbox, src: function () { return a.href; },
-        alt: thumb ? thumb.alt : '', cap: function () { return pick(a.closest('figure'), 'figcaption '); } });
+        alt: function () { return thumb ? thumb.alt : ''; }, cap: function () { return pick(a.closest('figure'), 'figcaption '); } });
     });
     Array.prototype.slice.call(document.querySelectorAll('.screen-item img')).forEach(function (im) {
       if (im.closest('a')) return;
       var item = im.closest('.screen-item'), strip = im.closest('.screens-row') || item;
-      items.push({ el: im, group: strip, src: function () { return im.currentSrc || im.src; }, alt: im.alt,
+      items.push({ el: im, group: strip, src: function () { return im.currentSrc || im.src; }, alt: function () { return im.alt; },
         cap: function () {
           var c = item.querySelector('.screen-cap');
-          return [pick(c, 'strong'), pick(c, 'span')].filter(Boolean).join(' – ');
+          return [pick(c, 'strong'), pick(c, 'span')].filter(Boolean).join(ru() ? ' — ' : ' – ');
         } });
       im.classList.add('is-zoomable');
       im.tabIndex = 0;
@@ -244,7 +244,7 @@
     function show(n) {
       i = (n + group.length) % group.length;
       var it = group[i];
-      img.src = it.src(); img.alt = it.alt;
+      img.src = it.src(); img.alt = it.alt();
       cap.textContent = it.cap();
       count.textContent = group.length > 1 ? (i + 1) + ' / ' + group.length : '';
       prev.hidden = next.hidden = group.length < 2;

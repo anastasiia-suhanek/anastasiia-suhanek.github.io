@@ -35,6 +35,11 @@
       var v = el.getAttribute(lang === 'ru' ? 'data-ru' : 'data-en');
       if (el === t) document.title = v; else el.content = v;
     });
+    // Screen readers on the Russian version read Russian alt texts: RU copies sit in data-alt-ru
+    document.querySelectorAll('img[data-alt-ru]').forEach(function (img) {
+      if (!img.hasAttribute('data-alt-en')) img.setAttribute('data-alt-en', img.alt);
+      img.alt = img.getAttribute(lang === 'ru' ? 'data-alt-ru' : 'data-alt-en');
+    });
   }
 
   function apply(lang) {

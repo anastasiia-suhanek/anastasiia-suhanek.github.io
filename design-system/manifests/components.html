@@ -1415,8 +1415,8 @@ export const LinkCard = ({ href, title, note }) =&gt; (
     &lt;p&gt;Designed in Figma, then rebuilt here in React and TypeScript with Claude Code – the same names and states in both, so design and code speak one language. Switch the &lt;strong&gt;Language&lt;/strong&gt; toolbar above to see every component in Russian&lt;/p&gt;
   &lt;/&gt;}
   ru={&lt;&gt;
-    &lt;p&gt;Компоненты, которые я собрала в дизайн-системе финтех-приложения для международных переводов – iOS, Android и веб. &lt;strong&gt;Обезличено из-за NDA:&lt;/strong&gt; фирменный цвет, названия и тексты заменены; структура, свойства и токены – как в продакшене&lt;/p&gt;
-    &lt;p&gt;Спроектировано в Figma, затем пересобрано здесь на React и TypeScript с Claude Code – одни и те же названия и состояния, чтобы дизайн и код говорили на одном языке. Переключатель &lt;strong&gt;Language&lt;/strong&gt; в верхней панели показывает все компоненты на русском&lt;/p&gt;
+    &lt;p&gt;Компоненты, которые я собрала в дизайн-системе финтех-приложения для международных переводов — iOS, Android и веб. &lt;strong&gt;Обезличено из-за NDA:&lt;/strong&gt; фирменный цвет, названия и тексты заменены; структура, свойства и токены — как в продакшене&lt;/p&gt;
+    &lt;p&gt;Спроектировано в Figma, затем пересобрано здесь на React и TypeScript с Claude Code — одни и те же названия и состояния, чтобы дизайн и код говорили на одном языке. Переключатель &lt;strong&gt;Language&lt;/strong&gt; в верхней панели показывает все компоненты на русском&lt;/p&gt;
   &lt;/&gt;}
 /&gt;
 
@@ -1431,11 +1431,11 @@ export const LinkCard = ({ href, title, note }) =&gt; (
     &lt;li&gt;&lt;strong&gt;Readable by AI agents&lt;/strong&gt; – the Storybook MCP addon exposes components and their docs to coding agents&lt;/li&gt;
   &lt;/ul&gt;}
   ru={&lt;ul&gt;
-    &lt;li&gt;&lt;strong&gt;Токены в два слоя.&lt;/strong&gt; Примитивы хранят значения; компоненты используют только семантические токены (&lt;code&gt;button/primary/bg&lt;/code&gt;, &lt;code&gt;text/secondary&lt;/code&gt;), поэтому бренд или тема меняются в одном месте. &lt;code&gt;tokens.json&lt;/code&gt; – источник правды, &lt;code&gt;npm run tokens&lt;/code&gt; собирает CSS-переменные&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Компоненты&lt;/strong&gt; – Button, Bottom sheet, Full screen message, List item. Каждое свойство соответствует свойству компонента в Figma&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Доступность&lt;/strong&gt; проверяется на каждой истории через axe – нарушение роняет сборку. Первый же прогон нашёл то, чего не видно в Figma: контраст текста вторичной кнопки 3,98:1 (теперь 5,3:1) и потерю названия у кнопки при загрузке&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Локализация&lt;/strong&gt; – те же компоненты на английском и русском, включая подписи для скринридеров&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Понятно ИИ-агентам&lt;/strong&gt; – аддон Storybook MCP открывает компоненты и документацию агентам, которые пишут код&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Токены в два слоя.&lt;/strong&gt; Примитивы хранят значения; компоненты используют только семантические токены (&lt;code&gt;button/primary/bg&lt;/code&gt;, &lt;code&gt;text/secondary&lt;/code&gt;), поэтому бренд или тема меняются в одном месте. &lt;code&gt;tokens.json&lt;/code&gt; — источник правды, &lt;code&gt;npm run tokens&lt;/code&gt; собирает CSS-переменные&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Компоненты&lt;/strong&gt; — Button, Bottom sheet, Full screen message, List item. Каждое свойство соответствует свойству компонента в Figma&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Доступность&lt;/strong&gt; проверяется на каждой истории через axe — нарушение роняет сборку. Первый же прогон нашёл то, чего не видно в Figma: контраст текста вторичной кнопки 3,98:1 (теперь 5,3:1) и потерю названия у кнопки при загрузке&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Локализация&lt;/strong&gt; — те же компоненты на английском и русском, включая подписи для скринридеров&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Понятно AI-агентам&lt;/strong&gt; — аддон Storybook MCP открывает компоненты и документацию агентам, которые пишут код&lt;/li&gt;
   &lt;/ul&gt;}
 /&gt;
 
@@ -1554,7 +1554,7 @@ import { T } from &#39;../docs/i18n&#39;;
 
 # &lt;T en=&quot;Typography&quot; ru=&quot;Типографика&quot; /&gt;
 
-&lt;T en={&lt;p&gt;Inter. Each style is a set of tokens – weight, size, line height, letter spacing – and a &lt;code&gt;.text-*&lt;/code&gt; class&lt;/p&gt;} ru={&lt;p&gt;Inter. Каждый стиль – набор токенов: начертание, кегль, интерлиньяж, трекинг – и класс &lt;code&gt;.text-*&lt;/code&gt;&lt;/p&gt;} /&gt;
+&lt;T en={&lt;p&gt;Inter. Each style is a set of tokens – weight, size, line height, letter spacing – and a &lt;code&gt;.text-*&lt;/code&gt; class&lt;/p&gt;} ru={&lt;p&gt;Inter. Каждый стиль — набор токенов: начертание, кегль, интерлиньяж, трекинг — и класс &lt;code&gt;.text-*&lt;/code&gt;&lt;/p&gt;} /&gt;
 
 {Object.entries(tokens.typography).map(([k, s]) =&gt; (
   &lt;div key={k} style={{ display: &#39;flex&#39;, alignItems: &#39;baseline&#39;, flexWrap: &#39;wrap&#39;, gap: 24, padding: &#39;16px 0&#39;, borderBottom: &#39;1px solid var(--border-subtle)&#39; }}&gt;

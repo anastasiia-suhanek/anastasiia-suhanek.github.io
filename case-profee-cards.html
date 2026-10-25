@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-ru="Карты Profee – Анастасия Суханек">Profee Cards – Anastasiia Sukhanek</title>
-<meta name="description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and an honest read of what the card did not change." data-ru="Кейс: новый раздел карт Profee на iOS и Android – вдвое больше отправителей заходят во вкладку «Карты», и честный разбор того, что карта не изменила">
+<title data-ru="Карты Profee — Анастасия Суханек">Profee Cards – Anastasiia Sukhanek</title>
+<meta name="description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and an honest read of what the card did not change." data-ru="Кейс: новый раздел карт Profee на iOS и Android — вдвое больше отправителей заходят во вкладку «Карты», и честный разбор того, что карта не изменила">
 <meta name="author" content="Anastasiia Sukhanek">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Profee Cards – Anastasiia Sukhanek">
@@ -14,7 +14,7 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="js/lang.js?v=a36bd0c1"></script>
+<script src="js/lang.js?v=3b05f971"></script>
 <script src="js/motion.js?v=feaea849"></script>
 <link rel="stylesheet" href="css/tokens.css?v=95974166">
 <link rel="stylesheet" href="css/scroll-reveal.css?v=11311e85">
@@ -178,7 +178,7 @@ body {
       <span lang="ru" class="t-ru">Карты: как сделать карту продуктом</span>
     </h1>
     <p lang="en" class="hero-desc t-en">Profee had a Cards tab left over from an older app: card tiles in a carousel and nothing about the money on them. The bet: if the card looks and works like a real product, people will keep money in Profee and pay with it. I redesigned the whole area for iOS and Android</p>
-    <p lang="ru" class="hero-desc t-ru">Карты в Profee уже были – вкладка из старой версии приложения: карты плитками в карусели и ничего о деньгах на них. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить картой. Я заново спроектировала весь раздел для iOS и Android</p>
+    <p lang="ru" class="hero-desc t-ru">Карты в Profee уже были — вкладка из старой версии приложения: карты плитками в карусели и ничего о деньгах на них. Ставка была такая: если карта будет выглядеть и работать как нормальный продукт, люди начнут держать деньги в Profee и платить картой. Я заново спроектировала весь раздел для iOS и Android</p>
     <dl class="case-facts">
       <div><dt><span lang="en" class="t-en">My role</span><span lang="ru" class="t-ru">Моя роль</span></dt><dd><span lang="en" class="t-en">Product designer, end to end: competitive audit of card products, IA of the Cards area, every iOS and Android flow, an unmoderated usability test, the final Cards tab and linked account screens, and the copy with Claude-based agents I built with the design lead</span><span lang="ru" class="t-ru">Продуктовый дизайнер, вела проект от начала до конца: разбор карточных продуктов конкурентов, структура раздела, все сценарии на iOS и Android, немодерируемый юзабилити-тест, вкладка «Карты» и экран привязанного счёта. Тексты писала с агентами на Claude, которых мы собрали с лидом дизайна</span></dd></div>
       <div><dt><span lang="en" class="t-en">Team</span><span lang="ru" class="t-ru">Команда</span></dt><dd><span lang="en" class="t-en">Product manager, design lead on review, iOS and Android developers, backend and QA</span><span lang="ru" class="t-ru">Продакт-менеджер, лид дизайна на ревью, iOS- и Android-разработчики, бэкенд и QA</span></dd></div>
@@ -205,13 +205,13 @@ body {
       <span lang="ru" class="t-ru">Карта была, но продуктом её никто не считал</span>
     </h2>
     <p lang="en" class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up. The old Cards tab showed a carousel of cards, four buttons, an empty history – and no sign of the account a card is linked to</p>
-    <p lang="ru" class="t-ru">Profee – сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история, а счёт, к которому привязана карта, нигде не показан</p>
+    <p lang="ru" class="t-ru">Profee — сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история, а счёт, к которому привязана карта, нигде не показан</p>
     <h3 lang="en" class="t-en">How cards work</h3>
 <p lang="en" class="t-en">Every card comes with its own EUR account – that is where its money lives and what it spends from. The design had to make that link obvious</p>
     <p lang="en" class="t-en">Competitors – Wise, Revolut, N26 – all offered virtual or physical cards. There was no user research behind the card – only a competitive gap and the hope that a card people like would turn the wallet from a transit point into a place to keep money</p>
     <h3 lang="ru" class="t-ru">Как устроены карты</h3>
-<p lang="ru" class="t-ru">У каждой карты свой счёт в евро – на нём лежат её деньги, с него она и тратит. Дизайн должен был сделать эту связь очевидной</p>
-    <p lang="ru" class="t-ru">У всех конкурентов – Wise, Revolut, N26 – были карты, виртуальные или пластиковые. Пользовательских исследований за решением делать карту не было: только отставание от конкурентов и надежда, что удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
+<p lang="ru" class="t-ru">У каждой карты свой счёт в евро — на нём лежат её деньги, с него она и тратит. Дизайн должен был сделать эту связь очевидной</p>
+    <p lang="ru" class="t-ru">У всех конкурентов — Wise, Revolut, N26 — были карты, виртуальные или пластиковые. Решение делать карту не опиралось на исследования: только отставание от конкурентов и надежда, что удобная карта превратит кошелёк из перевалочного пункта в место, где деньги хранят</p>
 
     <h3 lang="en" class="t-en">What the design had to do</h3>
     <h3 lang="ru" class="t-ru">Что должен был сделать дизайн</h3>
@@ -221,7 +221,7 @@ body {
       <li>Show what a top-up costs before the person picks how to pay</li>
     </ol>
     <ol lang="ru" class="goals t-ru">
-      <li>Сделать понятной связку: есть счёт – его пополняют и с него отправляют деньги, и есть привязанная к нему карта – ею платят как обычной картой</li>
+      <li>Сделать понятной связку: есть счёт — его пополняют и с него отправляют деньги, и есть привязанная к нему карта — ею платят как обычной картой</li>
       <li>Собрать всё, что делают с картой, на одном экране, а не по экрану на действие</li>
       <li>Показать, сколько стоит пополнение, до того как человек выберет способ</li>
     </ol>
@@ -241,7 +241,7 @@ body {
     <div class="screens-scroll">
       <div class="screens-row">
       <div class="screen-item">
-        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-tab.png" alt="Old Cards tab: card carousel, four action buttons, empty history with a transfer prompt" loading="lazy">
+        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-tab.png" alt="Old Cards tab: card carousel, four action buttons, empty history with a transfer prompt" data-alt-ru="Старая вкладка «Карты»: карусель карт, четыре кнопки, пустая история с предложением сделать перевод" loading="lazy">
         <div class="screen-cap">
           <strong lang="en" class="t-en">Cards tab</strong>
           <strong lang="ru" class="t-ru">Вкладка «Карты»</strong>
@@ -250,7 +250,7 @@ body {
         </div>
       </div>
       <div class="screen-item">
-        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-issue.png" alt="Old card issuance screen with a card image and Issue now button" loading="lazy">
+        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-issue.png" alt="Old card issuance screen with a card image and Issue now button" data-alt-ru="Старый экран выпуска карты: картинка карты и кнопка «Выпустить сейчас»" loading="lazy">
         <div class="screen-cap">
           <strong lang="en" class="t-en">Issue a card</strong>
           <strong lang="ru" class="t-ru">Выпуск карты</strong>
@@ -259,7 +259,7 @@ body {
         </div>
       </div>
       <div class="screen-item">
-        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-topup.png" alt="Old top-up screen: from account to card, amount presets" loading="lazy">
+        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-topup.png" alt="Old top-up screen: from account to card, amount presets" data-alt-ru="Старый экран пополнения: со счёта на карту, готовые суммы" loading="lazy">
         <div class="screen-cap">
           <strong lang="en" class="t-en">Top up</strong>
           <strong lang="ru" class="t-ru">Пополнение</strong>
@@ -268,12 +268,12 @@ body {
         </div>
       </div>
       <div class="screen-item">
-        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-details.png" alt="Old card details screen with balance, card image and a menu list" loading="lazy">
+        <img style="aspect-ratio: auto 360 / 780;" src="images/cards/before-details.png" alt="Old card details screen with balance, card image and a menu list" data-alt-ru="Старый экран данных карты: баланс, картинка карты и меню" loading="lazy">
         <div class="screen-cap">
           <strong lang="en" class="t-en">Card details</strong>
           <strong lang="ru" class="t-ru">Данные карты</strong>
           <span lang="en" class="t-en">Balance, card image, a menu of five items – Google Pay, limits, statement, fees, PIN</span>
-          <span lang="ru" class="t-ru">Баланс, картинка карты и меню из пяти пунктов – Google Pay, лимиты, выписка, тарифы, ПИН-код</span>
+          <span lang="ru" class="t-ru">Баланс, картинка карты и меню из пяти пунктов — Google Pay, лимиты, выписка, тарифы, ПИН-код</span>
         </div>
       </div>
       </div>
@@ -293,7 +293,7 @@ body {
 
     <figure class="board-figure">
       <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">
-        <img style="aspect-ratio: auto 2400 / 1519;" src="images/cards/research-board.jpg" alt="Overview of the Figma working file: competitor boards for Revolut, N26, Wise, Cash App and others on the left, iOS and Android flows on top, the full app flow at the bottom right" loading="lazy">
+        <img style="aspect-ratio: auto 2400 / 1519;" src="images/cards/research-board.jpg" alt="Overview of the Figma working file: competitor boards for Revolut, N26, Wise, Cash App and others on the left, iOS and Android flows on top, the full app flow at the bottom right" data-alt-ru="Рабочий файл в Figma целиком: слева разбор Revolut, N26, Wise, Cash App и других, сверху сценарии iOS и Android, справа внизу полная схема приложения" loading="lazy">
       </a>
       <figcaption>
         <span lang="en" class="t-en">The working file, zoomed out – competitor boards on the left, iOS and Android flows on top, the full app flow bottom right · <a href="images/cards/research-board.jpg" target="_blank" rel="noopener">Open full size ↗</a></span>
@@ -345,7 +345,7 @@ body {
     <h3 lang="en" class="t-en" id="copy">Copy and localization</h3>
 <p lang="en" class="t-en">Cards is where our team started using AI every day. With the design lead I built Claude agents that follow our editorial rules, and with them I wrote, checked and translated every string into 13 languages. Strings first went to Phrase via Claude, then straight into the iOS and Android code – and we dropped Phrase</p>
     <h3 lang="ru" class="t-ru" id="copy-ru">Тексты и локализация</h3>
-<p lang="ru" class="t-ru">На картах команда впервые начала пользоваться AI каждый день. С лидом дизайна мы собрали агентов на Claude, которые пишут по нашей редполитике, и с ними я написала, проверила и перевела на 13 языков все тексты раздела. Сначала строки уходили во Phrase через Claude, потом – сразу в код iOS и Android, а от Phrase мы отказались</p>
+<p lang="ru" class="t-ru">На картах команда впервые начала пользоваться AI каждый день. С лидом дизайна мы собрали агентов на Claude, которые пишут по нашей редполитике, и с ними я написала, проверила и перевела на 13 языков все тексты раздела. Сначала строки уходили во Phrase через Claude, потом — сразу в код iOS и Android, а от Phrase мы отказались</p>
   </section>
 </div>
 
@@ -393,7 +393,7 @@ window.protoScripts = {
     },
     steps: [
       { hold: 900,  tap: [29, 93.2], press: [22, 88.5, 14, 9.5],     dissolve: '01',
-        label: { en: 'Start here – open Cards', ru: 'Начните здесь – откройте Cards' } },
+        label: { en: 'Start here – open Cards', ru: 'Начните здесь — откройте «Карты»' } },
       { hold: 800,  tap: [50, 82.5], press: [6.7, 79.5, 86.1, 6],    push: '02',
         label: { en: 'Issue the card', ru: 'Выпустите карту' } },
       { hold: 800,  tap: [50, 76.3], press: [6.7, 73.3, 86.1, 6],    push: '06e',
@@ -414,7 +414,7 @@ window.protoScripts = {
       { hold: 1000, tap: [50, 82.5], press: [6.7, 79.5, 86.1, 6],    push: '03',
         label: { en: 'Go to the card', ru: 'Перейдите к карте' } },
       { hold: 800,  tap: [50, 46],   press: [41, 40, 18, 12],        sheet: '04', top: 57.1,
-        label: { en: 'Open card details', ru: 'Откройте детали карты' } },
+        label: { en: 'Open card details', ru: 'Откройте данные карты' } },
       { hold: 700,  tap: [50, 90.7], press: [6.7, 87.7, 86.1, 6],    sheetSwap: '05',
         label: { en: 'Show the number', ru: 'Покажите номер' } },
       { hold: 800,  tap: [90, 61],   press: [84.5, 57.8, 11, 6.5],   sheetDown: '03',
@@ -439,28 +439,28 @@ window.protoScripts = {
       <span lang="ru" class="t-ru">Начали с баланса, пришли к карте</span>
     </h2>
     <p lang="en" class="t-en">Accounts came first in Profee, so the first versions started there: the familiar account screen with the balance on top, and the card fitted in as a tile or a strip. But Cards is its own section of the app, and the link only goes one way – every card has an account, while an account can live without a card. So the tab turned card-first, and the account screen kept the balance on top, with the card added as a strip</p>
-    <p lang="ru" class="t-ru">Счета в Profee появились раньше карт, поэтому первые версии шли от них: привычный экран счёта с балансом наверху, а карта встраивалась плиткой или полоской. Но карты – отдельный раздел приложения, и связь работает только в одну сторону: у каждой карты есть счёт, а счёт может жить и без карты. Поэтому во вкладке главной стала карта, а экран счёта сохранил баланс наверху и получил полоску карты</p>
+    <p lang="ru" class="t-ru">Счета в Profee появились раньше карт, поэтому первые версии шли от них: привычный экран счёта с балансом наверху, а карта встраивалась плиткой или полоской. Но карты — отдельный раздел приложения, и связь работает только в одну сторону: у каждой карты есть счёт, а счёт может жить и без карты. Поэтому во вкладке главной стала карта, а экран счёта сохранил баланс наверху и получил полоску карты</p>
 
     <div class="screen-group-head">
       <div>
         <h3><span lang="en" class="t-en">From the account to the card</span><span lang="ru" class="t-ru">От счёта к карте</span></h3>
         <p lang="en" class="t-en">Where it started, three balance-first versions, three card-first ones</p>
-        <p lang="ru" class="t-ru">Откуда начали, три версии «сначала баланс» и три – «сначала карта»</p>
+        <p lang="ru" class="t-ru">Откуда начали, три версии «сначала баланс» и три — «сначала карта»</p>
       </div>
     </div>
     <div class="screens-scroll">
       <div class="screens-row">
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/start-account.jpg" alt="The existing Accounts screen: EUR balance, Top up and Send, history" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/start-account.jpg" alt="The existing Accounts screen: EUR balance, Top up and Send, history" data-alt-ru="Существующий экран счёта: баланс в евро, «Пополнить» и «Отправить», история" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Starting point</strong>
             <strong lang="ru" class="t-ru">Отправная точка</strong>
             <span lang="en" class="t-en">An ordinary account in Accounts – the screen cards had to fit into</span>
-            <span lang="ru" class="t-ru">Обычный счёт во вкладке «Счета» – экран, в который нужно было встроить карты</span>
+            <span lang="ru" class="t-ru">Обычный счёт во вкладке «Счета» — экран, в который нужно было встроить карты</span>
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-card-tile.jpg" alt="Exploration: EUR balance first, the card as a small tile below" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-card-tile.jpg" alt="Exploration: EUR balance first, the card as a small tile below" data-alt-ru="Вариант: сначала баланс в евро, карта небольшой плиткой ниже" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Balance first</strong>
             <strong lang="ru" class="t-ru">Сначала баланс</strong>
@@ -469,16 +469,16 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-history.jpg" alt="Exploration: EUR balance first, card thumbnails above the history" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-history.jpg" alt="Exploration: EUR balance first, card thumbnails above the history" data-alt-ru="Вариант: сначала баланс в евро, миниатюры карт над историей" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Balance first, history</strong>
             <strong lang="ru" class="t-ru">Сначала баланс и история</strong>
             <span lang="en" class="t-en">Cards as thumbnails, the history of top-ups and transfers right under the balance</span>
-            <span lang="ru" class="t-ru">Карты – миниатюрами, история пополнений и переводов сразу под балансом</span>
+            <span lang="ru" class="t-ru">Карты — миниатюрами, история пополнений и переводов сразу под балансом</span>
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-card-strip.jpg" alt="Exploration: EUR balance first, the card as a strip above the history" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/balance-card-strip.jpg" alt="Exploration: EUR balance first, the card as a strip above the history" data-alt-ru="Вариант: сначала баланс в евро, карта полоской над историей" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Balance first, card strip</strong>
             <strong lang="ru" class="t-ru">Сначала баланс, карта полоской</strong>
@@ -487,25 +487,25 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-grey.jpg" alt="Exploration: a big card first, the balance under it, Add to Apple Wallet" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-grey.jpg" alt="Exploration: a big card first, the balance under it, Add to Apple Wallet" data-alt-ru="Вариант: сначала большая карта, под ней баланс и «Добавить в Apple Wallet»" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Card first</strong>
             <strong lang="ru" class="t-ru">Сначала карта</strong>
             <span lang="en" class="t-en">A big card, the balance under it, Add to Apple Wallet as the main action</span>
-            <span lang="ru" class="t-ru">Большая карта, под ней баланс, главное действие – «Добавить в Apple Wallet»</span>
+            <span lang="ru" class="t-ru">Большая карта, под ней баланс, главное действие — «Добавить в Apple Wallet»</span>
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-fullbleed.jpg" alt="Exploration: the card fills the top, the linked account below it" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-fullbleed.jpg" alt="Exploration: the card fills the top, the linked account below it" data-alt-ru="Вариант: карта занимает верх экрана, привязанный счёт под ней" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Card on top, account below</strong>
             <strong lang="ru" class="t-ru">Карта сверху, счёт под ней</strong>
             <span lang="en" class="t-en">The card fills the top, the linked account is a separate block under it – close to what shipped</span>
-            <span lang="ru" class="t-ru">Карта занимает верх экрана, привязанный счёт – отдельный блок под ней. Почти то, что вышло в итоге</span>
+            <span lang="ru" class="t-ru">Карта занимает верх экрана, привязанный счёт — отдельный блок под ней. Почти то, что вышло в итоге</span>
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-switcher.jpg" alt="Exploration: card thumbnails to switch between several cards" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 863;" src="images/cards/iterations/card-switcher.jpg" alt="Exploration: card thumbnails to switch between several cards" data-alt-ru="Вариант: миниатюры, чтобы переключаться между картами" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Several cards</strong>
             <strong lang="ru" class="t-ru">Несколько карт</strong>
@@ -560,7 +560,7 @@ window.protoScripts = {
       </div>
     </div>
     <p lang="en" class="t-en">The numbers are from the panel group; the colleagues who got to the tasks also completed all of them. Samples this small make the comments matter more than the times: one person had to search for the freeze and missed the step where you pick the recipient, another asked for a separate section for the card, and a colleague expected to start a transfer first and pick the card after – not to open the card to send money. The test confirmed the flow was clear – nothing essential changed after it</p>
-    <p lang="ru" class="t-ru">Цифры – по группе из панели; коллеги, которые дошли до задач, тоже выполнили все. На такой маленькой выборке комментарии важнее времени: один участник искал заморозку и пропустил шаг выбора получателя, другой попросил отдельный раздел для карты, а коллега ожидала сначала начать перевод и уже потом выбрать карту – а не заходить в карту, чтобы отправить деньги. Тест подтвердил, что сценарий понятен, – существенных изменений после него не было</p>
+    <p lang="ru" class="t-ru">Цифры — по группе из панели; коллеги, которые дошли до задач, тоже выполнили все. На такой маленькой выборке комментарии важнее времени: один участник искал заморозку и пропустил шаг выбора получателя, другой попросил отдельный раздел для карты, а коллега ожидала, что сначала начнёт перевод и уже потом выбрать карту — а не заходить в карту, чтобы отправить деньги. Тест подтвердил, что сценарий понятен, — существенных изменений после него не было</p>
 
     <div class="screen-group-head">
       <div>
@@ -572,16 +572,16 @@ window.protoScripts = {
     <div class="screens-scroll">
       <div class="screens-row">
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/flow/03.jpg" alt="Cards tab: the card with its linked EUR account and balance above it, Freeze, Card details and Reissue below" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/flow/03.jpg" alt="Cards tab: the card with its linked EUR account and balance above it, Freeze, Card details and Reissue below" data-alt-ru="Вкладка «Карты»: карта, над ней привязанный счёт в евро и баланс, ниже «Заморозить», «Данные карты» и «Перевыпустить»" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Cards tab</strong>
             <strong lang="ru" class="t-ru">Вкладка «Карты»</strong>
             <span lang="en" class="t-en">The card leads, its linked account and balance are one tap away above it</span>
-            <span lang="ru" class="t-ru">Карта главная, привязанный счёт и баланс – в одно касание над ней</span>
+            <span lang="ru" class="t-ru">Карта главная, привязанный счёт и баланс — в одно касание над ней</span>
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 720 / 1560;" src="images/cards/account-states.png" alt="Linked account: EUR balance first, Top up and Send, the card as a strip below" loading="lazy">
+          <img style="aspect-ratio: auto 720 / 1560;" src="images/cards/account-states.png" alt="Linked account: EUR balance first, Top up and Send, the card as a strip below" data-alt-ru="Привязанный счёт: сначала баланс в евро, «Пополнить» и «Отправить», ниже карта полоской" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Linked account</strong>
             <strong lang="ru" class="t-ru">Привязанный счёт</strong>
@@ -594,7 +594,7 @@ window.protoScripts = {
     <blockquote lang="en" class="insight t-en">
       The rule that settled it: every card has an account, but not every account has a card – so the card leads in Cards, and the balance leads in the account
     </blockquote>
-    <blockquote lang="ru" class="insight t-ru">Спор решило правило: у каждой карты есть счёт, но не у каждого счёта есть карта. Поэтому в «Картах» главная карта, а в счёте – баланс</blockquote>
+    <blockquote lang="ru" class="insight t-ru">Спор решило правило: у каждой карты есть счёт, но не у каждого счёта есть карта. Поэтому в «Картах» главная карта, а в счёте — баланс</blockquote>
   </section>
 </div>
 
@@ -611,7 +611,7 @@ window.protoScripts = {
     <h3 lang="en" class="t-en">Fee transparency in top-up – goal 3</h3>
 <p lang="en" class="t-en">Every way to pay has its own fee and speed – from the Profee wallet and a card to Google Pay, Apple Pay and a bank transfer. Both are shown as tags right in the list of methods, before the user chooses, so the confirmation screen holds no surprises. The flow went through three iterations in two weeks; each one made the fee clearer</p>
     <h3 lang="ru" class="t-ru">Комиссию видно сразу (цель 3)</h3>
-<p lang="ru" class="t-ru">У каждого способа пополнения своя комиссия и скорость – от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое стоит метками прямо в списке способов, ещё до выбора, поэтому на экране подтверждения сюрпризов нет. За две недели сценарий прошёл три итерации, и с каждой комиссия становилась понятнее</p>
+<p lang="ru" class="t-ru">У каждого способа пополнения своя комиссия и скорость — от кошелька Profee и карты до Google Pay, Apple Pay и банковского перевода. И то и другое стоит метками прямо в списке способов, ещё до выбора, поэтому на экране подтверждения сюрпризов нет. За две недели сценарий прошёл три итерации, и с каждой комиссия становилась понятнее</p>
 
     <h3 lang="en" class="t-en">Freeze</h3>
 <p lang="en" class="t-en">A freeze is only useful if it feels reversible – if people aren’t sure they’ll get access back, they won’t tap it. So the freeze is designed as a story with no dead ends: a toast and a frosted card while it is frozen, an explanation one tap away behind the ?, and a failure state with a way out</p>
@@ -624,14 +624,14 @@ window.protoScripts = {
       </video>
       <figcaption>
         <span lang="en" class="t-en">The freeze itself: one tap, a toast, and the card frosts over – recorded from the working prototype</span>
-        <span lang="ru" class="t-ru">Заморозка вживую: одно касание, уведомление – и карта покрывается инеем. Запись с рабочего прототипа</span>
+        <span lang="ru" class="t-ru">Заморозка вживую: одно касание, уведомление — и карта покрывается инеем. Запись с рабочего прототипа</span>
       </figcaption>
     </figure>
 
     <div class="screens-scroll">
       <div class="screens-row">
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/flow/13.jpg" alt="Card active" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/flow/13.jpg" alt="Card active" data-alt-ru="Карта активна" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Card active</strong>
             <strong lang="ru" class="t-ru">Карта активна</strong>
@@ -640,7 +640,7 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-toast-frozen.jpg" alt="Card is frozen" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-toast-frozen.jpg" alt="Card is frozen" data-alt-ru="Карта заморожена" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Card is frozen</strong>
             <strong lang="ru" class="t-ru">Карта заморожена</strong>
@@ -649,7 +649,7 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-tooltip.jpg" alt="What happens when I freeze" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-tooltip.jpg" alt="What happens when I freeze" data-alt-ru="Что будет, если заморозить" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">What happens when I freeze</strong>
             <strong lang="ru" class="t-ru">Что будет, если заморозить</strong>
@@ -658,7 +658,7 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-toast-unfrozen.jpg" alt="Card is unfrozen" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-toast-unfrozen.jpg" alt="Card is unfrozen" data-alt-ru="Карта разморожена" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">Card is unfrozen</strong>
             <strong lang="ru" class="t-ru">Карта разморожена</strong>
@@ -667,7 +667,7 @@ window.protoScripts = {
           </div>
         </div>
         <div class="screen-item">
-          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-freeze-failed.jpg" alt="Freeze didn’t go through" loading="lazy">
+          <img style="aspect-ratio: auto 360 / 780;" src="images/cards/freeze-freeze-failed.jpg" alt="Freeze didn’t go through" data-alt-ru="Заморозить не получилось" loading="lazy">
           <div class="screen-cap">
             <strong lang="en" class="t-en">If it fails</strong>
             <strong lang="ru" class="t-ru">Если не получилось</strong>
@@ -698,7 +698,7 @@ window.protoScripts = {
     <h3 lang="en" class="t-en">The card is not yet the reason to keep money</h3>
 <p lang="en" class="t-en">The share of senders who top up the wallet grew seven times, from 1.5% to 10.5% – through Google Pay, Apple Pay and BLIK, top-up methods that weren’t part of this project. Fewer than 5% of them hold a card. Card payments themselves aren’t visible in Amplitude – they happen at the card processor. The closest signal: 40% of Android card holders open Google Pay from the card within 30 days, most within seconds of issuing it. On iOS, where the Apple Wallet button was cut, there is no such path</p>
     <h3 lang="ru" class="t-ru">Держать деньги из-за карты пока не стали</h3>
-<p lang="ru" class="t-ru">Доля отправителей, которые пополняют кошелёк, выросла в семь раз, с 1,5% до 10,5% – через Google Pay, Apple Pay и BLIK, а эти способы пополнения в мой проект не входили. Карта есть меньше чем у 5% из них. Сами оплаты картой в Amplitude не видны – они проходят на стороне процессинга. Самый близкий косвенный сигнал: 40% владельцев карты на Android открывают Google Pay прямо из карты в первые 30 дней, большинство – через несколько секунд после выпуска. На iOS, где кнопку Apple Wallet пришлось убрать, такого пути нет</p>
+<p lang="ru" class="t-ru">Доля отправителей, которые пополняют кошелёк, выросла в семь раз, с 1,5% до 10,5% — через Google Pay, Apple Pay и BLIK, а эти способы пополнения в мой проект не входили. Карта есть меньше чем у 5% из них. Сами оплаты картой в Amplitude не видны — они проходят на стороне процессинга. Самый близкий косвенный сигнал: 40% владельцев карты на Android открывают Google Pay прямо из карты в первые 30 дней, большинство — через несколько секунд после выпуска. На iOS, где кнопку Apple Wallet пришлось убрать, такого пути нет</p>
 
     <div class="metrics">
       <div class="metric-tile">
@@ -739,11 +739,11 @@ window.protoScripts = {
       <span lang="ru" class="t-ru">Что я поняла и что дальше</span>
     </h2>
     <p lang="en" class="t-en">How cards and accounts relate mattered more than any single screen. One account per card shaped the structure and the direction of the iterations, and it explains why the card still stands apart from the money people keep in Profee</p>
-    <p lang="ru" class="t-ru">То, как связаны карты и счета, оказалось важнее любого отдельного экрана. «Один счёт – одна карта» определило структуру и направление итераций, и этим же объясняется, почему карта пока живёт отдельно от денег, которые люди держат в Profee</p>
+    <p lang="ru" class="t-ru">То, как связаны карты и счета, оказалось важнее любого отдельного экрана. Принцип «Один счёт — одна карта» определил структуру и направление итераций, и этим же объясняется, почему карта пока живёт отдельно от денег, которые люди держат в Profee</p>
     <h3 lang="en" class="t-en">What’s next</h3>
 <p lang="en" class="t-en">The wallet grew without the card, so the card has to move closer to it: one balance, and a card that spends straight from it. Then every Google Pay or Apple Pay top-up is money the card can already spend, with no transfer in between</p>
     <h3 lang="ru" class="t-ru">Что дальше</h3>
-<p lang="ru" class="t-ru">Кошелёк вырос без карты – значит, карта должна стать ближе к нему: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay – это деньги, которые картой уже можно потратить, без перевода между счетами</p>
+<p lang="ru" class="t-ru">Кошелёк вырос без карты — значит, карта должна стать ближе к нему: один баланс и карта, которая тратит прямо с него. Тогда каждое пополнение через Google Pay или Apple Pay — это деньги, которые картой уже можно потратить, без перевода между счетами</p>
   </section>
 
   <!-- NEXT -->
@@ -756,7 +756,7 @@ window.protoScripts = {
   </section>
 </div>
 </main>
-<script src="js/case.js?v=79d66391"></script>
+<script src="js/case.js?v=3589a31a"></script>
 <script src="js/proto.js?v=46ee2012" defer></script>
 <script src="js/scroll-reveal.js?v=b709bbaf" defer></script>
 <script src="js/count.js?v=bba18f48" data-goatcounter="https://anastasiia.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true,"no_events":true}' defer></script>

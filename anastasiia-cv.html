@@ -31,7 +31,7 @@
     gridOff = sessionStorage.getItem('grid') === '0';
   } catch (e) {}
   if (!gridOff) document.documentElement.classList.add('g4');
-  document.title = lang === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+  document.title = lang === 'ru' ? 'Анастасия Суханек — резюме' : 'Anastasiia Sukhanek – CV';
   // The description meta comes after this script: switch it once the head is parsed, and on every toggle
   function desc(l) {
     var d = document.querySelector('meta[name="description"]'); if (!d || !d.hasAttribute('data-ru')) return;
@@ -44,7 +44,7 @@
     var l = b.getAttribute('data-set-lang');
     try { localStorage.setItem('lang', l); } catch (err) {}
     document.documentElement.lang = l;
-    document.title = l === 'ru' ? 'Анастасия Суханек – резюме' : 'Anastasiia Sukhanek – CV';
+    document.title = l === 'ru' ? 'Анастасия Суханек — резюме' : 'Anastasiia Sukhanek – CV';
     desc(l);
   });
 })();
@@ -630,7 +630,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
         <p class="sec-label">Инструменты</p>
         <div class="skill-row">
           <p class="skill-cat">Интерфейс</p>
-          <p class="skill-items">Figma – компоненты, автолейаут, варианты, прототипы<br>ProtoPie · Adobe Photoshop · Illustrator</p>
+          <p class="skill-items">Figma — компоненты, автолейаут, варианты, прототипы<br>ProtoPie · Adobe Photoshop · Illustrator</p>
         </div>
         <div class="skill-row">
           <p class="skill-cat">Исследования и тесты</p>
@@ -702,7 +702,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
 
       <section>
         <p class="sec-label">Профиль</p>
-        <p class="summary">Продуктовый дизайнер в финтехе: 4,5 года в продукте, 8 лет в дизайне. Веду фичи целиком – исследование и JTBD, прототипы, A/B-тесты, запуск – и сама считаю эффект в Amplitude. Строю дизайн-систему на токенах и Figma Variables, собрала AI-агентов для UX-текстов и локализации на 13 языков. Результаты: обращений о верификации <span class="m">−54%</span>, редизайн ошибок оплаты – конверсия <span class="m">+10%</span>, вкладка «Карты» <span class="m">×2</span></p>
+        <p class="summary">Продуктовый дизайнер в финтехе: 4,5 года в продукте, 8 лет в дизайне. Веду фичи целиком — исследование и JTBD, прототипы, A/B-тесты, запуск — и сама считаю эффект в Amplitude. Строю дизайн-систему на токенах и Figma Variables, собрала AI-агентов для UX-текстов и локализации на 13 языков. Результаты: обращений о верификации <span class="m">−54%</span>, редизайн ошибок оплаты — конверсия <span class="m">+10%</span>, вкладка «Карты» <span class="m">×2</span></p>
       </section>
 
       <section>
@@ -712,25 +712,25 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
           <div class="job-top">
             <span class="job-co">Profee</span>
             <span class="job-dates">
-              март 2025 – н. в.
+              март 2025 — н. в.
               <span class="badge-now">Сейчас</span>
             </span>
           </div>
           <p class="job-title">Продуктовый дизайнер · финтех, денежные переводы и платежи</p>
           <ul class="bullets">
-            <li>Полный цикл продуктового дизайна: исследование и JTBD, гипотезы, прототипы, юзабилити-тесты, запуск, разбор метрик в Amplitude – в том числе сравниваю платформы при поэтапном запуске</li>
+            <li>Полный цикл продуктового дизайна: исследование и JTBD, гипотезы, прототипы, юзабилити-тесты, запуск, разбор метрик в Amplitude — в том числе сравниваю платформы при поэтапном запуске</li>
             <li>С лета 2025 вместе с лидом дизайна строю новую дизайн-систему Profee: компоненты, токены и Figma Variables, синхронизирую их с фронтендом. Образец на React и Storybook: <a href="https://anastasiia-suhanek.github.io/design-system/?globals=locale:ru">anastasiia-suhanek.github.io/design-system</a></li>
             <li>Вместе с лидом дизайна собрала агентов на Claude для UX-текстов: пишут по редполитике, переводят на 13 языков, записывают строки прямо в репозитории iOS, Android и веба готовыми к мерджу ветками, сверяют Figma со строками в проде и с дизайн-системой; команда отказалась от Phrase</li>
             <li>Запуски 2025 года: KYC-верификация, сравнение курсов валют, программа лояльности, кошелёк, C2B-переводы, редизайн точек входа в верификацию</li>
             <li>Запуски 2026 года: раздел карт на iOS и Android, кешбэк и бонусная программа, обмен валют, система статусов переводов, C2B-платежи с телефона, выход на рынок Узбекистана</li>
             <li>Провожу A/B-эксперименты и немодерируемые юзабилити-тесты в Wynde на платной панели респондентов, представляю выводы всей компании</li>
-            <li>Собрала мастер-файл Figma для всех команд; придумала «Чистый четверг» – раз в две недели разбираем с разработчиками UI/UX-долги</li>
+            <li>Собрала мастер-файл Figma для всех команд; придумала «Чистый четверг» — раз в две недели разбираем с разработчиками UI/UX-долги</li>
           </ul>
           <div class="outcomes">
             <p class="outcomes-hd">Ключевые результаты</p>
             <ul class="outcomes-list">
-              <li>KYC: 10 точек входа в верификацию – в одном компоненте в приложении → <span class="m">59%</span> увидевших нажимают; там, где появилась карточка, новички чаще проходили верификацию – до <span class="m">+1,4 п. п.</span>; обращений о верификации на тысячу новичков <span class="m">−54%</span></li>
-              <li>Статусы переводов: история перевода с карточками действий → <span class="m">~70%</span> нажимают «Продолжить перевод» в течение суток, медиана – <span class="m">9 с</span></li>
+              <li>KYC: 10 точек входа в верификацию — в одном компоненте в приложении → <span class="m">59%</span> увидевших нажимают; там, где появилась карточка, новички чаще проходили верификацию — до <span class="m">+1,4 п. п.</span>; обращений о верификации на тысячу новичков <span class="m">−54%</span></li>
+              <li>Статусы переводов: история перевода с карточками действий → <span class="m">~70%</span> нажимают «Продолжить перевод» в течение суток, медиана — <span class="m">9 с</span></li>
               <li>Карты: пересобрала продуктовый раздел на iOS и Android → доля активных отправителей, которые заходят во вкладку «Карты», <span class="m">×2</span> за четыре месяца</li>
               <li>AI-агенты для текстов → локализация фичи вместе с веткой для мерджа: <span class="m">день → ~2 часа</span></li>
               <li>Редизайн обработки ошибок оплаты → конверсия <span class="m">+10%</span>, доля завершённых сценариев <span class="m">+5%</span></li>
@@ -744,7 +744,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
         <article class="job">
           <div class="job-top">
             <span class="job-co">Билайн</span>
-            <span class="job-dates">авг. 2023 – янв. 2025</span>
+            <span class="job-dates">авг. 2023 — янв. 2025</span>
           </div>
           <p class="job-title">Продуктовый дизайнер · приложение для абонентов</p>
           <ul class="bullets">
@@ -758,7 +758,7 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
             <p class="outcomes-hd">Ключевые результаты</p>
             <ul class="outcomes-list">
               <li>Доля пополнений через внутренний канал: <span class="m">4% → 10%</span>; MAU <span class="m">+1 млн</span> пользователей</li>
-              <li>Частота пополнений – <span class="m">2,5 раза в месяц</span> на пользователя</li>
+              <li>Частота пополнений — <span class="m">2,5 раза в месяц</span> на пользователя</li>
               <li>ARPU <span class="m">+3%</span> благодаря улучшениям для пользователей</li>
             </ul>
           </div>
@@ -767,14 +767,14 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
         <article class="job">
           <div class="job-top">
             <span class="job-co">СберСпасибо (Сбербанк)</span>
-            <span class="job-dates">янв. 2022 – авг. 2023</span>
+            <span class="job-dates">янв. 2022 — авг. 2023</span>
           </div>
           <p class="job-title">Ведущий дизайнер · игровые продукты</p>
           <ul class="bullets">
             <li>Спроектировала 4 игровых продукта: SberPrimeCity, «Колесо удачи», «Морские сокровища», «Ловлю на слове»</li>
             <li>Прототипировала и тестировала игровые механики и навигацию для приложения и веба</li>
             <li>Проводила интервью, юзабилити-тесты и проверку гипотез</li>
-            <li>Руководила работой подрядчиков: планирование, ревью, сдача; выстроила процесс с нуля – все проекты сданы в срок</li>
+            <li>Руководила работой подрядчиков: планирование, ревью, сдача; выстроила процесс с нуля — все проекты сданы в срок</li>
           </ul>
           <div class="outcomes">
             <p class="outcomes-hd">Ключевые результаты</p>
@@ -787,13 +787,13 @@ html:not([lang="ru"]) .doc[data-lang="ru"] { display: none; }
         <article class="job">
           <div class="job-top">
             <span class="job-co">TOY.RU</span>
-            <span class="job-dates">янв. 2018 – февр. 2021</span>
+            <span class="job-dates">янв. 2018 — февр. 2021</span>
           </div>
           <p class="job-title">UX/UI-дизайнер · e-commerce</p>
           <ul class="bullets">
-            <li>Редизайн интернет-магазина для веба, мобильной и десктопной версий в рамках движка и кода</li>
+            <li>Редизайн мобильной и десктопной версий интернет-магазина в рамках возможностей движка</li>
             <li>Баннеры, лендинги и графика для кампаний; единый визуальный стиль во всех каналах</li>
-            <li>Ввела дизайн- и код-ревью – правок стало меньше, задачи выходили быстрее</li>
+            <li>Ввела дизайн- и код-ревью — правок стало меньше, задачи выходили быстрее</li>
           </ul>
         </article>
 

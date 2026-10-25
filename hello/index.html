@@ -83,6 +83,8 @@ header b { font-weight: 500; color: var(--text); }
 .name .line { display: block; overflow: hidden; padding-bottom: 8px; margin-bottom: -8px; white-space: nowrap; }
 .name .ch { display: inline-block; transform: translateY(110%); transition: transform 1.2s var(--ease); }
 .is-ready .name .ch { transform: none; }
+.name .stress { position: relative; }
+.name .stress::after { content: '\00B4'; position: absolute; left: 50%; top: 0; transform: translateX(-36%); }
 .tag { margin-top: 28px; font-size: 24px; line-height: 32px; letter-spacing: -0.02em; max-width: 560px; color: var(--soft); text-wrap: balance; opacity: 0; transform: translateY(16px); transition: opacity 1s .9s, transform 1s .9s var(--ease); }
 .tag b { font-weight: 500; color: var(--text); }
 .is-ready .tag { opacity: 1; transform: none; }
@@ -436,6 +438,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     var t = line.textContent; line.textContent = ''; line.setAttribute('aria-hidden', 'true');
     (t.match(/\P{M}\p{M}*/gu) || []).forEach(function (c, i) {
       var s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
+      if (/\u0301/.test(c)) { s.className = 'ch stress'; s.textContent = c.replace(/\u0301/g, ''); } // the combining mark drifts off its letter at this size and tracking, so it is drawn by CSS
       s.style.transitionDelay = (.15 + (li % 2) * .12 + i * .035) + 's'; line.appendChild(s);
     });
   });

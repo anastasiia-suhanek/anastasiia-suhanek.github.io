@@ -1,0 +1,40 @@
+# Anastasiia Sukhanek (Анастасия Суханек)
+
+> Senior product designer in Prague, open to remote roles worldwide. 8 years in design: fintech, telecom, e-commerce. Designs the moments where people decide to keep going or give up – payments, verification, error states – and measures the result. Builds design systems in Figma and in code (tokens, React, Storybook). Czech permanent residence, no visa sponsorship needed. English B2, Russian native
+
+Pronunciation: Su-KHA-nek, stress on the «a» (Суха́нек)
+
+## Looking for
+
+- Senior Product Designer role in fintech, payments or any product with tricky flows, with a team that looks at the numbers
+- Remote worldwide or in Prague
+
+## Experience
+
+- Profee (remittance app, iOS, Android, web), Product Designer, March 2025 – now
+- Beeline (telecom loyalty), Product Designer, August 2023 – January 2025
+- SberSpasibo (Sber loyalty programme), Lead Designer, January 2022 – August 2023
+
+## Case studies
+
+- [KYC verification: from email to app](https://anastasiia-suhanek.github.io/case-profee-verification.html): 10 verification entry points rebuilt as one design system component, −54% verification questions to support
+- [Transfer statuses](https://anastasiia-suhanek.github.io/case-profee-statuses.html): an Updates timeline for transfers, ~70% tap “Continue transfer” within a day
+- [Profee Cards](https://anastasiia-suhanek.github.io/case-profee-cards.html): Cards area rebuilt on iOS and Android, ×2 active senders open the Cards tab
+- [Top up in the transfer](https://anastasiia-suhanek.github.io/case-profee-topup.html): a Top up button right in the payment step, ×3.3 more senders top up on Android
+- [Gamification at Sber](https://anastasiia-suhanek.github.io/case-sber-spasibo.html): games and tasks in the SberSpasibo loyalty programme, up to ×3 bonus redemption
+
+## Other views
+
+- [Showreel](https://anastasiia-suhanek.github.io/hello/): the whole path on one page
+- [Design systems](https://anastasiia-suhanek.github.io/systems/): two-layer tokens in Figma Variables, components whose properties match code
+- [Design engineer](https://anastasiia-suhanek.github.io/engineer/): tokens, React components, Storybook with accessibility tests, AI agents for UX copy (localisation ×4 faster)
+- [Design system in code](https://anastasiia-suhanek.github.io/design-system/): live Storybook
+- [About](https://anastasiia-suhanek.github.io/about.html)
+- [CV, PDF](https://anastasiia-suhanek.github.io/anastasiia-sukhanek-cv.pdf)
+
+## Contacts
+
+- Email: anastasiia.suhanek@gmail.com
+- Telegram: https://t.me/suhastasiia
+- LinkedIn: https://www.linkedin.com/in/anastasiiasukhanek/
+- Behance: https://www.behance.net/anastasiiasukhanek

@@ -159,17 +159,17 @@ body {
     <p lang="en" class="section-label t-en">Context</p>
     <p lang="ru" class="section-label t-ru">Контекст</p>
     <h2>
-      <span lang="en" class="t-en">International transfers are a black box</span>
-      <span lang="ru" class="t-ru">Международные переводы — чёрный ящик</span>
+      <span lang="en" class="t-en">You couldn’t see where the transfer was</span>
+      <span lang="ru" class="t-ru">Где перевод, было не видно</span>
     </h2>
 
     <div class="split split--video">
       <div class="split-text">
         <p lang="en" class="t-en">A transfer goes from the sender’s card through Profee’s exchange and a correspondent bank to the recipient’s bank or wallet. That can take seconds – or days</p>
         <p lang="ru" class="t-ru">Перевод в Profee проходит через несколько систем: карта отправителя, конвертация в Profee, банк-корреспондент и банк или кошелёк получателя. Весь путь занимает от нескольких секунд до нескольких дней</p>
-        <h3 lang="en" class="t-en">Nobody waited for the transfer</h3>
+        <h3 lang="en" class="t-en">People left while the transfer was in progress</h3>
 <p lang="en" class="t-en">People confirmed it, saw “Processing your transfer” and switched to another app. Whatever happened next – a delay, a refund, a request for a BLIK code – happened while they were gone</p>
-        <h3 lang="ru" class="t-ru">Перевод никто не ждал</h3>
+        <h3 lang="ru" class="t-ru">Пока перевод шёл, человек уходил</h3>
 <p lang="ru" class="t-ru">Человек подтверждал его, видел «Обрабатываем перевод» и уходил в другое приложение. Всё, что случалось дальше — задержка, возврат, запрос кода BLIK, — происходило без него</p>
         <p lang="en" class="t-en">When they came back, the screen showed a single line: the current status. No history – what had already happened, where the transfer was stuck, what was coming next. Yet the status screen is opened most often while a transfer is still in progress – 59% of views – exactly when that one line said the least</p>
         <p lang="ru" class="t-ru">А когда он возвращался, на экране была одна-единственная строка — текущий статус. Никакой истории: что уже произошло, где перевод застрял, что будет дальше. При этом чаще всего экран статуса открывают, пока перевод ещё идёт, — 59% просмотров. Как раз тогда одна строка и говорила меньше всего</p>
@@ -190,8 +190,8 @@ body {
     <p lang="en" class="section-label t-en">Status map</p>
     <p lang="ru" class="section-label t-ru">Карта статусов</p>
     <h2>
-      <span lang="en" class="t-en">Dozens of system codes, a handful of human steps</span>
-      <span lang="ru" class="t-ru">Десятки кодов системы — несколько понятных шагов</span>
+      <span lang="en" class="t-en">Status codes mapped to five steps</span>
+      <span lang="ru" class="t-ru">Коды статусов, сведённые в пять шагов</span>
     </h2>
     <p lang="en" class="t-en">Before drawing the timeline, I had to work out what it was made of. A transfer has two technical statuses – the debit and the credit – with codes from 1 to 90, plus separate refund statuses. Together with the backend team, I split the codes into ranges and turned them into steps a person understands: transfer created, checking it’s safe, taking the money, the recipient’s bank has it, done. Failure, refund and money returned are separate branches</p>
     <p lang="ru" class="t-ru">Прежде чем рисовать таймлайн, нужно было понять, из чего он состоит. У перевода два технических статуса — списания и зачисления — с кодами от 1 до 90, плюс отдельные статусы возврата. Вместе с бэкендом я разложила коды по диапазонам и свела их в шаги, понятные человеку: перевод создан, проверяем, что он безопасен, списываем деньги, банк получателя их получил, готово. Сбой, возврат и «деньги вернулись» — отдельные ветки</p>
@@ -224,8 +224,8 @@ body {
     <p lang="en" class="section-label t-en">Approach</p>
     <p lang="ru" class="section-label t-ru">Подход</p>
     <h2>
-      <span lang="en" class="t-en">Two views for two kinds of questions</span>
-      <span lang="ru" class="t-ru">Два вопроса — две вкладки</span>
+      <span lang="en" class="t-en">The Updates and Details tabs</span>
+      <span lang="ru" class="t-ru">Вкладки «Статусы» и «Детали»</span>
     </h2>
     <p lang="en" class="t-en">People open a transfer with one of two questions: <em>“what’s happening?”</em> – they want the story – or <em>“what are the details?”</em> – the transaction number, fee, payment method</p>
     <p lang="ru" class="t-ru">Открывая перевод, человек ищет ответ на один из двух вопросов. Иногда — <em>«что с переводом?»</em>: нужна история, последовательность событий. Иногда — <em>«какие у него данные?»</em>: номер операции, комиссия, способ оплаты</p>
@@ -415,8 +415,8 @@ body {
     <p lang="en" class="section-label t-en">Reflection</p>
     <p lang="ru" class="section-label t-ru">Выводы</p>
     <h2>
-      <span lang="en" class="t-en">A screen doesn’t bring people back</span>
-      <span lang="ru" class="t-ru">Экран не возвращает людей</span>
+      <span lang="en" class="t-en">What I learned</span>
+      <span lang="ru" class="t-ru">Что я поняла</span>
     </h2>
     <p lang="en" class="t-en">Putting the action inside the history worked: people who open the transfer find the card and tap it in seconds. But I designed for the moment someone is already on the screen. That the harder part is getting them there only showed up in the data, so the home block came a task later. Now I start with how a person will get to the screen at all</p>
     <p lang="ru" class="t-ru">Идея встроить действие в историю сработала: кто открыл перевод, находит карточку и нажимает за секунды. Но я проектировала момент, когда человек уже на экране. Что труднее всего — привести его туда, стало видно только по данным, поэтому блок на главной появился задачей позже. Теперь я начинаю с вопроса, как человек вообще попадёт на экран</p>

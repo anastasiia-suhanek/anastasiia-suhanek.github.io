@@ -160,7 +160,7 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
     <div class="wrap">
       <div>
         <p class="eyebrow"><span lang="en" class="t-en">Anastasiia Sukhanek / design systems</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек / дизайн-системы</span></p>
-        <h1><span lang="en" class="t-en">Design systems that hold up in production</span><span lang="ru" class="t-ru">Дизайн‑системы, которые выдерживают продакшн</span></h1>
+        <h1><span lang="en" class="t-en">Design systems in Figma and in code</span><span lang="ru" class="t-ru">Дизайн-системы в Figma и в коде</span></h1>
         <p lang="en" class="lead t-en"><strong>Two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
         <p lang="ru" class="lead t-ru"><strong>Двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
       </div>
@@ -247,11 +247,11 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
     <div class="wrap">
       <div class="sec-head"><span class="sec-n">02 — <span lang="en" class="t-en">Principles</span><span lang="ru" class="t-ru">Принципы</span></span><h2><span lang="en" class="t-en">How we build a system</span><span lang="ru" class="t-ru">Как мы строим систему</span></h2></div>
       <ul class="rules">
-        <li><code>primitives → semantic</code><h3><span lang="en" class="t-en">Components never see raw values</span><span lang="ru" class="t-ru">Компоненты не видят сырых значений</span></h3><p lang="en" class="t-en">Only semantic tokens. A partner brand or dark mode is a new mode, not a redraw</p><p lang="ru" class="t-ru">Только семантические токены. Бренд партнёра или тёмная тема — новый режим, а не перерисовка</p></li>
-        <li><code>property = prop</code><h3><span lang="en" class="t-en">Figma speaks the code’s language</span><span lang="ru" class="t-ru">Figma говорит на языке кода</span></h3><p lang="en" class="t-en">A toggle in Figma is a prop in React with the same name, so handoff has nothing to translate</p><p lang="ru" class="t-ru">Переключатель в Figma — это проп в React с тем же именем, поэтому при передаче нечего переводить</p></li>
-        <li><code>1 × n</code><h3><span lang="en" class="t-en">Fewer components, more cases</span><span lang="ru" class="t-ru">Меньше компонентов, больше сценариев</span></h3><p lang="en" class="t-en">Ten verification scenarios run on one bottom sheet. New scenario, no new component</p><p lang="ru" class="t-ru">Десять сценариев верификации работают на одной шторке. Новый сценарий — без нового компонента</p></li>
-        <li><code>axe</code><h3><span lang="en" class="t-en">Test what the eye misses</span><span lang="ru" class="t-ru">Проверять то, что пропускает глаз</span></h3><p lang="en" class="t-en">Contrast and accessible names are checked on every story, not in a review once a quarter</p><p lang="ru" class="t-ru">Контраст и доступные имена проверяются на каждой story, а не на ревью раз в квартал</p></li>
-        <li><code>4 px</code><h3><span lang="en" class="t-en">One grid for everything</span><span lang="ru" class="t-ru">Одна сетка для всего</span></h3><p lang="en" class="t-en">Spacing, type and component sizes are multiples of 4. This site follows it too</p><p lang="ru" class="t-ru">Отступы, шрифты и размеры компонентов кратны 4. Этот сайт тоже</p></li>
+        <li><code>primitives → semantic</code><h3><span lang="en" class="t-en">Only semantic tokens</span><span lang="ru" class="t-ru">Только семантические токены</span></h3><p lang="en" class="t-en">A partner brand or dark mode is a new mode, not a redraw</p><p lang="ru" class="t-ru">Бренд партнёра или тёмная тема — новый режим, а не перерисовка</p></li>
+        <li><code>property = prop</code><h3><span lang="en" class="t-en">Figma properties match the props</span><span lang="ru" class="t-ru">Свойства в Figma совпадают с пропсами</span></h3><p lang="en" class="t-en">A toggle in Figma is a prop in React with the same name, so handoff has nothing to translate</p><p lang="ru" class="t-ru">Переключатель в Figma — это проп в React с тем же именем, поэтому при передаче нечего переводить</p></li>
+        <li><code>1 × n</code><h3><span lang="en" class="t-en">One component, many scenarios</span><span lang="ru" class="t-ru">Один компонент на много сценариев</span></h3><p lang="en" class="t-en">Ten verification scenarios run on one bottom sheet. New scenario, no new component</p><p lang="ru" class="t-ru">Десять сценариев верификации работают на одной шторке. Новый сценарий — без нового компонента</p></li>
+        <li><code>axe</code><h3><span lang="en" class="t-en">Accessibility is checked in code</span><span lang="ru" class="t-ru">Доступность проверяется в коде</span></h3><p lang="en" class="t-en">Contrast and accessible names are checked on every story, not in a review once a quarter</p><p lang="ru" class="t-ru">Контраст и доступные имена проверяются на каждой story, а не на ревью раз в квартал</p></li>
+        <li><code>4 px</code><h3><span lang="en" class="t-en">A 4 px grid</span><span lang="ru" class="t-ru">Сетка 4 px</span></h3><p lang="en" class="t-en">Spacing, type and component sizes are multiples of 4. This site follows it too</p><p lang="ru" class="t-ru">Отступы, шрифты и размеры компонентов кратны 4. Этот сайт тоже</p></li>
         <li><code>13 langs</code><h3><span lang="en" class="t-en">Copy is part of the component</span><span lang="ru" class="t-ru">Текст — часть компонента</span></h3><p lang="en" class="t-en">Length, tone and states of the copy are designed with the component, and the longest language decides the layout</p><p lang="ru" class="t-ru">Длину, тон и состояния текста продумываем вместе с компонентом, а вёрстку задаёт самый длинный язык</p></li>
       </ul>
     </div>
@@ -276,7 +276,7 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
   <section id="contact">
     <div class="wrap contact">
       <div>
-        <h2><span lang="en" class="t-en">Need someone who keeps the system and the product in sync?</span><span lang="ru" class="t-ru">Нужен человек, который держит систему и продукт в одном ритме?</span></h2>
+        <h2><span lang="en" class="t-en">Get in touch</span><span lang="ru" class="t-ru">Напишите мне</span></h2>
         <p lang="en" class="t-en">Looking for a Senior Product Designer role with design system ownership, or a design systems role</p>
         <p lang="ru" class="t-ru">Ищу роль Senior продуктового дизайнера который отвечает за дизайн-систему, или место в команде дизайн-системы</p>
       </div>

@@ -6,11 +6,11 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Anastasiia Sukhanek", "alternateName": ["Анастасия Суханек", "Anastasiia Suhanek"], "jobTitle": "Senior Product Designer", "url": "https://anastasiia-suhanek.github.io/", "image": "https://anastasiia-suhanek.github.io/og-image-swiss.png", "email": "mailto:anastasiia.suhanek@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "CZ"}, "worksFor": {"@type": "Organization", "name": "Profee"}, "knowsLanguage": ["en", "ru"], "knowsAbout": ["Product design", "UX design", "Fintech", "Payments", "KYC verification", "Design systems", "Figma", "React", "Storybook", "UX writing", "Product analytics"], "sameAs": ["https://www.linkedin.com/in/anastasiiasukhanek/", "https://www.behance.net/anastasiiasukhanek", "https://t.me/suhastasiia"]}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-ru="Карты Profee — Анастасия Суханек">Profee Cards – Anastasiia Sukhanek</title>
-<meta name="description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and an honest read of what the card did not change" data-ru="Кейс: новый раздел карт Profee на iOS и Android — вдвое больше отправителей заходят во вкладку «Карты», и честный разбор того, что карта не изменила">
+<meta name="description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and what the card did not change" data-ru="Кейс: новый раздел карт Profee на iOS и Android — вдвое больше отправителей заходят во вкладку «Карты», и что карта не изменила">
 <meta name="author" content="Anastasiia Sukhanek">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Profee Cards – Anastasiia Sukhanek">
-<meta property="og:description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and an honest read of what the card did not change">
+<meta property="og:description" content="Case study: rebuilding the Cards product area for Profee on iOS and Android – twice the share of senders opening the Cards tab, and what the card did not change">
 <meta property="og:image" content="https://anastasiia-suhanek.github.io/images/og/cover-profee-cards.jpg?v=3">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1254">
@@ -205,8 +205,8 @@ body {
     <p lang="en" class="section-label t-en">Context</p>
     <p lang="ru" class="section-label t-ru">Контекст</p>
     <h2>
-      <span lang="en" class="t-en">The card existed – nobody treated it as a product</span>
-      <span lang="ru" class="t-ru">Карта была, но продуктом её никто не считал</span>
+      <span lang="en" class="t-en">The old tab: a card carousel with no account</span>
+      <span lang="ru" class="t-ru">Старая вкладка: карусель карт без счёта</span>
     </h2>
     <p lang="en" class="t-en">Profee is built for cross-border remittances. By autumn 2025 it also had a wallet people could top up. The old Cards tab showed a carousel of cards, four buttons, an empty history – and no sign of the account a card is linked to</p>
     <p lang="ru" class="t-ru">Profee — сервис международных переводов. К осени 2025 в нём уже был кошелёк, который можно пополнять, и вкладка «Карты», доставшаяся от старой версии приложения: карусель карт, четыре кнопки, пустая история, а счёт, к которому привязана карта, нигде не показан</p>
@@ -347,9 +347,9 @@ body {
 
     <div id="ai" aria-hidden="true"></div>
     <h3 lang="en" class="t-en" id="copy">Copy and localization</h3>
-<p lang="en" class="t-en">Cards is where our team started using AI every day. With the head of design I built Claude agents that follow our editorial rules, and with them I wrote, checked and translated every string into 13 languages. Strings first went to Phrase via Claude, then straight into the iOS and Android code – and we dropped Phrase</p>
+<p lang="en" class="t-en">With the head of design I built Claude agents that follow our editorial rules, and with them I wrote, checked and translated every string into 13 languages. Strings first went to Phrase via Claude, then straight into the iOS and Android code – and we dropped Phrase</p>
     <h3 lang="ru" class="t-ru" id="copy-ru">Тексты и локализация</h3>
-<p lang="ru" class="t-ru">На картах команда впервые начала пользоваться AI каждый день. С хедом дизайна мы собрали агентов на Claude, которые пишут по нашей редполитике, и с ними я написала, проверила и перевела на 13 языков все тексты раздела. Сначала строки уходили во Phrase через Claude, потом — сразу в код iOS и Android, а от Phrase мы отказались</p>
+<p lang="ru" class="t-ru">С хедом дизайна мы собрали агентов на Claude, которые пишут по нашей редполитике, и с ними я написала, проверила и перевела на 13 языков все тексты раздела. Сначала строки уходили во Phrase через Claude, потом — сразу в код iOS и Android, а от Phrase мы отказались</p>
   </section>
 </div>
 
@@ -608,8 +608,8 @@ window.protoScripts = {
     <p lang="en" class="section-label t-en">Design decisions</p>
     <p lang="ru" class="section-label t-ru">Решения</p>
     <h2>
-      <span lang="en" class="t-en">Details that mattered</span>
-      <span lang="ru" class="t-ru">Детали, от которых всё зависело</span>
+      <span lang="en" class="t-en">Fees and freezing</span>
+      <span lang="ru" class="t-ru">Комиссия и заморозка</span>
     </h2>
 
     <h3 lang="en" class="t-en">Fee transparency in top-up – goal 3</h3>
@@ -690,8 +690,8 @@ window.protoScripts = {
     <p lang="en" class="section-label t-en">Results</p>
     <p lang="ru" class="section-label t-ru">Результаты</p>
     <h2>
-      <span lang="en" class="t-en">The area works. The bet is only half won</span>
-      <span lang="ru" class="t-ru">Раздел работает. Ставка сыграла наполовину</span>
+      <span lang="en" class="t-en">Twice as many open the tab, but money stays in the wallet</span>
+      <span lang="ru" class="t-ru">Вкладкой пользуются вдвое чаще, но деньги держат в кошельке</span>
     </h2>
     <p lang="en" class="t-en">The new Cards tab launched on March 6, 2026 on iOS and Android. Comparing April, the first full month, with August, Amplitude shows two things at once</p>
     <p lang="ru" class="t-ru">Новая вкладка «Карты» вышла 6 марта 2026 года на iOS и Android. Если сравнить апрель, первый полный месяц, с августом, данные Amplitude говорят сразу о двух вещах</p>
@@ -727,8 +727,8 @@ window.protoScripts = {
     </div>
 
     <div class="tradeoff">
-      <p lang="en" class="tradeoff-label t-en">Honest read</p>
-      <p lang="ru" class="tradeoff-label t-ru">Честный вывод</p>
+      <p lang="en" class="tradeoff-label t-en">Conclusion</p>
+      <p lang="ru" class="tradeoff-label t-ru">Вывод</p>
       <p lang="en" class="t-en">The hypothesis: a good card makes people keep money in Profee. They do keep money here now – but in the wallet, and few reach for the card. Partly because the card spends from its own account, so money has to be moved there first. The redesign gave people an area they use, but the card isn’t a reason to stay yet</p>
       <p lang="ru" class="t-ru">Гипотеза была такая: «хорошая карта заставит людей держать деньги в Profee». Деньги в Profee теперь действительно держат, но не из-за карты: их держат в кошельке, а до карты доходят немногие. Отчасти дело в том, что карта тратит со своего счёта: деньги, которые лежат на других счетах в Profee, сначала нужно перевести туда. Редизайн дал раздел, которым пользуются, но причиной оставаться в Profee карта пока не стала</p>
     </div>

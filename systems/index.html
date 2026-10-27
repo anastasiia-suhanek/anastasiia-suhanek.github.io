@@ -15,7 +15,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <script src="../js/lang.js?v=3b05f971"></script>
-<link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
+<link rel="stylesheet" href="../fonts/inter.css?v=25d99c35">
 <style>
 /* Systems facet: a spec sheet. Blueprint grid, redlines, token names in mono. Every size is a multiple of 4, weights 400/500/600 */
 :root {
@@ -57,6 +57,7 @@ code, .mono { font-family: var(--mono); font-size: 12px; line-height: 16px; }
 .hero .meta { grid-column: 1; margin-top: 0; align-self: start; padding-top: 4px; }
 .hero .also { grid-column: 2; margin-top: 0; align-self: start; }
 .eyebrow { display: inline-block; font: 500 12px/16px var(--mono); color: var(--accent); background: var(--accent-100); padding: 4px 8px; margin-bottom: 24px; }
+.eyebrow .acute { --acute-x: .6em; } /* monospace: the stress mark steps back one full cell */
 h1 { font-size: 56px; line-height: 60px; font-weight: 600; letter-spacing: -0.03em; text-wrap: balance; }
 .lead { font-size: 20px; line-height: 28px; color: var(--muted); margin-top: 24px; max-width: 520px; }
 .lead strong { color: var(--text); font-weight: 500; }
@@ -147,7 +148,7 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
 
 <header class="top">
   <div class="wrap">
-    <a class="top-home" href="#"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span></a>
+    <a class="top-home" href="#"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек</span></a>
     <div class="lang"><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button><button class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button></div>
   </div>
 </header>
@@ -156,7 +157,7 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
   <div class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow"><span lang="en" class="t-en">Anastasiia Sukhanek / design systems</span><span lang="ru" class="t-ru">Анастасия Суха́нек / дизайн-системы</span></p>
+        <p class="eyebrow"><span lang="en" class="t-en">Anastasiia Sukhanek / design systems</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек / дизайн-системы</span></p>
         <h1><span lang="en" class="t-en">Design systems that hold up in production</span><span lang="ru" class="t-ru">Дизайн‑системы, которые выдерживают продакшн</span></h1>
         <p lang="en" class="lead t-en"><strong>Two-layer tokens, components whose Figma properties match the code</strong> and checks that catch what Figma doesn’t show</p>
         <p lang="ru" class="lead t-ru"><strong>Двухслойные токены, компоненты со свойствами как в коде</strong> и проверки, которые ловят то, чего не видно в Figma</p>
@@ -288,7 +289,7 @@ footer { padding-block: 24px; font-size: 12px; line-height: 16px; color: var(--m
   </section>
 </main>
 
-<footer><div class="wrap"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Суха́нек</span> · <span lang="en" class="t-en">Prague</span><span lang="ru" class="t-ru">Прага</span> · 2026 · <a href="../">← <span lang="en" class="t-en">Main portfolio</span><span lang="ru" class="t-ru">Основное портфолио</span></a></div></footer>
+<footer><div class="wrap"><span lang="en" class="t-en">Anastasiia Sukhanek</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек</span> · <span lang="en" class="t-en">Prague</span><span lang="ru" class="t-ru">Прага</span> · 2026 · <a href="../">← <span lang="en" class="t-en">Main portfolio</span><span lang="ru" class="t-ru">Основное портфолио</span></a></div></footer>
 
 <script>
 // Links with data-href-ru open the Russian version when the page is in Russian

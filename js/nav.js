@@ -35,7 +35,7 @@
 
   var html =
     '<div class="nav-inner">' +
-      '<a class="nav-name" href="' + nameHref + '"><span class="t-en">Anastasiia Sukhanek</span><span class="t-ru">Анастасия Суха́нек</span></a>' +
+      '<a class="nav-name" href="' + nameHref + '"><span class="t-en">Anastasiia Sukhanek</span><span class="t-ru">Анастасия Сух<span class="acute">а</span>нек</span></a>' +
       '<div class="nav-links">' +
         links.map(navLink).join('') +
         '<a class="nav-seg nav-seg--cta" href="' + contactHref + '">' + cta + '</a>' +

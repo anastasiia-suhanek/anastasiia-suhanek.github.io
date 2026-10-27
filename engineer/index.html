@@ -15,7 +15,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <script src="../js/lang.js?v=3b05f971"></script>
-<link rel="stylesheet" href="../fonts/inter.css?v=1ae00cf9">
+<link rel="stylesheet" href="../fonts/inter.css?v=25d99c35">
 <style>
 /* Engineering facet: dark, mono labels. Every size is a multiple of 4, weights 400/500/600 */
 :root {
@@ -47,6 +47,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* Hero */
 .hero { padding-block: 96px 80px; }
 .eyebrow { font: 400 12px/16px var(--mono); color: var(--accent); margin-bottom: 24px; }
+.eyebrow .acute, footer .acute { --acute-x: .6em; } /* monospace: the stress mark steps back one full cell */
 h1 { font-size: 64px; line-height: 64px; font-weight: 600; letter-spacing: -0.03em; max-width: 800px; text-wrap: balance; }
 .lead { font-size: 20px; line-height: 28px; color: var(--muted); max-width: 640px; margin-top: 24px; }
 .lead strong { color: var(--text); font-weight: 500; }
@@ -138,7 +139,7 @@ footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/
 
 <main>
   <div class="hero wrap">
-    <p class="eyebrow">// <span lang="en" class="t-en">Anastasiia Sukhanek · design engineer</span><span lang="ru" class="t-ru">Анастасия Суха́нек · дизайн-инженер</span></p>
+    <p class="eyebrow">// <span lang="en" class="t-en">Anastasiia Sukhanek · design engineer</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек · дизайн-инженер</span></p>
     <h1><span lang="en" class="t-en">I design in Figma and ship it in code</span><span lang="ru" class="t-ru">Проектирую в Figma и довожу до кода</span></h1>
     <div class="hero-row">
       <div class="hero-main">
@@ -265,7 +266,7 @@ footer { border-top: 1px solid var(--rule); padding-block: 24px; font: 400 12px/
   </section>
 </main>
 
-<footer><div class="wrap"><span lang="en" class="t-en">Anastasiia Sukhanek · Prague</span><span lang="ru" class="t-ru">Анастасия Суха́нек · Прага</span> · 2026</div></footer>
+<footer><div class="wrap"><span lang="en" class="t-en">Anastasiia Sukhanek · Prague</span><span lang="ru" class="t-ru">Анастасия Сух<span class="acute">а</span>нек · Прага</span> · 2026</div></footer>
 
 <script>
 // Links with data-href-ru open the Russian version when the page is in Russian

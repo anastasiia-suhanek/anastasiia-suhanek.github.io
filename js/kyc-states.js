@@ -12,13 +12,13 @@
 
   // form · screen · title · when it shows · what the button does
   var GROUPS = [
-    { form: ['Card on the main screen', 'Карточка на главном экране'], items: [
+    { form: ['Card or banner on the main screen', 'Карточка или баннер на главном экране'], items: [
       { src: 'screen-entry-banner', t: ['Extra documents needed', 'Нужны доп. документы'], why: ['The check needs more from the user', 'Для проверки нужно что-то ещё'], act: ['Open bot', 'Открыть бота'] },
       { src: 'screen-checking-new', t: ['Checking your docs', 'Проверяем документы'], why: ['Docs are in, nothing to do but wait', 'Документы отправлены, остаётся ждать'], act: ['No button – just the status', 'Без кнопки — только статус'] },
       { src: 'refresh-expiring-banner', t: ['Docs expiring soon', 'Документы скоро истекут'], why: ['3–4 months before the date, can be closed', 'За 3–4 месяца до срока, можно закрыть'], act: ['Open bot', 'Открыть бота'] },
       { src: 'refresh-expired-card', t: ['Docs expired', 'Срок документов вышел'], why: ['Stays until the docs are updated', 'Висит, пока документы не обновят'], act: ['Open bot', 'Открыть бота'] }
     ] },
-    { form: ['Bottom sheet mid-flow', 'Шторка во время перевода'], items: [
+    { form: ['Bottom sheet', 'Шторка'], items: [
       { src: 'screen-failed', t: ['Verification didn’t go through', 'Верификация не прошла'], why: ['The docs couldn’t be verified', 'Документы не удалось проверить'], act: ['Open bot · Not now', 'Открыть бота · Не сейчас'] },
       { src: 'screen-finish-verif', t: ['Finish verification', 'Завершите верификацию'], why: ['Left halfway – progress is kept', 'Бросили на полпути — прогресс сохранён'], act: ['Finish · Do it later', 'Завершить · Позже'] },
       { src: 'midflow-left-to-send', t: ['X EUR left to send', 'Осталось X EUR'], why: ['Close to the limit, the transfer still goes', 'Лимит близко, перевод ещё проходит'], act: ['Open bot · Change amount', 'Открыть бота · Изменить сумму'] },

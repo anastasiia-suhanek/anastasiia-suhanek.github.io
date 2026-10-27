@@ -13,7 +13,7 @@
   // form · screen · title · when it shows · what the button does
   var GROUPS = [
     { form: ['Card or banner on the main screen', 'Карточка или баннер на главном экране'], items: [
-      { src: 'screen-entry-banner', t: ['Extra documents needed', 'Нужны доп. документы'], why: ['The check needs more from the user', 'Для проверки нужно что-то ещё'], act: ['Open bot', 'Открыть бота'] },
+      { src: 'screen-entry-banner', t: ['Docs needed', 'Нужны документы'], why: ['First verification, not started yet', 'Первая верификация, ещё не начата'], act: ['Open bot', 'Открыть бота'] },
       { src: 'screen-checking-new', t: ['Checking your docs', 'Проверяем документы'], why: ['Docs are in, nothing to do but wait', 'Документы отправлены, остаётся ждать'], act: ['No button – just the status', 'Без кнопки — только статус'] },
       { src: 'refresh-expiring-banner', t: ['Docs expiring soon', 'Документы скоро истекут'], why: ['3–4 months before the date, can be closed', 'За 3–4 месяца до срока, можно закрыть'], act: ['Open bot', 'Открыть бота'] },
       { src: 'refresh-expired-card', t: ['Docs expired', 'Срок документов вышел'], why: ['Stays until the docs are updated', 'Висит, пока документы не обновят'], act: ['Open bot', 'Открыть бота'] }

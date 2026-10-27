@@ -255,9 +255,15 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
 .stop.on .rv { opacity: 1; transform: none; }
 .stop.on .rv:nth-child(2) { transition-delay: .08s; } .stop.on .rv:nth-child(3) { transition-delay: .16s; } .stop.on .rv:nth-child(4) { transition-delay: .24s; }
 
-/* Page exit: an amber flash, like a lamp, before the next page */
-.curtain { position: fixed; inset: 0; z-index: 60; background: var(--amber); opacity: 0; pointer-events: none; transition: opacity .45s var(--ease-io); }
-.is-leaving .curtain { opacity: 1; }
+/* Page exit: overexposure. The trails speed up, light blooms from where you clicked and burns the frame to white; the next page develops out of that white */
+.curtain { position: fixed; inset: 0; z-index: 60; pointer-events: none; overflow: hidden; visibility: hidden; }
+.curtain::before { content: ''; position: absolute; left: var(--cx, 50%); top: var(--cy, 50%); width: 200vmax; height: 200vmax; margin: -100vmax 0 0 -100vmax; border-radius: 50%;
+  background: radial-gradient(closest-side, #fff 0, #FFF4E2 32%, rgba(255, 214, 150, .7) 60%, rgba(255, 181, 71, 0) 100%);
+  opacity: 0; transform: scale(0); transition: transform .72s cubic-bezier(.5, 0, .75, 0), opacity .24s; }
+.curtain::after { content: ''; position: absolute; inset: 0; background: #fff; opacity: 0; transition: opacity .32s ease-in .44s; }
+.is-leaving .curtain { visibility: visible; }
+.is-leaving .curtain::before { opacity: 1; transform: scale(1.4); }
+.is-leaving .curtain::after { opacity: 1; }
 
 @media (max-height: 520px) and (orientation: landscape) {
   .hero { padding-top: 72px; } .hero-main { padding-bottom: 16svh; } .name { font-size: 64px; line-height: 60px; } .tag { font-size: 18px; line-height: 24px; margin-top: 12px; }
@@ -499,17 +505,21 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     setTimeout(function () { lw.textContent = langs[li][1]; lw.style.opacity = 1; }, 250);
   }, 1400);
 
-  // Page exit: an amber flash, then the next page
+  // Page exit: the frame burns to white (see .curtain), then the next page develops out of it (build.py adds that half)
+  var burnT = 0;
   if (!reduce) {
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a');
       if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var href = a.getAttribute('href') || '';
       if (a.target === '_blank' || a.hasAttribute('download') || href.charAt(0) === '#' || /^mailto:|^tel:/.test(href) || a.origin !== location.origin) return;
-      e.preventDefault(); root.classList.add('is-leaving');
-      setTimeout(function () { location.href = a.href; }, 450);
+      e.preventDefault();
+      var cu = document.querySelector('.curtain'); cu.style.setProperty('--cx', e.clientX + 'px'); cu.style.setProperty('--cy', e.clientY + 'px');
+      try { sessionStorage.setItem('fx', 'develop'); } catch (err) {}
+      root.classList.add('is-leaving'); burnT = performance.now();
+      setTimeout(function () { location.href = a.href; }, 780);
     });
-    addEventListener('pageshow', function () { root.classList.remove('is-leaving'); });
+    addEventListener('pageshow', function () { root.classList.remove('is-leaving'); burnT = 0; });
   }
 
   /* ── The exposure: every light is a person ── */
@@ -655,6 +665,8 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px
     (function frame(now) {
       var dt = Math.min((now - last) / 16.67, 3); last = now;
       var S = scene(); S.alpha *= smooth(400, 2000, now - t0);
+      // Leaving: the shutter stays open – lights run faster and nothing fades, so the frame fills with light
+      if (burnT) { var k = clamp((now - burnT) / 700, 0, 1); dt *= 1 + 5 * k; S.fade *= (1 - k) / (1 + 5 * k); S.alpha = lerp(S.alpha, 1, k); }
       step(dt, now, S, now - ptr.t < 350);
       routeScene(now);
       requestAnimationFrame(frame);
